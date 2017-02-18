@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新用户注册</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+</head>
+<body>
+    <div class="wrapper bg-white">
+        <div id="logo">
+            <a href="index.html">
+                <img src="images/logo_1.jpg" alt="白熊网" width="170" height="60">
+            </a>
+            <span>欢迎注册</span>
+        </div>
+        <div class="have-account">
+            已有账号？<a href="login.html">请登录</a>
+        </div>
+    </div>
+    <div class="wrapper-bottom"></div>
+    <div class="content">
+        <div class="shadow-box">
+            <div class="register-box">
+                <form id="register-form" action="" method="post">
+                    <div class="form-item">
+                        <span class="form-item-name">邮箱/手机号码</span>
+                        <input name="username" id="username" autocomplete="off" value="" maxlength="40" placeholder="请输入您的邮箱或手机号码" type="text" class="input-box">
+                    </div>
+                    <div class="form-item">
+                        <span class="form-item-name">登陆密码</span>
+                        <input name="password" id="password" maxlength="20" type="password" class="input-box" placeholder="建议至少使用两种字符组合">
+                    </div>
+                    <div class="form-item">
+                        <span class="form-item-name">确认密码</span>
+                        <input name="confirm-pwd" id="confirm-pwd" maxlength="20" type="password" class="input-box" placeholder="请再次输入密码">
+                    </div>
+                    <div class="form-item">
+                        <span class="form-item-name">验证码</span>
+                        <input name="verify-code" id="verify-code" autocomplete="off" maxlength="4" placeholder="请输入验证码" type="text" class="input-box" style="width:8rem;margin-right:.3rem">
+                        <a id="code_pic" style="position: absolute" href="javascript:void(0);">
+                            <img class="img-code" title="点击更换验证码" alt="点击更换验证码" width="84" height="37">
+                        </a>
+                        <a id="change-code" style="position:relative;left:4.4rem" href="javascript:void(0);">换张图</a>
+                    </div>
+                    <input type="submit" value="立即注册" class="submit-btn">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper text-center clearfix">
+        <div class="links">
+            <a href="#" rel="nofollow" target="_blank">关于白熊网</a>|<a href="#" rel="nofollow" target="_blank">联系我们</a>|<a href="#" rel="nofollow" target="_blank">移动平台</a>
+        </div>
+        <div class="copyright">Copyright &copy; scnu 版权所有</div>
+    </div>
+</body>
+<script src="js/vue.min.js"></script>
+</html>

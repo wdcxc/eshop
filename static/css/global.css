@@ -1,0 +1,54 @@
+html{
+    font-size: 20px;
+    font-family: "microsoft yahei"
+}
+.hide{
+    visibility: hidden;
+}
+.text-center{
+    text-align: center;
+}
+.clearfix{
+    clear: both;
+}
+.wrapper{
+    width:48rem;
+    height: 3.8rem;
+    margin:0 auto;
+}
+.bg-white{
+    background-color: #fff;
+}
+#logo{
+    position: relative;
+    width: 15rem;
+    margin: .4rem .5rem;
+    height: 3rem;
+    float: left;
+}
+#logo a{
+    text-decoration: none;
+}
+#logo span{
+    display: inline-block;
+    font-size: 1.2rem;
+    position: absolute;
+    top: .7rem;
+    right: 0;
+    cursor: default;
+}
+.links{
+    font-size: .7rem;
+    color: #666;
+    margin: .5rem 0;
+}
+.copyright{
+    font-size: .7rem;
+    color: #666;
+}
+.links a{
+    text-decoration: none;
+    color: #666;
+    font-size: .7rem;
+    margin: 0 .8rem
+}
