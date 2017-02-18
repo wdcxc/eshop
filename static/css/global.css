@@ -21,13 +21,15 @@ html{
 }
 #logo{
     position: relative;
-    width: 15rem;
+    width: 12rem;
     margin: .4rem .5rem;
     height: 3rem;
     float: left;
 }
 #logo a{
     text-decoration: none;
+    font-size: 2rem;
+    color: red;
 }
 #logo span{
     display: inline-block;
