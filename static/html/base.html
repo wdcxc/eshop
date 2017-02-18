@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     {% block meta %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
     {% block css %}{% endblock %}
 </head>
 <body>
     {% block body %}{% endblock %}
-    <script type="javascript" src="{% static 'js/vue.min.js' %}"></script>
+    <script src="{% static 'js/vue.min.js' %}"></script>
+    <script src="{% static 'js/vue-resource.min.js' %}"></script>
+    <script>
+        Vue.http.options.emulateJSON = true;
+    </script>
     {% block js %}{% endblock %}
 </body>
 </html>

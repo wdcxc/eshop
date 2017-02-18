@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% load static %}
 {% block title %}eshop-欢迎登录{% endblock %}
 {% block css %}
@@ -6,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 {% endblock %}
+
 {% block body %}
     <div class="wrapper">
         <div id="logo">
@@ -19,22 +21,23 @@
                 <div class="login-box">
                     <div class="form-header">账户登录</div>
                     <div class="msg-error hide"></div>
-                    <form action="" method="post">
+                    <form id="loginForm" v-on:submit.prevent="login">
+                        {% csrf_token %}
                         <div class="form-item">
                             <label for="loginname" class="login-name-label"></label>
-                            <input id="loginname" class="input-box" type="text" name="loginname"
+                            <input v-model="customer.username" id="loginname" class="input-box" type="text" name="loginname"
                                    placeholder="用户名/邮箱/手机">
                         </div>
                         <div class="form-item">
                             <label for="loginpwd" class="login-pwd-label"></label>
-                            <input id="loginpwd" class="input-box" type="password" name="loginpwd" placeholder="密码">
+                            <input v-model="customer.password" id="loginpwd" class="input-box" type="password" name="loginpwd" placeholder="密码">
                         </div>
                         <div class="login-btn">
-                            <a href="index.html">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
+                            <input type="submit" value="登录">
                         </div>
                     </form>
                     <div class="forget-register">
-                        <a href="forget-password.html">忘记密码</a>
+                        <a href="{% url 'customer:forgetPwd' %}">忘记密码</a>
                         <a href="{% url 'customer:register' %}" class="free-register">免费注册</a>
                     </div>
                 </div>
@@ -48,4 +51,9 @@
         </div>
         <div class="copyright">Copyright &copy; scnu 版权所有</div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/js.cookie.js' %}"></script>
+    <script src="{% static 'js/customer/login.js' %}"></script>
 {% endblock %}
