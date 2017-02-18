@@ -56,7 +56,7 @@ ROOT_URLCONF = 'eshop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['static/html',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

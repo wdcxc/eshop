@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    {% block meta %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+    {% block css %}{% endblock %}
+</head>
+<body>
+    {% block body %}{% endblock %}
+    <script type="javascript" src="{% static 'js/vue.min.js' %}"></script>
+    {% block js %}{% endblock %}
+</body>
+</html>
