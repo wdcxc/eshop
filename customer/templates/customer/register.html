@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>新用户注册</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/global.css">
-    <link rel="stylesheet" type="text/css" href="css/register.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}eshop-欢迎注册{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+{% endblock %}
+{% block body %}
     <div class="wrapper bg-white">
         <div id="logo">
-            <a href="index.html">
-                <img src="images/logo_1.jpg" alt="白熊网" width="170" height="60">
-            </a>
+            <a href="index.html">eshop</a>
             <span>欢迎注册</span>
         </div>
         <div class="have-account">
@@ -51,10 +48,8 @@
     </div>
     <div class="wrapper text-center clearfix">
         <div class="links">
-            <a href="#" rel="nofollow" target="_blank">关于白熊网</a>|<a href="#" rel="nofollow" target="_blank">联系我们</a>|<a href="#" rel="nofollow" target="_blank">移动平台</a>
+            <a href="#" rel="nofollow" target="_blank">关于eshop</a>|<a href="#" rel="nofollow" target="_blank">联系我们</a>|<a href="#" rel="nofollow" target="_blank">移动平台</a>
         </div>
         <div class="copyright">Copyright &copy; scnu 版权所有</div>
     </div>
-</body>
-<script src="js/vue.min.js"></script>
-</html>
+{% endblock %}
