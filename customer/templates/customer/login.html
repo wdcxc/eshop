@@ -3,9 +3,7 @@
 {% load static %}
 {% block title %}eshop-欢迎登录{% endblock %}
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/login.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -32,8 +30,11 @@
                             <label for="loginpwd" class="login-pwd-label"></label>
                             <input v-model="customer.password" id="loginpwd" class="input-box" type="password" name="loginpwd" placeholder="密码">
                         </div>
+                        <div class="form-item" style="border:0">
+                            <div id="drag"></div>
+                        </div>
                         <div class="login-btn">
-                            <input type="submit" value="登录">
+                            <input type="submit" value="登 录">
                         </div>
                     </form>
                     <div class="forget-register">
@@ -44,16 +45,14 @@
             </div>
         </div>
     </div>
-    <div class="wrapper text-center clearfix">
-        <div class="links">
-            <a href="#" rel="nofollow" target="_blank">关于eshop</a>|<a href="#" rel="nofollow" target="_blank">联系我们</a>|<a
-                href="#" rel="nofollow" target="_blank">移动平台</a>
-        </div>
-        <div class="copyright">Copyright &copy; scnu 版权所有</div>
-    </div>
 {% endblock %}
 
 {% block js %}
     <script src="{% static 'js/js.cookie.js' %}"></script>
     <script src="{% static 'js/customer/login.js' %}"></script>
+    <script src="{% static 'js/customer/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/customer/drag.js' %}"></script>
+    <script type="text/javascript">
+        $('#drag').drag();
+    </script>
 {% endblock %}
