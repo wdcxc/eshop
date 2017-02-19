@@ -108,7 +108,7 @@
 #drag .handler{
     position: absolute;
     top: 0px;
-    width: 2.1rem;
+    width: 2rem;
     height: 1.6rem;
     cursor: move;
     border: 1px solid #ccc;
