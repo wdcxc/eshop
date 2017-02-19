@@ -3,8 +3,6 @@
 {% load static %}
 {% block title %}eshop-欢迎登录{% endblock %}
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 {% endblock %}
 
@@ -33,7 +31,7 @@
                             <input v-model="customer.password" id="loginpwd" class="input-box" type="password" name="loginpwd" placeholder="密码">
                         </div>
                         <div class="login-btn">
-                            <input type="submit" value="登录">
+                            <input type="submit" value="登&nbsp;录">
                         </div>
                     </form>
                     <div class="forget-register">

@@ -65,20 +65,19 @@
     outline: none;
     position: absolute;
 }
-.login-btn{
+.login-btn input{
+    display: inline-block;
     border: 1px solid #cb2a2d;
     height: 1.6rem;
+    width: 100%;
     background-color: #e4393c;
     text-align: center;
     line-height: 1.6rem;
-}
-.login-btn:hover{
-    background-color: #cb2a2d;
-}
-.login-btn input{
     color: #fff;
     font-size: 1rem;
-    text-decoration: none;
+}
+.login-btn input:hover{
+    background-color: #cb2a2d;
 }
 .forget-register{
     margin: 1rem 0;
