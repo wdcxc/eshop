@@ -16,6 +16,11 @@ def forgetPwd(request):
 
 
 def doLogin(request):
-    # todo
-    print(request.POST.get("customer"))
+    customerKeys = ("username","password","valicode")
+    customer = {}
+    for key in customerKeys:
+        customer[key] = request.POST.get(key)
+    # 验证码验证 todo
+    # 验证账号密码 todo
+    customer["password"] = hashlib.sha512(customer["password"]).hexdigest()
     return JsonResponse({"code":200})
