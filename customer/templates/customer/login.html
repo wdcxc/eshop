@@ -30,6 +30,9 @@
                             <label for="loginpwd" class="login-pwd-label"></label>
                             <input v-model="customer.password" id="loginpwd" class="input-box" type="password" name="loginpwd" placeholder="密码">
                         </div>
+                        <div class="form-item">
+                            <div id="drag"></div>
+                        </div>
                         <div class="login-btn">
                             <input type="submit" value="登&nbsp;录">
                         </div>
@@ -47,4 +50,9 @@
 {% block js %}
     <script src="{% static 'js/js.cookie.js' %}"></script>
     <script src="{% static 'js/customer/login.js' %}"></script>
+    <script src="{% static 'js/customer/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'js/customer/drag.js' %}"></script>
+    <script type="text/javascript">
+        $('#drag').drag();
+    </script>
 {% endblock %}
