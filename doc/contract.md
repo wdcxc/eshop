@@ -39,3 +39,13 @@ eshop
 ### json
 
 {code:num,msg:string,data:object}
+
+---
+
+# 返回码
+
+|码值|位置|说明|
+|-|-|
+|200|*|返回成功|
+|400|customer:doLogin|验证码错误|
+|401|customer:doLogin|验证码值错误|
