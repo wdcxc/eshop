@@ -43,7 +43,7 @@
                         <span class="form-item-name">验证码</span>
                         <input name="verify-code" id="verify-code" autocomplete="off" maxlength="4" placeholder="请输入验证码" type="text" class="input-box" style="width:8rem;margin-right:.3rem">
                         <a id="code_pic" style="position: absolute" href="javascript:void(0);">
-                            <img class="img-code" title="点击更换验证码" alt="点击更换验证码" width="84" height="37">
+                            <img src="{% static "images/captcha/captcha.png" %}" class="img-code" title="点击更换验证码" alt="点击更换验证码" width="84" height="37">
                         </a>
                         <a id="change-code" style="position:relative;left:4.4rem" href="javascript:void(0);">换张图</a>
                     </div>

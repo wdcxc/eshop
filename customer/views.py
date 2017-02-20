@@ -88,7 +88,8 @@ def doRegister(request):
 
 
 def captcha(request, action):
-    captcha = Captcha().geneCaptcha("customer", action)
+    # captcha = Captcha().geneCaptcha("customer", action)
+    captcha = Captcha().geneCaptchaImage()
     return JsonResponse(
         {"code": 200, "msg": "generate customer {action} validate code success".format(action=action),
-         "data": {"captcha": captcha}})
+         "data": {"captchaImagePath": captcha["captchaImagePath"]}})
