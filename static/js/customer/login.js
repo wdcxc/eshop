@@ -19,7 +19,7 @@ var loginForm = new Vue({
             this.$http.post('/customer/doLogin', that.customer, {"headers":{"X-CSRFToken":csrftoken}})
                 .then(response => {
                     if(response.body.code == 200){
-                        alert(response.body.msg)
+                        window.location.href = "/app/index"
                     } else {
                         alert(response.body.msg)
                     }
