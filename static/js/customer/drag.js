@@ -47,7 +47,7 @@
             handler.off('mousedown');
             $(document).off('mousemove');
             $(document).off('mouseup');
-            $.getJSON('/customer/valicode',function(result){
+            $.getJSON('/customer/captcha',function(result){
                 $('#valicode').val(result.data.valicode);
             })
         }
