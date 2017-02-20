@@ -7,5 +7,5 @@ urlpatterns = [
     url(r'^doLogin', views.doLogin, name="doLogin"),
     url(r'^register', views.register, name="register"),
     url(r'^forgetpwd', views.forgetPwd, name="forgetPwd"),
-    url(r'^valicode', views.valicode, name="valicode"),
+    url(r'^captcha/(?P<action>\w+)$', views.captcha, name="captcha"),
 ]

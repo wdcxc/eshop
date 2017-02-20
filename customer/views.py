@@ -1,9 +1,12 @@
-# encoding:utf-8
+# coding:utf-8
 from django.shortcuts import render
 from django.http import JsonResponse
 import hashlib
 from django.core.signing import TimestampSigner
 from .models import Customer
+import re
+from util.captcha import Captcha
+from util.regex import Regex
 
 
 def login(request):
@@ -19,29 +22,20 @@ def forgetPwd(request):
 
 
 def doLogin(request):
-    customerKeys = ("username", "password", "valicode")
+    customerKeys = ("username", "password", "captcha")
     customer = {}
-    valipass = False
     result = {}
     for key in customerKeys:
         customer[key] = request.POST.get(key)
 
     # 验证码验证
-    timeSigner = TimestampSigner()
-    try:
-        valicode = timeSigner.unsign("customer-login" + customerKeys["valicode"], max_age=300)
-        if valicode == "customer-login":
-            valipass = True
-    except Exception:
-        result = {"code": "400", "msg": "验证码验证错误", "data": {}}
-
-    # 验证账号密码
-    if not valipass:
+    if not Captcha().validate("customer", "login", customer["captcha"]):
         result = {"code": "401", "msg": "验证码验证错误", "data": {}}
     else:
-        customer["password"] = hashlib.sha512(customer["password"]).hexdigest()
+        # 用户名密码验证
         try:
-            customer = Customer.objects.get(username__exact=customer["username"], password__exact=customer["password"])
+            customer = Customer.objects.get(username__exact=customer["username"],
+                                            password__exact=hashlib.sha512(customer["password"]).hexdigest())
             result = {"code": 200, "msg": "登录成功", "data": {}}
         except Customer.DoesNotExist:
             result = {"code": 402, "msg": "账号或密码错误", "data": {}}
@@ -49,9 +43,45 @@ def doLogin(request):
     return JsonResponse(result)
 
 
-def valicode(request):
-    timeSigner = TimestampSigner()
-    valicode = timeSigner.sign("customer-login")
+def doRegister(request):
+    customerKeys = ("username", "password", "mobile", "email")
+    customer = {}
+    result = {}
+    for key in customerKeys:
+        customer[key] = request.POST.get(key)
+
+    # 正则验证数据
+    regex = Regex()
+    if regex.validateUsername(customer["username"]) is None:
+        result = {"code": 403, "msg": "用户名须为6-30位字母数字字符组成", "data": {}}
+    elif regex.validatePassword(customer["password"]) is None:
+        result = {"codd": 404, "msg": "密码须位8-30位字母数字字符组成", "data": {}}
+    elif regex.validateMobile(customer["mobile"]) is None:
+        result = {"codd": 405, "msg": "手机格式验证错误", "data": {}}
+    elif regex.validateEmail(customer["email"]) is None:
+        result = {"codd": 406, "msg": "邮箱格式验证错误", "data": {}}
+    else:
+        # 数据库查重
+        if Customer.objects.filter(username__exact=customer["username"]).exists():
+            result = {"code": 407, "msg": "用户名已存在", "data": {}}
+        elif Customer.objects.filter(mobile__exact=customer["mobile"]).exists():
+            result = {"code": 408, "msg": "手机已存在", "data": {}}
+        elif Customer.objects.filter(email__exact=customer["email"]).exists():
+            resutl = {"code": 409, "msg": "邮箱已存在", "data": {}}
+        else:
+            # 插入新数据
+            customer = Customer(username=customer["username"],
+                                password=hashlib.sha512(customer["password"]).hexdigest(), mobile=customer["mobile"],
+                                email=customer["email"])
+            customer.save()
+            result = {"code": 200, "msg": "注册成功", "data": {}}
+
+    return JsonResponse(result)
+
+
+def captcha(request,action):
+    captcha = Captcha().geneCaptcha("customer", action)
     return JsonResponse(
-        {"code": 200, "msg": "generate customer login validate code success",
-         "data": {"valicode": valicode[valicode.index(":"):]}})
+        {"code": 200, "msg": "generate customer {action} validate code success".format(action=action),
+         "data": {"valicode": captcha}})
+

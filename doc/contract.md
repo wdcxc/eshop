@@ -44,8 +44,17 @@ eshop
 
 # 返回码
 
+## Django
+
 |码值|位置|说明|
 |-|-|
 |200|*|返回成功|
-|400|customer:doLogin|验证码错误|
-|401|customer:doLogin|验证码值错误|
+|401|customer:doLogin|验证码错误|
+|402|customer.doLogin|用户名密码错误|
+|403|customer.register|用户名格式错误|
+|404|customer.register|密码格式错误|
+|405|customer.register|手机格式错误|
+|406|customer.register|邮箱格式错误|
+|407|customer.register|用户名已存在|
+|408|customer.register|手机已存在|
+|409|customer.register|邮箱已存在|
