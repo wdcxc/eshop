@@ -8,7 +8,14 @@ title: 公约
 
 # project 
 
-eshop
+项目名：eshop
+
+更新数据库需要执行下面命令
+
+```shell
+manage.py makemigrations
+manage.py migrate
+```
 
 ---
 
