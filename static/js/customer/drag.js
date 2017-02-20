@@ -17,12 +17,12 @@
         //鼠标按下时候的x轴的位置
         handler.mousedown(function(e){
             isMove = true;
-            x = e.pageX - parseInt(handler.css('left'), 10);
+            x = e.clientX - parseInt(handler.css('left'), 10);
         });
         
         //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
         $(document).mousemove(function(e){
-            var _x = e.pageX - x;
+            var _x = e.clientX - x;
             if(isMove){
                 if(_x > 0 && _x <= maxWidth){
                     handler.css({'left': _x});
@@ -33,7 +33,7 @@
             }
         }).mouseup(function(e){
             isMove = false;
-            var _x = e.pageX - x;
+            var _x = e.clientX - x;
             if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
                 handler.css({'left': 0});
                 drag_bg.css({'width': 0});
@@ -44,9 +44,12 @@
         function dragOk(){
             handler.removeClass('handler_bg').addClass('handler_ok_bg');
             text.text('验证通过');
-            handler.unbind('mousedown');
-            $(document).unbind('mousemove');
-            $(document).unbind('mouseup');
+            handler.off('mousedown');
+            $(document).off('mousemove');
+            $(document).off('mouseup');
+            $.getJSON('/customer/valicode',function(result){
+                $('#valicode').val(result.data.valicode);
+            })
         }
     };
 })(jQuery);
