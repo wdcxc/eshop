@@ -22,7 +22,7 @@ def forgetPwd(request):
 
 
 def doLogin(request):
-    customerKeys = ("username", "password", "captcha")
+    customerKeys = ("account", "password", "captcha")
     customer = {}
     result = {}
     for key in customerKeys:
@@ -32,11 +32,19 @@ def doLogin(request):
     if not Captcha().validate("customer", "login", customer["captcha"]):
         result = {"code": "401", "msg": "验证码验证错误", "data": {}}
     else:
-        # 用户名密码验证
+        # 账号密码验证
+        customer["password"] = hashlib.sha512(customer["password"]).hexdigest()
         try:
-            customer = Customer.objects.get(username__exact=customer["username"],
-                                            password__exact=hashlib.sha512(customer["password"]).hexdigest())
-            result = {"code": 200, "msg": "登录成功", "data": {}}
+            username_num = Customer.objects.filter(username__exact=customer["account"],
+                                                   password__exact=customer["password"]).count()
+            mobile_num = Customer.objects.filter(mobile__exact=customer["account"],
+                                                 password__exact=customer["password"]).count()
+            email_num = Customer.objects.filter(email__exact=customer["account"],
+                                                password__exact=customer["password"]).count()
+            if username_num + mobile_num + email_num == 3:
+                result = {"code": 200, "msg": "登录成功", "data": {}}
+            else:
+                result = {"code": 410, "msg": "账号或密码错误", "data": {}}
         except Customer.DoesNotExist:
             result = {"code": 402, "msg": "账号或密码错误", "data": {}}
 
@@ -79,9 +87,8 @@ def doRegister(request):
     return JsonResponse(result)
 
 
-def captcha(request,action):
+def captcha(request, action):
     captcha = Captcha().geneCaptcha("customer", action)
     return JsonResponse(
         {"code": 200, "msg": "generate customer {action} validate code success".format(action=action),
-         "data": {"valicode": captcha}})
-
+         "data": {"captcha": captcha}})

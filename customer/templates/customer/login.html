@@ -23,7 +23,7 @@
                         {% csrf_token %}
                         <div class="form-item">
                             <label for="loginname" class="login-name-label"></label>
-                            <input v-model="customer.username" id="loginname" class="input-box" type="text" name="loginname"
+                            <input v-model="customer.account" id="loginname" class="input-box" type="text" name="loginname"
                                    placeholder="用户名/邮箱/手机">
                         </div>
                         <div class="form-item">
@@ -33,7 +33,7 @@
                         <div class="form-item" style="border:0">
                             <div id="drag"></div>
                         </div>
-                        <input type="hidden" name="valicode" id="valicode">
+                        <input type="hidden" name="captcha" id="captcha" value="">
                         <div class="login-btn">
                             <input type="submit" value="登 录">
                         </div>

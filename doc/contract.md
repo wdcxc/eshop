@@ -50,7 +50,7 @@ eshop
 |-|-|
 |200|*|返回成功|
 |401|customer:doLogin|验证码错误|
-|402|customer.doLogin|用户名密码错误|
+|402|customer.doLogin|账号或密码错误|
 |403|customer.register|用户名格式错误|
 |404|customer.register|密码格式错误|
 |405|customer.register|手机格式错误|
@@ -58,3 +58,4 @@ eshop
 |407|customer.register|用户名已存在|
 |408|customer.register|手机已存在|
 |409|customer.register|邮箱已存在|
+|410|customer.login|账号或密码错误|

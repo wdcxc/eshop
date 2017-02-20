@@ -13,7 +13,7 @@ class Captcha(object):
     def validate(self, app, action, captcha):
         timeSigner = TimestampSigner(salt=app)
         try:
-            if captcha == timeSigner.unsign(action, self.maxAge):
+            if action == timeSigner.unsign(captcha, self.maxAge):
                 return True
         except Exception:
             pass

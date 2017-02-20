@@ -9,5 +9,5 @@ class Customer(models.Model):
 
     username = models.CharField(max_length=30, unique=True)
     password = models.CharField(max_length=130)
-    mobile = models.CharField(max_length=30, unique=True, null=True)
-    email = models.CharField(max_length=11, unique=True, null=True)
+    mobile = models.CharField(max_length=11, unique=True, null=True)
+    email = models.CharField(max_length=30, unique=True, null=True)

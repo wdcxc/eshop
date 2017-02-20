@@ -7,20 +7,21 @@ var loginForm = new Vue({
     el: '#loginForm',
     data: {
         customer: {
-            username: '',
+            account: '',
             password: '',
-            valicode: '',
+            captcha: '',
         }
     },
     methods: {
         login: function () {
             var that = this;
+            this.customer.captcha = document.getElementById("captcha").value;
             this.$http.post('/customer/doLogin', that.customer, {"headers":{"X-CSRFToken":csrftoken}})
                 .then(response => {
                     if(response.body.code == 200){
-                        // todo
+                        alert(response.body.msg)
                     } else {
-                        // todo
+                        alert(response.body.msg)
                     }
                 }, response => {
                     alert(response);
