@@ -4,6 +4,7 @@ import random
 import string
 import time
 import os
+import io
 
 
 class Captcha(object):
@@ -27,7 +28,7 @@ class Captcha(object):
     def geneCaptchaImage(self, width=300, height=60, captchaLen=4,
                          fontPath="/static/other/DroidSansFallback.ttf", fontSize=36):
         source = list(string.digits + string.ascii_letters)
-        captcha = random.sample(source, captchaLen)
+        captchaCode = random.sample(source, captchaLen)
         image = Image.new("RGB", (width, height), (255, 255, 255))
         font = ImageFont.truetype(fontPath, fontSize)
         draw = ImageDraw.Draw(image)
@@ -40,14 +41,15 @@ class Captcha(object):
         for i in range(0, captchaLen):
             beginX = charWidth * i + random.randint(0, charWidth - fontSize)
             beginY = random.randint(0, height - fontSize)
-            draw.text((beginX, beginY), captcha[i], font=font, fill=self._randomColor(32, 127))
+            draw.text((beginX, beginY), captchaCode[i], font=font, fill=self._randomColor(32, 127))
 
         image = image.filter(ImageFilter.BLUR)
 
-        captchaPath = os.path.normcase(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/static/images/captcha/captcha.png")
-        image.save(captchaPath, "png")
+        # captchaPath = os.path.normcase(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/static/images/captcha/captcha.png")
+        captchaImageBuff = io.BytesIO()
+        image.save(captchaImageBuff, "png")
 
-        return {"captchaImagePath": captchaPath, "captcha": ''.join(captcha)}
+        return {"captchaImageBuff": captchaImageBuff.getvalue(), "captchaCode": ''.join(captchaCode).lower()}
 
     def _randomColor(self, rangeLow, rangeHigh):
         return (

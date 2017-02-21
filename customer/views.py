@@ -1,6 +1,6 @@
 # coding:utf-8
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 import hashlib
 from django.core.signing import TimestampSigner
 from .models import Customer
@@ -87,9 +87,8 @@ def doRegister(request):
     return JsonResponse(result)
 
 
-def captcha(request, action):
+def captcha(request):
     # captcha = Captcha().geneCaptcha("customer", action)
     captcha = Captcha().geneCaptchaImage()
-    return JsonResponse(
-        {"code": 200, "msg": "generate customer {action} validate code success".format(action=action),
-         "data": {"captchaImagePath": captcha["captchaImagePath"]}})
+    request.session["captchaCode"] = captcha["captchaCode"]
+    return HttpResponse(captcha["captchaImageBuff"],"image/png")

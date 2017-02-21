@@ -18,38 +18,52 @@
     <div class="content">
         <div class="shadow-box">
             <div class="register-box">
-                <form id="register-form" action="" method="post">
+                <form id="registerForm" v-on:submit.prevent="register">
+                    {% csrf_token %}
                     <div class="form-item">
                         <span class="form-item-name">用户名</span>
-                        <input name="username" id="username" autocomplete="off" value="" maxlength="30" placeholder="请输入您的用户名" type="text" class="input-box">
+                        <input name="username" id="username" autocomplete="off" value="" maxlength="30"
+                               placeholder="请输入您的用户名" type="text" class="input-box">
                     </div>
                     <div class="form-item">
                         <span class="form-item-name">手机号码</span>
-                        <input name="mobile" id="mobile" autocomplete="off" value="" maxlength="11" placeholder="请输入您的手机号码" type="text" class="input-box">
+                        <input name="mobile" id="mobile" autocomplete="off" value="" maxlength="11"
+                               placeholder="请输入您的手机号码" type="text" class="input-box">
                     </div>
                     <div class="form-item">
                         <span class="form-item-name">邮箱</span>
-                        <input name="email" id="email" autocomplete="off" value="" maxlength="30" placeholder="请输入您的邮箱" type="text" class="input-box">
+                        <input name="email" id="email" autocomplete="off" value="" maxlength="30" placeholder="请输入您的邮箱"
+                               type="text" class="input-box">
                     </div>
                     <div class="form-item">
                         <span class="form-item-name">登陆密码</span>
-                        <input name="password" id="password" maxlength="130" type="password" class="input-box" placeholder="建议至少使用两种字符组合">
+                        <input name="password" id="password" maxlength="130" type="password" class="input-box"
+                               placeholder="建议至少使用两种字符组合">
                     </div>
                     <div class="form-item">
                         <span class="form-item-name">确认密码</span>
-                        <input name="confirm-pwd" id="confirm-pwd" maxlength="130" type="password" class="input-box" placeholder="请再次输入密码">
+                        <input name="confirm-pwd" id="confirm-pwd" maxlength="130" type="password" class="input-box"
+                               placeholder="请再次输入密码">
                     </div>
                     <div class="form-item">
                         <span class="form-item-name">验证码</span>
-                        <input name="verify-code" id="verify-code" autocomplete="off" maxlength="4" placeholder="请输入验证码" type="text" class="input-box" style="width:8rem;margin-right:.3rem">
-                        <a id="code_pic" style="position: absolute" href="javascript:void(0);">
-                            <img src="{% static "images/captcha/captcha.png" %}" class="img-code" title="点击更换验证码" alt="点击更换验证码" width="84" height="37">
+                        <input v-model="customer.captchaCode" name="verify-code" id="verify-code" autocomplete="off" maxlength="4" placeholder="请输入验证码"
+                               type="text" class="input-box" style="width:8rem;margin-right:.3rem">
+                        <a v-on:click="updateCaptcha" id="code_pic" style="position: absolute" href="javascript:void(0);">
+                            <img v-bind:src="captcha" class="img-code" title="点击更换验证码" alt="点击更换验证码"
+                                 width="84" height="37">
                         </a>
-                        <a id="change-code" style="position:relative;left:4.4rem" href="javascript:void(0);">换张图</a>
+                        <a v-on:click="updateCaptcha" id="change-code" style="position:relative;left:4.4rem"
+                           href="javascript:void(0);">换张图</a>
                     </div>
                     <input type="submit" value="立即注册" class="submit-btn">
                 </form>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static "js/js.cookie.js" %}"></script>
+    <script src="{% static "js/customer/register.js" %}"></script>
 {% endblock %}
