@@ -18,7 +18,7 @@
             <div class="login-form">
                 <div class="login-box">
                     <div class="form-header">账户登录</div>
-                    <div class="msg-error hide"></div>
+                    <div class="msg-error">您输入的验证码错误</div>
                     <form id="loginForm" v-on:submit.prevent="login">
                         {% csrf_token %}
                         <div class="form-item">

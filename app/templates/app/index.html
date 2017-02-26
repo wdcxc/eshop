@@ -7,7 +7,14 @@
 {% endblock %}
 
 {% block body %}
-
+    <div class="nav-wrapper">
+        <div class="wrapper"></div>
+        <p>
+            <a>(｡･∀･)ﾉﾞ嗨，欢迎来到eshop</a>
+            <a href="{% url 'customer:login' %}">请登录</a>
+            <a href="{% url 'customer:register' %}">免费注册</a>
+        </p>
+    </div>
 {% endblock %}
 
 {% block js %}
