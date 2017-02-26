@@ -18,9 +18,9 @@
             <div class="login-form">
                 <div class="login-box">
                     <div class="form-header">账户登录</div>
-                    <div class="msg-error">您输入的验证码错误</div>
-                    <form id="loginForm" v-on:submit.prevent="login">
+                    <form id="loginForm" v-on:submit.prevent="doLogin">
                         {% csrf_token %}
+                        <div v-html="infoMsg.msg" v-bind:class="infoMsg.style"></div>
                         <div class="form-item">
                             <label for="loginname" class="login-name-label"></label>
                             <input v-model="customer.account" id="loginname" class="input-box" type="text" name="loginname"
@@ -31,9 +31,9 @@
                             <input v-model="customer.password" id="loginpwd" class="input-box" type="password" name="loginpwd" placeholder="密码">
                         </div>
                         <div class="form-item" style="border: 0">
-                            <input v-model="customer.captcha" id="captcha" class="input-box" name="captcha" type="text" placeholder="验证码" style="border:1px solid #bdbdbd;width:9.5rem">
+                            <input v-model="updateCaptchaCode" id="captcha" class="input-box" name="captcha" type="text" placeholder="验证码" style="border:1px solid #bdbdbd;width:9.5rem">
                             <a v-on:click="updateCaptcha" href="javascript:void(0);" style="float:right">
-                                <img v-bind:src="captcha" class="img-code" title="点击更换验证码" width="84" height="36">
+                                <img v-bind:src="captcha.imageUrl" class="img-code" title="点击更换验证码" width="84" height="36">
                             </a>
                         </div>
                         <div class="login-btn">

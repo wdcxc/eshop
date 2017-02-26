@@ -10,18 +10,26 @@ registerForm = new Vue({
         customer: {
             captchaCode: '',
         },
-        captcha: captchaUrl,
+        captcha: {
+            imageUrl: captchaUrl
+        }
     },
     methods: {
         updateCaptcha: function () {
-            console.log(this.captcha);
             this.captcha = captchaUrl + Math.random();
             return false;
         },
-        register: function () {
-            let that = this;
+        doRegister: function () {
+            var that = this;
             this.$http.post("/customer/doRegister", that.customer, {"headers": {"X-CSRFToken": csrftoken}}).then(response=> {
+                if(response.body.code == 200){
+                    //todo
+                }else{
+
+                }
+
             }, responser=> {
+                console.log(response.body)
             });
 
         }

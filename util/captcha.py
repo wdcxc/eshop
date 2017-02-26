@@ -1,10 +1,10 @@
-from django.core.signing import TimestampSigner
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+import io
+import os
 import random
 import string
-import time
-import os
-import io
+
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from django.core.signing import TimestampSigner
 
 
 class Captcha(object):
@@ -26,7 +26,7 @@ class Captcha(object):
         return False
 
     def geneCaptchaImage(self, width=300, height=60, captchaLen=4,
-                         fontPath="/static/other/DroidSansFallback.ttf", fontSize=36):
+                         fontPath="/static/other/DroidSansFallback.ttf", fontSize=50):
         source = list(string.digits + string.ascii_letters)
         captchaCode = random.sample(source, captchaLen)
         image = Image.new("RGB", (width, height), (255, 255, 255))
