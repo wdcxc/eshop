@@ -8,12 +8,14 @@
 
 {% block body %}
     <div class="nav-wrapper">
-        <div class="wrapper"></div>
-        <p>
-            <a>(｡･∀･)ﾉﾞ嗨，欢迎来到eshop</a>
-            <a href="{% url 'customer:login' %}">请登录</a>
-            <a href="{% url 'customer:register' %}">免费注册</a>
-        </p>
+        <div class="nav">
+           <div class="nav-welcome">
+                <span>欢迎来到eshop,请
+                <a href="{% url 'customer:login' %}" style="color: #ff2832">登录</a>
+                <a href="{% url 'customer:register' %}">成为会员</a>
+                </span>
+           </div>
+        </div>
     </div>
 {% endblock %}
 

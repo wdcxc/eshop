@@ -35,6 +35,16 @@
     padding: 3px 10px 3px 10px;
     margin-bottom: .2rem;
 }
+.msg-right{
+    line-height: .8rem;
+    color: #17aa06;
+    font-size: .6rem;
+    position: relative;
+    background: #c3ffc8;
+    border: 1px solid #7efa6f;
+    padding: 3px 10px 3px 10px;
+    margin-bottom: .2rem;
+}
 .form-item{
     height: 1.7rem;
     border: 1px solid #bdbdbd;
