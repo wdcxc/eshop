@@ -30,7 +30,8 @@ class Captcha(object):
         source = list(string.digits + string.ascii_letters)
         captchaCode = random.sample(source, captchaLen)
         image = Image.new("RGB", (width, height), (255, 255, 255))
-        font = ImageFont.truetype(fontPath, fontSize)
+        fontPath = os.path.dirname(os.path.dirname(__file__))+fontPath
+        font = ImageFont.truetype(os.path.normpath(fontPath), fontSize)
         draw = ImageDraw.Draw(image)
 
         for x in range(0, width):
