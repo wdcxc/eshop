@@ -1,5 +1,59 @@
 {% extends "base.html" %}
-{% block title %}{% endblock %}
+{% load static %}
+{% block title %}eshop-忘记密码{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+{% endblock %}
 {% block body %}
-    <h1>forgetPwd</h1>
+    <div class="wrapper bg-white">
+        <div id="logo">
+            <a href="index.html">eshop</a>
+            <span>重置密码</span>
+        </div>
+        <div class="logo-right">
+            <a href="{% url 'customer:login' %}">回到登录页面</a>
+        </div>
+    </div>
+    <div class="wrapper-bottom"></div>
+    <div class="content">
+        <div class="shadow-box">
+            <div class="content-box">
+                <form id="forgetPwdForm" v-on:submit.prevent="commit" style="padding-top:5rem;position:absolute">
+                    {% csrf_token %}
+                    <div class="form-item">
+                        <span class="form-item-name">用户名</span>
+                        <input name="username" id="username" autocomplete="off" value="" maxlength="30"
+                               placeholder="请输入您的用户名" type="text" class="input-box">
+                    </div>
+                    <div class="form-item">
+                        <span class="form-item-name">输入新密码</span>
+                        <input name="password" id="password" maxlength="130" type="password" class="input-box"
+                               placeholder="建议至少使用两种字符组合">
+                    </div>
+                    <div class="form-item">
+                        <span class="form-item-name">确认密码</span>
+                        <input name="confirm-pwd" id="confirm-pwd" maxlength="130" type="password" class="input-box"
+                               placeholder="请再次输入密码">
+                    </div>
+                    <div class="form-item">
+                        <span class="form-item-name">验证码</span>
+                        <input v-model="customer.captchaCode" name="verify-code" id="verify-code" autocomplete="off" maxlength="4" placeholder="请输入验证码"
+                               type="text" class="input-box" style="width:8rem;margin-right:.3rem">
+                        <a v-on:click="updateCaptcha" id="code_pic" style="position: absolute" href="javascript:void(0);">
+                            <img v-bind:src="captcha" class="img-code" title="点击更换验证码" alt="点击更换验证码"
+                                 width="84" height="37">
+                        </a>
+                        <a v-on:click="updateCaptcha" id="change-code" style="position:relative;left:4.4rem"
+                           href="javascript:void(0);">换张图</a>
+                    </div>
+                    <input type="submit" value="提交" class="submit-btn">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static "js/js.cookie.js" %}"></script>
+    <script src="{% static "js/customer/forgetpwd.js" %}"></script>
 {% endblock %}

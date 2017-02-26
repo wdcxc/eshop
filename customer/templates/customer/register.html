@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}eshop-欢迎注册{% endblock %}
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/register.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
 {% endblock %}
 {% block body %}
     <div class="wrapper bg-white">
@@ -10,15 +10,15 @@
             <a href="index.html">eshop</a>
             <span>欢迎注册</span>
         </div>
-        <div class="have-account">
+        <div class="logo-right">
             已有账号？<a href="{% url 'customer:login' %}">请登录</a>
         </div>
     </div>
     <div class="wrapper-bottom"></div>
     <div class="content">
         <div class="shadow-box">
-            <div class="register-box">
-                <form id="registerForm" v-on:submit.prevent="register">
+            <div class="content-box">
+                <form id="registerForm" v-on:submit.prevent="register" style="padding-top:2.8rem;position:absolute">
                     {% csrf_token %}
                     <div class="form-item">
                         <span class="form-item-name">用户名</span>

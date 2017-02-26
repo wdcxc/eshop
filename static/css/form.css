@@ -1,7 +1,7 @@
 body{
     background-color: #f6f9fb;
 }
-.have-account{
+.logo-right{
     float: right;
     height: 3.8rem;
     line-height: 3.8rem;
@@ -9,7 +9,7 @@ body{
     color: #999;
     font-size: .8rem;
 }
-.have-account a{
+.logo-right a{
     text-decoration: none;
     color: #404040;
 }
@@ -34,7 +34,7 @@ body{
     position: relative;
     height: 27.4rem
 }
-.register-box{
+.content-box{
     background: #fff;
     position: relative;
     top: -0.5rem;
@@ -43,12 +43,12 @@ body{
     height: 27.4rem;
     box-shadow: -1px 1px 1px rgb(232,235,236);
 }
-#register-form{
-    padding: 3rem 0;
+#forgetPwdForm{
+    padding: 5rem 0;
     position: absolute;
 }
 .form-item{
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.4rem;
 }
 .form-item-name{
     display: inline-block;
