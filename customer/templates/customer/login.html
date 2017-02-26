@@ -30,10 +30,12 @@
                             <label for="loginpwd" class="login-pwd-label"></label>
                             <input v-model="customer.password" id="loginpwd" class="input-box" type="password" name="loginpwd" placeholder="密码">
                         </div>
-                        <div class="form-item" style="border:0">
-                            <div id="drag"></div>
+                        <div class="form-item" style="border: 0">
+                            <input v-model="customer.captcha" id="captcha" class="input-box" name="captcha" type="text" placeholder="验证码" style="border:1px solid #bdbdbd;width:9.5rem">
+                            <a v-on:click="updateCaptcha" href="javascript:void(0);" style="float:right">
+                                <img v-bind:src="captcha" class="img-code" title="点击更换验证码" width="84" height="36">
+                            </a>
                         </div>
-                        <input type="hidden" name="captcha" id="captcha" value="">
                         <div class="login-btn">
                             <input type="submit" value="登 录">
                         </div>
@@ -52,8 +54,4 @@
     <script src="{% static 'js/js.cookie.js' %}"></script>
     <script src="{% static 'js/customer/login.js' %}"></script>
     <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
-    <script src="{% static 'js/customer/drag.js' %}"></script>
-    <script type="text/javascript">
-        $('#drag').drag();
-    </script>
 {% endblock %}

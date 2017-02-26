@@ -49,7 +49,7 @@
                         <span class="form-item-name">验证码</span>
                         <input v-model="customer.captchaCode" name="verify-code" id="verify-code" autocomplete="off" maxlength="4" placeholder="请输入验证码"
                                type="text" class="input-box" style="width:8rem;margin-right:.3rem">
-                        <a v-on:click="updateCaptcha" id="code_pic" style="position: absolute" href="javascript:void(0);">
+                        <a v-on:click="updateCaptcha" style="position: absolute" href="javascript:void(0);">
                             <img v-bind:src="captcha" class="img-code" title="点击更换验证码" alt="点击更换验证码"
                                  width="84" height="37">
                         </a>

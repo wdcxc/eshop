@@ -2,6 +2,7 @@
  * Created by wdcxc on 2017/2/18.
  */
 var csrftoken = Cookies.get('csrftoken');
+var captchaUrl = "/customer/captcha/";
 
 var loginForm = new Vue({
     el: '#loginForm',
@@ -10,9 +11,15 @@ var loginForm = new Vue({
             account: '',
             password: '',
             captcha: '',
-        }
+        },
+        captcha: captchaUrl,
     },
     methods: {
+        updateCaptcha: function () {
+            console.log(this.captcha);
+            this.captcha = captchaUrl + Math.random();
+            return false;
+        },
         login: function () {
             var that = this;
             this.customer.captcha = document.getElementById("captcha").value;
