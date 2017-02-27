@@ -1,12 +1,12 @@
 # coding:utf-8
-from django.shortcuts import render
-from django.http import JsonResponse,HttpResponse
 import hashlib
-from django.core.signing import TimestampSigner
-from .models import Customer
-import re
+
+from django.http import JsonResponse,HttpResponse
+from django.shortcuts import render
+
 from util.captcha import Captcha
 from util.regex import Regex
+from .models import Customer
 
 
 def login(request):
@@ -22,41 +22,43 @@ def forgetPwd(request):
 
 
 def doLogin(request):
-    customerKeys = ("account", "password", "captcha")
+    customerKeys = ("account", "password", "captchaCode")
     customer = {}
     result = {}
     for key in customerKeys:
         customer[key] = request.POST.get(key)
 
     # 验证码验证
-    if not Captcha().validate("customer", "login", customer["captcha"]):
+    if customer["captchaCode"].lower() != request.session["captchaCode"]:
         result = {"code": "401", "msg": "验证码验证错误", "data": {}}
     else:
         # 账号密码验证
-        customer["password"] = hashlib.sha512(customer["password"]).hexdigest()
-        try:
-            username_num = Customer.objects.filter(username__exact=customer["account"],
-                                                   password__exact=customer["password"]).count()
-            mobile_num = Customer.objects.filter(mobile__exact=customer["account"],
-                                                 password__exact=customer["password"]).count()
-            email_num = Customer.objects.filter(email__exact=customer["account"],
-                                                password__exact=customer["password"]).count()
-            if username_num + mobile_num + email_num == 3:
-                result = {"code": 200, "msg": "登录成功", "data": {}}
-            else:
-                result = {"code": 410, "msg": "账号或密码错误", "data": {}}
-        except Customer.DoesNotExist:
-            result = {"code": 402, "msg": "账号或密码错误", "data": {}}
+        customer["password"] = hashlib.sha512(customer["password"].encode("utf-8")).hexdigest()
+        username_num = Customer.objects.filter(username__exact=customer["account"],
+                                               password__exact=customer["password"]).count()
+        mobile_num = Customer.objects.filter(mobile__exact=customer["account"],
+                                             password__exact=customer["password"]).count()
+        email_num = Customer.objects.filter(email__exact=customer["account"],
+                                            password__exact=customer["password"]).count()
+        if username_num + mobile_num + email_num == 3:
+            del request.session["captchaCode"]
+            result = {"code": 200, "msg": "登录成功", "data": {}}
+        else:
+            result = {"code": 410, "msg": "账号或密码错误", "data": {}}
 
     return JsonResponse(result)
 
 
 def doRegister(request):
-    customerKeys = ("username", "password", "mobile", "email")
+    customerKeys = ("username", "password", "mobile", "email","captchaCode")
     customer = {}
     result = {}
     for key in customerKeys:
         customer[key] = request.POST.get(key)
+
+    # 验证验证码
+    if customer["captchaCode"].lower() != request.session["captchaCode"]:
+        return JsonResponse({"code":412,"msg":"验证码错误","data":{"captchaCode":customer["captchaCode"]}})
 
     # 正则验证数据
     regex = Regex()
@@ -82,6 +84,7 @@ def doRegister(request):
                                 password=hashlib.sha512(customer["password"]).hexdigest(), mobile=customer["mobile"],
                                 email=customer["email"])
             customer.save()
+            del request.session["captchaCode"]
             result = {"code": 200, "msg": "注册成功", "data": {}}
 
     return JsonResponse(result)
@@ -92,3 +95,10 @@ def captcha(request):
     captcha = Captcha().geneCaptchaImage()
     request.session["captchaCode"] = captcha["captchaCode"]
     return HttpResponse(captcha["captchaImageBuff"],"image/png")
+
+def valifyCaptcha(request):
+    captchaCode = request.POST.get("captchaCode").lower()
+    if captchaCode == request.session["captchaCode"]:
+        return JsonResponse({"code":200,"msg":"验证码正确","data":{"input":captchaCode}})
+    else:
+        return JsonResponse({"code":411,"msg":"验证码错误","data":{"input":captchaCode}})
