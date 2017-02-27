@@ -19,6 +19,19 @@ html{
 .bg-white{
     background-color: #fff;
 }
+ul{
+    margin:0;
+    padding:0;
+    border:0;
+}
+ul li{
+    float:left;
+    list-style-type: none;
+    height: 1.1rem;
+    padding-top: 4px;
+    line-height: 1.1rem;
+    position: relative;
+}
 #logo{
     position: relative;
     width: 12rem;

@@ -24,3 +24,7 @@
     position: relative;
     float: left;
 }
+.nav-operation{
+    float: right;
+    padding-top: 2px;
+}
