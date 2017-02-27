@@ -7,28 +7,38 @@
 {% endblock %}
 
 {% block body %}
-    <div class="nav-wrapper">
-        <div class="nav">
-           <div class="nav-welcome">
-                <span>欢迎来到eshop,请
-                <a href="{% url 'customer:login' %}" style="color: #ff2832">登录</a>
-                <a href="{% url 'customer:register' %}">成为会员</a>
-                </span>
-           </div>
-            <ul class="nav-operation">
-                <li>购物车</li>
-                <li>我的订单</li>
-                <li>商家支持</li>
-                <li>客户服务</li>
-            </ul>
-        </div>
+    <div class="shop-top">
+    <!--顶部导航条 -->
+    <div class="container">
+        <ul class="message-l">
+            <div class="topMessage">
+                <div class="menu-hd">
+                    <a href="{% url 'customer:login' %}" target="_top" class="h">亲，请登录</a>
+                    <a href="{% url 'customer:register' %}" target="_top">免费注册</a>
+                </div>
+            </div>
+        </ul>
+        <ul class="message-r">
+            <div class="topMessage">
+                <div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+            </div>
+            <div class="topMessage my-shangcheng">
+                <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
+                </div>
+            </div>
+            <div class="topMessage mini-cart">
+                <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i
+                        class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum"
+                                                                                              class="h">0</strong></a>
+                </div>
+            </div>
+            <div class="topMessage favorite">
+                <div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a>
+                </div>
+            </div>
+        </ul>
     </div>
 {% endblock %}
 
 {% block js %}
-    <script src="{% static 'js/js.cookie.js' %}"></script>
-    <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
-    <script type="text/javascript">
-
-    </script>
 {% endblock %}
