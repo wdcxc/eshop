@@ -26,7 +26,7 @@ class Captcha(object):
         return False
 
     def geneCaptchaImage(self, width=300, height=60, captchaLen=4,
-                         fontPath="/static/other/DroidSansFallback.ttf", fontSize=50):
+                         fontPath="/static/font/DroidSansFallback.ttf", fontSize=50):
         source = list(string.digits + string.ascii_letters)
         captchaCode = random.sample(source, captchaLen)
         image = Image.new("RGB", (width, height), (255, 255, 255))
