@@ -7,7 +7,21 @@
 {% endblock %}
 
 {% block body %}
-    
+        <div class="nav-wrapper">
+        <div class="nav">
+           <div class="nav-welcome">
+                <span>欢迎来到eshop,请
+                <a href="{% url 'customer:login' %}" style="color: #ff2832">登录</a>
+                <a href="{% url 'customer:register' %}">成为会员</a>
+                </span>
+           </div>
+            <ul class="nav-operation">
+                <li>购物车</li>
+                <li>我的订单</li>
+                <li>商家支持</li>
+                <li>客户服务</li>
+            </ul>
+        </div>
 {% endblock %}
 
 {% block js %}
