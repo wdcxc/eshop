@@ -5,5 +5,6 @@ from . import views
 app_name = "admin"
 urlpatterns = [
     url(r'^login$',views.login,name="login"),
+    url(r'^index$',views.index,name="index"),
     url(r'^getCaptchaImage/[0-9\.]*$',views.getCaptchaImage,name="getCaptchaImage")
 ]
