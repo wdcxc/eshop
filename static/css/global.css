@@ -28,7 +28,6 @@ ul li{
     float:left;
     list-style-type: none;
     height: 1.1rem;
-    padding-top: 4px;
     line-height: 1.1rem;
     position: relative;
 }

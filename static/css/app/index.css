@@ -7,15 +7,17 @@
     position: relative;
 }
 .nav{
+    color: #666;
     width: 60rem;
     margin: 0 auto;
     background-color: #f9f9f9;
     height: 1.7rem;
-    font-size:.7rem;
+    font-size:.6rem;
 }
 .nav a{
     text-decoration: none;
     margin-right: 5px;
+    color: #666;
 }
 .nav-welcome{
     padding: 5px 0 0 10px;
@@ -27,4 +29,18 @@
 .nav-operation{
     float: right;
     padding-top: 2px;
+}
+.operation-item{
+    padding: 4px 10px 0 10px;
+}
+.dropdown-menu{
+    font-size: .6rem;
+    min-width: 0;
+    padding: 5px;
+}
+.goods-number{
+    color:#ff2832;
+}
+.logo-wrapper{
+
 }
