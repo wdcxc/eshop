@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from util.baseview import BaseView
 
-def login(request):
-    return render(request,"seller/login.html",{"hi":"seller"})
+
+class SellerView(BaseView):
+    def login(self, request):
+        pass

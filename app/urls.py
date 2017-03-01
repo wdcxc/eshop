@@ -1,8 +1,9 @@
 from django.conf.urls import url
-from . import views
+
+from .views import BaseView
 
 app_name = "app"
 urlpatterns = [
-    url(r'^index$',views.index,name="index"),
+    url(r'^index$',BaseView.as_view(),name="index"),
 ]
 

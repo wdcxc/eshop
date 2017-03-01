@@ -1,6 +1,8 @@
 from django.conf.urls import url
-from . import views
 
+from .views import SellerView
+
+app_name = "seller"
 urlpatterns = [
-    url(r'^login$',views.login),
+    url(r'^login$',SellerView.as_view(),name="login"),
 ]

@@ -3,6 +3,7 @@
     margin-bottom:0;
     z-index:10;
     width:100%;
+    padding-right: 1rem;
 }
 
 .affix-tab {
@@ -37,7 +38,7 @@
     font-weight:bold;
 }
 
-.affix-tab li .affix-item-active{
+.affix-tab li .affix-active-item{
     background-color:white;
     color:#272A34;
     font-weight:bold;

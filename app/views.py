@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from util.baseview import BaseView
 
-def index(request):
-    return render(request,"app/index.html")
+
+class AppView(BaseView):
+    def index(self, request):
+        pass

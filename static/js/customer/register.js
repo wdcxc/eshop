@@ -2,7 +2,7 @@
  * Created by wdcxc on 2017/2/21.
  */
 var csrftoken = Cookies.get("csrftoken");
-var captchaUrl = "/customer/captcha/";
+var captchaUrl = "/customer/getCaptchaImage/";
 
 registerForm = new Vue({
     el: "#registerForm",

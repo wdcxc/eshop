@@ -1,17 +1,14 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-
-from util.captcha import Captcha
+from util.baseview import BaseView
 
 
-def login(request):
-    return render(request,"admin/login.html",{"hi":"admin"})
+class AdminView(BaseView):
+    def login(self, request):
+        """登录"""
+        pass
 
-def index(request):
-    return render(request,"admin/index.html")
+    def index(self, request):
+        """总览"""
+        pass
 
-def getCaptchaImage(request):
-    captcha = Captcha().geneCaptchaImage()
-    request.session["captchaCode"] = captcha["captchaCode"]
-    return HttpResponse(captcha["captchaImageBuff"],"image/png")
-
+    def logout(self,request):
+        pass
