@@ -31,7 +31,7 @@
     padding-top: 2px;
 }
 .operation-item{
-    padding: 4px 10px 0 10px;
+    padding: .2rem .5rem 0 .5rem;
 }
 .dropdown-menu{
     font-size: .6rem;
@@ -71,7 +71,7 @@
     background: #F03726;
     color: #F5F5F2;
     cursor: pointer;
-    border-radius: 0px 0px;
+    border-radius: 0 0;
 }
 .banner{
     position: absolute;
@@ -79,5 +79,114 @@
     top: 9rem;
     border-top: 2px solid #d2364c;
     width: 100%;
+    height:21.5rem;
     overflow: hidden;
+}
+.carousel-inner img{
+    width:100%
+}
+.shopNav{
+    padding-top: .5rem;
+    padding-bottom: 5px;
+    margin: 0 2rem .5rem 0;
+}
+.slideall{
+    max-width: 60rem;
+    margin: 0 auto;
+    height: 24rem;
+    padding-top: 2.3rem;
+    position: relative;
+}
+.long-title{
+    width: 9rem;
+    background: #d2364c;
+    color: #fff;
+    font-size: .8rem;
+    height: 2.3rem;
+    line-height: 2.2rem;
+    position: absolute;
+    text-align: center;
+    top: 0;
+}
+.category-content{
+    width: 9rem;
+    float: left;
+}
+.category-item{
+    margin-top: 0;
+    height: 2.2rem;
+    color:#fff;
+    background-color: #2b2b2b;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #252525;
+}
+.category-info{
+    padding-left: .6rem;
+    width: 9rem;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
+.category-name{
+    padding-left: 2rem;
+    line-height: 1.8rem;
+    padding-top: 3px;
+    overflow: hidden;
+    position: relative;
+    font-size: .7rem;
+    margin: 0;
+}
+.category-info em{
+    top: .7rem;
+    position: absolute;
+    right: .7rem;
+    width: .7rem;
+    height: .7rem;
+    font: .6rem "宋体";
+    color: #9b9b9b;
+}
+.menu-in{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 9rem;
+    width: 38.5rem;
+    background: #fff;
+}
+.menu{
+    position: relative;
+    padding: 1rem 2rem;
+    width: 100%;
+    overflow: hidden;
+}
+.category-class{
+    float: left;
+    width: 50%;
+}
+.category-class dt{
+    margin: .3rem 0;
+    font-size: .7rem;
+    font-weight: bold;
+    color: rgb(219, 62, 84);
+    text-align: left;
+}
+.category-class dd{
+    float: left;
+    margin: .1rem .3rem .2rem 0;
+}
+.category-class dd a{
+    float: left;
+    letter-spacing: 0.5px;
+    color: rgb(136, 136, 136);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: .2rem .5rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(230, 230, 230);
+}
+.hover{
+    background-color: #fff;
+    color: rgb(136, 136, 136);
 }
