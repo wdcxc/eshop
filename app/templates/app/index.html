@@ -7,53 +7,78 @@
 {% endblock %}
 
 {% block body %}
-    <div class="nav-wrapper">
-        <div class="nav">
-           <div class="nav-welcome">
+    <div class="header">
+        <div class="nav-wrapper">
+            <div class="nav">
+                <div class="nav-welcome">
                 <span>欢迎来到eshop,请
                 <a href="{% url 'customer:login' %}" style="color: #ff2832">登录</a>
                 <a href="{% url 'customer:register' %}">成为会员</a>
                 </span>
-           </div>
-            <ul class="nav-operation">
-                <li class="operation-item">
-                    <a target="_blank" href="" name="购物车" rel="nofollow">
-                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="color:#ff2832"></span> 购物车
-                        <span class="goods-number">0</span>
-                    </a>
-                </li>
-                <li class="operation-item">
-                    <a target="_blank" href="" name="我的订单" rel="nofollow">我的订单</a>
-                </li>
-                <li class="operation-item dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        商家支持<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">免费开店</a></li>
-                        <li><a href="#">已卖出的商品</a></li>
-                        <li><a href="#">出售中的商品</a></li>
-                    </ul>
-                </li>
-                <li class="operation-item dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        客户服务<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">帮助中心</a></li>
-                        <li><a href="#">联系客服</a></li>
-                        <li><a href="#">意见建议</a></li>
-                    </ul>
-                </li>
-            </ul>
+                </div>
+                <ul class="nav-operation">
+                    <li class="operation-item">
+                        <a target="_blank" href="" name="购物车" rel="nofollow">
+                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"
+                                  style="color:#ff2832"></span> 购物车
+                            <span class="goods-number">0</span>
+                        </a>
+                    </li>
+                    <li class="operation-item">
+                        <a target="_blank" href="" name="我的订单" rel="nofollow">我的订单</a>
+                    </li>
+                    <li class="operation-item dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            商家支持<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">免费开店</a></li>
+                            <li><a href="#">已卖出的商品</a></li>
+                            <li><a href="#">出售中的商品</a></li>
+                        </ul>
+                    </li>
+                    <li class="operation-item dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            客户服务<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">帮助中心</a></li>
+                            <li><a href="#">联系客服</a></li>
+                            <li><a href="#">意见建议</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="logo-wrapper">
+            <div id="logo"><a href="#">eshop</a></div>
+            <div class="search-bar">
+                <form>
+                    <input id="search-text" type="text" placeholder="商品/店铺/品牌" autocomplete="off">
+                    <input id="search-btn" value="搜索" type="submit">
+                </form>
+            </div>
         </div>
     </div>
-    <div class="logo-wrapper">
-        <div class="logo">eshop</div>
-        <div class="search-bar">
-            <form>
-                <input id="searchInput" type="text" placeholder="商品/店铺/品牌" autocomplete="off">
-                <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
-            </form>
-        </div>
+    <div class="banner">
+       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+           <ol class="carousel-indicators">
+               <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+               <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+               <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+           </ol>
+           <div class="carousel-inner" role="listbox">
+               <div class="item active">
+                   <img src="{% static 'images/customer/ad1.jpg' %}" alt="活动1">
+               </div>
+               <div class="item">
+                   <img src="{% static 'images/customer/ad2.jpg' %}" alt="活动2">
+               </div>
+               <div class="item">
+                   <img src="{% static 'images/customer/ad3.jpg' %}" alt="活动3">
+               </div>
+           </div>
+       </div>
     </div>
 {% endblock %}
 
