@@ -13,6 +13,7 @@
 </head>
 <body>
     {% block body %}{% endblock %}
+    {% block foot %}
     <div class="wrapper text-center clearfix">
         <div class="links">
             <a href="#" rel="nofollow" target="_blank">关于eshop</a>|<a href="#" rel="nofollow" target="_blank">联系我们</a>|<a
@@ -20,6 +21,7 @@
         </div>
         <div class="copyright">Copyright &copy; scnu 版权所有</div>
     </div>
+    {% endblock %}
     <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
     <script src="{% static 'lib/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/vue.min.js' %}"></script>
