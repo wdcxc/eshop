@@ -1,4 +1,4 @@
-from util.baseview import BaseView
+from util.baseview import BaseView,loginRequire
 
 
 class AdminView(BaseView):
@@ -6,6 +6,7 @@ class AdminView(BaseView):
         """登录"""
         pass
 
+    @loginRequire()
     def index(self, request):
         """总览"""
         pass

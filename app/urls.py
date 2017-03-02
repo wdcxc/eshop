@@ -7,3 +7,4 @@ urlpatterns = [
     url(r'^index$',BaseView.as_view(),name="index"),
 ]
 
+
