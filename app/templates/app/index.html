@@ -7,55 +7,299 @@
 {% endblock %}
 
 {% block body %}
-    <div class="nav-wrapper">
-        <div class="nav">
-           <div class="nav-welcome">
+    <div class="header">
+        <!--顶部导航条 -->
+        <div class="nav-wrapper">
+            <div class="nav">
+                <div class="nav-welcome">
                 <span>欢迎来到eshop,请
                 <a href="{% url 'customer:login' %}" style="color: #ff2832">登录</a>
                 <a href="{% url 'customer:register' %}">成为会员</a>
                 </span>
-           </div>
-            <ul class="nav-operation">
-                <li class="operation-item">
-                    <a target="_blank" href="" name="购物车" rel="nofollow">
-                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="color:#ff2832"></span> 购物车
-                        <span class="goods-number">0</span>
-                    </a>
-                </li>
-                <li class="operation-item">
-                    <a target="_blank" href="" name="我的订单" rel="nofollow">我的订单</a>
-                </li>
-                <li class="operation-item dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        商家支持<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">免费开店</a></li>
-                        <li><a href="#">已卖出的商品</a></li>
-                        <li><a href="#">出售中的商品</a></li>
-                    </ul>
-                </li>
-                <li class="operation-item dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        客户服务<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">帮助中心</a></li>
-                        <li><a href="#">联系客服</a></li>
-                        <li><a href="#">意见建议</a></li>
-                    </ul>
-                </li>
-            </ul>
+                </div>
+                <ul class="nav-operation">
+                    <li class="operation-item">
+                        <a target="_blank" href="" name="购物车" rel="nofollow">
+                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"
+                                  style="color:#ff2832"></span> 购物车
+                            <span class="goods-number">0</span>
+                        </a>
+                    </li>
+                    <li class="operation-item">
+                        <a target="_blank" href="" name="我的订单" rel="nofollow">我的订单</a>
+                    </li>
+                    <li class="operation-item dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            商家支持<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">免费开店</a></li>
+                            <li><a href="#">已卖出的商品</a></li>
+                            <li><a href="#">出售中的商品</a></li>
+                        </ul>
+                    </li>
+                    <li class="operation-item dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            客户服务<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">帮助中心</a></li>
+                            <li><a href="#">联系客服</a></li>
+                            <li><a href="#">意见建议</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--搜索框 -->
+        <div class="logo-wrapper">
+            <div id="logo" style="margin:1rem .6rem"><a href="#">eshop</a></div>
+            <div class="search-bar">
+                <form>
+                    <input id="search-text" type="text" placeholder="商品/店铺/品牌" autocomplete="off">
+                    <input id="search-btn" value="搜索" type="submit">
+                </form>
+            </div>
         </div>
     </div>
-    <div class="logo-wrapper">
-        <div class="logo">eshop</div>
-        <div class="search-bar">
-            <form>
-                <input id="searchInput" type="text" placeholder="商品/店铺/品牌" autocomplete="off">
-                <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
-            </form>
+    <!--轮播框 -->
+    <div class="banner">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height:100%">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="{% static 'images/app/ad1.jpg' %}" alt="活动1">
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/app/ad2.jpg' %}" alt="活动2">
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/app/ad1.jpg' %}" alt="活动3">
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/app/ad2.jpg' %}" alt="活动4">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shop-nav">
+        <div class="slideall">
+            <div class="long-title">全部分类</div>
+            <div class="activity-nav">
+                <ul>
+                    <li><a href="#">秒杀</a></li>
+                    <li><a href="#">特惠</a></li>
+                    <li><a href="#">团购</a></li>
+                    <li><a href="#">超值</a></li>
+                </ul>
+            </div>
+
+            <!--侧边导航 -->
+            <div class="category-content">
+                <ul class="category-list">
+                    <li class="category-item">
+                        <div class="category-info">
+                            <h3 class="category-name">服饰/内衣</h3>
+                            <em>&gt;</em>
+                        </div>
+                        <div class="menu-in">
+                            <div class="menu">
+                                <dl class="category-class">
+                                    <dt><span title="女装">女装</span></dt>
+                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
+                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
+                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
+                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
+                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
+                                </dl>
+                                <dl class="category-class">
+                                    <dt><span title="男装">男装</span></dt>
+                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
+                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
+                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
+                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
+                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
+                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
+                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
+                                </dl>
+                                <dl class="category-class">
+                                    <dt><span title="内衣">内衣</span></dt>
+                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
+                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
+                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
+                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
+                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
+                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
+                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
+                                </dl>
+                                <dl class="category-class">
+                                    <dt><span title="服饰配件">服饰配件</span></dt>
+                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
+                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
+                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
+                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
+                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
+                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
+                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="category-item">
+                        <div class="category-info">
+                            <h3 class="category-name">鞋靴/箱包</h3>
+                            <em>&gt;</em>
+                        </div>
+                        <div class="menu-in">
+                            <div class="menu">
+                                <dl class="category-class">
+                                    <dt><span title="女装">女鞋</span></dt>
+                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
+                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
+                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
+                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
+                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
+                                </dl>
+                                <dl class="category-class">
+                                    <dt><span title="男装">男鞋</span></dt>
+                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
+                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
+                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
+                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
+                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
+                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
+                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
+                                </dl>
+                                <dl class="category-class">
+                                    <dt><span title="内衣">女包</span></dt>
+                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
+                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
+                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
+                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
+                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
+                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
+                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
+                                </dl>
+                                <dl class="category-class">
+                                    <dt><span title="服饰配件">男包</span></dt>
+                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
+                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
+                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
+                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
+                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
+                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
+                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
+                                </dl>
+                                <dl class="category-class">
+                                    <dt><span title="服饰配件">皮具配件</span></dt>
+                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
+                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
+                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
+                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
+                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
+                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
+                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="category-item">
+                        <div class="category-info">
+                            <h3 class="category-name">电脑办公</h3>
+                            <em>&gt;</em>
+                        </div>
+                    </li>
+                    <li class="category-item">
+                        <div class="category-info">
+                            <h3 class="category-name">家用电器</h3>
+                            <em>&gt;</em>
+                        </div>
+                    </li>
+                    <li class="category-item">
+                        <div class="category-info">
+                            <h3 class="category-name">手机/数码</h3>
+                            <em>&gt;</em>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="shop-main-bg">
+        <div class="shop-main">
+        <!--热门活动 -->
+            <div class="container activity ">
+                <div class="shop-title">
+                    <h3>活动</h3>
+                    <h4>每期活动 优惠享不停 </h4>
+                    <span class="more">
+                        <a class="more-link" href="#">全部活动</a>
+                    </span>
+                </div>
+                <div class="row" style="padding:.5rem 0;">
+                    <div class="col-md-3">
+                        <div class="icon-sale one"></div>
+                        <h4>秒杀</h4>
+                        <div class="activity-main">
+                            <a href="#"><img src="{% static 'images/app/activity1.jpg' %}"></a>
+                        </div>
+                        <div class="activity-info">
+                            <h3>快被抢完了</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="icon-sale one"></div>
+                        <h4>特惠</h4>
+                        <div class="activity-main">
+                            <a href="#"><img src="{% static 'images/app/activity2.jpg' %}"></a>
+                        </div>
+                        <div class="activity-info">
+                            <h3>物美价廉哦</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="icon-sale one"></div>
+                        <h4>团购</h4>
+                        <div class="activity-main">
+                            <a href="#"><img src="{% static 'images/app/activity3.jpg' %}"></a>
+                        </div>
+                        <div class="activity-info">
+                            <h3>团购更便宜</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="icon-sale one"></div>
+                        <h4>超值</h4>
+                        <div class="activity-main">
+                            <a href="#"><img src="{% static 'images/app/activity.jpg' %}"></a>
+                        </div>
+                        <div class="activity-info">
+                            <h3>物超所值哦</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
 
 {% block js %}
+    <script>
+        $(document).ready(function() {
+            $(".category-item").hover(function () {
+                $(".category-content .category-list li .menu-in").css("display", "none");
+                $(".category-content .category-list li").removeClass("hover");
+                $(this).addClass("hover");
+                $(this).children("div.menu-in").css("display", "block")
+            }, function () {
+                $(this).removeClass("hover")
+                $(this).children("div.menu-in").css("display", "none")
+            });
+        })
+    </script>
 {% endblock %}
