@@ -6,7 +6,7 @@
     line-height: 1.7rem;
     position: relative;
 }
-.nav{
+.nav-content{
     color: #666;
     width: 60rem;
     margin: 0 auto;
@@ -14,7 +14,7 @@
     height: 1.7rem;
     font-size:.6rem;
 }
-.nav a{
+.nav-content a{
     text-decoration: none;
     margin-right: 5px;
     color: #666;
@@ -31,6 +31,8 @@
     padding-top: 2px;
 }
 .operation-item{
+    height: 1.1rem;
+    line-height: 1.1rem;
     padding: .2rem .5rem 0 .5rem;
 }
 .dropdown-menu{
@@ -184,7 +186,7 @@
 }
 .menu{
     position: relative;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     width: 100%;
     overflow: hidden;
 }
@@ -211,9 +213,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     padding: .2rem .5rem;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(230, 230, 230);
+    border: 1px solid rgb(230, 230, 230);
 }
 .hover{
     background-color: #fff;
@@ -241,7 +241,7 @@
     width: 100%;
     overflow: hidden;
 }
-.shop-title h3{
+.shop-sub-title{
     float: left;
     border: none;
     margin: .3rem 0px;
@@ -319,6 +319,88 @@
     font-size: .7rem;
     margin:0;
 }
+.tabs{
+    margin-right: 0;
+    margin-left: 0;
+    background-color: #fff;
+    border-radius: .2rem .2rem 0 0;
+    position: relative;
+    padding: 2rem 3.3rem;
+}
+.nav-tabs{
+    margin-bottom: .8rem;
+}
+.nav-tabs>li{
+    float: right;
+}
+.nav-tabs>li>a{
+    color: #646464;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    color: #525252;
+    font-weight: bold;
+}
+.commodity-content{
+    max-width: 60rem;
+    border: 1px solid #eee;
+    border-top: none;
+    margin: 0 auto;
+    width: 100%;
+}
+.commodity-name-price{
+    text-align: center;
+    top: 7%;
+    position: absolute;
+    width: 100%;
+}
+.commodity-name{
+    line-height: 1.1rem;
+    color: #000;
+    font-size: .7rem;
+    font-weight: bold;
+}
+.commodity-price{
+    font-size: .6rem;
+    color: #666;
+}
+.commodity-content a img{
+    width: 100%;
+    margin-top: 50%;
+}
+.commodity-row-two{
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    position: relative;
+}
+.commodity-row-two .commodity-name-price{
+    top: 7%;
+    left: 2%;
+    width: 30%;
+}
+.commodity-row-two a img{
+    width: 50%;
+    margin: 3% 3% 8% 45%
+}
+.commodity-quarter-two{
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    text-align: center;
+}
+.commodity-quarter-two .commodity-name-price{
+    right: 2%;
+    top: 7%;
+}
+.commodity-quarter-two a img{
+    width: 70%;
+    margin: 38% 2% 3% 2%;
+}
+.commodity-content .col-md-3,.commodity-content .col-md-4,.commodity-content .col-md-5{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+
 
 
 
