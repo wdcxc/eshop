@@ -19,6 +19,7 @@ class BaseView(View):
         self.context = {}
 
     def dispatch(self, request, *args, **kwargs):
+        """请求处理"""
         self.request_["app"], self.request_["action"] = request.path.split("/")[1:3]
         self.context["activeAction"] = self.request_["action"]
         getattr(self, self.request_["action"])(request)
@@ -34,12 +35,14 @@ class BaseView(View):
             return redirect(redirectPath)
 
     def getCaptchaImage(self, request):
+        """验证码图像生成"""
         self.response_["type"] = "IMAGE"
         captcha = Captcha().geneCaptchaImage()
         request.session["captchaCode"] = captcha["captchaCode"]
         self.context["image"] = captcha["captchaImageBuff"]
 
     def valifyCaptcha(self, request):
+        """验证码验证"""
         self.response_["type"] = BaseView.RESPONSE_TYPE_JSON
         captchaCode = request.POST.get("captchaCode").lower()
         if captchaCode == request.session["captchaCode"]:
