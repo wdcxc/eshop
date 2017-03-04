@@ -27,8 +27,6 @@ ul{
 ul li{
     float:left;
     list-style-type: none;
-    height: 1.1rem;
-    line-height: 1.1rem;
     position: relative;
 }
 #logo{
