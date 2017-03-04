@@ -1,15 +1,35 @@
 from django.conf.urls import url
 
-from .views import AdminView
+from admin.views.admin import AdminView
+from admin.views.common import CommonView
+from admin.views.customer import CustomerView
+from admin.views.seller import SellerView
 
 app_name = "admin"
+
+# common
 urlpatterns = [
-    url(r'^login$', AdminView.as_view(), name="login"),
-    url(r'^index$', AdminView.as_view(), name="index"),
-    url(r'^customer$', AdminView.as_view(), name="customer"),
-    url(r'^seller$', AdminView.as_view(), name="seller"),
-    url(r'^admin$', AdminView.as_view(), name="admin"),
-    url(r'^statistic$', AdminView.as_view(), name="statistic"),
-    url(r'^getCaptchaImage/[0-9\.]*$', AdminView.as_view(), name="getCaptchaImage"),
-    url(r'^valifyCaptcha$', AdminView.as_view(), name="valifyCaptcha")
+    url(r'^common/login$', CommonView.as_view(), name="login"),
+    url(r'^common/doLogin$',CommonView.as_view(),name="doLogin"),
+    url(r'^common/logout$',CommonView.as_view(),name="logout"),
+    url(r'^common/index$', CommonView.as_view(), name="index"),
+    url(r'^common/generateCaptcha/[0-9\.]*$', CommonView.as_view(), name="generateCaptcha"),
+    url(r'^common/valifyCaptcha$', CommonView.as_view(), name="valifyCaptcha")
+]
+
+# admin
+urlpatterns += [
+    url(r'^admin/index$',AdminView.as_view(),name="adminIndex"),
+    url(r'^admin/addAdmin',AdminView.as_view(),name="addAdmin"),
+    url(r'^admin/deleteAdmin',AdminView.as_view(),name="deleteAdmin"),
+]
+
+# customer
+urlpatterns += [
+    url(r'^customer/index$',CustomerView.as_view(),name="customerIndex"),
+]
+
+# seller
+urlpatterns += [
+    url(r'^seller/index$',SellerView.as_view(),name="sellerIndex"),
 ]

@@ -1,0 +1,17 @@
+.info-success{
+    height:1.4rem;
+    color: #17aa06;
+    background: #c3ffc8;
+    border: 1px solid #7efa6f;
+    padding: 3px 10px 3px 10px;
+    margin-bottom: .5rem;
+}
+
+.info-error{
+    height:1.4rem;
+    color: #e4393c;
+    background: #ffebeb;
+    border: 1px solid #faccc6;
+    padding: 3px 10px 3px 10px;
+    margin-bottom: .5rem;
+}

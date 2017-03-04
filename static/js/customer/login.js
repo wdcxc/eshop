@@ -2,7 +2,7 @@
  * Created by wdcxc on 2017/2/18.
  */
 var csrftoken = Cookies.get('csrftoken');
-var captchaUrl = "/customer/getCaptchaImage/";
+var captchaUrl = "/customer/common/generateCaptcha/";
 
 var loginForm = new Vue({
     el: '#loginForm',
@@ -21,14 +21,14 @@ var loginForm = new Vue({
         }
      },
     computed:{
-        updateCaptchaCode:{
+        inputCaptchaCode:{
             get: function(){
                 return this.customer.captchaCode;
             },
             set: function (newValue){
                 this.customer.captchaCode = newValue;
                 if(newValue.length == 4){
-                    this.valifyCaptchaCode();
+                    this.valifyCaptcha();
                 }
             }
         }
@@ -41,7 +41,7 @@ var loginForm = new Vue({
         },
         doLogin: function () {
             var that = this;
-            this.$http.post('/customer/doLogin', that.customer, {"headers":{"X-CSRFToken":csrftoken}})
+            this.$http.post('/customer/common/doLogin', that.customer, {"headers":{"X-CSRFToken":csrftoken}})
                 .then(response => {
                     if(response.body.code == 200){
                         window.location.href = "/app/index";
@@ -52,10 +52,10 @@ var loginForm = new Vue({
                     alert(response);
                 });
         },
-        valifyCaptchaCode: function(){
+        valifyCaptcha: function(){
            var captchaCode = this.customer.captchaCode;
            var that = this;
-           this.$http.post('/customer/valifyCaptcha',{"captchaCode":captchaCode},{"headers":{"X-CSRFToken":csrftoken}})
+           this.$http.post('/customer/common/valifyCaptcha',{"captchaCode":captchaCode},{"headers":{"X-CSRFToken":csrftoken}})
                      .then(response=>{
                         that.infoMsg.msg = response.body.msg;
                         if(response.body.code == 200){

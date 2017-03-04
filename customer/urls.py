@@ -1,14 +1,16 @@
 from django.conf.urls import url
 
-from .views import CustomerView
+from customer.views.common import CommonView
 
 app_name = "customer"
+
+# common
 urlpatterns = [
-    url(r'^login$', CustomerView.as_view(), name="login"),
-    url(r'^doLogin$', CustomerView.as_view(), name="doLogin"),
-    url(r'^register$', CustomerView.as_view(), name="register"),
-    url(r'^doRegister$', CustomerView.as_view(), name="doRegister"),
-    url(r'^forgetpwd$', CustomerView.as_view(), name="forgetPwd"),
-    url(r'^getCaptchaImage/[0-9\.]*$', CustomerView.as_view(), name="getCaptchaImage"),
-    url(r'^valifyCaptcha$', CustomerView.as_view(), name="valifyCaptcha"),
+    url(r'^common/login$', CommonView.as_view(), name="login"),
+    url(r'^common/doLogin$', CommonView.as_view(), name="doLogin"),
+    url(r'^common/register$', CommonView.as_view(), name="register"),
+    url(r'^common/doRegister$', CommonView.as_view(), name="doRegister"),
+    url(r'^common/forgetpwd$', CommonView.as_view(), name="forgetPwd"),
+    url(r'^common/generateCaptcha/[0-9\.]*$', CommonView.as_view(), name="generateCaptcha"),
+    url(r'^common/valifyCaptcha$', CommonView.as_view(), name="valifyCaptcha"),
 ]

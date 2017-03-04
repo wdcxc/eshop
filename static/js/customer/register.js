@@ -2,7 +2,7 @@
  * Created by wdcxc on 2017/2/21.
  */
 var csrftoken = Cookies.get("csrftoken");
-var captchaUrl = "/customer/getCaptchaImage/";
+var captchaUrl = "/customer/common/generateCaptcha/";
 
 registerForm = new Vue({
     el: "#registerForm",
@@ -16,12 +16,12 @@ registerForm = new Vue({
     },
     methods: {
         updateCaptcha: function () {
-            this.captcha = captchaUrl + Math.random();
+            this.captcha.imageUrl = captchaUrl + Math.random();
             return false;
         },
         doRegister: function () {
             var that = this;
-            this.$http.post("/customer/doRegister", that.customer, {"headers": {"X-CSRFToken": csrftoken}}).then(response=> {
+            this.$http.post("/customer/common/doRegister", that.customer, {"headers": {"X-CSRFToken": csrftoken}}).then(response=> {
                 if(response.body.code == 200){
                     //todo
                 }else{

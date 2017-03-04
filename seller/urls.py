@@ -1,8 +1,10 @@
 from django.conf.urls import url
 
-from .views import SellerView
+from seller.views.common import CommonView
 
 app_name = "seller"
+
+# common
 urlpatterns = [
-    url(r'^login$',SellerView.as_view(),name="login"),
+    url(r'^common/login$',CommonView.as_view(),name="login"),
 ]

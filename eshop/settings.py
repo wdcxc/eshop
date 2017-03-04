@@ -130,3 +130,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+# session存活时间(s)
+SESSION_EXPIRE_AGE = 1800

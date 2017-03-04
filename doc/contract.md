@@ -68,3 +68,5 @@ manage.py migrate
 |410|customer.login|账号或密码错误|
 |411|customer.captchaValify|验证码错误|
 |411|customer.doRegister|验证码错误|
+|412|admin.doLogin|验证码错误|
+|413|admin.doLogin|用户名或密码错误|

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'css/admin/login.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand"><strong>eshop</strong> 系统后台管理</a>
+        </div>
+    </div>
+</nav>
+<div class="jumbotron">
+    <div class="container-fluid">
+        <diva clas="row">
+            <div class="col-md-4 col-md-offset-7">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h3 class="panel-title">账号登陆</h3></div>
+                    <div class="panel-body">
+                        <form id="loginForm" v-on:submit.prevent="doLogin">
+                            {% csrf_token %}
+                            <div v-html="info.msg" v-bind:class="info.style"></div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-user"></span>
+                                    <input v-model="user.username" type="text" class="form-control" placeholder="用户名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                                    <input v-model="user.password" type="password" class="form-control" placeholder="密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input v-model="inputCaptchaCode" type="text" placeholder="请输入验证码">
+                                <a v-on:click="updateCaptcha"><img v-bind:src="captcha.imageUrl" alt="验证码" height="30"></a>
+                            </div>
+                            <button type="submit" class="btn btn-primary form-control">登录</button>
+                        </form>
+                    </div> <!-- login panel-body -->
+                    <div class="panel-footer"><a href="#">忘记密码</a></div>
+                </div> <!-- login panel -->
+            </div> <!-- login col -->
+        </div> <!-- row -->
+    </div> <!-- container -->
+</div> <!-- jumpbotron -->
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script src="{% static 'js/admin/login.js' %}"></script>
+{% endblock %}
