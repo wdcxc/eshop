@@ -1,20 +1,48 @@
-.navbar {
+.header-bar {
     height:2rem;
     position:fixed;
-    margin-bottom:0;
     z-index:10;
     width:100%;
-    padding-right: 1rem;
+    background-color:#e7e7e7;
 }
 
-.navbar .dropdown-menu{
-    position:relative;
-    top:0;
-    margin-top:2rem;
+.header-title{
+    width:20%;
+    line-height:2rem;
+    font-size:1rem;
+    margin:0;
+    padding-left:1rem;
+    display:inline-block;
 }
 
-.navbar ul li{
-    float:none;
+.header-right{
+    float:right;
+    display:inline-block;
+    height:2rem;
+    margin-top: .5rem;
+}
+
+.header-right .dropdown .dropdown-toggle{
+    displa;y:inline-block;
+    height: 1rem;
+    margin-right:1rem;
+    color:#286090;
+}
+
+.header-right .dropdown .dropdown-toggle:hover{
+    color:black;
+    cursor:pointer;
+}
+
+.header-right .dropdown-menu{
+    min-width:0;
+    margin-right:1rem;
+}
+
+.header-right .dropdown-menu li{
+    width:100%;
+    text-align:center;
+    padding: 0 .1rem;
 }
 
 .affix-tab {
