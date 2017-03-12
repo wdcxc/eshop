@@ -1,0 +1,15 @@
+.links{
+    font-size: .7rem;
+    color: #666;
+    margin: .5rem 0;
+}
+.copyright{
+    font-size: .7rem;
+    color: #666;
+}
+.links a{
+    text-decoration: none;
+    color: #666;
+    font-size: .7rem;
+    margin: 0 .8rem
+}
