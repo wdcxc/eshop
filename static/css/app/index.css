@@ -1,35 +1,3 @@
-.logo-wrapper{
-    max-width: 60rem;
-    margin: 0 auto;
-}
-.search-bar{
-    margin: 0 auto;
-    height: 4.5rem;
-    padding: 1.5rem 3.5rem 0 14rem;
-}
-.search-bar form{
-    border: 2px solid #F03726;
-    max-width: 33.5rem;
-}
-.search-bar input{
-    height: 2.3rem;
-}
-#search-text{
-    width: 80%;
-    border: 0;
-    padding-left: 5px;
-}
-#search-btn{
-    font-size: .9rem;
-    height: 2.3rem;
-    width: 20%;
-    border: none;
-    float: right;
-    background: #F03726;
-    color: #F5F5F2;
-    cursor: pointer;
-    border-radius: 0 0;
-}
 .banner{
     position: absolute;
     left: 0;
