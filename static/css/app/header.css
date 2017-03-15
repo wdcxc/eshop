@@ -31,6 +31,8 @@
     padding-top: 2px;
 }
 .operation-item{
+    float: left;
+    position: relative;
     height: 1.1rem;
     line-height: 1.1rem;
     padding: .2rem .5rem 0 .5rem;
@@ -62,7 +64,7 @@
 #search-text{
     width: 80%;
     border: 0;
-    padding-left: 5px;
+    padding-left: .5rem;
 }
 #search-btn{
     font-size: .9rem;
@@ -73,5 +75,4 @@
     background: #F03726;
     color: #F5F5F2;
     cursor: pointer;
-    border-radius: 0 0;
 }

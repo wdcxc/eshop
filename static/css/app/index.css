@@ -181,7 +181,7 @@
     line-height: .9rem;
     margin-bottom: .2rem;
 }
-.shop-title .more{
+.more{
     display: block;
     position: absolute;
     right: 0px;
@@ -189,7 +189,7 @@
     font-size: .7rem;
     overflow: hidden;
 }
-.shop-title .more .more-link{
+.more-link{
     color: #FFF;
     background: #F72862;
     display: block;
@@ -200,7 +200,7 @@
     text-decoration: none;
     outline: none;
 }
-.activity .icon-sale{
+.icon-sale{
     position: absolute;
     width: 0;
     height: 0;
@@ -214,16 +214,16 @@
     left: 1.5rem;
     font-size: .8rem;
 }
-.activity .icon-sale.one{
+.icon-sale.one{
     border-top-color: #9b0d5f;
 }
-.activity .icon-sale.two{
+.icon-sale.two{
     border-top-color: #b48c66;
 }
-.activity .icon-sale.three{
+.icon-sale.three{
     border-top-color: #7fb113;
 }
-.activity .icon.last{
+.icon.last{
     border-top-color: #F72862;
 }
 .activity-main img{
