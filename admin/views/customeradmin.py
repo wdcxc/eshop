@@ -1,6 +1,6 @@
 from util.baseview import BaseView,loginRequire
 
-class SellerView(BaseView):
+class CustomerAdminView(BaseView):
     @loginRequire()
     def index(self,request):
         pass

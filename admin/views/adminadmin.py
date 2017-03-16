@@ -1,7 +1,7 @@
 from util.baseview import BaseView,loginRequire
 
 
-class AdminView(BaseView):
+class AdminAdminView(BaseView):
     @loginRequire()
     def index(self,request):
         pass

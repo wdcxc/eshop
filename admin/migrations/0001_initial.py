@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('password', models.CharField(max_length=130)),
             ],
             options={
-                'db_table': 'admin',
+                'db_table': 'adminadmin',
             },
         ),
     ]

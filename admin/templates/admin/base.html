@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link type="text/css" rel="stylesheet" href="{% static 'css/admin/index.css' %}"/>
+{% endblock %}
+
+{% block body %}
+{% include "admin/navbar.html" %}
+<div class="content">
+    <ol class="breadcrumb">
+        <li>
+            <a href="/admin/{{controller}}/index">{{controller}}</a>
+        </li>
+        <li class="active">
+            <a href="#">{{action}}</a>
+        </li>
+    </ol>
+    {% block withnavbody %}{% endblock %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+
+{% block withnavbody %}
+<a class="btn btn-primary" href="{% url 'admin:appAdminAddCarousel' %}">添加新轮播图</a>
+<hr/>
+<table class="table table-hover table-bordered">
+    <tr>
+        <th>序号</th>
+        <th>标题</th>
+        <th>图片链接地址</th>
+        <th>点击链接地址</th>
+        <th>添加日期</th>
+    </tr>
+    {% for carousel in carousels %}
+    <tr>
+        <td>{{carousel.id}}</td>
+        <td>{{carousel.title}}</td>
+        <td>{{carousel.imgUrl}}</td>
+        <td>{{carousel.linkUrl}}</td>
+        <td>{{carousel.addTime}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
