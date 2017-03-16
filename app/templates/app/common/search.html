@@ -16,14 +16,72 @@
                     <span class="all-goods">全部商品</span>
                 </div>
             </div>
-            <div class="select-wrapper">
-                <div class="col-md-12 col-sm-12"></div>
+            <div class="container-fluid center-block" style="max-width: 60rem">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="select-box">
+                            <ul class="select">
+								<p class="select-total">
+									<span>松子</span>
+									<span>搜索到<strong>997</strong>件相关商品</span>
+								</p>
+								<li class="select-result" style="display: none">
+									<dl>
+										<dt>已选</dt>
+										<dd class="select-no"></dd>
+										<p class="eliminateCriteria">清除</p>
+									</dl>
+								</li>
+								<li class="select-list">
+									<dl id="select1">
+										<dt class="select-option">品牌</dt>
+
+										 <div class="select-content">
+											<dd class="select-all selected"><a href="#">全部</a></dd>
+											<dd><a href="#">百草味</a></dd>
+											<dd><a href="#">良品铺子</a></dd>
+											<dd><a href="#">新农哥</a></dd>
+											<dd><a href="#">楼兰蜜语</a></dd>
+											<dd><a href="#">口水娃</a></dd>
+											<dd><a href="#">考拉兄弟</a></dd>
+										 </div>
+
+									</dl>
+								</li>
+								<li class="select-list">
+									<dl id="select2">
+										<dt class="select-option">种类</dt>
+										<div class="select-content">
+											<dd class="select-all selected"><a href="#">全部</a></dd>
+											<dd><a href="#">东北松子</a></dd>
+											<dd><a href="#">巴西松子</a></dd>
+											<dd><a href="#">夏威夷果</a></dd>
+											<dd><a href="#">松子</a></dd>
+										</div>
+									</dl>
+								</li>
+								<li class="select-list">
+									<dl id="select3">
+										<dt class="select-option">选购热点</dt>
+										<div class="select-content">
+											<dd class="select-all selected"><a href="#">全部</a></dd>
+											<dd><a href="#">手剥松子</a></dd>
+											<dd><a href="#">薄壳松子</a></dd>
+											<dd><a href="#">进口零食</a></dd>
+											<dd><a href="#">有机零食</a></dd>
+										</div>
+									</dl>
+								</li>
+
+							</ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <b class="line"></b>
     </div>
 {% endblock %}
 
 {% block js %}
-
+    <script src="{% static 'js/app/search.js' %}"></script>
 {% endblock %}
