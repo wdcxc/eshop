@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}商品搜索{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/search.css' %}">
+{% endblock %}
+
+{% block body %}
+    {% include "app/header.html" %}
+    <div class="search">
+        <div class="search-list">
+            <div class="nav-table">
+                <div class="long-title">
+                    <span class="all-goods">全部商品</span>
+                </div>
+            </div>
+            <div class="select-wrapper">
+                <div class="col-md-12 col-sm-12"></div>
+            </div>
+        </div>
+        <b class="line"></b>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
