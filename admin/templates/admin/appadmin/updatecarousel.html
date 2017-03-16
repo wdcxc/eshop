@@ -5,16 +5,22 @@
 <div class="container-fluid">
     <div class="center-block">
         <div class="col-md-offset-4">
-            <h3>添加商城首页轮播图</h3>
+            <h3>修改商城首页轮播图</h3>
         </div>
         <hr/>
-        <form class="form form-horizontal" id="carouselForm" v-on:submit.prevent="addCarousel">
+        <form class="form form-horizontal" method="post" action="{% url 'admin:appAdminUpdateCarousel' %}">
             {% csrf_token %}
+            {% if errmsg %}
+            <div class="form-group">
+                <label class="col-md-offset-4 text-danger">{{ errmsg }}</label>
+            </div>
+            {% endif %}
+            <input type="hidden" name="id" value="{{carousel.id}}" />
             <div class="form-group">
                 <div class="col-md-2 col-md-offset-2">
                     <label for="title" class="pull-right">标题</label></div>
                 <div class="col-md-4">
-                    <input v-model="carousel.title" type="text" id="title" class="form-control"/>
+                    <input name="title" type="text" id="title" class="form-control" value="{{carousel.title}}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -23,10 +29,10 @@
                 </div>
                 <div class="col-md-4">
                     <label class="radio-inline">
-                        <input v-model="carousel.show" type="radio" name="show" value="True" checked /> 是
+                        <input type="radio" name="show" value="True" {% if carousel.show %}checked{% endif %}/> 是
                     </label>
                     <label class="radio-inline">
-                        <input v-model="carousel.show" type="radio" name="show" value="False" /> 否
+                        <input type="radio" name="show" value="False" {% if not carousel.show %}checked{% endif %}/> 否
                     </label>
                 </div>
             </div>
@@ -35,7 +41,7 @@
                     <label for="order" class="pull-right">显示权重</label>
                 </div>
                 <div class="col-md-4">
-                    <input v-model="carousel.order" type="text" id="order" class="form-control" />
+                    <input name="order" type="text" id="order" class="form-control" value="{{carousel.order}}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -43,7 +49,7 @@
                     <label for="imgUrl" class="pull-right">图片链接地址</label>
                 </div>
                 <div class="col-md-4">
-                    <input v-model="carousel.imgUrl" type="text" id="imgUrl" class="form-control"/>
+                    <input name="imgUrl" type="text" id="imgUrl" class="form-control" value="{{carousel.imgUrl}}"/>
                 </div>
             </div>
             <div class="form-group">
@@ -51,12 +57,12 @@
                     <label for="linkUrl" class="pull-right">点击链接地址</label>
                 </div>
                 <div class="col-md-4">
-                    <input v-model="carousel.linkUrl" type="text" id="linkUrl" class="form-control"/>
+                    <input name="linkUrl" type="text" id="linkUrl" class="form-control" value="{{carousel.linkUrl}}"/>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-5">
-                    <button type="submit" class="btn btn-primary">添加</button>
+                    <button type="submit" class="btn btn-primary">修改</button>
                 </div>
             </div>
         </form>
@@ -66,6 +72,5 @@
 
 {% block js %}
     <script src="{% static 'js/js.cookie.js' %}"></script>
-    <script src="{% static 'js/admin/appadmin/addcarousel.js' %}"></script>
 {% endblock %}
 
