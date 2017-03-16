@@ -22,8 +22,8 @@ class BaseView(View):
     def dispatch(self, request, *args, **kwargs):
         """请求处理"""
         request.session.set_expiry(settings.SESSION_EXPIRE_AGE)
-        self.request_["app"], self.request_["controller"],self.request_["action"] = request.path.split("/")[1:4]
-        self.context["app"],self.context["controller"],self.context["action"] = self.request_["app"],self.request_["controller"],self.request_["action"]
+        self.request_["appadmin"], self.request_["controller"],self.request_["action"] = request.path.split("/")[1:4]
+        self.context["appadmin"],self.context["controller"],self.context["action"] = self.request_["appadmin"],self.request_["controller"],self.request_["action"]
 
         getattr(self, self.request_["action"])(request)
 
@@ -32,7 +32,7 @@ class BaseView(View):
         elif self.response_["type"] == self.RESPONSE_TYPE_IMAGE:
             return HttpResponse(self.context["image"], "image/png")
         elif self.response_["type"] == self.RESPONSE_TYPE_DEFAULT:
-            responsePath = "{app}/{controller}/{action}.html".format(app=self.request_["app"], controller=self.request_["controller"],action=self.request_["action"])
+            responsePath = "{app}/{controller}/{action}.html".format(app=self.request_["appadmin"], controller=self.request_["controller"],action=self.request_["action"])
             return render(request, responsePath, self.context)
         elif self.response_["type"] == self.RESPONSE_TYPE_REDIRECT:
             return redirect(self.context["redirectPath"])
@@ -54,17 +54,22 @@ class BaseView(View):
             self.context = {"code": 411, "msg": "验证码错误", "data": {"input": captchaCode}}
 
 
-def loginRequire(loginUrl=None):
+def loginRequire(redirectUrl=None):
     """登录要求装饰器"""
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             view, request = args[0], args[1]
             if "user" not in request.session or request.session["user"] is None:
-                view.context["redirectPath"] = "/{app}/{controller}/login".format(app=view.request_["app"],controller=view.request_["controller"])
+                if redirectUrl:
+                    view.context["redirectPath"] = redirectUrl
+                else:
+                    view.context["redirectPath"] = "/{app}/{controller}/login".format(app=view.request_["appadmin"],controller="common")
                 view.response_["type"] = BaseView.RESPONSE_TYPE_REDIRECT
                 args = (view,args[1:])
             else:
+                view.context["user"] = request.session["user"]
+                args = (view,args[1:])
                 return func(*args, *kwargs)
         return wrapper
     return decorator

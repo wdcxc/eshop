@@ -38,7 +38,7 @@ class CommonView(BaseView):
 
     @loginRequire()
     def index(self,request):
-        self.context["user"] = request.session["user"]
+        pass
 
 
 

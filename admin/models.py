@@ -8,3 +8,4 @@ class AdminModel(models.Model):
 
     username = models.CharField(max_length=30,unique=True)
     password = models.CharField(max_length=130)
+

@@ -1,9 +1,10 @@
 from django.conf.urls import url
 
-from admin.views.admin import AdminView
+from admin.views.adminadmin import AdminAdminView
 from admin.views.common import CommonView
-from admin.views.customer import CustomerView
-from admin.views.seller import SellerView
+from admin.views.customeradmin import CustomerAdminView
+from admin.views.selleradmin import SellerAdminView
+from admin.views.appadmin import AppAdminView
 
 app_name = "admin"
 
@@ -17,19 +18,26 @@ urlpatterns = [
     url(r'^common/valifyCaptcha$', CommonView.as_view(), name="valifyCaptcha")
 ]
 
-# admin
+# adminadmin
 urlpatterns += [
-    url(r'^admin/index$',AdminView.as_view(),name="adminIndex"),
-    url(r'^admin/addAdmin',AdminView.as_view(),name="addAdmin"),
-    url(r'^admin/deleteAdmin',AdminView.as_view(),name="deleteAdmin"),
+    url(r'^adminadmin/index$',AdminAdminView.as_view(),name="adminAdminIndex"),
+    url(r'^adminadmin/addAdmin',AdminAdminView.as_view(),name="addAdmin"),
+    url(r'^adminadmin/deleteAdmin',AdminAdminView.as_view(),name="deleteAdmin"),
 ]
 
-# customer
+# customeradmin
 urlpatterns += [
-    url(r'^customer/index$',CustomerView.as_view(),name="customerIndex"),
+    url(r'^customeradmin/index$',CustomerAdminView.as_view(),name="customerAdminIndex"),
 ]
 
 # seller
 urlpatterns += [
-    url(r'^seller/index$',SellerView.as_view(),name="sellerIndex"),
+    url(r'^selleradmin/index$',SellerAdminView.as_view(),name="sellerAdminIndex"),
+]
+
+# appadmin
+urlpatterns += [
+    url(r'^appadmin/index$',AppAdminView.as_view(),name="appAdminIndex"),
+    url(r'appadmin/carousel$',AppAdminView.as_view(),name="appAdminCarousel"),
+    url(r'appadmin/addCarousel$',AppAdminView.as_view(),name="appAdminAddCarousel")
 ]

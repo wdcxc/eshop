@@ -11,8 +11,9 @@
     </div>
 </header>
 <ul class="affix-tab">
-    <li><a {% ifequal controller "index" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:index' %}">总览</a></li>
-    <li><a {% ifequal controller "customer" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:customerIndex' %}">顾客管理</a></li>
-    <li><a {% ifequal controller "seller" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:sellerIndex' %}">商家管理</a></li>
-    <li><a {% ifequal controller "admin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:adminIndex' %}">管理员管理</a></li>
+    <li><a {% ifequal controller "common" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:index' %}">总览</a></li>
+    <li><a {% ifequal controller "customeradmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:customerAdminIndex' %}">顾客管理</a></li>
+    <li><a {% ifequal controller "selleradmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:sellerAdminIndex' %}">商家管理</a></li>
+    <li><a {% ifequal controller "adminadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:adminAdminIndex' %}">管理员管理</a></li>
+    <li><a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:appAdminIndex' %}">商城管理</a></li>
 </ul>
