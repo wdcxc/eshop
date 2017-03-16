@@ -6,6 +6,15 @@
     margin: 0 auto;
     position: relative;
 }
+.search:before{
+    position: absolute;
+    top: 8.9rem;
+    content: close-quote;
+    display: block;
+    width: 100%;
+    height: .1rem;
+    border-bottom: .1rem solid #F03726;
+}
 .nav-table{
     max-width: 60rem;
     margin: 0 auto;
@@ -28,10 +37,118 @@
 .long-title span{
     font-size: .8rem;
 }
-.line{
-    width: 100%;
-    height: .1rem;
-    border-bottom: .1rem solid #F03726;
-    position: absolute;
-    top: 8.9rem;
+.select-box{
+    margin-left: .5rem;
+    margin-right: .5rem;
+    width: auto;
+    overflow: visible;
 }
+.select{
+    padding: .2rem .5rem;
+    box-shadow: 0 0 .1rem #999;
+    margin-top: 1rem;
+}
+.select p{
+    margin: 0 0 .2rem 0;
+    font-size: .7rem;
+}
+.select li{
+    padding: 0 0 0 5rem;
+    border-top: #eee 1px dashed;
+    margin: .5rem 0;
+    float: none;
+    display: block;
+    height: 2.5rem;
+}
+.select dl{
+    position: relative;
+    margin: .5rem 0;
+}
+.select dl dt{
+    width: 5rem;
+    position: absolute;
+    left: -5rem;
+    top: .5rem;
+    margin-left: 0;
+    text-align: center;
+    color: #666;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    margin-bottom: .3rem;
+}
+.select dd{
+    float: left;
+    margin: 0 0 .2rem .2rem;
+}
+.select-result dl{
+    padding: .5rem 0;
+}
+.select-result dt{
+    width: 5rem;
+    font-weight: bold;
+}
+.select-no{
+    color: #999;
+}
+.eliminateCriteria{
+    width: 4rem;
+    float: right;
+    margin-right: 1rem;
+    line-height: 1rem;
+    margin-top: .2rem;
+    color: #F00;
+    cursor: pointer;
+}
+.select-list,.select-list dl{
+    width: 100%;
+}
+.select-list{
+    left: 0;
+}
+.select-list dl dt{
+    top: .3rem;
+    cursor: pointer;
+    text-align: center;
+}
+.select-option{
+    font-size: .7rem;
+    font-weight: bold;
+}
+.select-content{
+    display: inline-block;
+    float: left;
+    width: 100%;
+    position: static;
+    top: 1rem;
+    padding-top: .3rem;
+    left: 0;
+    overflow: hidden;
+}
+.select-content dd{
+    width: auto;
+    text-align: center;
+    margin-left: .3rem;
+    height: 1.2rem;
+}
+.select .selected a {
+    color: #F00;
+    border: #999 solid 1px;
+}
+.select a {
+    display: inline-block;
+    white-space: nowrap;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    padding: 0 .5rem;
+    text-decoration: none;
+    border-radius: .1rem;
+    color: #000;
+}
+.select-result a{
+    padding-right: 1rem;
+    background: url(../../images/app/close.png) right .5rem no-repeat;
+}
+
+
+
+
