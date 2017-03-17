@@ -58,19 +58,16 @@ def loginRequire(redirectUrl=None):
     """登录要求装饰器"""
     def decorator(func):
         @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            view, request = args[0], args[1]
+        def wrapper(view,request,*args, **kwargs):
             if "user" not in request.session or request.session["user"] is None:
                 if redirectUrl:
                     view.context["redirectPath"] = redirectUrl
                 else:
                     view.context["redirectPath"] = "/{app}/{controller}/login".format(app=view.request_["appadmin"],controller="common")
                 view.response_["type"] = BaseView.RESPONSE_TYPE_REDIRECT
-                args = (view,args[1:])
             else:
                 view.context["user"] = request.session["user"]
-                args = (view,args[1:])
-                return func(*args, *kwargs)
+                return func(view,request,*args, **kwargs)
         return wrapper
     return decorator
 

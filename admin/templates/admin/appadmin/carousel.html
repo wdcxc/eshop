@@ -7,17 +7,26 @@
     <tr>
         <th>序号</th>
         <th>标题</th>
+        <th>是否显示</th>
+        <th>显示权重</th>
         <th>图片链接地址</th>
         <th>点击链接地址</th>
         <th>添加日期</th>
+        <th>操作</th>
     </tr>
     {% for carousel in carousels %}
     <tr>
         <td>{{carousel.id}}</td>
         <td>{{carousel.title}}</td>
+        <td>{% if carousel.show %}是{% else %}否{% endif %}</td>
+        <td>{{carousel.order}}</td>
         <td>{{carousel.imgUrl}}</td>
         <td>{{carousel.linkUrl}}</td>
         <td>{{carousel.addTime}}</td>
+        <td>
+            <a href="/admin/appadmin/updateCarousel?carouselId={{carousel.id}}">修改</a> |
+            <a href="/admin/appadmin/deleteCarousel?carouselId={{carousel.id}}">删除</a>
+        </td>
     </tr>
     {% endfor %}
 </table>
