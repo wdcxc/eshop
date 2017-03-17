@@ -8,19 +8,18 @@
             <h3>修改商城首页轮播图</h3>
         </div>
         <hr/>
-        <form class="form form-horizontal" method="post" action="{% url 'admin:appAdminUpdateCarousel' %}">
+        <form class="form form-horizontal" id="carouselForm" v-on:submit.prevent="updateCarousel">
             {% csrf_token %}
-            {% if errmsg %}
             <div class="form-group">
-                <label class="col-md-offset-4 text-danger">{{ errmsg }}</label>
+                <label class="col-md-offset-4 text-danger" v-html="errMsg"></label>
             </div>
-            {% endif %}
-            <input type="hidden" name="id" value="{{carousel.id}}" />
+            <input type="hidden" name="id" id="id" value="{{carousel.id}}" />
             <div class="form-group">
                 <div class="col-md-2 col-md-offset-2">
-                    <label for="title" class="pull-right">标题</label></div>
+                    <label class="pull-right">标题</label></div>
                 <div class="col-md-4">
-                    <input name="title" type="text" id="title" class="form-control" value="{{carousel.title}}"/>
+                    <input type="hidden" id="title" value="{{carousel.title}}"/>
+                    <input v-model="carousel.title" type="text" class="form-control"/>
                 </div>
             </div>
             <div class="form-group">
@@ -28,36 +27,41 @@
                     <label class="pull-right">是否显示</label>
                 </div>
                 <div class="col-md-4">
+                    <input type="hidden" value="{{carousel.show}}" id="show"/>
                     <label class="radio-inline">
-                        <input type="radio" name="show" value="True" {% if carousel.show %}checked{% endif %}/> 是
+                        <input v-model="carousel.show" type="radio" name="show" value="True" /> 是
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="show" value="False" {% if not carousel.show %}checked{% endif %}/> 否
+                        <input v-model="carousel.show" type="radio" name="show" value="False" /> 否
                     </label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-2 col-md-offset-2">
-                    <label for="order" class="pull-right">显示权重</label>
+                    <label class="pull-right">显示权重</label>
                 </div>
                 <div class="col-md-4">
-                    <input name="order" type="text" id="order" class="form-control" value="{{carousel.order}}"/>
+                    <input type="hidden" value="{{carousel.order}}" id="order"/>
+                    <input v-model="carousel.order" type="text" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-2 col-md-offset-2">
-                    <label for="imgUrl" class="pull-right">图片链接地址</label>
+                    <label class="pull-right">轮播图片</label>
                 </div>
-                <div class="col-md-4">
-                    <input name="imgUrl" type="text" id="imgUrl" class="form-control" value="{{carousel.imgUrl}}"/>
+                <div class="col-md-2">
+                    <input type="hidden" id="oldImgUrl" value="{{carousel.imgUrl}}"/>
+                    <input v-on:change="updateImg" type="file" id="img" />
                 </div>
+                <img v-bind:src="carousel.imgUrl" />
             </div>
             <div class="form-group">
                 <div class="col-md-2 col-md-offset-2">
-                    <label for="linkUrl" class="pull-right">点击链接地址</label>
+                    <label class="pull-right">点击链接地址</label>
                 </div>
-                <div class="col-md-4">
-                    <input name="linkUrl" type="text" id="linkUrl" class="form-control" value="{{carousel.linkUrl}}"/>
+                <div class="col-md-2">
+                    <input type="hidden" id="linkUrl" value="{{carousel.linkUrl}}"/>
+                    <input v-model="carousel.linkUrl" type="text" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
@@ -72,5 +76,6 @@
 
 {% block js %}
     <script src="{% static 'js/js.cookie.js' %}"></script>
+    <script src="{% static 'js/admin/appadmin/updatecarousel.js' %}"></script>
 {% endblock %}
 

@@ -8,7 +8,7 @@ var carouselForm = new Vue({
             order:"1",
             imgUrl:"",
             linkUrl:""
-        }
+        },
     },
     methods:{
         addCarousel:function(){
@@ -23,6 +23,21 @@ var carouselForm = new Vue({
                                 }
                             },
                             response=>{console.log(response.body)});
+        },
+        uploadImg:function(){
+            var that = this;
+            var formData = new FormData();
+            formData.append("img",document.getElementById("img").files[0])
+            this.$http.post("/admin/appadmin/uploadCarouselImg",formData,{"headers":{"X-CSRFToken":csrfToken,"enctype":"multipart/form-data"}})
+                      .then(success=>{
+                        if(success.body.code == 200){
+                            that.carousel.imgUrl = "/static/media/fileupload/carousel/"+success.body.data.imgUrl;
+                        }else{
+                            alert(success.body.msg);
+                        }
+                      },error=>{
+                        console.log(error.body);
+                      });
         }
     },
 })

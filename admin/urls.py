@@ -42,4 +42,6 @@ urlpatterns += [
     url(r'appadmin/addCarousel$',AppAdminView.as_view(),name="appAdminAddCarousel"),
     url(r'appadmin/updateCarousel$',AppAdminView.as_view(),name="appAdminUpdateCarousel"),
     url(r'appadmin/deleteCarousel$',AppAdminView.as_view(),name="appAdminDeleteCarousel"),
+    url(r'appadmin/uploadCarouselImg',AppAdminView.as_view(),name="appAdminUploadCarouselImg"),
+    url(r'appadmin/updateCarouselImg',AppAdminView.as_view(),name="appAdminUpdateCarouselImg"),
 ]
