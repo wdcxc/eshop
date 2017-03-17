@@ -79,4 +79,8 @@ $(document).ready(function() {
 		$(".select-no").show();
 		$(".select-result").hide();
 	});
+	$(".sort").find("li").on("click",function(){
+		$(".sort").find("li").css("background-color","#fff");
+		$(this).css("background-color","#F5F5F5");
+	});
 });
