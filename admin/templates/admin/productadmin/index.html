@@ -1,0 +1,10 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block withnavbody %}
+<ul>
+    <li><a href="{% url 'admin:productAdminCategory' %}">商品目录管理</a></li>
+    <li><a href="{% url 'admin:productAdminTag' %}">商品标签管理</a></li>
+    <li><a href="{% url 'admin:productAdminProduct' %}">商品管理</a></li>
+</ul>
+{% endblock %}

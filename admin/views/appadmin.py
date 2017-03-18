@@ -5,6 +5,7 @@ from django.conf import settings
 from django.urls import reverse
 
 from app.models import CarouselModel
+from app.models import ProductCategoryModel
 from util.baseview import BaseView,loginRequire
 
 
@@ -85,3 +86,7 @@ class AppAdminView(BaseView):
                     destination.write(chunk)
             result = {"code": 200, "msg": "上传文件成功", "data": {"imgUrl": curdate + "/" + img.name}}
         return result
+
+    @loginRequire()
+    def productCategory(self,request):
+        productCategories = ProductCategoryModel.objects.all()

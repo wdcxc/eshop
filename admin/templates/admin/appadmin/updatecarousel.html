@@ -26,12 +26,12 @@
                 <div class="col-md-2 col-md-offset-2">
                     <label class="pull-right">是否显示</label>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <input type="hidden" value="{{carousel.show}}" id="show"/>
-                    <label class="radio-inline">
+                    <label class="col-md-2">
                         <input v-model="carousel.show" type="radio" name="show" value="True" /> 是
                     </label>
-                    <label class="radio-inline">
+                    <label class="col-md-2">
                         <input v-model="carousel.show" type="radio" name="show" value="False" /> 否
                     </label>
                 </div>
@@ -40,9 +40,12 @@
                 <div class="col-md-2 col-md-offset-2">
                     <label class="pull-right">显示权重</label>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <input type="hidden" value="{{carousel.order}}" id="order"/>
                     <input v-model="carousel.order" type="text" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <span class="label label-info">权重越大，显示越前</span>
                 </div>
             </div>
             <div class="form-group">
@@ -53,7 +56,7 @@
                     <input type="hidden" id="oldImgUrl" value="{{carousel.imgUrl}}"/>
                     <input v-on:change="updateImg" type="file" id="img" />
                 </div>
-                <img v-bind:src="carousel.imgUrl" />
+                <img v-bind:src="carousel.imgUrl" class="col-md-2" height="100" />
             </div>
             <div class="form-group">
                 <div class="col-md-2 col-md-offset-2">
