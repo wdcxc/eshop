@@ -187,6 +187,10 @@
 .commodity img{
     width: 100%;
 }
+.commodity a{
+    color: #333;
+    text-decoration: none;
+}
 .price{
     color: #e4393c;
     font-weight: 500;
@@ -202,7 +206,7 @@
     color: #e5e5e5;
 }
 .pagination li a{
-    color: #666;
+    color: #333;
 }
 
 

@@ -1,0 +1,90 @@
+.order-wrapper{
+    overflow: hidden;
+    width: 100%;
+    max-width: 55rem;
+    margin: 0 auto;
+}
+.address h3,.order h3{
+    font-size: .7rem;
+    font-weight: bold;
+    float: left;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+}
+.address button{
+    margin: .5rem 0 .5rem 1rem;
+}
+.address ul{
+    margin-top: .5rem;
+}
+.user-addresslist{
+    display: block;
+    width: 12.5rem;
+    height: 7.5rem;
+    float: left;
+    background: url(../../images/app/peraddbg.png) no-repeat scroll 0% 0%;
+    margin-right: .5rem;
+    padding: .5rem;
+    position: relative;
+}
+.defaultAddr{
+    background: url(../../images/app/peraddbg-checked.png) no-repeat scroll 0% 0%;
+}
+.address-left{
+    width: 100%;
+    position: relative;
+}
+.user{
+    font-size: .7rem;
+    font-weight: 700;
+}
+.deftip{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 .1rem;
+    text-decoration: none;
+    opacity: 0.7;
+    background: #CCC none repeat scroll 0% 0%;
+    color: #FFF;
+}
+.addr-option{
+    position: absolute;
+    bottom: 1.2rem;
+    right: .5rem;
+    font-size: .6rem;
+    color: #282828;
+    text-align: right;
+    padding-right: .3rem;
+}
+.addr-option a{
+    color: #333;
+    text-decoration: none;
+}
+.option-bar{
+    padding: 0 .2rem;
+    vertical-align: top;
+}
+.address-detail{
+    margin-top: .3rem;
+}
+.table-header{
+    height: 2.5rem;
+    line-height: 2.5rem;
+    width: 100%;
+    color: #333;
+    padding: 0 .5rem;
+    background: #F5F5F5;
+    overflow: hidden;
+    border: #F5F5F5 .1rem solid;
+}
+.table-header li{
+    float: left;
+}
+.table-content{
+    width: 100%;
+}
+.table-content li{
+    border: #f5f5f5 1px solid;
+    border-bottom: none;
+}
