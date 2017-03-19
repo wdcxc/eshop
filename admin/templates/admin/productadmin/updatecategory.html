@@ -1,0 +1,79 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block withnavbody %}
+<div class="col-md-offset-4">
+    <h3>修改商品目录</h3>
+</div>
+<hr/>
+<form id="categoryForm" v-on:submit.prevent="updateCategory" class="form form-horizontal">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="hidden" id="id" value="{{category.id}}"/>
+        <input type="hidden" id="parentId" value="{{category.parentId}}"/>
+        <div class="col-md-offset-2 col-md-2">
+            <label class="pull-right">父节点id</label>
+        </div>
+        <div class="col-md-2">
+            <input v-model="category.parentId" type="text" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="hidden" id="name" value="{{category.name}}"/>
+        <div class="col-md-offset-2 col-md-2">
+            <label class="pull-right">类别名称</label>
+        </div>
+        <div class="col-md-2">
+            <input v-model="category.name" type="text" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="hidden" id="grade" value="{{category.grade}}"/>
+        <div class="col-md-offset-2 col-md-2">
+            <label class="pull-right">类别等级</label>
+        </div>
+        <div class="col-md-2">
+            <input v-model="category.grade" type="text" class="form-control"/>
+        </div>
+        <div class="col-md-2">
+            <span class="label label-info">等级越低，级别越高</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="hidden" id="order" value="{{category.order}}"/>
+        <div class="col-md-offset-2 col-md-2">
+            <label class="pull-right">显示权重</label>
+        </div>
+        <div class="col-md-2">
+            <input v-model="category.order" type="text" class="form-control"/>
+        </div>
+        <div class="col-md-2">
+            <span class="label label-info">权重越大，显示越前</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="hidden" id="show" value="{{category.show}}"/>
+        <div class="col-md-offset-2 col-md-2">
+            <label class="pull-right">是否显示</label>
+        </div>
+        <div class="col-md-6">
+            <label class="col-md-2">
+                <input v-model="category.show" name="show" type="radio" value="True" checked/> 是
+            </label>
+            <label class="col-md-2">
+                <input v-model="category.show" name="show" type="radio" value="False" /> 否
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-4 col-md-2">
+            <button type="submit" class="btn btn-primary">添加</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block js %}|
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script src="{% static 'js/admin/productadmin/updatecategory.js' %}"></script>
+{% endblock %}

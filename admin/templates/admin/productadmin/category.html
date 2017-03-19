@@ -1,0 +1,43 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block withnavbody %}
+<a class="btn btn-primary" href="{% url 'admin:productAdminAddCategory' %}">添加新商品类别</a>
+<hr/>
+<div id="categoryContainer">
+    {% csrf_token %}
+    {% for category in categories %}
+    <div class="col-md-offset-{{category.grade}}">
+        {{category.name}}({% if not category.show %}不{% endif %}显示-权重:{{category.order}})
+        <a class="btn btn-primary btn-xs" href="/admin/productadmin/addCategory?parentId={{category.id}}">添加子类别</a>
+        <a class="btn btn-success btn-xs" href="/admin/productadmin/updateCategory?id={{category.id}}">修改</a>
+        <a class="btn btn-danger btn-xs" v-on:click="deleteCategory({{category.id}})">删除</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script>
+    var csrfToken = Cookies.get("csrftoken");
+    var v = new Vue({
+        el:"#categoryContainer",
+        methods:{
+            deleteCategory:function(id){
+                this.$http.post("/admin/productadmin/deleteCategory",{"id":id},{"headers":{"X-CSRFToken":csrfToken}})
+                          .then(success=>{
+                            if(success.body.code == 200){
+                                alert(success.body.msg);
+                                window.location.href="/admin/productadmin/category";
+                            }else{
+                                alert(success.body.msg);
+                            }
+                          },error=>{
+                            console.log(error.body);
+                          });
+            },
+        },
+    });
+</script>
+{% endblock %}

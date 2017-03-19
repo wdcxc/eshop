@@ -21,11 +21,11 @@
                 <div class="col-md-2 col-md-offset-2">
                     <label class="pull-right">是否显示</label>
                 </div>
-                <div class="col-md-4">
-                    <label class="radio-inline">
+                <div class="col-md-6">
+                    <label class="col-md-2">
                         <input v-model="carousel.show" type="radio" name="show" value="True" checked /> 是
                     </label>
-                    <label class="radio-inline">
+                    <label class="col-md-2">
                         <input v-model="carousel.show" type="radio" name="show" value="False" /> 否
                     </label>
                 </div>
@@ -34,17 +34,21 @@
                 <div class="col-md-2 col-md-offset-2">
                     <label for="order" class="pull-right">显示权重</label>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <input v-model="carousel.order" type="text" id="order" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <span class="label label-info">权重越大，显示越前</span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-2 col-md-offset-2">
-                    <label for="imgUrl" class="pull-right">图片链接地址</label>
+                    <label for="img" class="pull-right">轮播图片</label>
                 </div>
-                <div class="col-md-4">
-                    <input v-model="carousel.imgUrl" type="text" id="imgUrl" class="form-control"/>
+                <div class="col-md-2">
+                    <input v-on:change="uploadImg" type="file" id="img"/>
                 </div>
+                <img v-bind:src="carousel.imgUrl" class="col-md-2" height="100" alt="预览" />
             </div>
             <div class="form-group">
                 <div class="col-md-2 col-md-offset-2">

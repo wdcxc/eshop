@@ -63,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -127,9 +128,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
 # session存活时间(s)
 SESSION_EXPIRE_AGE = 1800
+
+# 文件上传
+MEDIA_ROOT = STATIC_ROOT + '/media/fileupload/'
+MEDIA_URL = STATIC_URL + '/media/fileupload/'
+FILE_UPLOAD_TEMP_DIR = MEDIA_ROOT + '/tmp/'
