@@ -89,4 +89,53 @@ class AppAdminView(BaseView):
 
     @loginRequire()
     def productCategory(self,request):
-        productCategories = ProductCategoryModel.objects.all()
+        """更新商城首页商品目录导航"""
+        if request.method == "GET":
+            productCategories = ProductCategoryModel.objects.all().order_by("-grade","show","-order","-id")
+            sortedProductCategories = self._sortProductCategories(productCategories)
+            self.context["categories"] = sortedProductCategories
+        elif request.method == "POST":
+            self.response_["type"] = self.RESPONSE_TYPE_JSON
+            changes = request.POST
+            showChange = {}
+            orderChange = {}
+            for k,v in changes.items():
+                if k.startswith("s"):
+                    showChange[k[2:-1]] = v
+                elif k.startswith("o"):
+                    orderChange[k[2:-1]] = v
+            for id,val in showChange.items():
+                productCategory = ProductCategoryModel.objects.get(id=id)
+                productCategory.show = val
+                productCategory.save()
+            for id,val in orderChange.items():
+                productCategory = ProductCategoryModel.objects.get(id=id)
+                productCategory.order = val
+                productCategory.save()
+            self.context = {"code":200,"msg":"首页商品目录导航更新成功","data":{}}
+
+    def _sortProductCategories(self,productCategories):
+        """商品类别排序
+        python3.4+ 有效，dict 在 python3.4+ 是有序的
+        """
+        productCategories = list(productCategories.values())
+        sortedProductCategoriesDict = {}
+        while productCategories:
+            curGrade = productCategories[0]["grade"]
+            for i,productCategory in enumerate(productCategories):
+                if productCategory["grade"] == curGrade:
+                    if productCategory["id"] in sortedProductCategoriesDict:
+                        sortedProductCategoriesDict[productCategory["id"]].update(productCategory)
+                    else:
+                        sortedProductCategoriesDict[productCategory["id"]] = productCategory
+                    if productCategory["parentId"] in sortedProductCategoriesDict:
+                        sortedProductCategoriesDict[productCategory["parentId"]]["subCategories"].append(sortedProductCategoriesDict[productCategory["id"]])
+                    else:
+                        sortedProductCategoriesDict[productCategory["parentId"]] = {"subCategories":[sortedProductCategoriesDict[productCategory["id"]]]}
+                else:
+                    break
+                if productCategory["id"] in sortedProductCategoriesDict:
+                    del sortedProductCategoriesDict[productCategory["id"]]
+                del productCategories[i]
+        print(sortedProductCategoriesDict[0]["subCategories"])
+        return sortedProductCategoriesDict[0]["subCategories"]

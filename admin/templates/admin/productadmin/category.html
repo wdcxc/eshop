@@ -7,11 +7,13 @@
 <div id="categoryContainer">
     {% csrf_token %}
     {% for category in categories %}
-    <div class="col-md-offset-{{category.grade}}">
-        {{category.name}}({% if not category.show %}不{% endif %}显示-权重:{{category.order}})
-        <a class="btn btn-primary btn-xs" href="/admin/productadmin/addCategory?parentId={{category.id}}">添加子类别</a>
-        <a class="btn btn-success btn-xs" href="/admin/productadmin/updateCategory?id={{category.id}}">修改</a>
-        <a class="btn btn-danger btn-xs" v-on:click="deleteCategory({{category.id}})">删除</a>
+    <div class="col-md-offset-{{category.grade}}" style="margin-bottom:1rem">
+        <strong>{{category.name}} </strong>{% if category.show %}<span class="label label-success">显示</span>{% else %}<span class="label label-danger">不显示</span>{% endif %}（权重 <span class="badge">{{category.order}}</span>）
+        <div class="btn-group">
+            <a class="btn btn-info btn-xs" href="/admin/productadmin/updateCategory?id={{category.id}}">修改</a>
+            <a class="btn btn-danger btn-xs" v-on:click="deleteCategory({{category.id}})">删除</a>
+            <a class="btn btn-primary btn-xs" href="/admin/productadmin/addCategory?parentId={{category.id}}">添加子类别</a>
+        </div>
     </div>
     {% endfor %}
 </div>
