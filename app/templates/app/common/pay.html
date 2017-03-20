@@ -10,12 +10,13 @@
 {% block body %}
     {% include "app/header.html" %}
     <div class="order-wrapper">
+        <!--地址 -->
         <div class="address">
             <h3>确认收货地址</h3>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addAddress">增加新地址</button>
+            <button type="button" class="btn" data-toggle="modal" data-target="#addressModal" style="background-color: #F03726;color: #fff">增加新地址</button>
             <ul>
-                <li class="user-addresslist defaultAddr">
-                    <div class="address-left">
+                <li class="user-addresslist address-selected">
+                    <div class="address-text">
                         <div class="user">
                             <span class="user-detail">
                                 <span class="user-name">刘梓航</span>
@@ -31,15 +32,15 @@
                         <ins class="deftip">默认地址</ins>
                     </div>
                     <div class="addr-option">
-                        <a href="#" class="dis-hide">设为默认</a>
-                        <span class="option-bar dis-hide">|</span>
-                        <a href="#">编辑</a>
+                        <a href="#" class="set-default hidden">设为默认</a>
+                        <span class="option-bar hidden">|</span>
+                        <a data-toggle="modal" data-target="#addressModal">编辑</a>
                         <span class="option-bar">|</span>
                         <a href="javascript:void(0);">删除</a>
                     </div>
                 </li>
                 <li class="user-addresslist">
-                    <div class="address-left">
+                    <div class="address-text">
                         <div class="user">
                             <span class="user-detail">
                                 <span class="user-name">陈晓川</span>
@@ -52,20 +53,99 @@
                             <span class="dist">天河</span>区
                             <span class="street">华南师范大学</span>
                         </div>
-                        <ins class="deftip dis-hide">默认地址</ins>
+                        <ins class="deftip hidden">默认地址</ins>
                     </div>
                     <div class="addr-option">
-                        <a href="#">设为默认</a>
+                        <a href="#" class="set-default">设为默认</a>
                         <span class="option-bar">|</span>
-                        <a href="#">编辑</a>
+                        <a data-toggle="modal" data-target="#addressModal">编辑</a>
                         <span class="option-bar">|</span>
                         <a href="javascript:void(0);">删除</a>
                     </div>
                 </li>
             </ul>
         </div>
+        <div class="clearfix"></div>
+        <!--订单 -->
+        <div class="order">
+            <h3>确认订单信息</h3>
+            <div class="order-table">
+                <ul class="table-header">
+                    <li class="text-center col-md-6">商品</li>
+                    <li class="text-center col-md-2">商品属性</li>
+                    <li class="text-center col-md-1">单价</li>
+                    <li class="text-center col-md-2">数量</li>
+                    <li class="text-center col-md-1">金额</li>
+                </ul>
+                <ul class="table-content">
+                    <li class="col-md-6 text-center">
+                        <div class="col-md-3 commodity-pic">
+                            <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
+                        </div>
+                        <div class="col-md-9 commodity-name">
+                            <p class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</p>
+                        </div>
+                    </li>
+                    <li class="col-md-2 text-center">
+                        <p>颜色：啫喱红</p>
+                    </li>
+                    <li class="col-md-1 text-center">62.00</li>
+                    <li class="col-md-2 text-center">1</li>
+                    <li class="col-md-1 text-center">62.00</li>
+                </ul>
+                <ul class="table-content">
+                    <li class="col-md-6 text-center">
+                        <div class="col-md-3 commodity-pic">
+                            <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
+                        </div>
+                        <div class="col-md-9 commodity-name">
+                            <p class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</p>
+                        </div>
+                    </li>
+                    <li class="col-md-2 text-center">
+                        <p>颜色：玫瑰紫</p>
+                    </li>
+                    <li class="col-md-1 text-center">59.00</li>
+                    <li class="col-md-2 text-center">1</li>
+                    <li class="col-md-1 text-center">59.00</li>
+                </ul>
+                <ul class="table-content order-other">
+                    <li class="col-md-8">
+                        买家留言：<input type="text" placeholder="选填，建议填写和卖家达成一致的说明"/>
+                    </li>
+                    <li class="pull-right" style="margin-right: .5rem">配送方式
+                        <select style="padding-bottom: .1rem">
+                            <option>快递 ¥5.00</option>
+                            <option>EMS ¥20.00</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+            <p class="total-price">合计（含运费）¥<span class="pay-sum" style="margin-left: .2rem;">126.00</span></p>
+            <div class="pay-confirm text-right">
+                <p>实付款：<span style="font-size: 1.3rem">¥<span class="pay-sum">126.00</span></span></p>
+                <p>
+                    <span class="font-bold">寄送至：</span>
+                    <span class="province">广东</span>省
+                    <span class="city">广州</span>市
+                    <span class="dist">天河</span>区
+                    <span class="street">华南师范大学西二620</span>
+                </p>
+                <p>
+                    <span class="font-bold">收货人：</span>
+                    <span class="receiver-name">刘梓航</span>
+                    <span class="receiver-phone">15603006097</span>
+                </p>
+            </div>
+            <div class="clearfix"></div>
+            <div class="submit-order">
+                <a class="back-to-shopcart" href="shopcart.html"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>返回购物车</a>
+                <a class="submit-btn pull-right" href="#">提交订单</a>
+            </div>
+        </div>
     </div>
-    <div class="modal fade" id="addAddress" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <!--添加地址模态框 -->
+    <div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -122,23 +202,6 @@
                     <button type="button" class="btn btn-danger">保存</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
                 </div>
-            </div>
-        </div>
-        <div class="order">
-            <h3>确认订单信息</h3>
-            <div class="order-table">
-                <ul class="table-header">
-                    <li class="text-center" style="width: 50%">商品信息</li>
-                    <li class="text-center" style="width: 10%">单价</li>
-                    <li class="text-center" style="width: 20%">数量</li>
-                    <li class="text-center" style="width: 10%">金额</li>
-                    <li class="text-center" style="width: 10%">配送方式</li>
-                </ul>
-                <ul class="table-content">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
             </div>
         </div>
     </div>

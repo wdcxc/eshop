@@ -5,12 +5,6 @@ html{
 .hide{
     visibility: hidden;
 }
-.dis-hide{
-    display: none;
-}
-.text-center{
-    text-align: center;
-}
 .wrapper{
     width:48rem;
     height: 3.8rem;
@@ -18,6 +12,9 @@ html{
 }
 .bg-white{
     background-color: #fff;
+}
+.font-bold{
+    font-weight: bold;
 }
 input,select,option,textarea{
     outline: none;

@@ -27,10 +27,10 @@
     padding: .5rem;
     position: relative;
 }
-.defaultAddr{
+.address-selected{
     background: url(../../images/app/peraddbg-checked.png) no-repeat scroll 0% 0%;
 }
-.address-left{
+.address-text{
     width: 100%;
     position: relative;
 }
@@ -60,6 +60,7 @@
 .addr-option a{
     color: #333;
     text-decoration: none;
+    cursor: pointer;
 }
 .option-bar{
     padding: 0 .2rem;
@@ -82,9 +83,79 @@
     float: left;
 }
 .table-content{
+    height: 5rem;
+    line-height: 5rem;
     width: 100%;
 }
-.table-content li{
-    border: #f5f5f5 1px solid;
-    border-bottom: none;
+.order p{
+    margin: 0;
+}
+.order-table ul{
+    border: 1px solid #f5f5f5;
+    border-bottom: 0;
+}
+.order-table ul:last-child{
+    border-bottom: 1px solid #f5f5f5;
+}
+.order-other input{
+    width: 20rem;
+    height: 1rem;
+    font-size: .4rem;
+    padding-left: .3rem;
+    border: 1px solid #eee;
+}
+.total-price{
+    font-size: .7rem;
+    font-weight: bold;
+    padding: .5rem 0;
+    text-align: right;
+}
+.pay-confirm{
+    float: right;
+    margin: .5rem 0;
+    border: 2px solid #f40;
+    width: auto;
+    height: auto;
+    padding: .5rem;
+    font-size: .7rem;
+    line-height: 1.4rem;
+}
+.pay-confirm p{
+    margin: .5rem 0;
+}
+.pay-sum{
+    color: #ff6400;
+    font-weight: bold;
+}
+.submit-order{
+    position: relative;
+    margin-bottom: 3rem;
+}
+.submit-btn{
+    display: block;
+    height: 1.8rem;
+    width: auto;
+    line-height: 1.8rem;
+    font-size: .9rem;
+    padding: 0 1.3rem;
+    background-color: #f50;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    outline: 0;
+}
+.submit-btn:hover{
+    background-color: #f40;
+    color: #fff;
+    text-decoration: none;
+}
+.back-to-shopcart{
+    cursor: pointer;
+    position: absolute;
+    top: .5rem;
+    right: 9rem;
+}
+.back-to-shopcart:hover{
+    color: #337ab7;
+    text-decoration: none;
 }
