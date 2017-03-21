@@ -29,6 +29,14 @@ class ProductAdminView(BaseView):
         """添加商品类别"""
         if request.method == "GET":
             parentId = request.GET.get("parentId",0)
+            allCategories = self._sortCategories(ProductCategoryModel.objects.all().order_by("-grade","show","-order","-id"))
+            allCategories.append({"id":0,"name":"根目录","grade":0})
+            for c in allCategories:
+                for _ in range(c["grade"]):
+                    c["name"] = ">"+c["name"]
+                if c["id"] == parentId:
+                    c["selected"] = True
+            self.context["allCategories"] = allCategories
             if parentId:
                 parentCategory = ProductCategoryModel.objects.get(id=parentId)
                 self.context["category"] = {"parentId":parentId,"grade":parentCategory.grade+1,"order":1}
@@ -48,7 +56,16 @@ class ProductAdminView(BaseView):
     def updateCategory(self,request):
         """更新商品类别"""
         if request.method == "GET":
-            self.context["category"] = ProductCategoryModel.objects.get(id=request.GET.get("id"))
+            category = ProductCategoryModel.objects.get(id=request.GET.get("id"))
+            self.context["category"] = category
+            allCategories = list(ProductCategoryModel.objects.all().values())
+            allCategories.append({"id":0,"name":"根目录","grade":0})
+            for c in allCategories:
+                for _ in range(c["grade"]):
+                    c["name"] = ">"+c["name"]
+                if c["id"] == category.parentId:
+                    c["selected"] = True
+            self.context["allCategories"] = allCategories
         elif request.method == "POST":
             self.response_["type"] = self.RESPONSE_TYPE_JSON
             keys = ("id","parentId","name","show","order","grade")
@@ -74,19 +91,19 @@ class ProductAdminView(BaseView):
         python3.4+ 才可用，因为 python3.4+ dict是有序的
         返回一个排序后的列表
         """
-        categories = list(categories)
+        categories = list(categories.values())
         sortedCategoriesDict = {}
         while categories:
-            curGrade = categories[0].grade
+            curGrade = categories[0]["grade"]
             for i,categorie in enumerate(categories):
-                if categorie.grade == curGrade:
-                    if categorie.parentId in sortedCategoriesDict:
-                        sortedCategoriesDict[categorie.parentId].append(categorie)
+                if categorie["grade"] == curGrade:
+                    if categorie["parentId"] in sortedCategoriesDict:
+                        sortedCategoriesDict[categorie["parentId"]].append(categorie)
                     else:
-                        sortedCategoriesDict[categorie.parentId] = [categorie]
-                    if categorie.id in sortedCategoriesDict:
-                        sortedCategoriesDict[categorie.parentId].extend(sortedCategoriesDict[categorie.id])
-                        del sortedCategoriesDict[categorie.id]
+                        sortedCategoriesDict[categorie["parentId"]] = [categorie]
+                    if categorie["id"] in sortedCategoriesDict:
+                        sortedCategoriesDict[categorie["parentId"]].extend(sortedCategoriesDict[categorie["id"]])
+                        del sortedCategoriesDict[categorie["id"]]
                     del categories[i]
                 else:
                     break

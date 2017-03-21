@@ -5,6 +5,7 @@
 <div class="col-md-offset-4">
     <h3>商城首页商品目录导航管理</h3>
 </div>
+<a class="btn btn-primary" href="{% url 'admin:productAdminCategory' %}">添加新商品分类</a>
 <hr/>
 {% if categories %}
 <form class="form-horizontal">
@@ -67,7 +68,7 @@
     </div> <!-- grade1 col-offset -->
     {% endfor %}
     <div class="col-md-offset-4">
-        <button id="submit" class="btn btn-primary">提交</button>
+        <button id="submit" class="btn btn-primary">更新</button>
     </div>
 </form>
 {% endif %}

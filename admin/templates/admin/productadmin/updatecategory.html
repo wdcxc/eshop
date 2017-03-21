@@ -12,10 +12,14 @@
         <input type="hidden" id="id" value="{{category.id}}"/>
         <input type="hidden" id="parentId" value="{{category.parentId}}"/>
         <div class="col-md-offset-2 col-md-2">
-            <label class="pull-right">父节点id</label>
+            <label class="pull-right">父节点</label>
         </div>
         <div class="col-md-2">
-            <input v-model="category.parentId" type="text" class="form-control"/>
+            <select v-model="category.parentId" class="form-control">
+                {% for c in allCategories %}
+                <option value="{{c.id}}" style="padding-left:{{c.grade}}rem">{{c.name}}</option>
+                {% endfor %}
+            </select>
         </div>
     </div>
     <div class="form-group">
@@ -67,7 +71,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-4 col-md-2">
-            <button type="submit" class="btn btn-primary">添加</button>
+            <button type="submit" class="btn btn-primary">修改</button>
         </div>
     </div>
 </form>
