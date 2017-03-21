@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% load static %}
-{% block title %}结算{% endblock %}
+{% block title %}订单{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/app/pay.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/order.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -136,7 +136,7 @@
             <div class="clearfix"></div>
             <div class="submit-order">
                 <a class="back-to-shopcart" href="shopcart.html"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>返回购物车</a>
-                <a class="submit-btn pull-right">提交订单</a>
+                <a class="submit-btn pull-right" data-toggle="modal" data-target="#payModal">提交订单</a>
             </div>
         </div>
     </div>
@@ -197,6 +197,25 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger">保存</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--支付模态框 -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="payModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">付款</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size: .6rem">需支付：<span class="pay-sum" style="font-size: 1.2rem">126.00</span>元</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" style="background-color: #ff6400;color: #fff" onclick="window.location.href='success'">支付</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
             </div>
         </div>

@@ -23,13 +23,16 @@ class CommonView(BaseView):
     def introduction(self,request):
         pass
 
-    def pay(self,request):
+    def order(self,request):
         pass
 
     def search(self,request):
         pass
 
     def shopcart(self,request):
+        pass
+
+    def activity(self,request):
         pass
 
     def _sortProductCategories(self,productCategories):
