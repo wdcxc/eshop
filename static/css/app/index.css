@@ -13,7 +13,6 @@
 .shop-nav{
     padding-top: .5rem;
     padding-bottom: 5px;
-    margin: 0 2rem .5rem 0;
 }
 .slideall{
     max-width: 60rem;
@@ -75,14 +74,13 @@
     border-bottom: 1px solid #252525;
 }
 .category-info{
-    padding-left: .6rem;
     width: 9rem;
     overflow: hidden;
     position: relative;
     height: 100%;
 }
 .category-name{
-    padding-left: 2rem;
+    text-align: center;
     line-height: 1.8rem;
     padding-top: 3px;
     overflow: hidden;
@@ -91,21 +89,22 @@
     margin: 0;
 }
 .category-info em{
-    top: .7rem;
     position: absolute;
-    right: .7rem;
-    width: .7rem;
-    height: .7rem;
-    font: .6rem "宋体";
+    top: .5rem;
+    right: .5rem;
+    width: .6rem;
+    height: .6rem;
     color: #9b9b9b;
 }
 .menu-in{
     display: none;
     position: absolute;
-    top: 0;
+    top: 2.3rem;
     left: 9rem;
     width: 38.5rem;
     background: #fff;
+    border: 1px solid #333;
+    border-left: 0;
 }
 .menu{
     position: relative;
