@@ -125,16 +125,13 @@ class AppAdminView(BaseView):
             for i,productCategory in enumerate(productCategories):
                 if productCategory["grade"] == curGrade:
                     if productCategory["id"] in sortedProductCategoriesDict:
-                        sortedProductCategoriesDict[productCategory["id"]].update(productCategory)
-                    else:
-                        sortedProductCategoriesDict[productCategory["id"]] = productCategory
+                        productCategory.update(sortedProductCategoriesDict[productCategory["id"]])
+                        del sortedProductCategoriesDict[productCategory["id"]]
                     if productCategory["parentId"] in sortedProductCategoriesDict:
-                        sortedProductCategoriesDict[productCategory["parentId"]]["subCategories"].append(sortedProductCategoriesDict[productCategory["id"]])
+                        sortedProductCategoriesDict[productCategory["parentId"]]["subCategories"].append(productCategory)
                     else:
-                        sortedProductCategoriesDict[productCategory["parentId"]] = {"subCategories":[sortedProductCategoriesDict[productCategory["id"]]]}
+                        sortedProductCategoriesDict[productCategory["parentId"]] = {"subCategories":[productCategory]}
+                    del productCategories[i]
                 else:
                     break
-                if productCategory["id"] in sortedProductCategoriesDict:
-                    del sortedProductCategoriesDict[productCategory["id"]]
-                del productCategories[i]
         return sortedProductCategoriesDict[0]["subCategories"] if sortedProductCategoriesDict else []

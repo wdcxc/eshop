@@ -1,4 +1,4 @@
-from app.models import CarouselModel
+from app.models import CarouselModel,ProductCategoryModel
 from util.baseview import BaseView
 
 
@@ -12,7 +12,10 @@ class CommonView(BaseView):
         self.context["carouselsCount"] = range(len(carousels))
         for carousel in carousels:
             self.context["carousels"].append({"title":carousel.title,"imgUrl":carousel.imgUrl,"linkUrl":carousel.linkUrl})
-        # 分类导航栏
+        # 商品分类导航栏
+            productCategories = ProductCategoryModel.objects.all().order_by("-grade","show","-order","-id")
+            sortedProductCategories = self._sortProductCategories(productCategories)
+            self.context["categories"] = sortedProductCategories
 
     def success(self,request):
         pass
@@ -28,3 +31,22 @@ class CommonView(BaseView):
 
     def shopcart(self,request):
         pass
+
+    def _sortProductCategories(self,productCategories):
+        categories = list(productCategories.values())
+        sortedCategoriesDict = {}
+        while categories:
+            curGrade = categories[0]["grade"]
+            for i,category in enumerate(categories):
+                if category["grade"] == curGrade:
+                    if category["id"] in sortedCategoriesDict:
+                        category.update(sortedCategoriesDict[category["id"]])
+                        del sortedCategoriesDict[category["id"]]
+                    if category["parentId"] in sortedCategoriesDict:
+                        sortedCategoriesDict[category["parentId"]]["subCategories"].append(category)
+                    else:
+                        sortedCategoriesDict[category["parentId"]] = {"subCategories":[category]}
+                    del categories[i]
+                else:
+                    break
+        return sortedCategoriesDict[0]["subCategories"] if sortedCategoriesDict[0] else {}

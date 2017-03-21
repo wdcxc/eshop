@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <!-- 分类导航栏 -->
+    <!-- 商品分类导航栏 -->
     <div class="shop-nav">
         <div class="slideall">
             <div class="long-title">全部分类</div>
@@ -42,130 +42,26 @@
             <!--侧边导航 -->
             <div class="category-content">
                 <ul class="category-list">
+                    {% for grade1 in categories %}
                     <li class="category-item">
                         <div class="category-info">
-                            <h3 class="category-name">服饰/内衣</h3>
+                            <h3 class="category-name">{{grade1.name}}</h3>
                             <em>&gt;</em>
                         </div>
                         <div class="menu-in">
                             <div class="menu">
+                                {% for grade2 in grade1.subCategories %}
                                 <dl class="category-class">
-                                    <dt><span title="女装">女装</span></dt>
-                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
-                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
-                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
-                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
-                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
+                                    <dt><span title="{{grade2.name}}">{{grade2.name}}</span></dt>
+                                    {% for grade3 in grade2.subCategories %}
+                                    <dd><a title="{{grade3.name}}" href="#"><span>{{grade3.name}}</span></a></dd>
+                                    {% endfor %}
                                 </dl>
-                                <dl class="category-class">
-                                    <dt><span title="男装">男装</span></dt>
-                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
-                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
-                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
-                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
-                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
-                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
-                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
-                                </dl>
-                                <dl class="category-class">
-                                    <dt><span title="内衣">内衣</span></dt>
-                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
-                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
-                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
-                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
-                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
-                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
-                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
-                                </dl>
-                                <dl class="category-class">
-                                    <dt><span title="服饰配件">服饰配件</span></dt>
-                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
-                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
-                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
-                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
-                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
-                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
-                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
-                                </dl>
+                                {% endfor %}
                             </div>
                         </div>
                     </li>
-                    <li class="category-item">
-                        <div class="category-info">
-                            <h3 class="category-name">鞋靴/箱包</h3>
-                            <em>&gt;</em>
-                        </div>
-                        <div class="menu-in">
-                            <div class="menu">
-                                <dl class="category-class">
-                                    <dt><span title="女装">女鞋</span></dt>
-                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
-                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
-                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
-                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
-                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
-                                </dl>
-                                <dl class="category-class">
-                                    <dt><span title="男装">男鞋</span></dt>
-                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
-                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
-                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
-                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
-                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
-                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
-                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
-                                </dl>
-                                <dl class="category-class">
-                                    <dt><span title="内衣">女包</span></dt>
-                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
-                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
-                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
-                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
-                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
-                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
-                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
-                                </dl>
-                                <dl class="category-class">
-                                    <dt><span title="服饰配件">男包</span></dt>
-                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
-                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
-                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
-                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
-                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
-                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
-                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
-                                </dl>
-                                <dl class="category-class">
-                                    <dt><span title="服饰配件">皮具配件</span></dt>
-                                    <dd><a title="外套" href="#"><span>外套</span></a></dd>
-                                    <dd><a title="裙装" href="#"><span>裙装</span></a></dd>
-                                    <dd><a title="羽绒服" href="#"><span>羽绒服</span></a></dd>
-                                    <dd><a title="风衣" href="#"><span>风衣</span></a></dd>
-                                    <dd><a title="呢绒" href="#"><span>呢绒</span></a></dd>
-                                    <dd><a title="衬衫" href="#"><span>衬衫</span></a></dd>
-                                    <dd><a title="正装" href="#"><span>正装</span></a></dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="category-item">
-                        <div class="category-info">
-                            <h3 class="category-name">电脑办公</h3>
-                            <em>&gt;</em>
-                        </div>
-                    </li>
-                    <li class="category-item">
-                        <div class="category-info">
-                            <h3 class="category-name">家用电器</h3>
-                            <em>&gt;</em>
-                        </div>
-                    </li>
-                    <li class="category-item">
-                        <div class="category-info">
-                            <h3 class="category-name">手机/数码</h3>
-                            <em>&gt;</em>
-                        </div>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
