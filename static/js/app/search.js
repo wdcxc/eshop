@@ -44,22 +44,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#selectA").on("click", function() {
-		$("#selectA").remove();
-		$("#select1").find(".select-all").addClass("selected").siblings().removeClass("selected");
-	});
-
-	$("#selectB").on("click", function() {
-		$("#selectB").remove();
-		$("#select2").find(".select-all").addClass("selected").siblings().removeClass("selected");
-	});
-
-	$("#selectC").on("click", function() {
-		$("#selectC").remove();
-		$("#select3").find(".select-all").addClass("selected").siblings().removeClass("selected");
-	});
-
-	$(".select dd").on("click", function() {
+	$(".select dd").click(function(){
 		if ($(".select-result dd").length > 1) {
 			$(".select-no").hide();
 			$(".eliminateCriteria").show();
@@ -70,7 +55,23 @@ $(document).ready(function() {
 		}
 	});
 
-	$(".eliminateCriteria").on("click", function() {
+	$("#selectA").click(function () {
+		console.log("1111");
+		$("#selectA").remove();
+		$("#select1").find(".select-all").addClass("selected").siblings().removeClass("selected");
+	});
+
+	$("#selectB").click(function(){
+		$("#selectB").remove();
+		$("#select2").find(".select-all").addClass("selected").siblings().removeClass("selected");
+	});
+
+	$("#selectC").click(function(){
+		$("#selectC").remove();
+		$("#select3").find(".select-all").addClass("selected").siblings().removeClass("selected");
+	});
+
+	$(".eliminateCriteria").click(function(){
 		$("#selectA").remove();
 		$("#selectB").remove();
 		$("#selectC").remove();
@@ -79,8 +80,14 @@ $(document).ready(function() {
 		$(".select-no").show();
 		$(".select-result").hide();
 	});
-	$(".sort").find("li").on("click",function(){
+	$(".sort").find("li").click(function(){
 		$(".sort").find("li").css("background-color","#fff");
 		$(this).css("background-color","#F5F5F5");
+	});
+	$(".commodity").mouseenter(function () {
+		$(this).css("box-shadow","0px 1px 3px rgba(34, 25, 25, 0.2)");
+	});
+	$(".commodity").mouseleave(function () {
+		$(this).css("box-shadow","none");
 	});
 });
