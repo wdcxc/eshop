@@ -90,4 +90,4 @@ class ProductAdminView(BaseView):
                     del categories[i]
                 else:
                     break
-        return list(sortedCategoriesDict.values())[0]
+        return list(sortedCategoriesDict.values())[0] if sortedCategoriesDict else []

@@ -137,5 +137,4 @@ class AppAdminView(BaseView):
                 if productCategory["id"] in sortedProductCategoriesDict:
                     del sortedProductCategoriesDict[productCategory["id"]]
                 del productCategories[i]
-        print(sortedProductCategoriesDict[0]["subCategories"])
-        return sortedProductCategoriesDict[0]["subCategories"]
+        return sortedProductCategoriesDict[0]["subCategories"] if sortedProductCategoriesDict else []
