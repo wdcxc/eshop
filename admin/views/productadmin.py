@@ -72,6 +72,7 @@ class ProductAdminView(BaseView):
     def _sortCategories(self,categories):
         """商品类别排序
         python3.4+ 才可用，因为 python3.4+ dict是有序的
+        返回一个排序后的列表
         """
         categories = list(categories)
         sortedCategoriesDict = {}
@@ -89,4 +90,4 @@ class ProductAdminView(BaseView):
                     del categories[i]
                 else:
                     break
-        return list(sortedCategoriesDict.values())[0]
+        return list(sortedCategoriesDict.values())[0] if sortedCategoriesDict else []
