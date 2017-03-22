@@ -6,9 +6,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/index.css' %}">
 {% endblock %}
-
 {% block body %}
     {% include "app/header.html" %}
+    <a href="#top" target="_self" class="go-top text-center"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></a>
     <!--轮播框 -->
     <div class="banner">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height:100%">
@@ -395,17 +395,5 @@
 {% endblock %}
 
 {% block js %}
-    <script>
-        $(document).ready(function() {
-            $(".category-item").hover(function () {
-                $(".category-content .category-list li .menu-in").css("display", "none");
-                $(".category-content .category-list li").removeClass("hover");
-                $(this).addClass("hover");
-                $(this).children("div.menu-in").css("display", "block")
-            }, function () {
-                $(this).removeClass("hover")
-                $(this).children("div.menu-in").css("display", "none")
-            });
-        })
-    </script>
+   <script src="{% static "js/app/index.js" %}"></script>
 {% endblock %}
