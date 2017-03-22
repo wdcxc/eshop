@@ -4,7 +4,7 @@ from django.db import models
 
 class CarouselModel(models.Model):
     """首页轮播页"""
-    class Meta():
+    class Meta:
         db_table = "index_carousel"
 
     title = models.CharField(max_length=50) # 标题
@@ -16,7 +16,7 @@ class CarouselModel(models.Model):
 
 class ProductCategoryModel(models.Model):
     """商品类别目录"""
-    class Meta():
+    class Meta:
         db_table = "product_category"
 
     def __str__(self):
@@ -28,5 +28,7 @@ class ProductCategoryModel(models.Model):
     grade = models.IntegerField(default=1) # 节点等级（等级越低，级别越高，1:顶级节点）
     show = models.BooleanField(default=True) # 是否显示
     addTime = models.DateTimeField(auto_now_add=True) # 添加时间
+
+
 
 

@@ -114,6 +114,11 @@ class AppAdminView(BaseView):
                 productCategory.save()
             self.context = {"code":200,"msg":"首页商品目录导航更新成功","data":{}}
 
+    @loginRequire()
+    def activity(self,request):
+        # todo
+        pass
+
     def _sortProductCategories(self,productCategories):
         """商品类别排序
         python3.4+ 有效，dict 在 python3.4+ 是有序的
