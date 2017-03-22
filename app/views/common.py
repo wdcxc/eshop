@@ -1,4 +1,5 @@
-from app.models import CarouselModel,ProductCategoryModel
+from models.carousel import CarouselModel
+from models.productcategory import ProductCategoryModel
 from util.baseview import BaseView
 
 

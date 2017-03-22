@@ -3,7 +3,7 @@ from datetime import datetime
 
 from django.urls import reverse
 
-from admin.models import AdminModel
+from models.admin import AdminModel
 from util.baseview import BaseView,loginRequire,valifyCaptcha
 
 

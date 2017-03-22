@@ -1,7 +1,7 @@
 # coding:utf-8
 import hashlib
 
-from customer.models import Customer
+from models.customer import Customer
 from util.baseview import BaseView,valifyCaptcha
 from util.regex import Regex
 

@@ -4,8 +4,8 @@ from datetime import datetime
 from django.conf import settings
 from django.urls import reverse
 
-from app.models import CarouselModel
-from app.models import ProductCategoryModel
+from models.carousel import CarouselModel
+from models.productcategory import ProductCategoryModel
 from util.baseview import BaseView,loginRequire
 
 

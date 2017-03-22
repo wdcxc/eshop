@@ -1,4 +1,4 @@
-from app.models import ProductCategoryModel
+from models.productcategory import ProductCategoryModel
 from util.baseview import BaseView,loginRequire
 
 
