@@ -4,8 +4,8 @@ from datetime import datetime
 from django.conf import settings
 from django.urls import reverse
 
-from app.models import CarouselModel
-from app.models import ProductCategoryModel
+from models.carousel import CarouselModel
+from models.productcategory import ProductCategoryModel
 from util.baseview import BaseView,loginRequire
 
 
@@ -113,6 +113,11 @@ class AppAdminView(BaseView):
                 productCategory.order = val
                 productCategory.save()
             self.context = {"code":200,"msg":"首页商品目录导航更新成功","data":{}}
+
+    @loginRequire()
+    def activity(self,request):
+        # todo
+        pass
 
     def _sortProductCategories(self,productCategories):
         """商品类别排序

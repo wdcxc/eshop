@@ -46,6 +46,7 @@ urlpatterns += [
     url(r'^appadmin/uploadCarouselImg$',AppAdminView.as_view(),name="appAdminUploadCarouselImg"),
     url(r'^appadmin/updateCarouselImg$',AppAdminView.as_view(),name="appAdminUpdateCarouselImg"),
     url(r'^appadmin/productCategory$',AppAdminView.as_view(),name="appAdminProductCategory"), # 商品目录导航管理
+    url(r'^appadmin/activity$',AppAdminView.as_view(),name="appAdminActivity"), # 商城活动
 ]
 
 # productadmin 商品管理
