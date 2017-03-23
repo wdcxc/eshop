@@ -7,6 +7,9 @@ from util.regex import Regex
 
 
 class CommonView(BaseView):
+    def index(self, request):
+        pass
+
     def login(self, request):
         pass
 
