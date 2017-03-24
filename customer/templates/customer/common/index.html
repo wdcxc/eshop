@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}个人中心{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/aside.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/index.css' %}">
+{% endblock %}
+{% block body %}
+    {% include "app/header.html" %}
+    <div class="content center-block">
+        <div class="col-main">
+            <div class="main-wrap">
+                <!--用户-->
+                <div class="user-info">
+                    <div class="file-pic">
+                        <input type="file" class="input-pic">
+                        <img class="user-pic" src="{% static "images/customer/user-head.jpg" %}" alt="用户头像">
+                    </div>
+                    <p class="user-detail">
+                        <span class="user-name">用户名：刘梓航</span>
+                        <span class="to-pay" style="margin-left: 2rem">待付款：<span class="user-detail-num">1</span></span>
+                        <span class="to-receice">待收货：<span class="user-detail-num">1</span></span>
+                        <span class="to-evaluate">待评价：<span class="user-detail-num">1</span></span>
+                    </p>
+                </div>
+                <!--订单-->
+                <div class="order-info">
+                    <div class="info-bar">
+                        我的订单<a href="order.html" class="all-order pull-right">全部订单</a>
+                    </div>
+                    <div class="order-content-box">
+                        <div class="order-content">
+                            <div class="order-content-pic">
+                                <div class="img-box">
+                                    <a href="order-info.html">
+                                        <img src="{% static "images/customer/honey.jpg" %}" alt="订单商品图片">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="detail-content">
+                                <a href="order-info.html" class="delivery">签收</a>
+                                <p>
+                                    <span class="delivery-time">2017-3-23</span>
+                                    <span class="split-bar">|</span>
+                                    <span class="delivery-time">21:52:47</span>
+                                </p>
+                                <p>
+                                    <span class="delivery-num">共一件商品</span>
+                                </p>
+                            </div>
+                            <div class="evaluate">待评价</div>
+                            <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>23.80</div>
+                        </div>
+                        <a href="#" class="buy-btn">再次购买</a>
+                    </div>
+                    <div class="order-content-box">
+                        <div class="order-content">
+                            <div class="order-content-pic">
+                                <div class="img-box">
+                                    <a href="order-info.html">
+                                        <img src="{% static "images/customer/honey.jpg" %}" alt="订单商品图片">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="detail-content">
+                                <a href="order-info.html" class="delivery">签收</a>
+                                <p>
+                                    <span class="delivery-time">2017-3-23</span>
+                                    <span class="split-bar">|</span>
+                                    <span class="delivery-time">21:52:47</span>
+                                </p>
+                                <p>
+                                    <span class="delivery-num">共两件商品</span>
+                                </p>
+                            </div>
+                            <div class="evaluate">已发货</div>
+                            <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>47.60</div>
+                        </div>
+                        <a href="#" class="buy-btn">再次购买</a>
+                    </div>
+                </div>
+                <!--收藏-->
+                <div class="collection-info">
+                    <div class="info-head text-center">
+                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>收藏
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% include "customer/aside.html" %}
+    </div>
+{% endblock %}
+
+{% block js %}
+   <script src="{% static "js/customer/index.js" %}"></script>
+{% endblock %}

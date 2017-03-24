@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^common/forgetpwd$', CommonView.as_view(), name="forgetPwd"),
     url(r'^common/generateCaptcha/[0-9\.]*$', CommonView.as_view(), name="generateCaptcha"),
     url(r'^common/valifyCaptcha$', CommonView.as_view(), name="valifyCaptcha"),
+    url(r'^common/index$', CommonView.as_view(), name="index"),
 ]
