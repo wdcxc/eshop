@@ -1,0 +1,83 @@
+.address-info{
+    width: 100%;
+    position: relative;
+    border: 1px solid #eee;
+}
+.info-head{
+    margin: 1rem 0;
+    padding: 0 .5rem;
+    border-bottom: 1px solid #eee;
+}
+.info-head p{
+    margin-bottom: 1rem;
+}
+.head-text{
+    color: #000;
+    font-size: .9rem;
+}
+.for-head-text{
+    color: #000;
+    font-size: .7rem;
+}
+.user-addresslist{
+    display: block;
+    width: 12.5rem;
+    height: 7.5rem;
+    float: left;
+    background: url(../../images/app/peraddbg.png) no-repeat scroll 0% 0%;
+    margin: .5rem;
+    padding: .5rem;
+    position: relative;
+}
+.address-selected{
+    background: url(../../images/app/peraddbg-checked.png) no-repeat scroll 0% 0%;
+}
+.address-text{
+    width: 100%;
+    position: relative;
+}
+.user{
+    font-size: .7rem;
+    font-weight: 700;
+}
+.deftip{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 .1rem;
+    text-decoration: none;
+    opacity: 0.7;
+    background: #CCC none repeat scroll 0% 0%;
+    color: #FFF;
+}
+.addr-option{
+    position: absolute;
+    bottom: 1.2rem;
+    right: .5rem;
+    font-size: .6rem;
+    color: #282828;
+    text-align: right;
+    padding-right: .3rem;
+}
+.addr-option a{
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 .2rem;
+}
+.option-bar{
+    padding: 0 .2rem;
+    vertical-align: top;
+}
+.address-detail{
+    margin-top: .3rem;
+}
+.form-horizontal{
+    margin-top: 2.5rem;
+}
+.form-group{
+    margin-bottom: 1.4rem;
+}
+.form-group label{
+    font-weight: inherit;
+}
