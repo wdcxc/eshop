@@ -57,11 +57,14 @@
     padding: 0 .5rem;
     border-bottom: 1px solid #eee;
 }
-.personal-text{
+.info-head p{
+    margin-bottom: 1rem;
+}
+.head-text{
     color: #000;
     font-size: .9rem;
 }
-.for-personal-text{
+.for-head-text{
     color: #000;
     font-size: .7rem;
 }
