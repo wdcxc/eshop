@@ -1,0 +1,55 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block withnavbody %}
+<div class="col-md-offset-4"><h3>添加商品导购栏目</h3></div>
+<hr/>
+<form class="form-horizontal col-md-offset-3" id="channelForm" v-on:submit.prevent="addChannel">
+    {% csrf_token %}
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-2">
+                <label class="pull-right">栏目名称</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" v-model="channel.name" class="form-control"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+        <div class="col-md-2">
+            <label class="pull-right">显示顺序</label>
+        </div>
+        <div class="col-md-2">
+            <input type="text" class="form-control" v-model="channel.order" />
+        </div>
+        <span class="label label-info">数字越大，显示越前</span>
+    </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-2">
+                <label class="pull-right">是否展示</label>
+            </div>
+            <div class="col-md-2">
+                <lable class="radio-inline">
+                    <input type="radio" v-model="channel.show" name="show" value="True"/> 是
+                </lable>
+                <label class="radio-inline">
+                    <input type="radio" v-model="channel.show" name="show" value="False" /> 否
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-offset-2">
+        <button type="submit" class="btn btn-primary">添加</button>
+    </div>
+</form>
+<hr/>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script src="{% static 'js/admin/appadmin/addshoppingguidechannel.js' %}"></script>
+{% endblock %}

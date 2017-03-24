@@ -1,0 +1,16 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block withnavbody %}
+<a href="{% url 'admin:appAdminAddShoppingGuideChannel' %}" class="btn btn-primary">添加新栏目</a>
+<hr/>
+{% for channel in channels %}
+{{ channel.name }}<a href="{% url 'admin:appAdminAddShoppingGuideSubchannel' %}" class="btn btn-primary">添加子栏目</a>
+    {% for subChannel in channel.subChannels %}
+    {{ subChannel.name }}<a href="{% url 'admin:appAdminAddShoppingGuideProduct' %}" class="btn btn-primary">添加导购商品</a>
+        {% for product in subChannel.products %}
+        {{ product.name }}
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
+{% endblock %}

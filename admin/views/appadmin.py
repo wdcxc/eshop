@@ -6,11 +6,15 @@ from django.urls import reverse
 
 from models.carousel import CarouselModel
 from models.productcategory import ProductCategoryModel
+from models.shoppingguide import ShoppingGuideChannel,ShoppingGuideSubchannel,ShoppingGuideProduct
 from util.baseview import BaseView,loginRequire
 
 
 class AppAdminView(BaseView):
+    """商城管理"""
+
     def index(self,request):
+        """商城管理后台首页"""
         pass
 
     @loginRequire()
@@ -20,7 +24,7 @@ class AppAdminView(BaseView):
 
     @loginRequire()
     def addCarousel(self,request):
-        print("request:",request)
+        """新增首页轮播图"""
         if request.method == 'POST':
             carouselKeys = ["title","show","order","imgUrl","linkUrl"]
             carousel = {}
@@ -34,6 +38,7 @@ class AppAdminView(BaseView):
 
     @loginRequire()
     def updateCarousel(self,request):
+        """更新首页轮播图"""
         if request.method == "GET":
             self.context["carousel"] = CarouselModel.objects.get(id=request.GET.get("carouselId"))
         else:
@@ -48,6 +53,7 @@ class AppAdminView(BaseView):
 
     @loginRequire()
     def deleteCarousel(self,request):
+        """删除首页轮播图"""
         delete = CarouselModel.objects.get(id=request.GET.get("carouselId")).delete()
         self.context["redirectPath"] = reverse("admin:appAdminCarousel")
         self.response_["type"] = self.RESPONSE_TYPE_REDIRECT
@@ -116,7 +122,40 @@ class AppAdminView(BaseView):
 
     @loginRequire()
     def activity(self,request):
+        """商城首页活动管理"""
         # todo
+        pass
+
+    @loginRequire()
+    def shoppingGuide(self,request):
+        """商城首页导购管理"""
+        channels = ShoppingGuideChannel.objects.all()
+        subChannels = ShoppingGuideSubchannel.objects.all()
+        products = ShoppingGuideProduct.objects.all()
+        self.context["channels"] = self._sortShoppingGuide(channels,subChannels,products)
+
+
+    @loginRequire()
+    def addShoppingGuideChannel(self,request):
+        """添加商城首页商品导购栏目"""
+        if request.method == "GET":
+            pass
+        elif request.method == "POST":
+            self.response_["type"] = self.RESPONSE_TYPE_JSON
+            keys = ("name","show","order")
+            channel = {}
+            for key in keys:
+                channel[key] = request.POST.get(key)
+            newChannel = ShoppingGuideChannel(name=channel["name"],show=channel["show"],order=channel["order"],addAdminId=request.session["user"]["id"])
+            newChannel.save()
+            self.context = {"code":200,"msg":"添加新导购栏目成功","data":{"id":newChannel.id}}
+
+    @loginRequire()
+    def addShoppingGuideSubchannel(self,request):
+        pass
+
+    @loginRequire()
+    def addShoppingGuideProduct(self,request):
         pass
 
     def _sortProductCategories(self,productCategories):
@@ -140,3 +179,24 @@ class AppAdminView(BaseView):
                 else:
                     break
         return sortedProductCategoriesDict[0]["subCategories"] if sortedProductCategoriesDict else []
+
+
+    def _sortShoppingGuide(self,channels,subChannels,products):
+        """商品导购排序"""
+        channels = list(channels.values())
+        subChannels = list(subChannels.values())
+        products = list(products.values())
+
+        subChannelsDict = {subChannel["id"]:subChannel for subChannel in subChannels}
+        for product in products:
+            if "products" not in subChannelsDict[product["parentId"]]:
+                subChannelsDict[product["parentId"]]["products"] = []
+            subChannelsDict[product["parentId"]]["products"].append(product)
+
+        channelsDict = {channel["id"]:channel for channel in channels}
+        for subChannel in subChannelsDict.values():
+            if "subChannels" not in channelsDict[subChannel["parentId"]]:
+                channelsDict[subChannel["parentId"]]["subChannels"] = []
+            channelsDict[subChannel["parentId"]]["subChannels"].append(subChannel)
+
+        return list(channelsDict.values())

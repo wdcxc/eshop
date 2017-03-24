@@ -47,6 +47,16 @@ urlpatterns += [
     url(r'^appadmin/updateCarouselImg$',AppAdminView.as_view(),name="appAdminUpdateCarouselImg"),
     url(r'^appadmin/productCategory$',AppAdminView.as_view(),name="appAdminProductCategory"), # 商品目录导航管理
     url(r'^appadmin/activity$',AppAdminView.as_view(),name="appAdminActivity"), # 商城活动
+    url(r'^appadmin/shoppingGuide$',AppAdminView.as_view(),name="appAdminShoppingGuide"), # 商城首页商品导购管理
+    url(r'^appadmin/addShoppingGuideChannel$',AppAdminView.as_view(),name="appAdminAddShoppingGuideChannel"),
+    url(r'^appadmin/updateShoppingGuideChannel$',AppAdminView.as_view(),name="appAdminUpdateShoppingGuideChannel"),
+    url(r'^appadmin/deleteShoppingGuideChannel$',AppAdminView.as_view(),name="appAdminDeleteShoppingGuideChannel"),
+    url(r'^appadmin/addShoppingGuideSubchannel$',AppAdminView.as_view(),name="appAdminAddShoppingGuideSubchannel"),
+    url(r'^appadmin/updateShoppingGuideSubchannel$', AppAdminView.as_view(), name="appAdminUpdateShoppingGuideSubchannel"),
+    url(r'^appadmin/deleteShoppingGuideSubchannel$', AppAdminView.as_view(),name="appAdminDeleteShoppingGuideSubchannel"),
+    url(r'^appadmin/addShoppingGuideProduct$',AppAdminView.as_view(),name="appAdminAddShoppingGuideProduct"),
+    url(r'^appadmin/updateShoppingGuideProduct$', AppAdminView.as_view(), name="appAdminUpdateShoppingGuideProduct"),
+    url(r'^appadmin/deleteShoppingGuideProduct$', AppAdminView.as_view(), name="appAdminDeleteShoppingGuideProduct")
 ]
 
 # productadmin 商品管理
