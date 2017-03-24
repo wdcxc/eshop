@@ -2,15 +2,55 @@
 {% load static %}
 
 {% block withnavbody %}
+{% csrf_token %}
 <a href="{% url 'admin:appAdminAddShoppingGuideChannel' %}" class="btn btn-primary">添加新栏目</a>
 <hr/>
 {% for channel in channels %}
-{{ channel.name }}<a href="{% url 'admin:appAdminAddShoppingGuideSubchannel' %}" class="btn btn-primary">添加子栏目</a>
-    {% for subChannel in channel.subChannels %}
-    {{ subChannel.name }}<a href="{% url 'admin:appAdminAddShoppingGuideProduct' %}" class="btn btn-primary">添加导购商品</a>
-        {% for product in subChannel.products %}
-        {{ product.name }}
-        {% endfor %}
-    {% endfor %}
+<div class="panel panel-default" id="shoppingGuide">
+    <div class="panel-heading">
+        <strong>{{ channel.name }}</strong>
+        <div class="btn-group pull-right">
+            <a href="/admin/appadmin/addShoppingGuideSubchannel?id={{channel.id}}" class="btn btn-primary btn-xs">添加子栏目</a>
+            <a href="/admin/appadmin/updateShoppingGuideChannel?id={{channel.id}}" class="btn btn-success btn-xs">修改</a>
+            <a class="del-channel btn btn-danger btn-xs" data-id="{{channel.id}}">删除</a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="panel panel-default">
+            {% for subChannel in channel.subChannels %}
+            <div class="panel-heading">
+                <strong>{{ subChannel.name }}</strong>
+                <div class="btn-group pull-right">
+                    <a href="/admin/appadmin/addShoppingGuideProduct?id={{subChannel.id}}" class="btn btn-primary btn-xs">添加导购商品</a>
+                    <a href="/admin/appadmin/updateShoppingGuideSubchannel?id={{subChannel.id}}" class="btn btn-success btn-xs">修改</a>
+                    <a class="del-subchannel btn btn-danger btn-xs" data-id="{{subChannel.id}}">删除</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                {% for product in subChannel.products %}
+                <div class="col-md-2">
+                    <div class="thumbnail">
+                        <img src="{{product.productImgUrl}}" alt="预览" width="100" height="100"/>
+                        <div class="caption">
+                            <h5><strong>{{product.name}}</strong></h5>
+                            <p>说明：{{product.description}}</p>
+                            <p>
+                                <a href="/admin/appadmin/updateShoppingGuideProduct?id={{product.id}}" class="btn btn-success btn-xs">修改</a>
+                                <a data-id="{{product.id}}" class="btn btn-danger btn-xs del-product">删除</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div> <!-- subChannels -->
+    </div>
+</div> <!-- channels -->
 {% endfor %}
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script src="{% static 'js/admin/appadmin/shoppingguide.js' %}"></script>
 {% endblock %}
