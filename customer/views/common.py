@@ -10,6 +10,18 @@ class CommonView(BaseView):
     def index(self, request):
         pass
 
+    def information(self, request):
+        pass
+
+    def address(self, request):
+        pass
+
+    def order(self, request):
+        pass
+
+    def evaluate(self, request):
+        pass
+
     def login(self, request):
         pass
 
