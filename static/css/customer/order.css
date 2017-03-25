@@ -1,4 +1,102 @@
+p{
+    margin: 0;
+}
 .pay-sum{
     color: #ff6400;
     font-weight: bold;
+}
+.order-table{
+    position: relative;
+    top: 0;
+    width: 100%;
+    padding: .5rem .5rem .8rem;
+}
+.table-header{
+    width: 100%;
+    overflow: hidden;
+    padding: .5rem 0;
+    border: 1px solid #eee;
+}
+.order-detail{
+    overflow: hidden;
+    padding: .5rem 0;
+}
+.detail-text{
+    margin-right: 3rem;
+}
+.order-content{
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #E4EAEE;
+    padding: .2rem;
+}
+.table-content{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.commodity-pic{
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid #EEE;
+    float: left;
+    overflow: hidden;
+    margin-top: 1rem;
+    margin-left: .2rem;
+    padding: 0;
+}
+.commodity-pic a img{
+    width: 100%;
+}
+.commodity-detail{
+    padding-right: 0;
+}
+.commodity-name{
+    padding-top: 1.3rem;
+    padding-bottom: .5rem;
+}
+.commodity-attribute{
+    color: #9c9c9c;
+}
+.commodity-price,.commodity-num{
+    padding-top: 2rem;
+}
+.table-right{
+    width: 40%;
+    position: absolute;
+    top: 50%;
+    margin-top: -.8rem;
+    right: 0;
+    overflow: visible;
+}
+.table-right ul li{
+    float: left;
+}
+.transaction-status{
+    width: 55%;
+    text-align: center;
+}
+.transaction-status a{
+    color: #333;
+    text-decoration: none;
+}
+.transaction-operation{
+    width: 30%;
+    text-align: center;
+}
+.transaction-operation a{
+    background-color: #fd6d37;
+    color: #fff;
+    text-decoration: none;
+}
+.transaction-operation a:hover,.transaction-operation a:active{
+    color: #fff;
+}
+.order-list{
+    margin-bottom: 3rem;
+}
+.order-list nav{
+    position: absolute;
+    bottom: -3rem;
+    right: .5rem;
 }

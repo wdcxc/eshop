@@ -91,6 +91,7 @@
     width: 100%;
     position: relative;
     border: 1px solid #eee;
+    margin-bottom: 2rem;
 }
 .info-head{
     margin: 1rem 0;
