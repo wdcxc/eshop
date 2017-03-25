@@ -29,7 +29,10 @@ class ShoppingGuideProduct(models.Model):
         db_table = "shoppingguide_product"
 
     parentId = models.IntegerField() # 导购商品归属子栏目id
-    productId = models.IntegerField() # 商品id
+    name = models.CharField(max_length=50,default="") # 导购商品名称
+    description = models.CharField(max_length=100,default="") # 商品说明
+    linkUrl = models.URLField(default="") # 商品链接
+    productImgUrl = models.URLField(default="") # 展示图片链接
     addTime = models.DateTimeField(auto_now_add=True) # 添加时间
     addAdminId = models.IntegerField() # 添加导购商品管理员id
     show = models.BooleanField(default = True) # 商品是否展示

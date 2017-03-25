@@ -1,13 +1,15 @@
 {% extends "admin/base.html" %}
 {% load static %}
+{% csrf_token %}
 
 {% block withnavbody %}
-<div class="col-md-offset-4"><h3>添加商品导购栏目</h3></div>
-<hr/>
-<form class="form-horizontal col-md-offset-3" id="channelForm" v-on:submit.prevent="addChannel">
-    {% csrf_token %}
-    <div class="row">
+<div class="col-md-offset-4">
+    <h1>修改商品导购栏目</h1>
+    <hr/>
+    <form class="form-horizontal" id="channelForm" v-on:submit.prevent="updateChannel">
+        <input type="hidden" id="id" value="{{channel.id}}"/>
         <div class="form-group">
+            <input type="hidden" id="name" value="{{channel.name}}"/>
             <div class="col-md-2">
                 <label class="pull-right">栏目名称</label>
             </div>
@@ -15,20 +17,18 @@
                 <input type="text" v-model="channel.name" class="form-control"/>
             </div>
         </div>
-    </div>
-    <div class="row">
         <div class="form-group">
-        <div class="col-md-2">
-            <label class="pull-right">显示顺序</label>
+            <input type="hidden" id="order" value="{{channel.order}}"/>
+            <div class="col-md-2">
+                <label class="pull-right">显示顺序</label>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control" v-model="channel.order" />
+            </div>
+            <span class="label label-info">数字越大，显示越前</span>
         </div>
-        <div class="col-md-2">
-            <input type="text" class="form-control" v-model="channel.order" />
-        </div>
-        <span class="label label-info">数字越大，显示越前</span>
-    </div>
-    </div>
-    <div class="row">
         <div class="form-group">
+            <input type="hidden" id="show" value="{{channel.show}}"/>
             <div class="col-md-2">
                 <label class="pull-right">是否展示</label>
             </div>
@@ -41,15 +41,15 @@
                 </label>
             </div>
         </div>
-    </div>
-    <div class="col-md-offset-2">
-        <button type="submit" class="btn btn-primary">添加</button>
-    </div>
-</form>
+        <div class="col-md-offset-2">
+            <button type="submit" class="btn btn-primary">更新</button>
+        </div>
+    </form>
+</div>
 <hr/>
 {% endblock %}
 
 {% block js %}
 <script src="{% static 'js/js.cookie.js' %}"></script>
-<script src="{% static 'js/admin/appadmin/addshoppingguidechannel.js' %}"></script>
+<script src="{% static 'js/admin/appadmin/updateshoppingguidechannel.js' %}"></script>
 {% endblock %}
