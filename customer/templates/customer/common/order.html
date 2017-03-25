@@ -32,55 +32,82 @@
                         <div class="clearfix"></div>
                         <div class="order-table">
                             <ul class="table-header">
-                                <li class="text-center col-md-4">商品</li>
+                                <li class="text-center col-md-5">商品</li>
                                 <li class="text-center col-md-1">单价</li>
-                                <li class="text-center col-md-1">数量</li>
-                                <li class="text-center col-md-2">商品操作</li>
+                                <li class="text-center col-md-2">数量</li>
                                 <li class="text-center col-md-1">合计</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-1">交易操作</li>
                             </ul>
-                            <p>
-                                <span class=""></span>
+                            <p class="order-detail">
+                                <span class="detail-text">订单编号：00001</span>
+                                <span class="detail-text">订单生成时间：2017-3-25 10:00</span>
                             </p>
                             <ul class="table-content">
-                                <li class="col-md-6 text-center">
+                                <li class="col-md-5 text-center">
                                     <div class="col-md-3 commodity-pic">
                                         <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
                                     </div>
-                                    <div class="col-md-9 commodity-name">
-                                        <p class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</p>
-                                    </div>
-                                </li>
-                                <li class="col-md-2 text-center">
-                                    <p>颜色：啫喱红</p>
+                                    <ul class="col-md-9 commodity-name">
+                                        <li class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</li>
+                                        <li class="commodity-attribute">颜色：啫喱红</li>
+                                    </ul>
                                 </li>
                                 <li class="col-md-1 text-center">62.00</li>
                                 <li class="col-md-2 text-center">1</li>
-                                <li class="col-md-1 text-center commodity-total-price">62.00</li>
                             </ul>
                             <ul class="table-content">
-                                <li class="col-md-6 text-center">
+                                <li class="col-md-5 text-center">
                                     <div class="col-md-3 commodity-pic">
                                         <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
                                     </div>
-                                    <div class="col-md-9 commodity-name">
-                                        <p class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</p>
-                                    </div>
+                                    <ul class="col-md-9 commodity-name">
+                                        <li class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</li>
+                                        <li class="commodity-attribute">颜色：玫瑰紫</li>
+                                    </ul>
                                 </li>
-                                <li class="col-md-2 text-center">
-                                    <p>颜色：玫瑰紫</p>
-                                </li>
-                                <li class="col-md-1 text-center">59.00</li>
+                                <li class="col-md-1 text-center">62.00</li>
                                 <li class="col-md-2 text-center">1</li>
-                                <li class="col-md-1 text-center commodity-total-price">59.00</li>
                             </ul>
+                            <div class="table-right">
+                                <ul>
+                                    <li>
+                                        <p class="total-price">合计：124.00</p>
+                                    </li>
+                                    <li class="transaction-status">
+                                        <p class="status-text">等待买家付款</p>
+                                        <a class="order-detail" href="#">取消订单</a>
+                                    </li>
+                                    <li>
+                                        <a class="btn" data-toggle="modal" data-target="#payModal" role="button">一键支付</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     {% include "customer/aside.html" %}
+    </div>
+    <!--支付模态框 -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="payModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">付款</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size: .6rem">需支付：<span class="pay-sum" style="font-size: 1.2rem">126.00</span>元</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" style="background-color: #ff6400;color: #fff" onclick="window.location.href='app/common/success'">支付</button>
+                    <button type="button" class="btn btn-default" onclick="window.location.href='app/common/fail'">取消</button>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
