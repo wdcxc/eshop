@@ -36,6 +36,9 @@ class CommonView(BaseView):
     def activity(self,request):
         pass
 
+    def fail(self,request):
+        pass
+
     def _sortProductCategories(self,productCategories):
         categories = list(productCategories.values())
         sortedCategoriesDict = {}

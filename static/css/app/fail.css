@@ -1,0 +1,49 @@
+.fail-info{
+    padding: 1.3rem 0 1.3rem 3.8rem;
+    color: #333;
+    width: 100%;
+    max-width: 50rem;
+    margin: 0 auto;
+    position: relative;
+}
+.info-text{
+    position: absolute;
+    left: 1.8rem;
+}
+.fail-info h2{
+    font-size: .8rem;
+    height: 2rem;
+    line-height: 2rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.info-content{
+    padding: 0 3.3rem 0 2.8rem;
+    margin-left: -2.9rem;
+    max-width: 24rem;
+}
+.info-remind{
+    margin-top: 1.5rem;
+    border: 1px solid #F00;
+    margin-bottom: .7rem;
+    height: 5rem;
+}
+.remind-text{
+    font-size: .7rem;
+    height: 5rem;
+    padding: .5rem;
+}
+.option-text{
+    color: #F00;
+    text-decoration: none;
+}
+.option-text:hover{
+    color: #F00;
+}
+.info-option{
+    font-size: .7rem;
+    margin-top: 1.5rem;
+}
+.info-option a{
+    margin: 0 .3rem;
+}

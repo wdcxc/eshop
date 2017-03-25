@@ -12,7 +12,72 @@
     <div class="content center-block">
         <div class="col-main">
             <div class="main-wrap">
-
+                <div class="info">
+                    <!--标题-->
+                    <div class="info-head">
+                        <p>
+                            <span class="head-text">订单管理</span>/
+                            <span class="for-head-text">order management</span>
+                        </p>
+                    </div>
+                    <!--订单列表-->
+                    <div class="order-list">
+                        <ul class="nav nav-tabs pull-right" style="margin: 0 .2rem">
+                            <li role="presentation" class="active"><a href="#">所有订单</a></li>
+                            <li role="presentation"><a href="#">待付款</a></li>
+                            <li role="presentation"><a href="#">待发货</a></li>
+                            <li role="presentation"><a href="#">待收货</a></li>
+                            <li role="presentation"><a href="#">待评价</a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                        <div class="order-table">
+                            <ul class="table-header">
+                                <li class="text-center col-md-4">商品</li>
+                                <li class="text-center col-md-1">单价</li>
+                                <li class="text-center col-md-1">数量</li>
+                                <li class="text-center col-md-2">商品操作</li>
+                                <li class="text-center col-md-1">合计</li>
+                                <li class="text-center col-md-2">交易状态</li>
+                                <li class="text-center col-md-1">交易操作</li>
+                            </ul>
+                            <p>
+                                <span class=""></span>
+                            </p>
+                            <ul class="table-content">
+                                <li class="col-md-6 text-center">
+                                    <div class="col-md-3 commodity-pic">
+                                        <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
+                                    </div>
+                                    <div class="col-md-9 commodity-name">
+                                        <p class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</p>
+                                    </div>
+                                </li>
+                                <li class="col-md-2 text-center">
+                                    <p>颜色：啫喱红</p>
+                                </li>
+                                <li class="col-md-1 text-center">62.00</li>
+                                <li class="col-md-2 text-center">1</li>
+                                <li class="col-md-1 text-center commodity-total-price">62.00</li>
+                            </ul>
+                            <ul class="table-content">
+                                <li class="col-md-6 text-center">
+                                    <div class="col-md-3 commodity-pic">
+                                        <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
+                                    </div>
+                                    <div class="col-md-9 commodity-name">
+                                        <p class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</p>
+                                    </div>
+                                </li>
+                                <li class="col-md-2 text-center">
+                                    <p>颜色：玫瑰紫</p>
+                                </li>
+                                <li class="col-md-1 text-center">59.00</li>
+                                <li class="col-md-2 text-center">1</li>
+                                <li class="col-md-1 text-center commodity-total-price">59.00</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     {% include "customer/aside.html" %}
