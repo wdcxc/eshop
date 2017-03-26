@@ -1,0 +1,51 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% csrf_token %}
+
+{% block withnavbody %}
+<ul class="nav nav-tabs">
+    <li><a href="{% url 'admin:adminAdminAdminIndex' %}">管理员</a></li>
+    <li class="active"><a href="{% url 'admin:adminAdminGroupIndex' %}">权限组</a></li>
+    <li><a href="{% url 'admin:adminAdminNodeIndex' %}">节点</a></li>
+</ul>
+<div class="col-md-offset-4">
+    <h1>修改权限组</h1>
+    <hr/>
+    <form class="form-horizontal" id="groupForm" v-on:submit.prevent="updateGroup">
+        <input type="hidden" id="id" value="{{group.id}}">
+        <div class="form-group">
+            <input type="hidden" id="name" value="{{group.name}}">
+            <div class="col-md-2">
+                <label class="pull-right">权限组名称</label>
+            </div>
+            <div class="col-md-2">
+                <input v-model="group.name" type="text" class="form-control"/>
+            </div>
+        </div>
+        <input type="hidden" id="nodeIds" value="{{group.nodeIds}}">
+        {% for node in group.nodes %}
+        <div class="form-group">
+            <div class="col-md-2">
+                {% if forloop.first %}<label class="pull-right">修改节点</label>{% endif %}
+            </div>
+            <div class="col-md-6">
+                <div class="checkbox">
+                    <label>
+                        <input v-model="group.nodeIds" type="checkbox" value="{{node.id}}"/> {{node.name}}({{node.controller}}:{{node.action}})
+                    </label>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="col-md-offset-2">
+            <button type="submit" class="btn btn-primary">修改</button>
+        </div>
+    </form>
+</div>
+<hr/>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script src="{% static 'js/admin/adminadmin/updategroup.js' %}"></script>
+{% endblock %}

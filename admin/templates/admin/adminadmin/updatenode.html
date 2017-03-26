@@ -1,0 +1,63 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% csrf_token %}
+
+{% block withnavbody %}
+<ul class="nav nav-tabs">
+    <li><a href="{% url 'admin:adminAdminAdminIndex' %}">管理员</a></li>
+    <li><a href="{% url 'admin:adminAdminGroupIndex' %}">权限组</a></li>
+    <li class="active"><a href="{% url 'admin:adminAdminNodeIndex' %}">节点</a></li>
+</ul>
+<div class="col-md-offset-4">
+    <h1>修改节点</h1>
+    <hr/>
+    <form class="form-horizontal" id="nodeForm" v-on:submit.prevent="updateNode">
+        <input type="hidden" id="id" value="{{node.id}}" />
+        <div class="form-group">
+                <input type="hidden" id="name" value="{{node.name}}" />
+            <div class="col-md-2">
+                <label class="pull-right">节点名称</label>
+            </div>
+            <div class="col-md-2">
+                <input v-model="node.name" type="text" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="hidden" id="controller" value="{{node.controller}}" />
+            <div class="col-md-2">
+                <label class="pull-right">controller</label>
+            </div>
+            <div class="col-md-2">
+                <input v-model="node.controller" type="text" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="hidden" id="action" value="{{node.action}}" />
+            <div class="col-md-2">
+                <label class="pull-right">action</label>
+            </div>
+            <div class="col-md-2">
+                <input v-model="node.action" type="text" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="hidden" id="linkUrl" value="{{node.linkUrl}}" />
+            <div class="col-md-2">
+                <label class="pull-right">节点链接</label>
+            </div>
+            <div class="col-md-2">
+                <input v-model="node.linkUrl" type="text" class="form-control"/>
+            </div>
+        </div>
+        <div class="col-md-offset-2">
+            <button type="submit" class="btn btn-primary">修改</button>
+        </div>
+    </form>
+</div>
+<hr/>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script src="{% static 'js/admin/adminadmin/updatenode.js' %}"></script>
+{% endblock %}

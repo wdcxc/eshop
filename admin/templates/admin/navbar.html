@@ -14,7 +14,7 @@
     <li><a {% ifequal controller "common" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:index' %}">总览</a></li>
     <li><a {% ifequal controller "customeradmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:customerAdminIndex' %}">顾客管理</a></li>
     <li><a {% ifequal controller "selleradmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:sellerAdminIndex' %}">商家管理</a></li>
-    <li><a {% ifequal controller "adminadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:adminAdminIndex' %}">管理员管理</a></li>
+    <li><a {% ifequal controller "adminadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:adminAdminAdminIndex' %}">管理员管理</a></li>
     <li><a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:appAdminIndex' %}">商城管理</a></li>
     <li><a {% ifequal controller "productadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:productAdminIndex' %}">商品管理</a></li>
 </ul>
