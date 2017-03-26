@@ -20,4 +20,8 @@
     background-color: #fd6d37;
     color: #fff;
     width: 7rem;
+    text-decoration: none;
+}
+.submit-btn:hover{
+    color: #fff;
 }

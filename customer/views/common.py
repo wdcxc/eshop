@@ -34,6 +34,15 @@ class CommonView(BaseView):
     def message(self, request):
         pass
 
+    def bill(self, request):
+        pass
+
+    def refundapply(self, request):
+        pass
+
+    def orderinfo(self, request):
+        pass
+
     def login(self, request):
         pass
 

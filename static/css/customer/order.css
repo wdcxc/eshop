@@ -16,6 +16,7 @@ p{
     overflow: hidden;
     padding: .5rem 0;
     border: 1px solid #eee;
+    font-size: .65rem;
 }
 .detail-text{
     margin-right: 3rem;
@@ -30,10 +31,11 @@ p{
     width: 100%;
     overflow: hidden;
     position: relative;
+    padding-bottom: .5rem;
 }
 .commodity-pic{
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.8rem;
     border: 1px solid #EEE;
     float: left;
     overflow: hidden;
@@ -54,7 +56,7 @@ p{
 .commodity-attribute{
     color: #9c9c9c;
 }
-.commodity-price,.commodity-num{
+.commodity-price,.commodity-num,.return-money{
     padding-top: 2rem;
 }
 .table-right{
@@ -96,4 +98,11 @@ p{
     position: absolute;
     bottom: -3rem;
     right: .5rem;
+}
+.order-detail{
+    margin: .5rem 0;
+}
+.return-money a{
+    text-decoration: none;
+    color: #333;
 }

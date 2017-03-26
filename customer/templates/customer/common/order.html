@@ -38,9 +38,10 @@
                         <div id="myTabContent" class="tab-content">
                             <div class="container tab-pane fade order-table active in" id="allOrder" role="tabpanel" aria-labelledby="allorder">
                             <ul class="table-header">
-                                <li class="text-center col-md-5">商品</li>
+                                <li class="text-center col-md-4">商品</li>
                                 <li class="text-center col-md-1">单价</li>
                                 <li class="text-center col-md-1">数量</li>
+                                <li class="text-center col-md-1">商品操作</li>
                                 <li class="text-center col-md-1">合计</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
@@ -52,7 +53,7 @@
                                 </p>
                                 <div class="order-content">
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <a href="#">
                                                     <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
@@ -65,9 +66,10 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money hide"><a href="refundapply">退款</a></li>
                                     </ul>
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
                                             </div>
@@ -78,6 +80,7 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money hide"><a href="refundapply">退款</a></li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
@@ -103,7 +106,7 @@
                                 </p>
                                 <div class="order-content">
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <a href="#">
                                                     <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
@@ -116,9 +119,10 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款</a></li>
                                     </ul>
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
                                             </div>
@@ -129,6 +133,7 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款</a></li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
@@ -137,8 +142,7 @@
                                             </li>
                                             <li class="transaction-status">
                                                 <p class="status-text">买家已付款</p>
-                                                <a class="refund" href="refund-apply">退款</a>
-                                                <a class="order-detail" href="order-info">查看订单</a>
+                                                <a class="check-order" href="orderinfo">查看订单</a>
                                             </li>
                                             <li class="transaction-operation">
                                                 <a tabindex="0" class="btn" role="button" data-toggle="popover"
@@ -156,7 +160,7 @@
                                 </p>
                                 <div class="order-content">
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <a href="#">
                                                     <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
@@ -169,9 +173,10 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
                                     </ul>
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
                                             </div>
@@ -182,6 +187,7 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
@@ -190,8 +196,7 @@
                                             </li>
                                             <li class="transaction-status">
                                                 <p class="status-text">卖家已发货</p>
-                                                <a class="refund" href="refund-apply">退款/退货</a>
-                                                <a class="order-detail" href="order-info">查看订单</a>
+                                                <a class="check-order" href="orderinfo">查看订单</a>
                                             </li>
                                             <li class="transaction-operation">
                                                 <a tabindex="0" class="btn" role="button" data-toggle="popover"
@@ -221,9 +226,10 @@
                         </div>
                             <div class="container tab-pane fade order-table" id="toPayOrder" role="tabpanel" aria-labelledby="topay">
                             <ul class="table-header">
-                                <li class="text-center col-md-5">商品</li>
+                                <li class="text-center col-md-4">商品</li>
                                 <li class="text-center col-md-1">单价</li>
                                 <li class="text-center col-md-1">数量</li>
+                                <li class="text-center col-md-1">商品操作</li>
                                 <li class="text-center col-md-1">合计</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
@@ -235,7 +241,7 @@
                                 </p>
                                 <div class="order-content">
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <a href="#">
                                                     <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
@@ -248,9 +254,10 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money hide"><a href="refundapply">退款</a></li>
                                     </ul>
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
                                             </div>
@@ -261,6 +268,7 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money hide"><a href="refundapply">退款</a></li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
@@ -298,9 +306,10 @@
                         </div>
                             <div class="container tab-pane fade order-table" id="toSentOrder" role="tabpanel" aria-labelledby="tosent">
                             <ul class="table-header">
-                                <li class="text-center col-md-5">商品</li>
+                                <li class="text-center col-md-4">商品</li>
                                 <li class="text-center col-md-1">单价</li>
                                 <li class="text-center col-md-1">数量</li>
+                                <li class="text-center col-md-1">商品操作</li>
                                 <li class="text-center col-md-1">合计</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
@@ -312,7 +321,7 @@
                                 </p>
                                 <div class="order-content">
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <a href="#">
                                                     <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
@@ -325,9 +334,10 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款</a></li>
                                     </ul>
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
                                             </div>
@@ -338,6 +348,7 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款</a></li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
@@ -346,8 +357,7 @@
                                             </li>
                                             <li class="transaction-status">
                                                 <p class="status-text">买家已付款</p>
-                                                <a class="refund" href="refund-apply">退款</a>
-                                                <a class="order-detail" href="order-info">查看订单</a>
+                                                <a class="check-order" href="orderinfo">查看订单</a>
                                             </li>
                                             <li class="transaction-operation">
                                                 <a tabindex="0" class="btn" role="button" data-toggle="popover"
@@ -377,9 +387,10 @@
                         </div>
                             <div class="container tab-pane fade order-table" id="toReceiveOrder" role="tabpanel" aria-labelledby="toreceive">
                             <ul class="table-header">
-                                <li class="text-center col-md-5">商品</li>
+                                <li class="text-center col-md-4">商品</li>
                                 <li class="text-center col-md-1">单价</li>
                                 <li class="text-center col-md-1">数量</li>
+                                <li class="text-center col-md-1">商品操作</li>
                                 <li class="text-center col-md-1">合计</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
@@ -391,7 +402,7 @@
                                 </p>
                                 <div class="order-content">
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <a href="#">
                                                     <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
@@ -404,9 +415,10 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
                                     </ul>
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
                                             </div>
@@ -417,6 +429,7 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
@@ -425,8 +438,7 @@
                                             </li>
                                             <li class="transaction-status">
                                                 <p class="status-text">卖家已发货</p>
-                                                <a class="refund" href="refund-apply">退款/退货</a>
-                                                <a class="order-detail" href="order-info">查看订单</a>
+                                                <a class="check-order" href="orderinfo">查看订单</a>
                                             </li>
                                             <li class="transaction-operation">
                                                 <a tabindex="0" class="btn" role="button" data-toggle="popover"
@@ -456,10 +468,11 @@
                         </div>
                             <div class="container tab-pane fade order-table" id="toEvaluateOrder" role="tabpanel" aria-labelledby="toevaluate">
                             <ul class="table-header">
-                                <li class="text-center col-md-5">商品</li>
+                                <li class="text-center col-md-4">商品</li>
                                 <li class="text-center col-md-1">单价</li>
                                 <li class="text-center col-md-1">数量</li>
                                 <li class="text-center col-md-1">合计</li>
+                                <li class="text-center col-md-1">商品操作</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
                             </ul>
@@ -470,7 +483,7 @@
                                 </p>
                                 <div class="order-content">
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <a href="#">
                                                     <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
@@ -483,9 +496,10 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
                                     </ul>
                                     <ul class="table-content">
-                                        <li class="col-md-5">
+                                        <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
                                             </div>
@@ -496,6 +510,7 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
+                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
@@ -504,11 +519,10 @@
                                             </li>
                                             <li class="transaction-status">
                                                 <p class="status-text">交易成功</p>
-                                                <a class="refund" href="refund-apply">退款/退货</a>
-                                                <a class="order-detail" href="order-info">订单详情</a>
+                                                <a class="check-order" href="orderinfo">订单详情</a>
                                             </li>
                                             <li class="transaction-operation">
-                                                <a class="btn" href="evaluate"
+                                                <a class="btn" href="goodsevaluate"
                                                    role="button">评价商品</a>
                                             </li>
                                         </ul>
