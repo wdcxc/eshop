@@ -1,14 +1,9 @@
-.evaluate p{
-    margin: 0;
-}
-.evaluate-list{
-    margin-bottom: 3.5rem;
-}
-.evaluate-table{
+.table{
     position: relative;
     border-bottom: 1px solid #f5f5f5;
+    margin-bottom: 3.5rem;
 }
-.evaluate-table>ul{
+.table>ul{
     border-top: 1px solid #f5f5f5;
 }
 .table-header{
@@ -24,24 +19,20 @@
 .table-content{
     height: 5rem;
     width: 100%;
-    padding: .5rem 0;
+    padding: .5rem;
 }
-.commodity-detail{
-    padding-top: .8rem;
-    padding-right: 0;
-}
-.commodity-attribute{
-    margin-top: .4rem;
-    color: #9c9c9c;
-}
-.evaluate-time{
+.consult-time,.reply-time,.opinion-time,.question-type,.opinion-type{
     line-height: 4rem;
 }
-.evaluate-text{
-    padding-top: .5rem;
+.question-detail,.opinion-detail,.reply-content{
+    overflow: hidden;
+    padding-top: 1rem;
 }
-.evaluate-list nav{
+.table nav{
     position: absolute;
     bottom: -3.9rem;
     right: .5rem;
+}
+.table-header{
+    margin-top: 1.2rem;
 }

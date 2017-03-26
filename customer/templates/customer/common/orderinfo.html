@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 {% extends "base.html" %}
 
 {% load static %}
@@ -5,20 +7,14 @@
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/customer/aside.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/order-info.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/orderinfo.css' %}">
 {% endblock %}
 {% block body %}
     {% include "app/header.html" %}
     <div class="content center-block">
-        <div class="col-main">
-            <div class="main-wrap">
-
-            </div>
-        </div>
-    {% include "customer/aside.html" %}
+        <!--侧边栏 -->
     </div>
 {% endblock %}
 
 {% block js %}
-
 {% endblock %}

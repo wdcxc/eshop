@@ -80,9 +80,6 @@
     overflow: hidden;
     border: #F5F5F5 .1rem solid;
 }
-.table-header li{
-    float: left;
-}
 .table-content{
     height: 5rem;
     line-height: 5rem;

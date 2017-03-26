@@ -18,4 +18,11 @@ urlpatterns = [
     url(r'^common/address$', CommonView.as_view(), name="address"),
     url(r'^common/order$', CommonView.as_view(), name="order"),
     url(r'^common/evaluate$', CommonView.as_view(), name="evaluate"),
+    url(r'^common/collection', CommonView.as_view(), name="collection"),
+    url(r'^common/consult', CommonView.as_view(), name="consult"),
+    url(r'^common/opinion', CommonView.as_view(), name="opinion"),
+    url(r'^common/message', CommonView.as_view(), name="opinion"),
+    url(r'^common/bill', CommonView.as_view(), name="bill"),
+    url(r'^common/refundapply', CommonView.as_view(), name="refundapply"),
+    url(r'^common/orderinfo', CommonView.as_view(), name="orderinfo"),
 ]

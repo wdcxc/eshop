@@ -12,7 +12,7 @@
     position: relative;
     margin-left: 9rem;
     overflow: hidden;
-    min-height: 38.6rem;
+    min-height: 36rem;
 }
 .menu{
     position: absolute;
@@ -86,4 +86,26 @@
 .menu-item ul li a{
     color: #999;
     font-size: .6rem;
+}
+.info{
+    width: 100%;
+    position: relative;
+    border: 1px solid #eee;
+    margin-bottom: 2rem;
+}
+.info-head{
+    margin: 1rem 0;
+    padding: 0 .5rem;
+    border-bottom: 1px solid #eee;
+}
+.info-head p{
+    margin-bottom: 1rem;
+}
+.head-text{
+    color: #000;
+    font-size: .9rem;
+}
+.for-head-text{
+    color: #000;
+    font-size: .7rem;
 }

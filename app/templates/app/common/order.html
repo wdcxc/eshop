@@ -109,12 +109,6 @@
                     <li class="col-md-8">
                         买家留言：<input type="text" placeholder="选填，建议填写和卖家达成一致的说明"/>
                     </li>
-                    <li class="pull-right" style="margin-right: .5rem">配送方式
-                        <select style="padding-bottom: .1rem">
-                            <option value="5.00">快递 ¥5.00</option>
-                            <option value="20.00">EMS ¥20.00</option>
-                        </select>
-                    </li>
                 </ul>
             </div>
             <p class="total-price">合计（含运费）¥<span class="pay-sum" style="margin-left: .2rem;">126.00</span></p>
@@ -215,7 +209,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn" style="background-color: #ff6400;color: #fff" onclick="window.location.href='success'">支付</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-default" onclick="window.location.href='fail'">取消</button>
                 </div>
             </div>
         </div>

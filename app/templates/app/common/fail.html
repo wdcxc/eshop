@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}未付款{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/fail.css' %}">
+{% endblock %}
+
+{% block body %}
+    {% include "app/header.html" %}
+    <div class="fail-info">
+        <p class="info-text">
+            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="color: #F03726;font-size: 1.6rem;"></span>
+            <h2>您未付款</h2>
+        </p>
+        <div class="info-content">
+            <div class="info-remind">
+                <p class="remind-text">如果您未在4个小时内付款，系统将自动撤销您的订单</p>
+            </div>
+            <div class="info-option">
+                您可以返回
+                <a class="option-text" href="order">订单页面</a>或者返回
+                <a class="option-text" href="shopcart">购物车</a>修改你要的商品
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
