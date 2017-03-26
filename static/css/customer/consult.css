@@ -1,0 +1,23 @@
+.content{
+    margin: 1rem;
+}
+.classify-text,.description-text{
+    font-weight: inherit;
+    margin-bottom: .8rem;
+}
+#classify,#description{
+    margin-left: 4.4rem;
+}
+#classify{
+    width: 10rem;
+}
+#description{
+    width: 35rem;
+}
+.submit-btn{
+    margin-left: 4.4rem;
+    margin-top: .6rem;
+    background-color: #fd6d37;
+    color: #fff;
+    width: 7rem;
+}

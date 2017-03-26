@@ -22,6 +22,15 @@ class CommonView(BaseView):
     def evaluate(self, request):
         pass
 
+    def collection(self, request):
+        pass
+
+    def consult(self, request):
+        pass
+
+    def opinion(self, request):
+        pass
+
     def login(self, request):
         pass
 

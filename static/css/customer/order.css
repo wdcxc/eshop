@@ -17,10 +17,6 @@ p{
     padding: .5rem 0;
     border: 1px solid #eee;
 }
-.order-detail{
-    overflow: hidden;
-    padding: .5rem 0;
-}
 .detail-text{
     margin-right: 3rem;
 }
@@ -77,6 +73,7 @@ p{
     text-align: center;
 }
 .transaction-status a{
+    display: block;
     color: #333;
     text-decoration: none;
 }
