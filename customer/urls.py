@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^common/collection', CommonView.as_view(), name="collection"),
     url(r'^common/consult', CommonView.as_view(), name="consult"),
     url(r'^common/opinion', CommonView.as_view(), name="opinion"),
+    url(r'^common/message', CommonView.as_view(), name="opinion"),
 ]

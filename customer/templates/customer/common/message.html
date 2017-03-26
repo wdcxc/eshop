@@ -1,19 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
 {% extends "base.html" %}
 
 {% load static %}
-{% block title %}我的信息{% endblock %}
+{% block title %}我的消息{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/aside.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/customer/message.css' %}">
 {% endblock %}
 {% block body %}
     {% include "app/header.html" %}
     <div class="content center-block">
-        <!--侧边栏 -->
+        <div class="col-main">
+            <div class="main-wrap">
+                <div class="info">
+                    <!--标题-->
+                    <div class="info-head">
+                        <p>
+                            <span class="head-text">我的消息</span>/
+                            <span class="for-head-text">my message</span>
+                        </p>
+                    </div>
+                    <!--信息内容-->
+                    <div class="message-content">
+                        <!--信息导航-->
+                        <ul id="myTabs" class="nav nav-tabs nav-justified" role="tablist">
+                        <li role="presentation" class="active"><a href="#consult" id="consult-tab" role="tab" data-toggle="tab"
+                                                   aria-controls="consult" aria-expanded="false">商品咨询</a></li>
+                        <li role="presentation"><a href="#opinion" role="tab" id="opinion-tab"
+                                                                  data-toggle="tab" aria-controls="opinion"
+                                                                  aria-expanded="true">意见反馈</a></li>
+                    </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <!--咨询内容-->
+                            <div role="tabpanel" class="tab-pane fade active in" id="consult"
+                                 aria-labelledby="consult-tab">
+                                <div class="table">
+                                    <ul class="table-header">
+                                        <li class="text-center col-md-2">咨询时间</li>
+                                        <li class="text-center col-md-2">问题类型</li>
+                                        <li class="text-center col-md-3">问题详情</li>
+                                        <li class="text-center col-md-2">回复时间</li>
+                                        <li class="text-center col-md-3">回复内容</li>
+                                    </ul>
+                                    <ul class="table-content">
+                                        <li class="col-md-2 text-center consult-time">2017-3-25 20:00</li>
+                                        <li class="col-md-2 text-center question-type">产品问题</li>
+                                        <li class="col-md-3 question-detail">寄过来的零食过了保质期,打开之后发现产品变质了</li>
+                                        <li class="col-md-2 text-center reply-time">2017-3-25 21:00</li>
+                                        <li class="col-md-3 reply-content">实在不好意思，我们以后会严把质量关，保证以后不会再出现这种情况</li>
+                                    </ul>
+                                    <ul class="table-content">
+                                        <li class="col-md-2 text-center consult-time">2017-3-25 20:00</li>
+                                        <li class="col-md-2 text-center question-type">产品问题</li>
+                                        <li class="col-md-3 question-detail">寄过来的零食过了保质期,打开之后发现产品变质了</li>
+                                        <li class="col-md-2 text-center reply-time">2017-3-25 21:00</li>
+                                        <li class="col-md-3 reply-content">实在不好意思，我们以后会严把质量关，保证以后不会再出现这种情况</li>
+                                    </ul>
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination">
+                                            <li>
+                                                <a href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li>
+                                                <a href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!--意见内容-->
+                            <div role="tabpanel" class="tab-pane fade" id="opinion" aria-labelledby="opinion-tab">
+                                <div class="table">
+                                    <ul class="table-header">
+                                        <li class="text-center col-md-2">反馈时间</li>
+                                        <li class="text-center col-md-2">意见类型</li>
+                                        <li class="text-center col-md-3">意见详情</li>
+                                        <li class="text-center col-md-2">回复时间</li>
+                                        <li class="text-center col-md-3">回复内容</li>
+                                    </ul>
+                                    <ul class="table-content">
+                                        <li class="col-md-2 text-center opinion-time">2017-3-25 20:00</li>
+                                        <li class="col-md-2 text-center opinion-type">其他意见</li>
+                                        <li class="col-md-3 opinion-detail">商家的服务态度很好，发货也很快，赞一个</li>
+                                        <li class="col-md-2 text-center reply-time">2017-3-25 21:00</li>
+                                        <li class="col-md-3 reply-content">很高兴听到您对我们的认可，我们一定会再接再厉，争取提供更好的服务</li>
+                                    </ul>
+                                    <ul class="table-content">
+                                        <li class="col-md-2 text-center opinion-time">2017-3-25 20:00</li>
+                                        <li class="col-md-2 text-center opinion-type">其他意见</li>
+                                        <li class="col-md-3 opinion-detail">商家的服务态度很好，发货也很快，赞一个</li>
+                                        <li class="col-md-2 text-center reply-time">2017-3-25 21:00</li>
+                                        <li class="col-md-3 reply-content">很高兴听到您对我们的认可，我们一定会再接再厉，争取提供更好的服务</li>
+                                    </ul>
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination">
+                                            <li>
+                                                <a href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li>
+                                                <a href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% include "customer/aside.html" %}
     </div>
 {% endblock %}
 
 {% block js %}
+
 {% endblock %}

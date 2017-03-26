@@ -31,6 +31,9 @@ class CommonView(BaseView):
     def opinion(self, request):
         pass
 
+    def message(self, request):
+        pass
+
     def login(self, request):
         pass
 
