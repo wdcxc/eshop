@@ -4,15 +4,17 @@ from datetime import datetime
 from django.conf import settings
 from django.urls import reverse
 
+from admin.views.adminbaseview import AdminBaseView
 from models.carousel import CarouselModel
 from models.productcategory import ProductCategoryModel
-from models.shoppingguide import ShoppingGuideChannel,ShoppingGuideSubchannel,ShoppingGuideProduct
-from util.baseview import BaseView,loginRequire
+from models.shoppingguide import ShoppingGuideChannel, ShoppingGuideSubchannel, ShoppingGuideProduct
+from util.baseview import loginRequire
 
 
-class AppAdminView(BaseView):
+class AppAdminView(AdminBaseView):
     """商城管理"""
 
+    @loginRequire()
     def index(self,request):
         """商城管理后台首页"""
         pass
