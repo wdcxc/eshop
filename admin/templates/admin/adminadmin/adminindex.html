@@ -1,0 +1,76 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% csrf_token %}
+
+{% block withnavbody %}
+<ul class="nav nav-tabs">
+    <li class="active"><a href="{% url 'admin:adminAdminAdminIndex' %}">管理员</a></li>
+    <li><a href="{% url 'admin:adminAdminGroupIndex' %}">权限组</a></li>
+    <li><a href="{% url 'admin:adminAdminNodeIndex' %}">节点</a></li>
+</ul>
+<hr/>
+<a href="/admin/adminadmin/addAdmin?id={{admin.id}}" class="btn btn-primary">添加管理员</a>
+<hr/>
+{% if admins %}
+<table class="table table-striped table-hover table-bordered">
+    <tr>
+        <th>id</th>
+        <th>名称</th>
+        <th>创建时间</th>
+        <th>是否超级管理员</th>
+        <th>所属权限组</th>
+        <th>操作</th>
+    </tr>
+    {% for admin in admins %}
+    <tr>
+        <td>{{admin.id}}</td>
+        <td>{{admin.username}}</td>
+        <td>{{admin.addTime}}</td>
+        <td>{% if admin.root %}是{% else %}否{% endif %}</td>
+        <td>
+            {% for group in admin.groups %}
+            <span class="label label-primary">{{group.name}}</span>
+            {% endfor %}
+        </td>
+        <td>
+            <div class="btn-group">
+                <a class="btn btn-info btn-xs" href="/admin/adminadmin/updateAdmin?id={{admin.id}}">修改</a>
+                <a class="btn btn-danger btn-xs del-admin" data-id="{{admin.id}}">删除</a>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script>
+    var csrfToken = Cookies.get("csrftoken");
+    $(function(){
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrfToken);
+                }
+            }
+        });
+
+        $(".del-admin").on("click",function(){
+            id = $(this).data("id");
+            $.post(
+                "/admin/adminadmin/deleteAdmin",
+                {"id":id},
+                function(result){
+                    alert(result.msg);
+                    if(result.code == 200){
+                        window.location.href="/admin/adminadmin/adminIndex";
+                    }
+                }
+            );
+            return false;
+        });
+    });
+</script>
+{% endblock %}

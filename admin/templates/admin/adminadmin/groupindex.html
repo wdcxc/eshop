@@ -1,0 +1,64 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block withnavbody %}
+<ul class="nav nav-tabs">
+    <li><a href="{% url 'admin:adminAdminAdminIndex' %}">管理员</a></li>
+    <li class="active"><a href="{% url 'admin:adminAdminGroupIndex' %}">权限组</a></li>
+    <li><a href="{% url 'admin:adminAdminNodeIndex' %}">节点</a></li>
+</ul>
+<hr/>
+<a href="/admin/adminadmin/addGroup" class="btn btn-primary">添加权限组</a>
+<hr/>
+{% for group in groups %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{group.id}}.{{group.name}}（添加时间：{{group.addTime}}）
+        <div class="pull-right">
+            <div class="btn-group">
+                <a class="btn btn-info btn-xs" href="/admin/adminadmin/updateGroup?id={{group.id}}">修改</a>
+                <a class="btn btn-danger btn-xs del-group" data-id="{{group.id}}">删除</a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            {% for node in group.nodes %}
+            <li class="list-group-item">{{node.id}}.{{node.name}}（{{node.linkUrl}}）</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script>
+    var csrfToken = Cookies.get("csrftoken");
+    $(function(){
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrfToken);
+                }
+            }
+        });
+
+        $(".del-group").on("click",function(){
+            id = $(this).data("id");
+            $.post(
+                "/admin/adminadmin/deleteGroup",
+                {"id":id},
+                function(result){
+                    alert(result.msg);
+                    if(result.code == 200){
+                        window.location.href="/admin/adminadmin/groupIndex";
+                    }
+                }
+            );
+            return false;
+        });
+    });
+</script>
+{% endblock %}

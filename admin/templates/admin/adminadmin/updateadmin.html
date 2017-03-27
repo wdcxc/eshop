@@ -1,0 +1,68 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% csrf_token %}
+
+{% block withnavbody %}
+<ul class="nav nav-tabs">
+    <li class="active"><a href="{% url 'admin:adminAdminAdminIndex' %}">管理员</a></li>
+    <li><a href="{% url 'admin:adminAdminGroupIndex' %}">权限组</a></li>
+    <li><a href="{% url 'admin:adminAdminNodeIndex' %}">节点</a></li>
+</ul>
+<div class="col-md-offset-4">
+    <h1>修改管理员</h1>
+    <hr/>
+    <form class="form-horizontal" id="adminForm" v-on:submit.prevent="updateAdmin">
+        <input type="hidden" id="id" value="{{admin.id}}"/>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label class="pull-right">管理员账号</label>
+            </div>
+            <div class="col-md-2">
+                <input v-model="admin.username" type="text" placeholder="{{admin.username}}" class="form-control" disabled/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label class="pull-right">密码</label>
+            </div>
+            <div class="col-md-2">
+                <input v-model="admin.password" type="password" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="hidden" id="root" value="{{admin.root}}"/>
+            <div class="col-md-2">
+                <label class="pull-right">是否超级管理员</label>
+            </div>
+            <div class="col-md-4">
+                <label class="radio-inline">
+                    <input v-model="admin.root" type="radio" name="root" value="True"/> 是
+                </label>
+                <label class="radio-inline">
+                    <input v-model="admin.root" type="radio" name="root" value="False"/> 否
+                </label>
+            </div>
+        </div>
+        <input type="hidden" id="groupIds" value="{{admin.groupIds}}"/>
+        {% for group in admin.groups %}
+        <div class="form-group">
+            <div class="col-md-2">
+                {% if forloop.first %}
+                <label class="pull-right">所属权限组</label>
+                {% endif %}
+            </div>
+            <input v-model="admin.groupIds" type="checkbox" value="{{group.id}}"/> {{group.name}}
+        </div>
+        {% endfor %}
+        <div class="col-md-offset-2">
+            <button type="submit" class="btn btn-primary">修改</button>
+        </div>
+    </form>
+</div>
+<hr/>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script src="{% static 'js/admin/adminadmin/updateadmin.js' %}"></script>
+{% endblock %}
