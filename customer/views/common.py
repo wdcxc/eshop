@@ -40,7 +40,7 @@ class CommonView(BaseView):
     def refundapply(self, request):
         pass
 
-    def orderinfo(self, request):
+    def goodsevaluate(self, request):
         pass
 
     def login(self, request):
@@ -49,7 +49,7 @@ class CommonView(BaseView):
     def register(self, request):
         pass
 
-    def forgetPwd(self, request):
+    def forgetpwd(self, request):
         pass
 
     @valifyCaptcha(errcode=401)

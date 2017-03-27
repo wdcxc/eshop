@@ -1,0 +1,42 @@
+.commodity-evaluate{
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+.commodity{
+    margin-left: 2rem;
+}
+.commodity-pic{
+    border: 1px solid #eee;
+}
+.commodity-pic img{
+    width: 100%;
+}
+.commodity-detail{
+    margin: .2rem;
+    font-size: .65rem;
+}
+.commodity-name{
+    font-weight: bold;
+}
+.commodity-attribute{
+    color: #9c9c9c;
+}
+.evaluate-list{
+    border-top: 1px solid #eee;
+}
+.evaluate-list li{
+    padding: .5rem;
+}
+.evaluate-text{
+    width: 100%;
+    padding: .3rem;
+    border-color: #eee;
+}
+.good-evaluate,.middle-evaluate{
+    background: url("../../images/customer/iconfont-evaluate.png") 3.8rem .6rem no-repeat ;
+    background-size: .8rem;
+}
+.bad-evaluate{
+    background: url("../../images/customer/iconfont-bad.png") 3.8rem .6rem no-repeat;
+    background-size: .8rem;
+}

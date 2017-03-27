@@ -1,19 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
 {% extends "base.html" %}
 
 {% load static %}
 {% block title %}账单明细{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/aside.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/customer/bill.css' %}">
 {% endblock %}
 {% block body %}
     {% include "app/header.html" %}
     <div class="content center-block">
-        <!--侧边栏 -->
+        <div class="col-main">
+            <div class="main-wrap">
+                <div class="info">
+                    <!--标题-->
+                    <div class="info-head">
+                        <p>
+                            <span class="head-text">账单明细</span>/
+                            <span class="for-head-text">bill detail</span>
+                        </p>
+                    </div>
+                    <!--账单内容-->
+                    <div class="content">
+                        <ul class="personal-account">
+                            <li class="balance">可用余额：<span class="text">￥100.00</span></li>
+                            <li class="account-status">账户状态：<span class="text">有效</span></li>
+                        </ul>
+                        <div class="transaction-time">
+                            <label class="text">交易时间：</label>
+                            <select class="time-select">
+                                <option value="0">今天</option>
+                                <option value="1">最近一周</option>
+                                <option value="2">最近一个月</option>
+                                <option value="3">最近三个月</option>
+                                <option value="4">最近半年</option>
+                            </select>
+                        </div>
+                        <div class="account-table">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>创建时间</th>
+                                    <th>账单操作详情</th>
+                                    <th>消费/退款金额</th>
+                                    <th>账户余额</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>2017-3-27 12:00</td>
+                                    <td>消费</td>
+                                    <td>-20.00</td>
+                                    <td>120</td>
+                                </tr>
+                                <tr>
+                                    <td>2017-3-27 12:01</td>
+                                    <td>消费</td>
+                                    <td>-20.00</td>
+                                    <td>140</td>
+                                </tr>
+                                <tr>
+                                    <td>2017-3-27 12:02</td>
+                                    <td>退款至账户</td>
+                                    <td>+20.00</td>
+                                    <td>120</td>
+                                </tr>
+                                <tr>
+                                    <td>2017-3-27 12:03</td>
+                                    <td>消费</td>
+                                    <td>-20.00</td>
+                                    <td>140</td>
+                                </tr>
+                                <tr>
+                                    <td>2017-3-27 12:04</td>
+                                    <td>退款至账户</td>
+                                    <td>+20.00</td>
+                                    <td>120</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% include "customer/aside.html" %}
     </div>
 {% endblock %}
 
 {% block js %}
+
 {% endblock %}
