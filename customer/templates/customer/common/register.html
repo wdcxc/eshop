@@ -56,8 +56,25 @@
                         <a v-on:click="updateCaptcha" id="change-code" style="position:relative;left:4.4rem"
                            href="javascript:void(0);">换张图</a>
                     </div>
-                    <input type="submit" value="立即注册" class="submit-btn">
+                    <input type="submit" value="立即注册" class="submit-btn" data-toggle="modal" data-target="#registerModal">
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                </div>
+                <div class="modal-body">
+                    注册成功，经过2s之后将自动跳转到登陆页面
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+                </div>
             </div>
         </div>
     </div>
@@ -67,18 +84,4 @@
     <script src="{% static "js/js.cookie.js" %}"></script>
     <script src="{% static "js/customer/register.js" %}"></script>
     <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
-    <script src="{% static "lib/layer/layer.js" %}"></script>
-    <script>
-        $('.submit-btn').on('click',function(){
-            layer.open({
-                type: 1,
-                area: ['15rem', '7.5rem'],
-                shadeClose: true, //点击遮罩关闭
-                content: '' +
-                '<div style="padding-top:1.4rem;font-size:.8rem;text-align:center;line-height:1.2rem">恭喜你，注册成功!' +
-                '<br/>2秒后将自动跳转到登录页面</div>'
-            });
-            setTimeout("window.location='login'",2000);
-        });
-    </script>
 {% endblock %}
