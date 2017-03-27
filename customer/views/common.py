@@ -49,7 +49,7 @@ class CommonView(BaseView):
     def register(self, request):
         pass
 
-    def forgetPwd(self, request):
+    def forgetpwd(self, request):
         pass
 
     @valifyCaptcha(errcode=401)

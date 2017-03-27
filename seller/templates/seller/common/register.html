@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}eshop-顾客注册{% endblock %}
+{% block title %}eshop-商家注册{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
 {% endblock %}
@@ -8,10 +8,10 @@
     <div class="wrapper bg-white">
         <div id="logo">
             <a href="index">eshop</a>
-            <span>顾客注册</span>
+            <span>商家注册</span>
         </div>
         <div class="logo-right">
-            已有账号？<a href="{% url 'customer:login' %}">请登录</a>
+            已有账号？<a href="{% url 'seller:login' %}">请登录</a>
         </div>
     </div>
     <div class="wrapper-bottom"></div>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-item">
                         <span class="form-item-name">验证码</span>
-                        <input v-model="customer.captchaCode" name="verify-code" id="verify-code" autocomplete="off" maxlength="4" placeholder="请输入验证码"
+                        <input v-model="seller.captchaCode" name="verify-code" id="verify-code" autocomplete="off" maxlength="4" placeholder="请输入验证码"
                                type="text" class="input-box" style="width:8rem;margin-right:.3rem">
                         <a v-on:click="updateCaptcha" style="position: absolute" href="javascript:void(0);">
                             <img v-bind:src="captcha.imageUrl" class="img-code" title="点击更换验证码" alt="点击更换验证码"
@@ -82,5 +82,5 @@
 
 {% block js %}
     <script src="{% static "js/js.cookie.js" %}"></script>
-    <script src="{% static "js/customer/register.js" %}"></script>
+    <script src="{% static "js/seller/register.js" %}"></script>
 {% endblock %}

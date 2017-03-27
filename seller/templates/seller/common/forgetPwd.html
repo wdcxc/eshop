@@ -11,7 +11,7 @@
             <span>重置密码</span>
         </div>
         <div class="logo-right">
-            <a href="{% url 'customer:login' %}">回到登录页面</a>
+            <a href="{% url 'seller:login' %}">回到登录页面</a>
         </div>
     </div>
     <div class="wrapper-bottom"></div>
@@ -55,5 +55,5 @@
 
 {% block js %}
     <script src="{% static "js/js.cookie.js" %}"></script>
-    <script src="{% static "js/customer/forgetpwd.js" %}"></script>
+    <script src="{% static "js/seller/forgetpwd.js" %}"></script>
 {% endblock %}
