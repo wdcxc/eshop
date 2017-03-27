@@ -40,7 +40,7 @@ class CommonView(BaseView):
     def refundapply(self, request):
         pass
 
-    def orderinfo(self, request):
+    def goodsevaluate(self, request):
         pass
 
     def login(self, request):

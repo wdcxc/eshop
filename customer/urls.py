@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^common/message', CommonView.as_view(), name="opinion"),
     url(r'^common/bill', CommonView.as_view(), name="bill"),
     url(r'^common/refundapply', CommonView.as_view(), name="refundapply"),
-    url(r'^common/orderinfo', CommonView.as_view(), name="orderinfo"),
+    url(r'^common/goodsevaluate', CommonView.as_view(), name="goodsevaluate"),
 ]

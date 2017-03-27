@@ -1,10 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% load static %}
+{% block title %}评价商品{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/aside.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/goodsevaluate.css' %}">
+{% endblock %}
+{% block body %}
+    {% include "app/header.html" %}
+    <div class="content center-block">
+        <div class="col-main">
+            <div class="main-wrap">
+                <div class="info" style="float: left">
+                    <!--标题-->
+                    <div class="info-head">
+                        <p>
+                            <span class="head-text">评价商品</span>/
+                            <span class="for-head-text">goods evaluate</span>
+                        </p>
+                    </div>
+                    <!--评价内容-->
+                    <div class="content">
+                        <form>
+                            <div class="form-group commodity-evaluate">
+                                <div class="col-md-2 commodity">
+                                    <div class="commodity-pic">
+                                        <img src="{% static "images/customer/kouhong-big.jpg" %}" alt="商品图片">
+                                    </div>
+                                    <ul class="commodity-detail">
+                                        <li class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</li>
+                                        <li class="commodity-attribute">颜色：啫喱红</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-8 evaluate">
+                                    <ul class="evaluate-list">
+                                        <li class="good-evaluate col-md-4 text-center">
+                                            <span>好评</span>
+                                            <input type="text" value="好评" class="hidden"/>
+                                        </li>
+                                        <li class="middle-evaluate col-md-4 text-center">
+                                            <span>中评</span>
+                                            <input type="text" value="中评" class="hidden"/>
+                                        </li>
+                                        <li class="bad-evaluate col-md-4 text-center">
+                                            <span>差评</span>
+                                            <input type="text" value="差评" class="hidden"/>
+                                        </li>
+                                    </ul>
+                                    <textarea class="evaluate-text" rows="7"
+                                              placeholder="请写下您对宝贝的评价，对别人帮助很大的哦"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group commodity-evaluate">
+                                <div class="col-md-2 commodity">
+                                    <div class="commodity-pic">
+                                        <img src="{% static "images/customer/kouhong-big.jpg" %}" alt="商品图片">
+                                    </div>
+                                    <ul class="commodity-detail">
+                                        <li class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</li>
+                                        <li class="commodity-attribute">颜色：啫喱红</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-8 evaluate">
+                                    <ul class="evaluate-list">
+                                        <li class="good-evaluate col-md-4 text-center">
+                                            <span>好评</span>
+                                            <input type="text" value="好评" class="hidden"/>
+                                        </li>
+                                        <li class="middle-evaluate col-md-4 text-center">
+                                            <span>中评</span>
+                                            <input type="text" value="中评" class="hidden"/>
+                                        </li>
+                                        <li class="bad-evaluate col-md-4 text-center">
+                                            <span>差评</span>
+                                            <input type="text" value="差评" class="hidden"/>
+                                        </li>
+                                    </ul>
+                                    <textarea class="evaluate-text" rows="7"
+                                              placeholder="请写下您对宝贝的评价，对别人帮助很大的哦"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <a class="btn btn-default submit-btn" data-toggle="modal" data-target="#submitModal">提交评价</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% include "customer/aside.html" %}
+    </div>
+    <!--提交申请模态框-->
+    <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                </div>
+                <div class="modal-body">
+                    您的评价已经提交，欢迎您继续购买
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static "js/customer/goodsevaluate.js" %}"></script>
+{% endblock %}
