@@ -14,4 +14,7 @@ urlpatterns = [
     url(r'^common/valifyCaptcha$', CommonView.as_view(), name="valifyCaptcha"),
     url(r'^common/index$', CommonView.as_view(), name="index"),
     url(r'^common/login', CommonView.as_view(), name="login"),
+    url(r'^common/consult', CommonView.as_view(), name="consult"),
+    url(r'^common/opinion', CommonView.as_view(), name="opinion"),
+    url(r'^common/verify', CommonView.as_view(), name="verify"),
 ]

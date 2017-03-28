@@ -1,0 +1,33 @@
+.question-type,.opinion-type,.description-text,.reply-text{
+    margin-bottom: .8rem;
+    font-weight: inherit;
+}
+.question-text,.opinion-text,.description{
+    font-size: .7rem;
+    color: red;
+    margin-bottom: 0;
+}
+.submit-btn{
+    margin-left: 9.5rem;
+    margin-top: .6rem;
+    background-color: red;
+    color: #fff;
+    width: 7rem;
+    text-decoration: none;
+}
+.submit-btn:hover{
+    color: #fff;
+}
+.reply-content form{
+    padding: 1rem 0;
+    margin: 1rem;
+    border: 1px solid #eee;
+}
+.reply-content{
+    position: relative;
+    margin-bottom: 5rem;
+}
+nav{
+    position: absolute;
+    right: 1rem;
+}

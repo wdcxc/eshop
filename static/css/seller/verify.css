@@ -1,0 +1,46 @@
+.commodity-pic{
+    padding: 0;
+}
+.commodity-pic img{
+    width: 100%;
+}
+.commodity-name{
+    font-weight: bold;
+    font-size: .7rem;
+    margin-top: .2rem;
+}
+.commodity-attribute{
+    margin-top: .4rem;
+}
+.refund-order{
+    position: relative;
+}
+.order-detail{
+    position: absolute;
+    top: 4.2rem;
+    left: 1.5rem;
+}
+.order-detail li{
+    line-height: 1.4rem;
+}
+.order-detail li span{
+    margin-left: .5rem;
+}
+.refund-type{
+    color: red;
+    margin-bottom: 0;
+}
+.verify-content{
+    border: 1px solid #eee;
+    overflow: hidden;
+    margin: 1rem;
+    padding: 1rem;
+}
+.verify-wrapper{
+    position: relative;
+    margin-bottom: 5rem;
+}
+nav{
+    position: absolute;
+    right: 1rem;
+}
