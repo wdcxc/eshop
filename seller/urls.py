@@ -17,4 +17,6 @@ urlpatterns = [
     url(r'^common/consult', CommonView.as_view(), name="consult"),
     url(r'^common/opinion', CommonView.as_view(), name="opinion"),
     url(r'^common/verify', CommonView.as_view(), name="verify"),
+    url(r'^common/personalinfo', CommonView.as_view(), name="personalinfo"),
+    url(r'^common/shopinfo', CommonView.as_view(), name="shopinfo"),
 ]
