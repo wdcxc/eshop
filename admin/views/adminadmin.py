@@ -1,10 +1,11 @@
 import hashlib
 
+from admin.views.adminbaseview import AdminBaseView
 from models.admin import AdminModel, GroupModel, NodeModel
-from util.baseview import BaseView, loginRequire
+from util.baseview import loginRequire
 
 
-class AdminAdminView(BaseView):
+class AdminAdminView(AdminBaseView):
     @loginRequire()
     def adminIndex(self, request):
         """管理员管理首页"""

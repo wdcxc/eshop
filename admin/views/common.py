@@ -3,17 +3,18 @@ from datetime import datetime
 
 from django.urls import reverse
 
+from admin.views.adminbaseview import AdminBaseView
 from models.admin import AdminModel
-from util.baseview import BaseView, loginRequire, valifyCaptcha
+from util.baseview import loginRequire
+from util.baseview import valifyCaptcha
 
 
-class CommonView(BaseView):
+class CommonView(AdminBaseView):
     def login(self, request):
         pass
 
     @valifyCaptcha(errcode=412)
     def doLogin(self, request):
-        print(request.POST)
         """登录"""
         self.response_["type"] = self.RESPONSE_TYPE_JSON
         userKeys = ["username", "password"]
@@ -30,7 +31,6 @@ class CommonView(BaseView):
                                        "loginTime": str(loginUser.loginTime)}
             self.context = {"code": 200, "msg": "登陆成功", "data": {"username": loginUser.username}}
         except Exception as e:
-            print(e)
             self.context = {"code": 413, "msg": "用户名或密码错误", "data": {}}
 
     def logout(self, request):
@@ -41,4 +41,7 @@ class CommonView(BaseView):
 
     @loginRequire()
     def index(self, request):
+        pass
+
+    def forbidden(self,request):
         pass

@@ -1,8 +1,9 @@
+from admin.views.adminbaseview import AdminBaseView
 from models.productcategory import ProductCategoryModel
-from util.baseview import BaseView,loginRequire
+from util.baseview import loginRequire
 
 
-class ProductAdminView(BaseView):
+class ProductAdminView(AdminBaseView):
     @loginRequire()
     def index(self,request):
         pass
