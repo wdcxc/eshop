@@ -44,12 +44,13 @@ var loginForm = new Vue({
             this.$http.post('/customer/common/doLogin', that.customer, {"headers":{"X-CSRFToken":csrftoken}})
                 .then(response => {
                     if(response.body.code == 200){
-                        window.location.href = "/app/index";
+                        window.location.href = "/customer/common/index";
                     } else {
-                        this.infoMsg = response.body.msg;
+                        this.infoMsg.msg = response.body.msg;
+                        this.infoMsg.style = 'msg-error';
                     }
                 }, response => {
-                    alert(response);
+                    console.log(response);
                 });
         },
         valifyCaptcha: function(){

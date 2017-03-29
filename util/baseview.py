@@ -49,14 +49,14 @@ class BaseView(View):
         """验证码图像生成"""
         self.response_["type"] = "IMAGE"
         captcha = Captcha().geneCaptchaImage()
-        request.session["captchaCode"] = captcha["captchaCode"]
+        request.session["captchaCode"] = captcha["captchaCode"].lower()
         self.context["image"] = captcha["captchaImageBuff"]
 
     def valifyCaptcha(self, request):
         """验证码验证"""
         self.response_["type"] = BaseView.RESPONSE_TYPE_JSON
         captchaCode = request.POST.get("captchaCode", "").lower()
-        if captchaCode == request.session["captchaCode"]:
+        if "captchaCode" in request.session and captchaCode == request.session["captchaCode"]:
             self.context = {"code": 200, "msg": "验证码正确", "data": {"input": captchaCode}}
         else:
             self.context = {"code": 411, "msg": "验证码错误", "data": {"input": captchaCode}}

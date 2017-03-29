@@ -1,11 +1,12 @@
 from django.db import models
 
+from models.productcategory import ProductCategoryModel
 
-class Product(models.Model):
-    """商品"""
+class ProductModel(models.Model):
+    """商品模型"""
     name = models.CharField(max_length=100)  # 商品名称
-    category = models.ForeignKey('ProductCategoryModel', on_delete=models.SET_NULL, null=True,
-                                 related_name="category", related_query_name="products")  # 商品类别id
+    category = models.ForeignKey(ProductCategoryModel, on_delete=models.SET_NULL, null=True,
+                                 related_name="category")  # 商品类别id
     price = models.DecimalField()  # 商品价格
     brand = models.CharField(max_length=50)  # 商品品牌
     amount = models.DecimalField()  # 商品在售数量
