@@ -1,7 +1,7 @@
 <!--顶部导航条 -->
 <header class="nav-wrapper">
     <div class="nav-content">
-        <div class="nav-welcome">
+        <div class="nav-welcome hidden">
                 <span>欢迎来到eshop,请
                     <a href="{% url 'customer:login' %}" style="color: #ff2832">登录</a>
                     <a href="{% url 'customer:register' %}">成为会员</a>
@@ -11,7 +11,7 @@
             <li class="operation-item">
                 hi，
                 <a href="#" class="nav-user-name" style="color: #ff2832;margin-right: .2rem;">zihang1013</a>
-                <a href="#" rel="nofollow" class="logout">[退出]</a>
+                <a href="{% url 'customer:login' %}" rel="nofollow" class="logout">[退出]</a>
             </li>
             <li class="operation-item">
                 <a target="_blank" href="" name="购物车" rel="nofollow">
