@@ -18,13 +18,11 @@
                         <input type="file" class="input-pic">
                         <img class="user-pic" src="{% static "images/customer/user-head.jpg" %}" alt="用户头像">
                     </div>
-                    <p class="user-detail">
-                        <span class="user-name">用户名：zihang1013</span>
-                        <span class="to-pay" style="margin-left: 2rem">待付款：<span class="badge">1</span></span>
-                        <span class="to-send-goods">待发货：<span class="badge">0</span></span>
-                        <span class="to-receice">待收货：<span class="badge">1</span></span>
-                        <span class="to-evaluate">待评价：<span class="badge">1</span></span>
-                    </p>
+                    <p class="user-name">用户名：zihang1013</p>
+                    <ul>
+                        <li>待付款：<span class="badge">1</span>待发货：<span class="badge">0</span></li>
+                        <li>待收货：<span class="badge">1</span>待评价：<span class="badge">1</span></li>
+                    </ul>
                 </div>
                 <!--订单-->
                 <div class="order-info">
@@ -33,20 +31,14 @@
                     </div>
                     <div class="order-content-box">
                         <div class="order-content">
-                            <div class="order-content-pic">
-                                <div class="img-box">
+                            <ul class="order-content-pic">
+                                <li class="img-box">
                                     <img src="{% static "images/customer/honey.jpg" %}" alt="订单商品图片">
-                                </div>
-                            </div>
+                                </li>
+                            </ul>
                             <div class="detail-content">
-                                <p>
-                                    <span class="delivery-time">2017-3-23</span>
-                                    <span class="split-bar">|</span>
-                                    <span class="delivery-time">21:52:47</span>
-                                </p>
-                                <p>
-                                    <span class="delivery-num">共一件商品</span>
-                                </p>
+                                <p class="delivery-time">2017-3-23 21:52:47</p>
+                                <p class="delivery-num">共一件商品</p>
                             </div>
                             <div class="evaluate">待评价</div>
                             <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>23.80</div>
@@ -55,20 +47,17 @@
                     </div>
                     <div class="order-content-box">
                         <div class="order-content">
-                            <div class="order-content-pic">
-                                <div class="img-box">
+                            <ul class="order-content-pic">
+                                <li class="img-box">
                                     <img src="{% static "images/customer/honey.jpg" %}" alt="订单商品图片">
-                                </div>
-                            </div>
+                                </li>
+                                <li class="img-box">
+                                    <img src="{% static "images/customer/kouhong-big.jpg" %}" alt="订单商品图片">
+                                </li>
+                            </ul>
                             <div class="detail-content">
-                                <p>
-                                    <span class="delivery-time">2017-3-23</span>
-                                    <span class="split-bar">|</span>
-                                    <span class="delivery-time">21:52:47</span>
-                                </p>
-                                <p>
-                                    <span class="delivery-num">共两件商品</span>
-                                </p>
+                                <p class="delivery-time">2017-3-23 21:52:47</p>
+                                <p class="delivery-num">共两件商品</p>
                             </div>
                             <div class="evaluate">待发货</div>
                             <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>47.60</div>

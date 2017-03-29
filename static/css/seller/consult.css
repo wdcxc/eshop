@@ -1,8 +1,8 @@
-.question-type,.opinion-type,.description-text,.reply-text{
+.question-type,.opinion-type,.description-text,.reply-text,.customer-name,.time{
     margin-bottom: .8rem;
     font-weight: inherit;
 }
-.question-text,.opinion-text,.description{
+.question-text,.opinion-text,.description,.customer-name-text,.time-text{
     font-size: .7rem;
     color: red;
     margin-bottom: 0;
