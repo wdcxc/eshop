@@ -1,6 +1,6 @@
 import hashlib
 
-from models.seller import Seller
+from models.seller import SellerModel
 from util.baseview import BaseView,valifyCaptcha
 from util.regex import Regex
 

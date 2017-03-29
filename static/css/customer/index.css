@@ -79,22 +79,21 @@
 }
 .order-content-box{
     position: relative;
-    height: 6rem;
+    overflow: hidden;
     border-top: 1px solid #e7e7e7;
-    margin: 0 1rem;
+    margin: 0 1rem 1rem;
 }
 .order-content{
     width: 85%;
-    height: 4.5rem;
     margin-top: 1rem;
 }
 .order-content-pic{
     width: 24%;
-    height: 4.5rem;
     padding: .2rem;
     float: left;
 }
 .img-box{
+    float: left;
     width: 3.6rem;
     height: 3.6rem;
     padding-top: .3rem;
@@ -161,7 +160,7 @@
     color: #fd6d37;
     text-align: center;
 }
-.buy-btn:hover{
+.buy-btn:hover,.buy-btn:active{
     color: #fd6d37;
     text-decoration: none;
 }

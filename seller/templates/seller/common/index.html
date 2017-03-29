@@ -12,7 +12,184 @@
     <div class="content center-block">
         <div class="col-main">
             <div class="main-wrap">
-
+                <!--商家信息-->
+                <div class="user-info">
+                    <div class="file-pic">
+                        <input type="file" class="input-pic">
+                        <img class="user-pic" src="{% static "images/customer/user-head.jpg" %}" alt="用户头像">
+                    </div>
+                    <p class="user-name">用户名：zihang1013</p>
+                    <ul>
+                        <li>店铺名：津津美食<span class="tip">(默认店铺)</span></li>
+                        <li>店铺地址：华南师范大学西区5号</li>
+                    </ul>
+                </div>
+                <!--订单-->
+                <div class="order-info">
+                    <div class="info-bar">
+                        最新订单<a href="order" class="all-order pull-right">全部订单</a>
+                    </div>
+                    <div class="order-content-box">
+                        <div class="order-content">
+                            <ul class="order-content-pic">
+                                <li class="img-box">
+                                    <img src="{% static "images/customer/honey.jpg" %}" alt="订单商品图片">
+                                </li>
+                            </ul>
+                            <div class="detail-content">
+                                <p class="delivery-time">2017-3-23 21:52:47</p>
+                                <p class="delivery-num">共一件商品</p>
+                            </div>
+                            <div class="evaluate">买家已付款</div>
+                            <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>23.80</div>
+                        </div>
+                        <a href="#" class="buy-btn">立即发货</a>
+                    </div>
+                    <div class="order-content-box">
+                        <div class="order-content">
+                            <ul class="order-content-pic">
+                                <li class="img-box">
+                                    <img src="{% static "images/customer/honey.jpg" %}" alt="订单商品图片">
+                                </li>
+                                <li class="img-box">
+                                    <img src="{% static "images/customer/kouhong-big.jpg" %}" alt="订单商品图片">
+                                </li>
+                            </ul>
+                            <div class="detail-content">
+                                <p class="delivery-time">2017-3-23 21:52:47</p>
+                                <p class="delivery-num">共两件商品</p>
+                            </div>
+                            <div class="evaluate">买家已付款</div>
+                            <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>47.60</div>
+                        </div>
+                        <a href="#" class="buy-btn">立即发货</a>
+                    </div>
+                </div>
+                <!--我的消息-->
+                <div class="my-message">
+                    <div class="info-bar" style="border-bottom: 1px solid #eee">我的消息</div>
+                    <div class="message-group">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion"
+                                           href="#collapseOne">
+                                            退款申请
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>时间</th>
+                                                <th>买家名</th>
+                                                <th>订单号</th>
+                                                <th>退款原因</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>2017-3-27 12:00</td>
+                                                <td>zihang1013</td>
+                                                <td>00001</td>
+                                                <td>与说明不符</td>
+                                                <td><a href="verify">去退款审核页面审核</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2017-3-27 12:00</td>
+                                                <td>zihang1013</td>
+                                                <td>00001</td>
+                                                <td>与说明不符</td>
+                                                <td><a href="verify">去退款审核页面审核</a></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion"
+                                           href="#collapseTwo">
+                                            咨询回复
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>时间</th>
+                                                <th>买家名</th>
+                                                <th>咨询内容</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>2017-3-27 12:00</td>
+                                                <td>zihang1013</td>
+                                                <td>寄过来的零食过了保质期,打开之后发现产品变质了</td>
+                                                <td><a href="consult">去咨询回复页面回复</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2017-3-27 12:00</td>
+                                                <td>zihang1013</td>
+                                                <td>寄过来的零食过了保质期,打开之后发现产品变质了</td>
+                                                <td><a href="consult">去咨询回复页面回复</a></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion"
+                                           href="#collapseThree">
+                                            意见回复
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>时间</th>
+                                                <th>买家名</th>
+                                                <th>意见内容</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>2017-3-27 12:00</td>
+                                                <td>zihang1013</td>
+                                                <td>商家的服务态度很好，发货也很快，赞一个</td>
+                                                <td><a href="opinion">去意见回复页面回复</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2017-3-27 12:00</td>
+                                                <td>zihang1013</td>
+                                                <td>商家的服务态度很好，发货也很快，赞一个</td>
+                                                <td><a href="opinion">去意见回复页面回复</a></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     {% include "seller/aside.html" %}
