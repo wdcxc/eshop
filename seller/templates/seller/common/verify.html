@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}退款申请审核{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/seller/aside.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/seller/verify.css' %}">
+{% endblock %}
+{% block body %}
+    {% include "app/header.html" %}
+    <div class="content center-block">
+        <div class="col-main">
+            <div class="main-wrap">
+                <div class="info">
+                    <!--标题-->
+                    <div class="info-head">
+                        <p>
+                            <span class="head-text">退款申请审核</span>/
+                            <span class="for-head-text">refund verify</span>
+                        </p>
+                    </div>
+                    <!--审核内容-->
+                    <div class="content">
+                        <div class="verify-wrapper">
+                            <div class="verify-content">
+                                <div class="col-md-4 refund-order">
+                                    <div class="col-md-3 commodity-pic">
+                                        <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
+                                    </div>
+                                    <ul class="col-md-9 commodity-detail">
+                                        <li class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</li>
+                                        <li class="commodity-attribute">颜色：啫喱红</li>
+                                    </ul>
+                                    <ul class="order-detail">
+                                        <li>订单编号：<span class="order-num">00001</span></li>
+                                        <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：<span
+                                                class="price">19.80</span></li>
+                                        <li>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span class="num">2</span></li>
+                                        <li>总&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计：<span
+                                                class="total-price">39.6</span></li>
+                                        <li>成交时间：<span class="order-time">2017-3-26 19:00</span></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-7 refund-detail">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="type" class="col-sm-2 control-label">退款类型</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="type"
+                                                       value="退款/退货" disabled="disabled">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reason" class="col-sm-2 control-label">退款原因</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="reason"
+                                                       value="与说明不符" disabled="disabled">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="price" class="col-sm-2 control-label">退款金额</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="price"
+                                                       value="19.80" disabled="disabled">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="explain" class="col-sm-2 control-label">退款说明</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" rows="4" disabled="disabled">我买的是啫喱红，送过来的是橙色</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="verify" class="col-sm-2 control-label">审核情况</label>
+                                            <div class="col-md-10">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="accessRefund"
+                                                           value="0"> 接受退款
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="noAccessRefund"
+                                                           value="1"> 不接受退款
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-6 col-sm-10">
+                                                <a class="btn btn-default" data-toggle="modal"
+                                                   data-target="#submitModal">提交审核</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="verify-content">
+                                <div class="col-md-4 refund-order">
+                                    <div class="col-md-3 commodity-pic">
+                                        <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
+                                    </div>
+                                    <ul class="col-md-9 commodity-detail">
+                                        <li class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</li>
+                                        <li class="commodity-attribute">颜色：啫喱红</li>
+                                    </ul>
+                                    <ul class="order-detail">
+                                        <li>订单编号：<span class="order-num">00001</span></li>
+                                        <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：<span
+                                                class="price">19.80</span></li>
+                                        <li>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span class="num">2</span></li>
+                                        <li>总&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计：<span
+                                                class="total-price">39.6</span></li>
+                                        <li>成交时间：<span class="order-time">2017-3-26 19:00</span></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-7 refund-detail">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="type" class="col-sm-2 control-label">退款类型</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="type"
+                                                       value="退款/退货" disabled="disabled">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reason" class="col-sm-2 control-label">退款原因</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="reason"
+                                                       value="与说明不符" disabled="disabled">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="price" class="col-sm-2 control-label">退款金额</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="price"
+                                                       value="19.80" disabled="disabled">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="explain" class="col-sm-2 control-label">退款说明</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" rows="4" disabled="disabled">我买的是啫喱红，送过来的是橙色</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="verify" class="col-sm-2 control-label">审核情况</label>
+                                            <div class="col-md-10">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="accessRefund"
+                                                           value="0"> 接受退款
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="noAccessRefund"
+                                                           value="1"> 不接受退款
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-6 col-sm-10">
+                                                <a class="btn btn-default" data-toggle="modal"
+                                                   data-target="#submitModal">提交审核</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% include "seller/aside.html" %}
+    </div>
+    <!--提交模态框-->
+    <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                </div>
+                <div class="modal-body">
+                    退款申请审核提交成功
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% load static %}
-{% block title %}个人信息{% endblock %}
+{% block title %}商家个人信息{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/aside.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/information.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/seller/aside.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/seller/personalinfo.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css' %}">
 {% endblock %}
 {% block body %}
@@ -17,7 +17,7 @@
                     <!--标题-->
                     <div class="info-head">
                         <p>
-                            <span class="head-text">个人资料</span>/
+                            <span class="head-text">个人信息</span>/
                             <span class="for-head-text">personal information</span>
                         </p>
                     </div>
@@ -95,7 +95,7 @@
                 </div>
             </div>
         </div>
-    {% include "customer/aside.html" %}
+    {% include "seller/aside.html" %}
     </div>
     <!--保存成功/失败模态框-->
     <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

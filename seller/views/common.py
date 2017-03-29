@@ -18,6 +18,24 @@ class CommonView(BaseView):
     def forgetpwd(self, request):
         pass
 
+    def consult(self, request):
+        pass
+
+    def opinion(self, request):
+        pass
+
+    def verify(self, request):
+        pass
+
+    def personalinfo(self, request):
+        pass
+
+    def shopinfo(self, request):
+        pass
+
+    def order(self, request):
+        pass
+
     @valifyCaptcha(errcode=401)
     def doLogin(self, request):
         self.response_["type"] = BaseView.RESPONSE_TYPE_JSON

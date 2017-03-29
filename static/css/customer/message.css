@@ -17,16 +17,16 @@
     border: #F5F5F5 .1rem solid;
 }
 .table-content{
-    height: 5rem;
+    height: 6rem;
     width: 100%;
     padding: .5rem;
 }
-.consult-time,.reply-time,.opinion-time,.question-type,.opinion-type{
+.consult-time,.reply-time,.opinion-time,.question-type,.opinion-type,.refund-time,.refund-type{
     line-height: 4rem;
 }
-.question-detail,.opinion-detail,.reply-content{
+.question-detail,.opinion-detail,.refund-detail,.reply-content{
     overflow: hidden;
-    padding-top: 1rem;
+    padding-top: 1.5rem;
 }
 .table nav{
     position: absolute;
@@ -35,4 +35,7 @@
 }
 .table-header{
     margin-top: 1.2rem;
+}
+.address{
+    color: #fd6d37;
 }
