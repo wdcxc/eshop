@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Customer',
+            name='CustomerModel',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('username', models.CharField(max_length=30, unique=True)),
