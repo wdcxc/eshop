@@ -2,7 +2,7 @@ from django.conf.urls import url
 
 from app.views.common import CommonView
 
-app_name = "appadmin"
+app_name = "app"
 
 # common
 urlpatterns = [

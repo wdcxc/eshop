@@ -1,0 +1,64 @@
+.nav-wrapper{
+    width: 100%;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #f2f2f2;
+    height: 1.7rem;
+    line-height: 1.7rem;
+    position: relative;
+}
+.logout:hover{
+    color: #ff2832;
+}
+.nav-content{
+    color: #666;
+    width: 60rem;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    height: 1.7rem;
+    font-size:.6rem;
+}
+.nav-content a{
+    text-decoration: none;
+    margin-right: 5px;
+    color: #666;
+}
+.nav-welcome{
+    padding: 5px 0 0 10px;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    position: relative;
+    float: left;
+}
+.nav-operation{
+    float: right;
+    padding-top: 2px;
+}
+.operation-item{
+    float: left;
+    position: relative;
+    height: 1.1rem;
+    line-height: 1.1rem;
+    padding: .2rem .5rem 0 .5rem;
+}
+.dropdown-menu{
+    font-size: .6rem;
+    min-width: 0;
+    padding: 5px;
+}
+.goods-number{
+    color:#ff2832;
+}
+.logo-wrapper{
+    overflow: hidden;
+    max-width: 60rem;
+    margin: 0 auto;
+}
+#logo{
+    width: 5.6rem;
+}
+.logo-text{
+    float: left;
+    margin: 1.7rem 0 0 1rem;
+    font-size: 1.2rem;
+    color: red;
+}

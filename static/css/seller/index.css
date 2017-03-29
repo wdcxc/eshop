@@ -186,3 +186,13 @@
     color: red;
     text-decoration: none;
 }
+.no-order{
+    width: 100%;
+    height: 11rem;
+    background: url(../../images/customer/monkey.jpg) no-repeat 50% 20%;
+}
+.no-order-text{
+    text-align: center;
+    color: #969696;
+    padding: 9rem;
+}
