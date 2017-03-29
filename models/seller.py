@@ -10,7 +10,8 @@ class SellerModel(models.Model):
     mobile = models.CharField(max_length=11, unique=True, null=True) # 手机
     email = models.CharField(max_length=30, unique=True, null=True) # 邮箱
     realname = models.CharField(max_length=30) # 真实姓名
-    id = models.CharField(max_length=20,unique=True) # 身份证号码
+    idno = models.CharField(max_length=20,unique=True) # 身份证号码
+    registTime = models.DateTimeField(auto_now_add=True) # 注册时间
 
     class Meta:
         db_table = "seller"
