@@ -1,14 +1,14 @@
 .user-info{
     width: 100%;
     position: relative;
-    height: 6.5rem;
-    border: 1px solid #eee;
+    height: 8.4rem;
+    background: url("../../images/customer/user_message_bg.png") no-repeat;
 }
 .file-pic{
     width: 5rem;
     float: left;
-    margin-left: 2rem;
-    margin-top: 1rem;
+    margin-left: 2.5rem;
+    margin-top: 1.5rem;
     position: relative;
     text-align: center;
 }
@@ -33,23 +33,26 @@
     border-radius: 50%;
     transition: all 0.2s ease-in-out;
 }
-.user-detail{
-    float: left;
-    overflow: hidden;
+.user-name{
     line-height: 1.2rem;
     position: absolute;
-    left: 3rem;
+    left: 8rem;
+    top: 3.5rem;
+    margin-left: 6rem;
+    font-size: .8rem;
+    color: #666;
+}
+.user-info ul{
+    line-height: 1.5rem;
+    position: absolute;
+    right: 6rem;
     top: 2.5rem;
     margin-left: 6rem;
     font-size: .8rem;
     color: #666;
 }
-.user-detail>span{
-    margin-left: 1rem;
-}
-.user-detail-num{
-    color: #fd6d37;
-    font-size: .8rem;
+.user-info ul li span{
+    margin-right: 1rem;
 }
 .order-info{
     margin-bottom: .8rem;
