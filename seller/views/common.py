@@ -33,6 +33,9 @@ class CommonView(BaseView):
     def shopinfo(self, request):
         pass
 
+    def order(self, request):
+        pass
+
     @valifyCaptcha(errcode=401)
     def doLogin(self, request):
         self.response_["type"] = BaseView.RESPONSE_TYPE_JSON
