@@ -36,12 +36,12 @@ urlpatterns += [
     url(r'^adminadmin/updateNode$', AdminAdminView.as_view(), name="adminAdminUpdateNode"),
 ]
 
-# customeradmin 顾客管理
+# customeradmin 买家管理
 urlpatterns += [
     url(r'^customeradmin/index$', CustomerAdminView.as_view(), name="customerAdminIndex"),
 ]
 
-# seller 商家管理
+# seller 卖家管理
 urlpatterns += [
     url(r'^selleradmin/index$', SellerAdminView.as_view(), name="sellerAdminIndex"),
 ]
@@ -82,5 +82,8 @@ urlpatterns += [
     url(r'^productadmin/addCategory$', ProductAdminView.as_view(), name="productAdminAddCategory"),
     url(r'^productadmin/updateCategory$', ProductAdminView.as_view(), name="productAdminUpdateCategory"),
     url(r'^productadmin/deleteCategory$', ProductAdminView.as_view(), name="productAdminDeleteCategory"),
-    url(r'^productadmin/tag$', ProductAdminView.as_view(), name="productAdminTag"),  # 商品标签管理
+    url(r'^productadmin/property$', ProductAdminView.as_view(), name="productAdminProperty"),  # 商品属性管理
+    url(r'^productadmin/addProperty$', ProductAdminView.as_view(), name="productAdminAddProperty"),
+    url(r'^productadmin/updateProperty$', ProductAdminView.as_view(), name="productAdminUpdateProperty"),
+    url(r'^productadmin/deleteProperty$', ProductAdminView.as_view(), name="productAdminDeleteProperty"),
 ]

@@ -24,7 +24,10 @@ SECRET_KEY = '^5-82yth*z_^*l4&09*$c#4sbuj_)e3s+_+a2&e+6ptk+w#8mh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'www.eshop.com',
+]
 
 # Application definition
 
