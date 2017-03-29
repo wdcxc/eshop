@@ -21,7 +21,7 @@ class Regex(object):
         return True
 
     def validateEmail(self,email):
-        pattern = "[0-9a-zA-Z\.]{3,30}"
+        pattern = "[0-9a-zA-Z\.]*@[0-9a-zA-Z\.]"
         if re.match(pattern,email) is None:
             return False
         return True

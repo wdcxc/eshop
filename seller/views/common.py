@@ -1,7 +1,6 @@
 import hashlib
 
-from models.seller import SellerModel
-from util.baseview import BaseView,valifyCaptcha
+from util.baseview import BaseView, valifyCaptcha
 from util.regex import Regex
 
 
@@ -36,9 +35,6 @@ class CommonView(BaseView):
     def order(self, request):
         pass
 
-    def goodslist(self, request):
-        pass
-
     @valifyCaptcha(errcode=401)
     def doLogin(self, request):
         self.response_["type"] = BaseView.RESPONSE_TYPE_JSON
@@ -50,11 +46,11 @@ class CommonView(BaseView):
         # 账号密码验证
         seller["password"] = hashlib.sha512(seller["password"].encode("utf-8")).hexdigest()
         username_num = Seller.objects.filter(username__exact=seller["account"],
-                                               password__exact=seller["password"]).count()
-        mobile_num = Seller.objects.filter(mobile__exact=seller["account"],
                                              password__exact=seller["password"]).count()
+        mobile_num = Seller.objects.filter(mobile__exact=seller["account"],
+                                           password__exact=seller["password"]).count()
         email_num = Seller.objects.filter(email__exact=seller["account"],
-                                            password__exact=seller["password"]).count()
+                                          password__exact=seller["password"]).count()
         if username_num + mobile_num + email_num == 3:
             del request.session["captchaCode"]
             self.context = {"code": 200, "msg": "登录成功", "data": {}}
@@ -90,9 +86,9 @@ class CommonView(BaseView):
             else:
                 # 插入新数据
                 seller = Seller(username=seller["username"],
-                                    password=hashlib.sha512(seller["password"]).hexdigest(),
-                                    mobile=seller["mobile"],
-                                    email=seller["email"])
+                                password=hashlib.sha512(seller["password"]).hexdigest(),
+                                mobile=seller["mobile"],
+                                email=seller["email"])
                 seller.save()
                 del request.session["captchaCode"]
                 self.context = {"code": 200, "msg": "注册成功", "data": {}}

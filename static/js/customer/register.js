@@ -4,34 +4,42 @@
 var csrftoken = Cookies.get("csrftoken");
 var captchaUrl = "/customer/common/generateCaptcha/";
 
-registerForm = new Vue({
-    el: "#registerForm",
+customerForm = new Vue({
+    el: "#customerForm",
     data: {
         customer: {
-            captchaCode: '',
+            name:"",
+            password:"",
+            email:"",
+            mobile:"",
+            captchaCode:"",
         },
         captcha: {
-            imageUrl: captchaUrl
-        }
+            imageUrl: captchaUrl,
+        },
     },
     methods: {
         updateCaptcha: function () {
             this.captcha.imageUrl = captchaUrl + Math.random();
             return false;
         },
-        doRegister: function () {
+        registCustomer: function () {
             var that = this;
-            this.$http.post("/customer/common/doRegister", that.customer, {"headers": {"X-CSRFToken": csrftoken}}).then(response=> {
-                if(response.body.code == 200){
-                    //todo
+            this.$http.post("/customer/common/doRegister", that.customer, {"headers": {"X-CSRFToken": csrftoken}}).then(success=> {
+                $("#modalInfo").html(success.body.msg);
+                $("#registerModal").modal("toggle");
+                if(success.body.code == 200){
+                    setTimeout(function(){
+                        window.location.href = "/customer/common/login";
+                    },2000);
                 }else{
-
+                    that.updateCaptcha();
                 }
 
             }, responser=> {
-                console.log(response.body)
+                console.log(response.body.msg)
             });
 
-        }
+        },
     }
 });

@@ -50,7 +50,7 @@ class Captcha(object):
         captchaImageBuff = io.BytesIO()
         image.save(captchaImageBuff, "png")
 
-        return {"captchaImageBuff": captchaImageBuff.getvalue(), "captchaCode": ''.join(captchaCode).lower()}
+        return {"captchaImageBuff": captchaImageBuff.getvalue(), "captchaCode": ''.join(captchaCode)}
 
     def _randomColor(self, rangeLow, rangeHigh):
         return (
