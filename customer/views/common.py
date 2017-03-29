@@ -1,8 +1,7 @@
 # coding:utf-8
 import hashlib
 
-from models.customer import Customer
-from util.baseview import BaseView,valifyCaptcha
+from util.baseview import BaseView, valifyCaptcha
 from util.regex import Regex
 
 
@@ -109,5 +108,3 @@ class CommonView(BaseView):
                 customer.save()
                 del request.session["captchaCode"]
                 self.context = {"code": 200, "msg": "注册成功", "data": {}}
-
-
