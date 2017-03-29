@@ -70,7 +70,10 @@
                     <div class="info-head text-center">
                         <span class="glyphicon glyphicon-heart" aria-hidden="true" style="margin-right: .2rem"></span>收藏
                     </div>
-                    <ul class="collection-list">
+                    <div class="no-collection">
+                        <p class="no-collection-text">您暂时没有收藏的商品，到首页<a href="#">逛逛去</a></p>
+                    </div>
+                    <ul class="collection-list hidden">
                         <li class="list-item col-md-2">
                             <a href="">
                                 <img src="{% static "images/customer/honey.jpg" %}" alt="收藏商品图片">
@@ -107,7 +110,7 @@
                             <p class="goods-name">【米兹莱】新西兰进口多种花香蜂蜜205g</p>
                         </li>
                     </ul>
-                    <nav aria-label="Page navigation" class="collection-nav">
+                    <nav aria-label="Page navigation" class="collection-nav hidden">
                         <ul class="pagination">
                             <li>
                                 <a href="#" aria-label="Previous">

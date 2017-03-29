@@ -203,6 +203,21 @@
 .collection-nav ul li a{
     color: #666;
 }
-
+.no-collection{
+    position: relative;
+    width: 100%;
+    height: 11rem;
+    background: url(../../images/customer/monkey.jpg) no-repeat 50% 20%;
+}
+.no-collection-text{
+    position: absolute;
+    bottom: 1rem;
+    left: 38%;
+    color: #969696;
+}
+.no-collection-text a{
+    color: red;
+    text-decoration: none;
+}
 
 

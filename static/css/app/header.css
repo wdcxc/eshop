@@ -6,6 +6,9 @@
     line-height: 1.7rem;
     position: relative;
 }
+.logout:hover{
+    color: #ff2832;
+}
 .nav-content{
     color: #666;
     width: 60rem;
