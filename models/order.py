@@ -8,14 +8,14 @@ from models.seller import SellerModel
 class OrderModel(models.Model):
     """订单模型"""
 
-    UNPAY = 0x01
-    UNSEND = 0x02
-    UNRECEIVE = 0x03
-    UNEVALUATE = 0x04
-    FINISH = 0x05
-    CANCEL = 0x06
-    REFUND = 0x07
-    AC_REFUND = 0x08
+    UNPAY = 1
+    UNSEND = 2
+    UNRECEIVE = 3
+    UNEVALUATE = 4
+    FINISH = 5
+    CANCEL = 6
+    REFUND = 7
+    AC_REFUND = 8
     STATUS = (
         (UNPAY, 'unpay'), (UNSEND, 'unsend'), (UNRECEIVE, 'unreceive'), (UNEVALUATE, 'unevaluate'), (FINISH, 'finish'),
         (CANCEL, 'cancel'), (REFUND, 'refund'), (AC_REFUND, 'accept-refund'))

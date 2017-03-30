@@ -1,28 +1,50 @@
 # coding:utf-8
 import hashlib
 
+from customer.views.customerbaseview import CustomerBaseView
 from models.customer import CustomerModel
 from models.order import OrderModel
 from util.baseview import BaseView, valifyCaptcha, loginRequire
 from util.regex import Regex
 
 
-class CommonView(BaseView):
+class CommonView(CustomerBaseView):
     @loginRequire()
     def index(self, request):
         """买家首页"""
-        customer = CustomerModel.objects.get(id=request.session["user"]["id"])
-        self.context["customer"] = customer
+        customer = self.context["customer"]
+        # 订单
         orders = customer.orders.all().order_by("-addTime")
-        self.context["orders"] = orders
         self.context["unpayOrderNum"] = orders.filter(status=OrderModel.UNPAY).count()
         self.context["unsendOrderNum"] = orders.filter(status=OrderModel.UNSEND).count()
         self.context["unreceiveOrderNum"] = orders.filter(status=OrderModel.UNRECEIVE).count()
         self.context["unevaluateOrderNum"] = orders.filter(status=OrderModel.UNEVALUATE).count()
-        self.context["collections"] = customer.collections.all()
+        orders = orders[:2]
+        for order in orders:
+            products = order.products.all()
+            order.__dict__.update({"products": products, "totalPrice": 0, "productsNum": products.count()})
+            for product in products:
+                order.__dict__["totalPrice"] += product.sellPrice
+            orderStatusDict = {OrderModel.UNPAY: "待付款", OrderModel.UNSEND: "待发货", OrderModel.UNRECEIVE: "待收获",
+                               OrderModel.UNEVALUATE: "待评价"}
+            order.__dict__.update({"status": {"code": order.status, "text": orderStatusDict[order.status]}})
+        self.context["orders"] = [order.__dict__ for order in orders]
+        # 收藏
+        collections = customer.collections.all()[:5]
+        for collection in collections:
+            collection.__dict__.update({"product": collection.product})
+        self.context["collections"] = [collection.__dict__ for collection in collections]
 
     def information(self, request):
-        pass
+        """个人信息"""
+        if request.method == "GET":
+            pass
+        elif request.method == "POST":
+            keys = ("nickname","truename","email","mobile","birthday","avatar")
+            dict = {}
+            for key in keys:
+                dict[key] = request.POST.get(key)
+            print(dict)
 
     def address(self, request):
         pass

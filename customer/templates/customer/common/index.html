@@ -29,44 +29,32 @@
                     <div class="info-bar">
                         我的订单<a href="order" class="all-order pull-right">全部订单</a>
                     </div>
+                    {% if not orders %}
                     <div class="no-order">
                         <p class="no-order-text">您暂时没有订单</p>
                     </div>
-                    <div class="order-content-box hidden">
-                        <div class="order-content">
-                            <ul class="order-content-pic">
-                                <li class="img-box">
-                                    <img src="{% static "images/customer/honey.jpg" %}" alt="订单商品图片">
-                                </li>
-                            </ul>
-                            <div class="detail-content">
-                                <p class="delivery-time">2017-3-23 21:52:47</p>
-                                <p class="delivery-num">共一件商品</p>
+                    {% else %}
+                        {% for order in orders %}
+                        <div class="order-content-box hidden">
+                            <div class="order-content">
+                                <ul class="order-content-pic">
+                                    {% for product in order.products %}
+                                    <li class="img-box">
+                                        <img src="{{ product.thumbnailLink }}" alt="订单商品图片">
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                <div class="detail-content">
+                                    <p class="delivery-time">{{ order.addTime }}</p>
+                                    <p class="delivery-num">{{ order.productsNum }}</p>
+                                </div>
+                                <div class="evaluate">{{ order.status.text }}</div>
+                                <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>{{ order.totalPrice }}</div>
                             </div>
-                            <div class="evaluate">待评价</div>
-                            <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>23.80</div>
+                            <a href="/customer/common/order?id={{order.id}}" class="buy-btn">详情</a>
                         </div>
-                        <a href="#" class="buy-btn">再次购买</a>
-                    </div>
-                    <div class="order-content-box hidden">
-                        <div class="order-content">
-                            <ul class="order-content-pic">
-                                <li class="img-box">
-                                    <img src="{% static "images/customer/honey.jpg" %}" alt="订单商品图片">
-                                </li>
-                                <li class="img-box">
-                                    <img src="{% static "images/customer/kouhong-big.jpg" %}" alt="订单商品图片">
-                                </li>
-                            </ul>
-                            <div class="detail-content">
-                                <p class="delivery-time">2017-3-23 21:52:47</p>
-                                <p class="delivery-num">共两件商品</p>
-                            </div>
-                            <div class="evaluate">待发货</div>
-                            <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>47.60</div>
-                        </div>
-                        <a href="#" class="buy-btn">再次购买</a>
-                    </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
                 <!--收藏-->
                 <div class="collection-info">
@@ -74,45 +62,21 @@
                         <span class="glyphicon glyphicon-heart" aria-hidden="true" style="margin-right: .2rem"></span>收藏
                         <a class="all-collection" href="{% url 'customer:collection' %}">全部收藏</a>
                     </div>
+                    {% if not collections %}
                     <div class="no-collection">
                         <p class="no-collection-text">您暂时没有收藏的商品，到首页<a href="{% url 'app:index' %}">逛逛去</a></p>
                     </div>
+                    {% endif %}
                     <ul class="collection-list hidden">
+                        {% for collection in collections %}
                         <li class="list-item col-md-2">
                             <a href="">
-                                <img src="{% static "images/customer/honey.jpg" %}" alt="收藏商品图片">
+                                <img src="{{collection.product.thumbnailLink}}" alt="收藏商品图片">
                             </a>
-                            <p class="goods-price">¥21.30</p>
-                            <p class="goods-name">【米兹莱】新西兰进口多种花香蜂蜜205g</p>
+                            <p class="goods-price">¥{{collection.product.price}}</p>
+                            <p class="goods-name">{{collection.product.name}}</p>
                         </li>
-                        <li class="list-item col-md-2">
-                            <a href="">
-                                <img src="{% static "images/customer/honey.jpg" %}" alt="收藏商品图片">
-                            </a>
-                            <p class="goods-price">¥21.30</p>
-                            <p class="goods-name">【米兹莱】新西兰进口多种花香蜂蜜205g</p>
-                        </li>
-                        <li class="list-item col-md-2">
-                            <a href="">
-                                <img src="{% static "images/customer/honey.jpg" %}" alt="收藏商品图片">
-                            </a>
-                            <p class="goods-price">¥21.30</p>
-                            <p class="goods-name">【米兹莱】新西兰进口多种花香蜂蜜205g</p>
-                        </li>
-                        <li class="list-item col-md-2">
-                            <a href="">
-                                <img src="{% static "images/customer/honey.jpg" %}" alt="收藏商品图片">
-                            </a>
-                            <p class="goods-price">¥21.30</p>
-                            <p class="goods-name">【米兹莱】新西兰进口多种花香蜂蜜205g</p>
-                        </li>
-                        <li class="list-item col-md-2">
-                            <a href="">
-                                <img src="{% static "images/customer/honey.jpg" %}" alt="收藏商品图片">
-                            </a>
-                            <p class="goods-price">¥21.30</p>
-                            <p class="goods-name">【米兹莱】新西兰进口多种花香蜂蜜205g</p>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

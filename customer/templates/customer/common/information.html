@@ -21,51 +21,56 @@
                             <span class="for-head-text">personal information</span>
                         </p>
                     </div>
-                    <!--头像及姓名-->
-                    <div class="user-info-pic">
-                        <div class="file-pic">
-                            <input type="file" class="input-pic">
-                            <img class="user-pic" src="{% static "images/customer/user-head.jpg" %}" alt="用户头像">
-                        </div>
-                        <p class="user-detail">
-                            <span class="user-name">用户名：zihang1013</span>
-                        </p>
-                    </div>
                     <!--个人信息修改-->
                     <div class="info-main">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" id="form" v-on:submit.prevent="formSubmit">
+                            <!--头像及姓名-->
+                            <div class="user-info-pic">
+                                <input type="hidden" id="avatar" value="{% if customer.avatar %}{{customer.avatar}}{% else %}{% static 'images/customer/user-head.jpg' %}{% endif %}"/>
+                                <div class="file-pic">
+                                    <input type="file" class="input-pic" v-on:change="uploadAvatar">
+                                    <img class="user-pic" v-bind:src="customer.avatar" alt="用户头像">
+                                </div>
+                                <p class="user-detail">
+                                    <span class="user-name">用户名：{{customer.name}}</span>
+                                </p>
+                            </div>
+                            <input type="hidden" id="nickname" value="{{customer.nickname}}"/>
                             <div class="form-group">
                                 <label for="nickname" class="col-sm-2 control-label">昵称</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="nickname" placeholder="昵称">
+                                    <input v-model="customer.nickname" type="text" class="form-control" placeholder="昵称">
                                 </div>
                             </div>
                             <div class="form-group">
+                                <input type="hidden" id="truename" value="{{customer.truename}}"/>
                                 <label for="truename" class="col-sm-2 control-label">真实姓名</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="truename">
+                                    <input v-model="customer.truename" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
+                                <input type="hidden" id="sex" value="{{customer.sex}}"/>
                                 <label for="sex" class="col-sm-2 control-label">性别</label>
                                 <div class="col-sm-8">
                                     <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="man"> 男
+                                        <input v-model="customer.sex" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> 男
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="woman"> 女
+                                        <input v-model="customer.sex" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2"> 女
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="secret"> 保密
+                                        <input v-model="customer.sex" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3"> 保密
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="birthday" class="col-sm-2 control-label">生日</label>
+                                <input type="hidden" id="birthday" value="{{customer.birthday}}"/>
+                                <label class="col-sm-2 control-label">生日</label>
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <div class='input-group date' id='datetimepicker' style="margin-left: .5rem">
-                                            <input type='text' class="form-control"/>
+                                            <input v-model="customer.birthday" type='text' class="form-control"/>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
@@ -74,20 +79,22 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <input type="hidden" id="mobile" value="{{customer.mobile}}"/>
                                 <label for="telephone" class="col-sm-2 control-label">电话</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="telephone" placeholder="telephone">
+                                    <input v-model="customer.mobile" type="text" class="form-control" id="telephone" placeholder="telephone">
                                 </div>
                             </div>
                             <div class="form-group">
+                                <input type="hidden" id="email" value="{{customer.email}}"/>
                                 <label for="email" class="col-sm-2 control-label">邮箱</label>
                                 <div class="col-sm-8">
-                                    <input type="email" class="form-control" id="email" placeholder="email">
+                                    <input v-model="customer.email" type="email" class="form-control" placeholder="email">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="text-center">
-                                    <a class="btn" style="background-color: #fd6d37;color: #fff">保存修改</a>
+                                    <button type="submit" class="btn" style="background-color: #fd6d37;color: #fff">保存修改</button>
                                 </div>
                             </div>
                         </form>
@@ -118,13 +125,15 @@
 {% endblock %}
 
 {% block js %}
-    <script src="{% static "js/moment.js" %}"></script>
-    <script src="{% static "lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
-    <script>
-         $(function () {
-            $('#datetimepicker').datetimepicker({
-                format: 'YYYY-MM-DD'
-            });
+<script src="{% static "js/moment.js" %}"></script>
+<script src="{% static "lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
+<script>
+     $(function () {
+        $('#datetimepicker').datetimepicker({
+            format: 'YYYY-MM-DD'
         });
-    </script>
+    });
+</script>
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script src="{% static 'js/customer/information.js' %}"></script>
 {% endblock %}

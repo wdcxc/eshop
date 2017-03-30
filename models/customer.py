@@ -5,14 +5,15 @@ from django.db import models
 
 class CustomerModel(models.Model):
     """买家模型"""
-    MALE = 0x01
-    FEMALE = 0x02
-    SECRET = 0x03
+    MALE = 1
+    FEMALE = 2
+    SECRET = 3
     SEX = ((MALE, 'male'), (FEMALE, 'female'), (SECRET, 'secret'))
 
     name = models.CharField(max_length=30, unique=True)  # 用户名
     password = models.CharField(max_length=150)  # 登录密码
-    nickname = models.CharField(max_length=30, default="unknown")  # 昵称
+    nickname = models.CharField(max_length=30, null=True)  # 昵称
+    truename = models.CharField(max_length=30, null=True) # 真实姓名
     mobile = models.CharField(max_length=15, unique=True, null=True)  # 手机
     email = models.CharField(max_length=30, unique=True, null=True)  # 邮箱
     avatar = models.URLField()  # 买家头像
