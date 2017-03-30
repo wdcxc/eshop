@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+from  models.product import ProductModel
+
 
 class CustomerModel(models.Model):
     """买家模型"""
@@ -36,3 +38,12 @@ class ReceiveAddressModel(models.Model):
 
     class Meta:
         db_table = "customer_receiveaddress"
+
+class ShopcartModel(models.Model):
+    """购物车模型"""
+    customer = models.ForeignKey(CustomerModel, related_name="shopcarts", on_delete=models.CASCADE) # 归属买家
+    product = models.ForeignKey(ProductModel, related_name="shopcarts", on_delete=models.CASCADE) # 商品
+    addTime = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "customer_shopcart"
