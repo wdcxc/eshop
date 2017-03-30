@@ -3,12 +3,12 @@
 {% load static %}
 {% block title %}商家中心{% endblock %}
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/seller/header.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/seller/aside.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/seller/index.css' %}">
 {% endblock %}
 {% block body %}
-    {% include "app/header.html" %}
+    {% include "seller/header.html" %}
     <div class="content center-block">
         <div class="col-main">
             <div class="main-wrap">
@@ -29,7 +29,10 @@
                     <div class="info-bar">
                         最新订单<a href="order" class="all-order pull-right">全部订单</a>
                     </div>
-                    <div class="order-content-box">
+                    <div class="no-order">
+                        <p class="no-order-text">您暂时没有订单</p>
+                    </div>
+                    <div class="order-content-box hidden">
                         <div class="order-content">
                             <ul class="order-content-pic">
                                 <li class="img-box">
@@ -45,7 +48,7 @@
                         </div>
                         <a href="#" class="buy-btn">立即发货</a>
                     </div>
-                    <div class="order-content-box">
+                    <div class="order-content-box hidden">
                         <div class="order-content">
                             <ul class="order-content-pic">
                                 <li class="img-box">
