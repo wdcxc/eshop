@@ -1,0 +1,35 @@
+.content{
+    position: relative;
+    margin-bottom: 3rem;
+}
+.list-content{
+    padding: .5rem;
+}
+table th,td{
+    text-align: center;
+}
+table td img{
+    width: 3rem;
+    height: 3rem;
+}
+.goods-name{
+    max-width: 4rem;
+}
+.goods-operation{
+    width: 9rem;
+}
+.goods-name,.goods-price,.goods-sale-num,.goods-evaluate-num,.goods-good-evaluate,.goods-operation{
+    padding: 1.2rem 0 !important;
+}
+.operation-content li{
+    float: left;
+    margin: .1rem;
+}
+.content nav{
+    position: absolute;
+    right: .5rem;
+    bottom: -2.6rem;
+}
+.form-group{
+    margin-bottom: 1.2rem;
+}

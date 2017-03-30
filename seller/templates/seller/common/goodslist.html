@@ -6,6 +6,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/seller/header.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/seller/aside.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/seller/goodslist.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css' %}">
+    <link href="{% static 'lib/bootstrap-fileinput/css/fileinput.css' %}" media="all" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'lib/bootstrap-fileinput/themes/explorer/theme.css' %}" media="all" rel="stylesheet" type="text/css"/>
 {% endblock %}
 {% block body %}
     {% include "seller/header.html" %}
@@ -23,6 +26,55 @@
                     <!--商品列表内容-->
                     <div class="content">
                         <div class="list-content">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>商品图片</th>
+                                    <th>商品名</th>
+                                    <th>商品价格</th>
+                                    <th>商品销量</th>
+                                    <th>评价数量</th>
+                                    <th>好评数量</th>
+                                    <th>商品操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="goods-image"><img src="{% static 'images/customer/kouhong-big.jpg' %}" alt="美康粉黛醉美唇膏"></td>
+                                    <td class="goods-name">美康粉黛醉美唇膏</td>
+                                    <td class="goods-price">￥29.00</td>
+                                    <td class="goods-sale-num">100</td>
+                                    <td class="goods-evaluate-num">100</td>
+                                    <td class="goods-good-evaluate">90</td>
+                                    <td class="goods-operation">
+                                        <ul class="operation-content">
+                                            <li class="modify"><a class="btn btn-default" data-toggle="modal" data-target="#modifyModal">修改</a></li>
+                                            <li class="off-shelf"><a tabindex="0" class="btn btn-primary" role="button" data-toggle="popover"
+                                                   data-placement="top" data-trigger="focus" title="系统提示"
+                                                   data-content="商品成功下架">下架</a></li>
+                                            <li class="delete"><a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">删除</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="goods-image"><img src="{% static 'images/customer/kouhong-big.jpg' %}" alt="美康粉黛醉美唇膏"></td>
+                                    <td class="goods-name">美康粉黛醉美唇膏</td>
+                                    <td class="goods-price">￥29.00</td>
+                                    <td class="goods-sale-num">100</td>
+                                    <td class="goods-evaluate-num">100</td>
+                                    <td class="goods-good-evaluate">90</td>
+                                    <td class="goods-operation">
+                                        <ul class="operation-content">
+                                            <li class="modify"><a class="btn btn-default" data-toggle="modal" data-target="#modifyModal">修改</a></li>
+                                            <li class="off-shelf"><a tabindex="0" class="btn btn-primary" role="button" data-toggle="popover"
+                                                   data-placement="top" data-trigger="focus" title="系统提示"
+                                                   data-content="商品成功下架">下架</a></li>
+                                            <li class="delete"><a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">删除</a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                             <nav aria-label="Page navigation">
                                 <ul class="pagination">
                                     <li>
@@ -41,10 +93,151 @@
                             </nav>
                         </div>
                     </div>
+                    <!--新增商品-->
+                    <div class="info-head">
+                        <p>
+                            <span class="head-text">新增商品</span>/
+                            <span class="for-head-text">add goods</span>
+                        </p>
+                    </div>
+                    <form class="form-horizontal" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">商品名</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="name" placeholder="商品名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="price" class="col-sm-2 control-label">商品价格</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="price">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="brand" class="col-sm-2 control-label">商品品牌</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="brand">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="effect" class="col-sm-2 control-label">商品功效</label>
+                            <div class="col-sm-6">
+                                <select class="form-control">
+                                    <option>润唇</option>
+                                    <option>保湿</option>
+                                    <option>防水</option>
+                                    <option>丰唇</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="manufacture-date" class="col-sm-2 control-label">商品生产日期</label>
+                            <div class="col-sm-6">
+                                <div class='input-group date' id='manufacture-date'>
+                                    <input type='text' class="form-control"/>
+                                    <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="guarantee-date" class="col-sm-2 control-label">商品保质期</label>
+                            <div class="col-sm-6">
+                                <div class='input-group date' id='guarantee-date'>
+                                    <input type='text' class="form-control"/>
+                                    <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="location" class="col-sm-2 control-label">生产地</label>
+                            <div class="col-md-2">
+                                <select class="form-control">
+                                    <option>广东省</option>
+                                    <option>福建省</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <select class="form-control">
+                                    <option>广州市</option>
+                                    <option>汕头市</option>
+                                    <option>揭阳市</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <select class="form-control">
+                                    <option>天河区</option>
+                                    <option>白云区</option>
+                                    <option>越秀区</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label">种类</label>
+                            <div class="col-md-6">
+                                <select class="form-control">
+                                    <option>润唇膏</option>
+                                    <option>口红</option>
+                                    <option>唇彩</option>
+                                    <option>唇蜜</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="picture" class="col-sm-2 control-label">商品图片</label>
+                            <div class="col-sm-6">
+                                <input id="file-0c" class="file" type="file" multiple data-upload-url="#" data-min-file-count="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <a class="btn" data-toggle="modal" data-target="#addModal" style="color: #fff;background-color: red">新增商品</a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     {% include "seller/aside.html" %}
+    </div>
+    <!--新增商品模态框-->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                </div>
+                <div class="modal-body">
+                    新增商品成功！
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--删除商品模态框-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                </div>
+                <div class="modal-body">
+                    删除商品成功！
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
     </div>
     <!--修改商品模态框-->
     <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -53,13 +246,105 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">修改商品信息</h4>
+                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
                 </div>
                 <div class="modal-body">
-
+                   <form class="form-horizontal" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">商品名</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="name" placeholder="商品名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="price" class="col-sm-2 control-label">商品价格</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="price">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="brand" class="col-sm-2 control-label">商品品牌</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="brand">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="effect" class="col-sm-2 control-label">商品功效</label>
+                            <div class="col-sm-9">
+                                <select class="form-control">
+                                    <option>润唇</option>
+                                    <option>保湿</option>
+                                    <option>防水</option>
+                                    <option>丰唇</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="manufacture-date" class="col-sm-2 control-label">商品生产日期</label>
+                            <div class="col-sm-9">
+                                <div class='input-group date' id='manufacture-date'>
+                                    <input type='text' class="form-control"/>
+                                    <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="guarantee-date" class="col-sm-2 control-label">商品保质期</label>
+                            <div class="col-sm-9">
+                                <div class='input-group date' id='guarantee-date'>
+                                    <input type='text' class="form-control"/>
+                                    <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="location" class="col-sm-2 control-label">生产地</label>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>广东省</option>
+                                    <option>福建省</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>广州市</option>
+                                    <option>汕头市</option>
+                                    <option>揭阳市</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>天河区</option>
+                                    <option>白云区</option>
+                                    <option>越秀区</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label">种类</label>
+                            <div class="col-md-9">
+                                <select class="form-control">
+                                    <option>润唇膏</option>
+                                    <option>口红</option>
+                                    <option>唇彩</option>
+                                    <option>唇蜜</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="picture" class="col-sm-2 control-label">商品图片</label>
+                            <div class="col-md-9">
+                                <input id="modal-input" name="modal-input[]" type="file" multiple class="file-loading">
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">提交</button>
+                    <button type="button" class="btn btn-primary">保存</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
             </div>
@@ -68,5 +353,37 @@
 {% endblock %}
 
 {% block js %}
-
+    <script src="{% static "js/moment.js" %}"></script>
+    <script src="{% static 'lib/bootstrap-fileinput/js/plugins/sortable.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-fileinput/js/fileinput.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-fileinput/js/locales/fr.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-fileinput/js/locales/es.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-fileinput/themes/explorer/theme.js' %}"></script>
+    <script src="{% static "lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
+    <script>
+         $(function () {
+            $('#manufacture-date').datetimepicker({
+                format: 'YYYY-MM-DD'
+            });
+             $('#guarantee-date').datetimepicker({
+                format: 'YYYY-MM-DD'
+            });
+             $("[data-toggle='popover']").popover();
+             $("#file-0c").fileinput({
+                uploadExtraData: {kvId: '10'}
+            });
+             $("#modal-input").fileinput({
+                 initialPreview: [
+                     "{% static "images/customer/kouhong-big.jpg" %}"
+                 ],
+                 initialPreviewAsData: true,
+                 initialPreviewConfig: [
+                     {caption: "kouhong.jpg", width: "6rem", key: 1},
+                 ],
+                 deleteUrl: "#",
+                 overwriteInitial: false,
+                 initialCaption: "口红"
+             });
+        });
+    </script>
 {% endblock %}
