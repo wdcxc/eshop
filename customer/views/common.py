@@ -6,6 +6,7 @@ from models.customer import CustomerModel
 from models.order import OrderModel
 from util.baseview import BaseView, valifyCaptcha, loginRequire
 from util.regex import Regex
+from util.upload import Upload
 
 
 class CommonView(CustomerBaseView):
@@ -38,13 +39,15 @@ class CommonView(CustomerBaseView):
     def information(self, request):
         """个人信息"""
         if request.method == "GET":
-            pass
+            self.context['customer'].birthday = self.context["customer"].birthday.strftime("%Y-%m-%d")
         elif request.method == "POST":
-            keys = ("nickname","truename","email","mobile","birthday","avatar")
+            self.response_["type"] = self.RESPONSE_TYPE_JSON
+            keys = ("nickname","truename","email","mobile","birthday","avatar","sex")
             dict = {}
             for key in keys:
                 dict[key] = request.POST.get(key)
-            print(dict)
+            CustomerModel.objects.filter(id=request.session["user"]["id"]).update(**dict)
+            self.context = {"code":200,"msg":"修改个人信息成功","data":{}}
 
     def address(self, request):
         pass
@@ -152,3 +155,10 @@ class CommonView(CustomerBaseView):
                                          email=customer["email"])
                 customer.save()
                 self.context = {"code": 200, "msg": "注册成功", "data": {"id": customer.id}}
+
+    @loginRequire()
+    def uploadAvatar(self,request):
+        """上传买家头像"""
+        self.response_["type"] = self.RESPONSE_TYPE_JSON
+        avatar = request.FILES["img"]
+        self.context = Upload.uploadImg(img=avatar,dir="customer")

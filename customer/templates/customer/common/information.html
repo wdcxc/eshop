@@ -28,7 +28,7 @@
                             <div class="user-info-pic">
                                 <input type="hidden" id="avatar" value="{% if customer.avatar %}{{customer.avatar}}{% else %}{% static 'images/customer/user-head.jpg' %}{% endif %}"/>
                                 <div class="file-pic">
-                                    <input type="file" class="input-pic" v-on:change="uploadAvatar">
+                                    <input type="file" id="img" class="input-pic" v-on:change="uploadAvatar">
                                     <img class="user-pic" v-bind:src="customer.avatar" alt="用户头像">
                                 </div>
                                 <p class="user-detail">
@@ -65,14 +65,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="hidden" id="birthday" value="{{customer.birthday}}"/>
                                 <label class="col-sm-2 control-label">生日</label>
                                 <div class="col-sm-8">
                                     <div class='input-group date' id='datetimepicker'>
-                                        <input type='text' class="form-control"/>
+                                        <input id="birthday" value="{{customer.birthday}}" type='text' class="form-control"/>
                                         <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +111,7 @@
                     <h4 class="modal-title" id="myModalLabel">系统提示</h4>
                 </div>
                 <div class="modal-body">
-                    <p class="message">保存成功</p>
+                    <p id="infoMsg" class="message"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>

@@ -6,7 +6,6 @@ var oldCustomer = {
     "mobile":document.getElementById("mobile").value,
     "email":document.getElementById("email").value,
     "avatar":document.getElementById("avatar").value,
-    "birthday":document.getElementById("birthday").value,
 }
 var customerForm = new Vue({
     el:"#form",
@@ -18,20 +17,39 @@ var customerForm = new Vue({
             mobile:oldCustomer.mobile,
             email:oldCustomer.email,
             avatar:oldCustomer.avatar,
-            birthday:oldCustomer.birthday,
+            birthday:"",
         }
     },
     methods:{
         formSubmit:function(){
+            this.customer.birthday = $("#birthday").val();
             this.$http.post("/customer/common/information",this.customer,{"headers":{"X-CSRFToken":csrfToken}})
                       .then(success=>{
-
+                        $("#infoMsg").html(success.body.msg);
+                        $("#saveModal").modal("toggle");
+                        if(success.body.code == 200){
+                            setTimeout(function(){
+                                location.reload(true);
+                            },1000);
+                        }
                       },error=>{
-
+                        console.log(error);
                       });
         },
         uploadAvatar:function(){
-
+            var that = this;
+            var formData = new FormData();
+            formData.append("img",document.getElementById("img").files[0])
+            this.$http.post("/customer/common/uploadAvatar",formData,{"headers":{"X-CSRFToken":csrfToken}})
+                      .then(success=>{
+                        $("#infoMsg").html(success.body.msg);
+                        $("#saveModal").modal("toggle");
+                        if(success.body.code == 200){
+                            that.customer.avatar = "/static/media/fileupload/"+success.body.data.imgUrl;
+                        }
+                      },error=>{
+                        console.log(error);
+                      });
         }
     }
 });
