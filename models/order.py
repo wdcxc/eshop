@@ -8,22 +8,22 @@ from models.seller import SellerModel
 class OrderModel(models.Model):
     """订单模型"""
 
-    UNPAY = 0x01
-    UNSEND = 0x02
-    UNRECEIVE = 0x03
-    UNEVALUATE = 0x04
-    FINISH = 0x05
-    CANCEL = 0x06
-    REFUND = 0x07
-    AC_REFUND = 0x08
+    UNPAY = 1
+    UNSEND = 2
+    UNRECEIVE = 3
+    UNEVALUATE = 4
+    FINISH = 5
+    CANCEL = 6
+    REFUND = 7
+    AC_REFUND = 8
     STATUS = (
-    (UNPAY, 'unpay'), (UNSEND, 'unsend'), (UNRECEIVE, 'unreceive'), (UNEVALUATE, 'unevaluate'), (FINISH, 'finish'),
-    (CANCEL, 'cancel'), (REFUND, 'refund'), (AC_REFUND, 'accept-refund'))
+        (UNPAY, 'unpay'), (UNSEND, 'unsend'), (UNRECEIVE, 'unreceive'), (UNEVALUATE, 'unevaluate'), (FINISH, 'finish'),
+        (CANCEL, 'cancel'), (REFUND, 'refund'), (AC_REFUND, 'accept-refund'))
 
     status = models.IntegerField(choices=STATUS, default=UNPAY)  # 订单状态
-    customer = models.ForeignKey(CustomerModel, related_name="orders")  # 买家
-    seller = models.ForeignKey(SellerModel, related_name="orders")  # 卖家
-    recevieAddress = models.ForeignKey(ReceiveAddressModel, related_name="orders")  # 收货地址
+    customer = models.ForeignKey(CustomerModel, related_name="orders",on_delete=models.CASCADE)  # 买家
+    seller = models.ForeignKey(SellerModel, related_name="orders",on_delete=models.SET_NULL)  # 卖家
+    recevieAddress = models.ForeignKey(ReceiveAddressModel, related_name="orders",on_delete=models.SET_NULL)  # 收货地址
     addTime = models.DateTimeField(auto_now_add=True)  # 订单添加时间
     payTime = models.DateTimeField(null=True)  # 付款时间
     sendTime = models.DateTimeField(null=True)  # 发货时间
@@ -40,10 +40,10 @@ class OrderModel(models.Model):
 class OrderProductModel(models.Model):
     """订单商品模型"""
 
-    order = models.ForeignKey(OrderModel, related_name="products") # 归属订单
+    order = models.ForeignKey(OrderModel, related_name="products",on_delete=models.CASCADE)  # 归属订单
     addTime = models.DateTimeField(auto_now_add=True)  # 商品加入订单时间
-    product = models.OneToOneField(ProductModel)  # 商品
-    sellPrice = models.DecimalField()  # 商品加入订单时价格
+    product = models.OneToOneField(ProductModel,on_delete=models.CASCADE)  # 商品
+    sellPrice = models.DecimalField(max_digits=10,decimal_places=2)  # 商品加入订单时价格
 
     class Meta:
         db_table = 'order_product'

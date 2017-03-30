@@ -9,7 +9,7 @@ class SellerModel(models.Model):
     password = models.CharField(max_length=130) # 登录密码
     mobile = models.CharField(max_length=11, unique=True, null=True) # 手机
     email = models.CharField(max_length=30, unique=True, null=True) # 邮箱
-    realname = models.CharField(max_length=30) # 真实姓名
+    truename = models.CharField(max_length=30) # 真实姓名
     idno = models.CharField(max_length=20,unique=True) # 身份证号码
     registTime = models.DateTimeField(auto_now_add=True) # 注册时间
 

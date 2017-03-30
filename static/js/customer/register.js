@@ -13,6 +13,7 @@ customerForm = new Vue({
             email:"",
             mobile:"",
             captchaCode:"",
+            confirmPwd:""
         },
         captcha: {
             imageUrl: captchaUrl,
@@ -24,6 +25,11 @@ customerForm = new Vue({
             return false;
         },
         registCustomer: function () {
+            if(this.customer.password!=this.customer.confirmPwd){
+                $("#modalInfo").html("密码不一致");
+                $("#registerModal").modal("toggle");
+                return
+            }
             var that = this;
             this.$http.post("/customer/common/doRegister", that.customer, {"headers": {"X-CSRFToken": csrftoken}}).then(success=> {
                 $("#modalInfo").html(success.body.msg);

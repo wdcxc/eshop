@@ -10,14 +10,14 @@
         <ul class="nav-operation">
             <li class="operation-item">
                 hi，
-                <a href="{% url 'customer:index' %}" class="nav-user-name" style="color: #ff2832;margin-right: .2rem;">zihang1013</a>
+                <a href="{% url 'customer:index' %}" class="nav-user-name" style="color: #ff2832;margin-right: .2rem;">{{ customer.name }}</a>
                 <a href="{% url 'customer:login' %}" rel="nofollow" class="logout">[退出]</a>
             </li>
             <li class="operation-item">
                 <a target="_blank" href="{% url 'app:shopcart' %}" name="购物车" rel="nofollow">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"
                                   style="color:#ff2832"></span> 购物车
-                    <span class="goods-number">0</span>
+                    <span class="goods-number">{{shopcartsNum}}</span>
                 </a>
             </li>
             <li class="operation-item">
