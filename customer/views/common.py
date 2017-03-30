@@ -2,13 +2,24 @@
 import hashlib
 
 from models.customer import CustomerModel
-from util.baseview import BaseView, valifyCaptcha
+from models.order import OrderModel
+from util.baseview import BaseView, valifyCaptcha, loginRequire
 from util.regex import Regex
 
 
 class CommonView(BaseView):
+    @loginRequire()
     def index(self, request):
-        pass
+        """买家首页"""
+        customer = CustomerModel.objects.get(id=request.session["user"]["id"])
+        self.context["customer"] = customer
+        orders = customer.orders.all().order_by("-addTime")
+        self.context["orders"] = orders
+        self.context["unpayOrderNum"] = orders.filter(status=OrderModel.UNPAY).count()
+        self.context["unsendOrderNum"] = orders.filter(status=OrderModel.UNSEND).count()
+        self.context["unreceiveOrderNum"] = orders.filter(status=OrderModel.UNRECEIVE).count()
+        self.context["unevaluateOrderNum"] = orders.filter(status=OrderModel.UNEVALUATE).count()
+        self.context["collections"] = customer.collections.all()
 
     def information(self, request):
         pass
@@ -68,9 +79,15 @@ class CommonView(BaseView):
                                                   password=customer["password"]).count()
         email_num = CustomerModel.objects.filter(email=customer["account"],
                                                  password=customer["password"]).count()
-        print(username_num,mobile_num,email_num)
         if username_num + mobile_num + email_num == 1:
-            self.context = {"code": 200, "msg": "登录成功", "data": {"account":customer["account"]}}
+            if username_num:
+                loginedCustomer = CustomerModel.objects.get(name=customer["account"])
+            elif mobile_num:
+                loginedCustomer = CustomerModel.objects.get(mobile=customer["account"])
+            elif email_num:
+                loginedCustomer = CustomerModel.objects.get(email=customer["account"])
+            request.session["user"] = {"id": loginedCustomer.id}
+            self.context = {"code": 200, "msg": "登录成功", "data": {"account": loginedCustomer.id}}
         else:
             self.context = {"code": 410, "msg": "账号或密码错误", "data": {}}
         print(self.context)
@@ -99,11 +116,11 @@ class CommonView(BaseView):
             self.context = {"codd": 406, "msg": "邮箱格式验证错误", "data": {}}
         else:
             # 数据库查重
-            if CustomerModel.objects.filter(name__exact=customer["name"]).exists():
+            if CustomerModel.objects.filter(name=customer["name"]).exists():
                 self.context = {"code": 407, "msg": "用户名已存在", "data": {}}
-            elif CustomerModel.objects.filter(mobile__exact=customer["mobile"]).exists():
+            elif CustomerModel.objects.filter(mobile=customer["mobile"]).exists():
                 self.context = {"code": 408, "msg": "手机已存在", "data": {}}
-            elif CustomerModel.objects.filter(email__exact=customer["email"]).exists():
+            elif CustomerModel.objects.filter(email=customer["email"]).exists():
                 self.context = {"code": 409, "msg": "邮箱已存在", "data": {}}
             else:
                 # 插入新数据
@@ -112,4 +129,4 @@ class CommonView(BaseView):
                                          mobile=customer["mobile"],
                                          email=customer["email"])
                 customer.save()
-                self.context = {"code": 200, "msg": "注册成功", "data": {"id":customer.id}}
+                self.context = {"code": 200, "msg": "注册成功", "data": {"id": customer.id}}

@@ -16,12 +16,12 @@
                 <div class="user-info">
                     <div class="file-pic">
                         <input type="file" class="input-pic">
-                        <img class="user-pic" src="{% static "images/customer/user-head.jpg" %}" alt="用户头像">
+                        <img class="user-pic" src="{% if customer.avatar %}{{ customer.avatar }}{% else %}{% static "images/customer/user-head.jpg" %}"{% endif %} alt="用户头像">
                     </div>
-                    <p class="user-name">用户名：zihang1013</p>
+                    <p class="user-name">用户名：{{customer.name}}</p>
                     <ul>
-                        <li>待付款：<span class="badge">1</span>待发货：<span class="badge">0</span></li>
-                        <li>待收货：<span class="badge">1</span>待评价：<span class="badge">1</span></li>
+                        <li>待付款：<span class="badge">{{unpayOrderNum}}</span>待发货：<span class="badge">{{unsendOrderNum}}</span></li>
+                        <li>待收货：<span class="badge">{{unreceiveOrderNum}}</span>待评价：<span class="badge">{{unevaluateOrderNum}}</span></li>
                     </ul>
                 </div>
                 <!--订单-->
