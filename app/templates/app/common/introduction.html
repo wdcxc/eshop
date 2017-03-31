@@ -4,6 +4,7 @@
 {% block title %}商品详情{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/cloud-image/cloud-zoom.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/introduction.css' %}">
 {% endblock %}
 
@@ -13,9 +14,9 @@
     <div class="content">
         <!--商品图片-->
         <div class="content-left">
-            <div class="commodity-image">
-                <img src="{% static 'images/app/goods1_mid.jpg' %}" alt="商品图片1">
-            </div>
+            <span class="commodity-image">
+                <img src="{% static 'images/app/goods1_mid.jpg' %}" alt="商品图片1" width="400" height="400">
+            </span>
             <ul class="commodity-list">
                 <li>
                    <img src="{% static 'images/app/goods1_mid.jpg' %}" alt="商品图片1">
@@ -42,27 +43,18 @@
                 </ul>
                 <ul class="commodity-attribute">
                     <li>
-                        <label class="attribute-name">口味</>
-                        <ul class="attribute-select">
-                            <li>原味</li>
-                            <li>炭烧</li>
-                            <li>奶油</li>
-                            <li>咸香</li>
-                        </ul>
+                        <label class="attribute-name">口味</label>
+                        <span class="attribute-select">原味</span>
                     </li>
                     <li>
                         <label class="attribute-name">包装</label>
-                        <ul class="attribute-select">
-                            <li>单人装</li>
-                            <li>双人装</li>
-                            <li>家庭装</li>
-                        </ul>
+                        <span class="attribute-select">单人装</span>
                     </li>
                     <li>
                         <label class="attribute-name">数量</label>
-                        <input id="reduce" name="" type="button" value="-">
-                        <input id="text-box" name="" type="text" value="1">
-                        <input id="add" name="" type="button" value="+">
+                        <input class="reduce" name="" type="button" value="-">
+                        <input class="number" name="" type="text" value="1">
+                        <input class="add" name="" type="button" value="+">
                         <span class="stock">库存1000件</span>
                     </li>
                 </ul>
@@ -72,10 +64,208 @@
                 </div>
             </div>
         </div>
+        <div class="clearfix"></div>
+        <!--商品介绍和评价-->
+        <div class="content-bottom">
+            <div class="same-kind">
+                <div class="same-kind-content">
+                    <ul>
+                        <div class="title">
+                            <h2>同类商品</h2>
+                        </div>
+                        <li class="goods-list">
+                            <div class="goods-img">
+                                <a href="{% url 'app:introduction' %}"> <img class="" src="{% static 'images/app/same-kind-goods.jpg' %}"> </a>
+                            </div>
+                            <div class="goods-name"><a href="{% url 'app:introduction' %}">
+                                【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
+                            </a>
+                            </div>
+                            <div class="goods-price">￥35.90</div>
+                        </li>
+                        <li class="goods-list">
+                            <div class="goods-img">
+                                <a href="{% url 'app:introduction' %}"> <img class="" src="{% static 'images/app/same-kind-goods.jpg' %}"> </a>
+                            </div>
+                            <div class="goods-name"><a href="{% url 'app:introduction' %}">
+                                【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
+                            </a>
+                            </div>
+                            <div class="goods-price">￥35.90</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tabs" style="width:80%;float: left">
+                <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                    <li role="presentation"><a href="#evaluate" role="tab" id="evaluate-tab"
+                                                              data-toggle="tab" aria-controls="evaluate"
+                                                              aria-expanded="true">全部评价</a></li>
+                    <li role="presentation" class="active"><a href="#introduction" id="introduction-tab" role="tab" data-toggle="tab"
+                                                        aria-controls="introduction" aria-expanded="false">宝贝详情</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade" id="evaluate" aria-labelledby="evaluate-tab">
+                        <h4 class="high-praise">好评度：<span>90%</span></h4>
+                        <div class="evaluate-option">
+                            <ul class="option-list">
+                                <li>
+                                    <a title="全部评价">全部评价(100)</a>
+                                </li>
+                                <li>
+                                    <a title="好评">好评(90)</a>
+                                </li>
+                                <li>
+                                    <a title="中评">中评(10)</a>
+                                </li>
+                                <li>
+                                    <a title="差评">差评(0)</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="evaluate-content">
+                            <ul class="comments-list">
+                                <li class="comment">
+                                    <div class="commenter-pic">
+                                        <img src="{% static 'images/app/commenter-head.jpg' %}" alt="评论者头像">
+                                    </div>
+                                    <div class="comment-main">
+                                        <header class="comment-hd">
+                                            <div class="comment-meta">
+                                                <span class="commenter-name">zihang1013</span>
+                                                <span class="comment-time">评论于2017-3-26 23:00</span>
+                                            </div>
+                                        </header>
+                                        <div class="comment-bd">
+                                            <div class="comment-text">
+                                                式样不错，合适初春穿
+                                                <p class="comment-time">评论于2017-3-31 12:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="comment">
+                                    <div class="commenter-pic">
+                                        <img src="{% static 'images/app/commenter-head.jpg' %}" alt="评论者头像">
+                                    </div>
+                                    <div class="comment-main">
+                                        <header class="comment-hd">
+                                            <div class="comment-meta">
+                                                <span class="commenter-name">zihang1013</span>
+                                                <span class="comment-time">评论于2017-3-26 23:00</span>
+                                            </div>
+                                        </header>
+                                        <div class="comment-bd">
+                                            <div class="comment-text">
+                                                式样不错，合适初春穿
+                                                <p class="comment-time">评论于2017-3-31 12:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="comment">
+                                    <div class="commenter-pic">
+                                        <img src="{% static 'images/app/commenter-head.jpg' %}" alt="评论者头像">
+                                    </div>
+                                    <div class="comment-main">
+                                        <header class="comment-hd">
+                                            <div class="comment-meta">
+                                                <span class="commenter-name">zihang1013</span>
+                                                <span class="comment-time">评论于2017-3-26 23:00</span>
+                                            </div>
+                                        </header>
+                                        <div class="comment-bd">
+                                            <div class="comment-text">
+                                                式样不错，合适初春穿
+                                                <p class="comment-time">评论于2017-3-31 12:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="comment">
+                                    <div class="commenter-pic">
+                                        <img src="{% static 'images/app/commenter-head.jpg' %}" alt="评论者头像">
+                                    </div>
+                                    <div class="comment-main">
+                                        <header class="comment-hd">
+                                            <div class="comment-meta">
+                                                <span class="commenter-name">zihang1013</span>
+                                                <span class="comment-time">评论于2017-3-26 23:00</span>
+                                            </div>
+                                        </header>
+                                        <div class="comment-bd">
+                                            <div class="comment-text">
+                                                式样不错，合适初春穿
+                                                <p class="comment-time">评论于2017-3-31 12:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="comment">
+                                    <div class="commenter-pic">
+                                        <img src="{% static 'images/app/commenter-head.jpg' %}" alt="评论者头像">
+                                    </div>
+                                    <div class="comment-main">
+                                        <header class="comment-hd">
+                                            <div class="comment-meta">
+                                                <span class="commenter-name">zihang1013</span>
+                                                <span class="comment-time">评论于2017-3-26 23:00</span>
+                                            </div>
+                                        </header>
+                                        <div class="comment-bd">
+                                            <div class="comment-text">
+                                                式样不错，合适初春穿
+                                                <p class="comment-time">评论于2017-3-31 12:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade active in" id="introduction" aria-labelledby="introduction-tab" style="padding:0">
+                        <h4 class="goods-attribute">产品参数：</h4>
+                        <div class="attribute-content">
+                            <div class="col-md-4">产地：广东省广州市</div>
+                            <div class="col-md-4">生产日期：2017-3-25</div>
+                            <div class="col-md-4">保质日期：2018-3-28</div>
+                            <div class="col-md-4">使用方法：开袋即食</div>
+                            <div class="col-md-4">存储方式：放在阴凉通风处</div>
+                        </div>
+                        <h4 class="goods-detail">商品细节：</h4>
+                        <div class="detail-content">
+                            <img src="{% static "images/app/detail1.jpg" %}" alt="商品细节图片1">
+                            <img src="{% static "images/app/detail2.jpg" %}" alt="商品细节图片2">
+                            <img src="{% static "images/app/detail3.jpg" %}" alt="商品细节图片3">
+                            <img src="{% static "images/app/detail4.jpg" %}" alt="商品细节图片4">
+                            <img src="{% static "images/app/detail5.jpg" %}" alt="商品细节图片5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
 {% block js %}
-    <script src="{% static "js/jquery.zoom.js" %}"></script>
-    <script src="{% static "js/introduction.js" %}"></script>
+    <script src="{% static "js/app/introduction.js" %}"></script>
 {% endblock %}
