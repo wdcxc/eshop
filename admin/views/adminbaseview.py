@@ -9,15 +9,21 @@ class AdminBaseView(BaseView):
         super(AdminBaseView, self).beforeAction(request)
         if self.request_["controller"] != "common":
             if "user" in request.session:
-                admin = AdminModel.objects.get(id=request.session["user"]["id"])
-                if not admin.root:
-                    groups = admin.groups.all()
-                    nodes = {node.linkUrl: node for group in groups for node in group.nodes.all()}
-                    requestPath = "/" + self.request_["appadmin"] + "/" + self.request_["controller"] + "/" + self.request_["action"]
-                    if requestPath not in nodes:
-                        self.response_["type"] = self.RESPONSE_TYPE_REDIRECT
-                        self.context["redirectPath"] = reverse("admin:forbidden")
-                        return self.afterAction(request)
+                try:
+                    admin = AdminModel.objects.get(id=request.session["user"]["id"])
+                except AdminModel.DoesNotExist as e:
+                    self.response_["type"] = self.RESPONSE_TYPE_REDIRECT
+                    self.context["redirectPath"] = reverse("admin:login")
+                    return self.afterAction(request)
+                else:
+                    if not admin.root:
+                        groups = admin.groups.all()
+                        nodes = {node.linkUrl: node for group in groups for node in group.nodes.all()}
+                        requestPath = "/" + self.request_["appadmin"] + "/" + self.request_["controller"] + "/" + self.request_["action"]
+                        if requestPath not in nodes:
+                            self.response_["type"] = self.RESPONSE_TYPE_REDIRECT
+                            self.context["redirectPath"] = reverse("admin:forbidden")
+                            return self.afterAction(request)
 
     def afterAction(self, request):
         return super(AdminBaseView, self).afterAction(request)

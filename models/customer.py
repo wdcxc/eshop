@@ -33,6 +33,10 @@ class ReceiveAddressModel(models.Model):
     address = models.CharField(max_length=100)  # 收件地址
     mobile = models.CharField(max_length=15)  # 收件人手机
     name = models.CharField(max_length=30)  # 收件人姓名
+    default = models.BooleanField(default=False) # 是否为默认地址
+    province = models.CharField(max_length=20,default="") # 省份
+    city = models.CharField(max_length=20,default="") # 城市
+    dist = models.CharField(max_length=20,default="") # 区
     customer = models.ForeignKey(CustomerModel, on_delete=models.CASCADE, related_name="receiveAddresses")
     addTime = models.DateTimeField(auto_now_add=True)
 

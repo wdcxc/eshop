@@ -1,7 +1,7 @@
 <aside class="menu">
     <ul>
         <li class="menu-item text-center">
-            <a href="index">
+            <a href="{% url 'customer:index' %}">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>个人中心
             </a>
         </li>
@@ -11,10 +11,10 @@
             </p>
             <ul>
                 <li>
-                    <a href="information">个人信息</a>
+                    <a href="{% url 'customer:information' %}">个人信息</a>
                 </li>
                 <li>
-                    <a href="address">地址管理</a>
+                    <a href="{% url 'customer:address' %}">地址管理</a>
                 </li>
             </ul>
         </li>
@@ -24,10 +24,10 @@
             </p>
             <ul>
                 <li>
-                    <a href="order">订单管理</a>
+                    <a href="{% url 'customer:order' %}">订单管理</a>
                 </li>
                 <li>
-                    <a href="evaluate">商品评价</a>
+                    <a href="{% url 'customer:evaluate' %}">商品评价</a>
                 </li>
             </ul>
         </li>
@@ -37,7 +37,7 @@
             </p>
             <ul>
                 <li>
-                    <a href="bill">账单明细</a>
+                    <a href="{% url 'customer:bill' %}">账单明细</a>
                 </li>
             </ul>
         </li>
@@ -47,7 +47,7 @@
             </p>
             <ul>
                 <li>
-                    <a href="collection">收藏</a>
+                    <a href="{% url 'customer:collection' %}">收藏</a>
                 </li>
             </ul>
         </li>
@@ -57,13 +57,13 @@
             </p>
             <ul>
                 <li>
-                    <a href="consult">商品咨询</a>
+                    <a href="{% url 'customer:consult' %}">商品咨询</a>
                 </li>
                 <li>
-                    <a href="opinion">意见反馈</a>
+                    <a href="{% url 'customer:opinion' %}">意见反馈</a>
                 </li>
                 <li>
-                    <a href="message">我的消息</a>
+                    <a href="{% url 'customer:message' %}">我的消息</a>
                 </li>
             </ul>
         </li>

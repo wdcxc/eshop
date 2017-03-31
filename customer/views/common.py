@@ -49,12 +49,6 @@ class CommonView(CustomerBaseView):
             CustomerModel.objects.filter(id=request.session["user"]["id"]).update(**dict)
             self.context = {"code":200,"msg":"修改个人信息成功","data":{}}
 
-    def address(self, request):
-        pass
-
-    def order(self, request):
-        pass
-
     def evaluate(self, request):
         pass
 
