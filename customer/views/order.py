@@ -6,7 +6,3 @@ class OrderView(CustomerBaseView):
     @loginRequire()
     def order(self, request):
         pass
-
-    @loginRequire()
-    def address(self, request):
-        pass
