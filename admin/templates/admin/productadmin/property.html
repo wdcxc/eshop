@@ -3,5 +3,174 @@
 {% csrf_token %}
 
 {% block withnavblock %}
-
+    <table class="table table-striped table-hover table-bordered">
+        <tr>
+            <th>属性id</th>
+            <th>属性名称</th>
+            <th>创建时间</th>
+            <th>所属种类</th>
+            <th>种类id</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>功效</td>
+            <td>2017-3-31 10:51</td>
+            <td>口红</td>
+            <td>19</td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#addModal">新增</a>
+                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modifyModal">修改</a>
+                    <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal">删除</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>包装</td>
+            <td>2017-3-31 10:51</td>
+            <td>饼干</td>
+            <td>20</td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#addModal">新增</a>
+                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modifyModal">修改</a>
+                    <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal">删除</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <!--新增属性模态框-->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加属性</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">属性名</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="name" placeholder="属性名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="option" class="col-sm-2 control-label">属性选项</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="option" placeholder="属性名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label">种类</label>
+                            <div class="col-md-9">
+                                <div class="col-md-4" style="padding-left: 0">
+                                    <select class="form-control">
+                                        <option>国产品牌</option>
+                                        <option>进口品牌</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4" style="padding-left: 0">
+                                    <select class="form-control">
+                                        <option>唇彩</option>
+                                        <option>唇膏</option>
+                                        <option>口红</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4" style="padding: 0">
+                                    <select class="form-control">
+                                        <option>化妆品</option>
+                                        <option>女士用品</option>
+                                        <option>男士用品</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">添加</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--修改属性模态框-->
+    <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">修改属性</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">属性名</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="option" class="col-sm-2 control-label">属性选项</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="option">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="col-sm-2 control-label">种类</label>
+                            <div class="col-md-9">
+                                <div class="col-md-4" style="padding-left: 0">
+                                    <select class="form-control">
+                                        <option>国产品牌</option>
+                                        <option>进口品牌</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4" style="padding-left: 0">
+                                    <select class="form-control">
+                                        <option>唇彩</option>
+                                        <option>唇膏</option>
+                                        <option>口红</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4" style="padding: 0">
+                                    <select class="form-control">
+                                        <option>化妆品</option>
+                                        <option>女士用品</option>
+                                        <option>男士用品</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">保存修改</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--删除属性模态框-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                </div>
+                <div class="modal-body">
+                    删除属性成功！
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

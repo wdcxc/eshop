@@ -109,3 +109,8 @@ class ProductAdminView(AdminBaseView):
                 else:
                     break
         return list(sortedCategoriesDict.values())[0] if sortedCategoriesDict else []
+
+    @loginRequire()
+    def property(self, request):
+        """属性管理"""
+        pass
