@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% csrf_token %}
 {% load static %}
 {% block title %}商家个人信息{% endblock %}
 {% block css %}
@@ -21,85 +21,68 @@
                             <span class="for-head-text">shop information</span>
                         </p>
                     </div>
-                    <!--头像及姓名-->
-                    <div class="user-info-pic">
-                        <div class="file-pic">
-                            <input type="file" class="input-pic">
-                            <img class="user-pic" src="{% static "images/customer/user-head.jpg" %}" alt="用户头像">
-                        </div>
-                        <div class="user-detail">
-                            <p class="user-name">用户名：zihang1013</p>
-                            <p class="shop-name">店铺名：津津美食</p>
-                            <p class="shop-address">店铺地址：华南师范大学西区2号</p>
-                        </div>
-                    </div>
+
                     <!--店铺信息修改-->
                     <div class="info-main">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" id="form" v-on:submit.prevent="submitForm">
+                            <!--头像及姓名-->
+                            <div class="user-info-pic">
+                                <div class="file-pic">
+                                    <input type="hidden" id="thumbnail" value="{{seller.thumbnail}}">
+                                    <input type="file" class="input-pic" id="img" v-on:change="uploadImg">
+                                    <img class="user-pic" v-bind:src="seller.thumbnail" alt="用户头像">
+                                </div>
+                                <div class="user-detail">
+                                    <p class="user-name">用户名：{{seller.name}}</p>
+                                    <p class="shop-name">店铺名：{{seller.shopName}}</p>
+                                    <p class="shop-address">店铺地址：{{seller.shopAddress}}</p>
+                                </div>
+                            </div>
                             <div class="form-group">
+                                <input type="hidden" id="truename" value="{{seller.truename}}"/>
                                 <label for="truename" class="col-sm-2 control-label">商家姓名</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="truename" placeholder="商家姓名">
+                                    <input type="text" class="form-control" v-model="seller.truename" placeholder="商家姓名">
                                 </div>
                             </div>
                             <div class="form-group">
+                                <input type="hidden" id="idno" value="{{seller.idno}}"/>
                                 <label for="IDcard" class="col-sm-2 control-label">身份证</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="IDcard">
+                                    <input v-model="seller.idno" type="text" class="form-control" id="IDcard">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="sex" class="col-sm-2 control-label">性别</label>
-                                <div class="col-sm-8">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="man"> 男
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="woman"> 女
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="secret"> 保密
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="birthday" class="col-sm-2 control-label">生日</label>
-                                <div class="col-sm-8">
-                                    <div class='input-group date' id='datetimepicker'>
-                                        <input type='text' class="form-control"/>
-                                        <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
+                                <input type="hidden" id="mobile" value="{{seller.mobile}}"/>
                                 <label for="telephone" class="col-sm-2 control-label">电话</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="telephone" placeholder="telephone">
+                                    <input v-model="seller.mobile" type="text" class="form-control" id="telephone" placeholder="telephone">
                                 </div>
                             </div>
                             <div class="form-group">
+                                <input type="hidden" id="email" value="{{seller.email}}"/>
                                 <label for="email" class="col-sm-2 control-label">邮箱</label>
                                 <div class="col-sm-8">
-                                    <input type="email" class="form-control" id="email" placeholder="email">
+                                    <input type="email" class="form-control" v-model="seller.email" placeholder="email">
                                 </div>
                             </div>
                             <div class="form-group">
+                                <input type="hidden" id="shopName" value="{{seller.shopName}}"/>
                                 <label for="shopname" class="col-sm-2 control-label">店铺名</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="shopname" placeholder="店铺名">
+                                    <input type="text" class="form-control" v-model="seller.shopName" placeholder="店铺名">
                                 </div>
                             </div>
                             <div class="form-group">
+                                <input type="hidden" id="shopAddress" value="{{seller.shopAddress}}"/>
                                 <label for="address" class="col-sm-2 control-label">店铺地址</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="address" placeholder="店铺地址">
+                                    <input v-model="seller.shopAddress" type="text" class="form-control" id="address" placeholder="店铺地址">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="text-center">
-                                    <a class="btn" style="background-color: red;color: #fff">保存修改</a>
+                                    <button class="btn" type="submit" style="background-color: red;color: #fff">保存修改</button>
                                 </div>
                             </div>
                         </form>
@@ -119,7 +102,7 @@
                     <h4 class="modal-title" id="myModalLabel">系统提示</h4>
                 </div>
                 <div class="modal-body">
-                    <p class="message">保存成功</p>
+                    <p class="message" id="modalInfo"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
@@ -131,12 +114,6 @@
 
 {% block js %}
     <script src="{% static "js/moment.js" %}"></script>
-    <script src="{% static "lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
-    <script>
-         $(function () {
-            $('#datetimepicker').datetimepicker({
-                format: 'YYYY-MM-DD'
-            });
-        });
-    </script>
+    <script src="{% static 'js/js.cookie.js' %}"></script>
+    <script src="{% static 'js/seller/shopinfo.js' %}"></script>
 {% endblock %}
