@@ -188,7 +188,7 @@
     color: #333;
     text-decoration: none;
 }
-.goods-attribute,.commodity-detail{
+.goods-attribute,.goods-detail{
     display: inline-block;
     margin: 1rem;
     padding-bottom: 1rem;
