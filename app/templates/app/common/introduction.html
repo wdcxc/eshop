@@ -9,9 +9,73 @@
 
 {% block body %}
     {% include "app/header.html" %}
+    <!--商品内容-->
+    <div class="content">
+        <!--商品图片-->
+        <div class="content-left">
+            <div class="commodity-image">
+                <img src="{% static 'images/app/goods1_mid.jpg' %}" alt="商品图片1">
+            </div>
+            <ul class="commodity-list">
+                <li>
+                   <img src="{% static 'images/app/goods1_mid.jpg' %}" alt="商品图片1">
+                </li>
+                <li>
+                    <img src="{% static 'images/app/goods2_mid.jpg' %}" alt="商品图片2">
+                </li>
+                <li>
+                    <img src="{% static 'images/app/goods3_mid.jpg' %}" alt="商品图片3">
+                </li>
+            </ul>
+        </div>
+        <!--商品详情-->
+        <div class="content-right">
+            <h2 class="commodity-name">良品铺子 手剥松子218g 坚果炒货 巴西松子</h2>
+            <div class="detail-list">
+                <div class="commodity-price">
+                    价格<span class="price">￥<span style="font-size: 1.2rem;font-weight: bold">56.90</span></span></dd>
+                </div>
+                <ul class="sale-num">
+                    <li class="month-sale">月销量<span class="num">100</span></li>
+                    <li class="total-sale">总销量<span class="num">200</span></li>
+                    <li class="total-evaluate">总评价<span class="num">200</span></li>
+                </ul>
+                <ul class="commodity-attribute">
+                    <li>
+                        <label class="attribute-name">口味</>
+                        <ul class="attribute-select">
+                            <li>原味</li>
+                            <li>炭烧</li>
+                            <li>奶油</li>
+                            <li>咸香</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label class="attribute-name">包装</label>
+                        <ul class="attribute-select">
+                            <li>单人装</li>
+                            <li>双人装</li>
+                            <li>家庭装</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label class="attribute-name">数量</label>
+                        <input id="reduce" name="" type="button" value="-">
+                        <input id="text-box" name="" type="text" value="1">
+                        <input id="add" name="" type="button" value="+">
+                        <span class="stock">库存1000件</span>
+                    </li>
+                </ul>
+                <div class="button-group">
+                    <a href="{% url 'app:order' %}" class="buy-rightnow">马上购买</a>
+                    <a href="{% url 'app:shopcart' %}" class="add-to-shopcart">加入购物车</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block js %}
-    <script src="{% static "js/jquery.imagezoom.min.js" %}"></script>
+    <script src="{% static "js/jquery.zoom.js" %}"></script>
     <script src="{% static "js/introduction.js" %}"></script>
 {% endblock %}
