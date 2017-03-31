@@ -65,7 +65,7 @@ class CommonView(CustomerBaseView):
                 loginedCustomer = CustomerModel.objects.get(mobile=customer["account"])
             elif email_num:
                 loginedCustomer = CustomerModel.objects.get(email=customer["account"])
-            request.session["user"] = {"id": loginedCustomer.id}
+            request.session["user"] = {"id": loginedCustomer.id,"app":self.request_["appadmin"]}
             self.context = {"code": 200, "msg": "登录成功", "data": {"account": loginedCustomer.id}}
         else:
             self.context = {"code": 410, "msg": "账号或密码错误", "data": {}}

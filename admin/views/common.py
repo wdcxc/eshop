@@ -28,7 +28,7 @@ class CommonView(AdminBaseView):
             loginUser.loginTime = datetime.now()
             loginUser.save()
             request.session["user"] = {"id": loginUser.id, "username": loginUser.username,
-                                       "loginTime": str(loginUser.loginTime)}
+                                       "loginTime": str(loginUser.loginTime),"app":self.request_["appadmin"]}
             self.context = {"code": 200, "msg": "登陆成功", "data": {"username": loginUser.username}}
         except Exception as e:
             self.context = {"code": 413, "msg": "用户名或密码错误", "data": {}}
