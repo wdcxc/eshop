@@ -17,7 +17,7 @@ class ProductAdminView(AdminBaseView):
 
     @loginRequire()
     def property(self,request):
-        """商品标签管理首页"""
+        """商品属性管理首页"""
         pass
 
     @loginRequire()
