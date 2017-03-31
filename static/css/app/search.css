@@ -174,7 +174,7 @@
     text-decoration: none;
     cursor: pointer;
 }
-.sort-first{
+.sort li:first-child{
     background: #F5F5F5;
 }
 .commodity{

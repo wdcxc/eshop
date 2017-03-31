@@ -8,14 +8,6 @@
     width: 20rem;
     float: left;
 }
-.commodity-image{
-    width: 20rem;
-    height: 20rem;
-    border: 1px solid #cdcdcd;
-}
-.commodity-image img{
-    width: 100%;
-}
 .commodity-list{
     margin: .5rem 0 0;
     overflow: hidden;
@@ -33,7 +25,7 @@
     width: 100%;
 }
 .image-selected{
-    border: 1px solid #C30008;
+    border: 1px solid #C30008 !important;
 }
 .content-right{
     width: 35rem;
@@ -87,7 +79,7 @@
     margin-left: .2rem;
 }
 .commodity-attribute li{
-    margin: .5rem 0;
+    margin: 1rem 0;
 }
 .attribute-name{
     font-size: .7rem;
@@ -98,19 +90,16 @@
     text-align: left;
 }
 .attribute-select{
-    display: inline-block;
-}
-.attribute-select li{
-    float: left;
     margin: .2rem;
     padding: .2rem;
     border: 2px solid #F5F5F5;
     color: #000;
 }
-#reduce,#add{
+.reduce,.add{
+    text-align: center;
     width: 1rem;
 }
-#text-box{
+.number{
     text-align: center;
     width: 1.5rem;
 }
@@ -118,7 +107,7 @@
     margin-left: .2rem;
 }
 .button-group{
-    margin: 2rem 0 0 3rem;
+    margin: 1.5rem 0 0 3rem;
     float: left;
     line-height: 1.5rem;
     font-size: .7rem;
@@ -147,4 +136,184 @@
     text-decoration: none;
     color: #FFF;
 }
-.
+.content-bottom{
+    margin-top: 2rem;
+}
+.nav-tabs>li {
+    float: right;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    color: #E4393C;
+}
+.nav-tabs>li>a{
+    color: #333;
+}
+.same-kind{
+    float: left;
+    width: 20%;
+    margin-top: 2rem;
+}
+.same-kind ul{
+    border: 1px solid #D4D4D4;
+    width: 90%;
+}
+.title{
+    padding: .5rem 0;
+    background-color: #f7f7f7;
+}
+.title h2{
+    text-align: center;
+    margin: 0;
+    font-size: .8rem;
+}
+.goods-list{
+    margin: 0 .5rem;
+    padding: .6rem 0;
+    border-top:1px solid #f7f7f7;
+}
+.goods-list:first-child{
+    border-top: none;
+}
+.goods-img img{
+    width: 100%;
+}
+.goods-price{
+    margin-top: .3rem;
+    font-size: .8rem;
+    color: #E4393C;
+    font-weight: 600;
+    text-align: center;
+}
+.goods-name a{
+    color: #333;
+    text-decoration: none;
+}
+.goods-attribute,.commodity-detail{
+    display: inline-block;
+    margin: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #F70;
+}
+.attribute-content{
+    margin:0 0 2rem .3rem;
+    overflow: hidden;
+}
+.attribute-content div{
+    font-size: .7rem;
+    line-height: 1.5rem;
+}
+.detail-content{
+    margin-left: 1rem;
+}
+.detail-content img{
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+}
+.high-praise{
+    display: inline-block;
+    margin: 1rem;
+}
+.high-praise span{
+    font-size: 1.3rem;
+    color: #E4393C;
+    font-weight: bold;
+}
+.evaluate-option{
+    margin: 0 0;
+}
+.option-list{
+    padding: 0 0;
+    border-radius: 0 0 .2rem .2rem;
+    margin: .5rem .5rem;
+    font-size: .6rem;
+    width: auto;
+    overflow: hidden;
+    box-shadow: 0 0 .1rem #999;
+}
+.option-list li{
+    float: left;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    padding: 0 1rem;
+    width: auto;
+    border-right: 1px dotted #ddd;
+}
+.option-list li a{
+    font-size: .7rem;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.option-list li:first-child{
+    background: #F5F5F5;
+}
+.comment{
+    margin-top: 1rem;
+    width: 100%;
+}
+.commenter-pic img{
+    width: 2.4rem;
+    height: 2.4rem;
+    float: left;
+    border-radius: 50%;
+}
+.comment-main{
+    margin-left: 3.1rem;
+    text-align: left;
+    position: relative;
+    border: 1px solid #dedede;
+}
+.comment-hd{
+    background: #f8f8f8;
+    border-bottom: 1px solid #eee;
+}
+.comment-meta{
+    padding: .5rem .7rem;
+    font-size: .7rem;
+    color: #999;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.commenter-name{
+    color: #999;
+    font-weight: bold;
+}
+.comment-bd{
+    padding: .7rem;
+    overflow: hidden;
+}
+.comment-main:before{
+    border-right-color: #dedede !important;
+}
+.comment-main:after{
+    border-right-color: #f8f8f8 !important;
+    margin-left: 1px;
+}
+.comment-main:before, .comment-main:after {
+    position: absolute;
+    top: .5rem;
+    left: -.4rem;
+    right: 100%;
+    width: 0;
+    height: 0;
+    display: block;
+    content: " ";
+    border-color: transparent;
+    border-style: solid solid outset;
+    border-width: .4rem .4rem .4rem 0;
+    pointer-events: none;
+}
+.comment-time{
+    margin: 1rem 0 0 0;
+}
+.evaluate-content{
+    margin: 0 .5rem;
+}
+.evaluate-content nav{
+    float: right;
+}
+.evaluate-content nav li a{
+    color: #333;
+}
