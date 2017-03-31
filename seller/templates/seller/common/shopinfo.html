@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% load static %}
-{% block title %}店铺信息{% endblock %}
+{% block title %}商家个人信息{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/seller/header.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/seller/aside.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/seller/shopinfo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css' %}">
 {% endblock %}
 {% block body %}
     {% include "seller/header.html" %}
@@ -20,171 +21,96 @@
                             <span class="for-head-text">shop information</span>
                         </p>
                     </div>
-                    <!--店铺列表-->
-                    <ul>
-                        <li class="shop-addresslist shop-selected">
-                            <div class="shop-text">
-                                <div class="shop">
-                                    <span class="shop-name">津津美食</span>
-                                </div>
-                                <div class="address-detail">店铺地址：
-                                    <span class="province">广东</span>省
-                                    <span class="city">广州</span>市
-                                    <span class="dist">天河</span>区
-                                    <span class="street">华南师范大学西门5号</span>
-                                </div>
-                                <ins class="deftip">默认店铺</ins>
-                            </div>
-                            <div class="shop-option">
-                                <a class="set-default hidden">设为默认</a>
-                                <a data-toggle="modal" data-target="#modifyShopModal">编辑</a>
-                                <a class="delete-shop">删除</a>
-                            </div>
-                        </li>
-                        <li class="shop-addresslist">
-                            <div class="shop-text">
-                                <div class="shop">
-                                    <span class="shop-name">好日子超市</span>
-                                </div>
-                                <div class="address-detail">店铺地址：
-                                    <span class="province">广东</span>省
-                                    <span class="city">广州</span>市
-                                    <span class="dist">天河</span>区
-                                    <span class="street">华南师范大学西区6号</span>
-                                </div>
-                                <ins class="deftip hidden">默认店铺</ins>
-                            </div>
-                            <div class="shop-option">
-                                <a class="set-default">设为默认</a>
-                                <a data-toggle="modal" data-target="#modifyShopModal">编辑</a>
-                                <a class="delete-shop">删除</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    <!--标题-->
-                    <div class="info-head" style="margin-top: 2rem">
-                        <p>
-                            <span class="head-text">新增店铺</span>/
-                            <span class="for-head-text">add shop</span>
-                        </p>
+                    <!--头像及姓名-->
+                    <div class="user-info-pic">
+                        <div class="file-pic">
+                            <input type="file" class="input-pic">
+                            <img class="user-pic" src="{% static "images/customer/user-head.jpg" %}" alt="用户头像">
+                        </div>
+                        <div class="user-detail">
+                            <p class="user-name">用户名：zihang1013</p>
+                            <p class="shop-name">店铺名：津津美食</p>
+                            <p class="shop-address">店铺地址：华南师范大学西区2号</p>
+                        </div>
                     </div>
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label for="shop" class="col-sm-2 control-label">店铺名</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" id="shop" placeholder="店铺名">
+                    <!--店铺信息修改-->
+                    <div class="info-main">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="truename" class="col-sm-2 control-label">商家姓名</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="truename" placeholder="商家姓名">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone-number" class="col-sm-2 control-label">联系人手机号码</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" id="phone-number" placeholder="手机号码必填">
+                            <div class="form-group">
+                                <label for="IDcard" class="col-sm-2 control-label">身份证</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="IDcard">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="location" class="col-sm-2 control-label">店铺所在地</label>
-                            <div class="col-md-2">
-                                <select class="form-control">
-                                    <option>广东省</option>
-                                    <option>福建省</option>
-                                </select>
+                            <div class="form-group">
+                                <label for="sex" class="col-sm-2 control-label">性别</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="man"> 男
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="woman"> 女
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="secret"> 保密
+                                    </label>
+                                </div>
                             </div>
-                            <div class="col-md-2">
-                                <select class="form-control">
-                                    <option>广州市</option>
-                                    <option>汕头市</option>
-                                    <option>揭阳市</option>
-                                </select>
+                            <div class="form-group">
+                                <label for="birthday" class="col-sm-2 control-label">生日</label>
+                                <div class="col-sm-8">
+                                    <div class='input-group date' id='datetimepicker'>
+                                        <input type='text' class="form-control"/>
+                                        <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-2">
-                                <select class="form-control">
-                                    <option>天河区</option>
-                                    <option>白云区</option>
-                                    <option>越秀区</option>
-                                </select>
+                            <div class="form-group">
+                                <label for="telephone" class="col-sm-2 control-label">电话</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="telephone" placeholder="telephone">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="detail-address" class="col-sm-2 control-label">详细地址</label>
-                            <div class="col-md-6">
-                                <textarea class="form-control" rows="3" placeholder="请输入详细地址"></textarea>
+                            <div class="form-group">
+                                <label for="email" class="col-sm-2 control-label">邮箱</label>
+                                <div class="col-sm-8">
+                                    <input type="email" class="form-control" id="email" placeholder="email">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-4 col-sm-8">
-                                <a class="btn" data-toggle="modal" data-target="#addModal" style="color: #fff;background-color: red">新增店铺</a>
+                            <div class="form-group">
+                                <label for="shopname" class="col-sm-2 control-label">店铺名</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="shopname" placeholder="店铺名">
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <label for="address" class="col-sm-2 control-label">店铺地址</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="address" placeholder="店铺地址">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="text-center">
+                                    <a class="btn" style="background-color: red;color: #fff">保存修改</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     {% include "seller/aside.html" %}
     </div>
-    <!--修改店铺模态框 -->
-    <div class="modal fade" id="modifyShopModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">修改店铺信息</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label for="person" class="col-sm-3 control-label">店铺名</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="person" placeholder="店铺名">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone-number" class="col-sm-3 control-label">联系人手机号码</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="phone-number" placeholder="手机号码必填">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="location" class="col-sm-3 control-label">店铺所在地</label>
-                            <div class="col-md-3">
-                                <select class="form-control">
-                                    <option>广东省</option>
-                                    <option>福建省</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-control">
-                                    <option>广州市</option>
-                                    <option>汕头市</option>
-                                    <option>揭阳市</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-control">
-                                    <option>天河区</option>
-                                    <option>白云区</option>
-                                    <option>越秀区</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="detail-address" class="col-sm-3 control-label">详细地址</label>
-                            <div class="col-md-9">
-                                <textarea class="form-control" rows="3" placeholder="请输入详细地址"></textarea>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger">保存</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--新增成功/失败模态框-->
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
+    <!--保存成功/失败模态框-->
+    <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -193,7 +119,7 @@
                     <h4 class="modal-title" id="myModalLabel">系统提示</h4>
                 </div>
                 <div class="modal-body">
-                    <p class="message">新增店铺成功</p>
+                    <p class="message">保存成功</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
@@ -204,5 +130,13 @@
 {% endblock %}
 
 {% block js %}
-    <script src="{% static "js/seller/shopinfo.js" %}"></script>
+    <script src="{% static "js/moment.js" %}"></script>
+    <script src="{% static "lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
+    <script>
+         $(function () {
+            $('#datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD'
+            });
+        });
+    </script>
 {% endblock %}

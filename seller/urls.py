@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^common/shopinfo', CommonView.as_view(), name="shopinfo"),
     url(r'^common/order', CommonView.as_view(), name="order"),
     url(r'^common/goodslist', CommonView.as_view(), name="goodslist"),
+    url(r'^common/addgoods', CommonView.as_view(), name="addgoods"),
 ]
