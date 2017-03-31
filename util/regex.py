@@ -25,3 +25,9 @@ class Regex(object):
         if re.match(pattern,email) is None:
             return False
         return True
+
+    def validateIdno(self,idno):
+        pattern= "[0-9xX]{18}"
+        if re.match(pattern,idno) is None:
+            return False
+        return True

@@ -18,31 +18,36 @@
     <div class="content">
         <div class="shadow-box">
             <div class="content-box">
-                <form id="registerForm" v-on:submit.prevent="register" style="padding-top:2.8rem;position:absolute">
+                <form id="registerForm" v-on:submit.prevent="doRegister" style="padding-top:2.8rem;position:absolute">
                     {% csrf_token %}
                     <div class="form-item">
                         <span class="form-item-name">用户名</span>
-                        <input name="username" id="username" autocomplete="off" value="" maxlength="30"
+                        <input v-model="seller.name" name="username" id="username" autocomplete="off" value="" maxlength="30"
                                placeholder="请输入您的用户名" type="text" class="input-box">
                     </div>
                     <div class="form-item">
                         <span class="form-item-name">手机号码</span>
-                        <input name="mobile" id="mobile" autocomplete="off" value="" maxlength="11"
+                        <input v-model="seller.mobile" name="mobile" id="mobile" autocomplete="off" value="" maxlength="11"
                                placeholder="请输入您的手机号码" type="text" class="input-box">
                     </div>
                     <div class="form-item">
                         <span class="form-item-name">邮箱</span>
-                        <input name="email" id="email" autocomplete="off" value="" maxlength="30" placeholder="请输入您的邮箱"
+                        <input v-model="seller.email" name="email" id="email" autocomplete="off" value="" maxlength="30" placeholder="请输入您的邮箱"
+                               type="text" class="input-box">
+                    </div>
+                    <div class="form-item">
+                        <span class="form-item-name">身份证号码</span>
+                        <input v-model="seller.idno" name="idno" id="idno" autocomplete="off" value="" maxlength="18" placeholder="请输入您的身份证号码"
                                type="text" class="input-box">
                     </div>
                     <div class="form-item">
                         <span class="form-item-name">登陆密码</span>
-                        <input name="password" id="password" maxlength="130" type="password" class="input-box"
+                        <input v-model="seller.password" name="password" id="password" maxlength="130" type="password" class="input-box"
                                placeholder="建议至少使用两种字符组合">
                     </div>
                     <div class="form-item">
                         <span class="form-item-name">确认密码</span>
-                        <input name="confirm-pwd" id="confirm-pwd" maxlength="130" type="password" class="input-box"
+                        <input v-model="seller.confirmPwd" name="confirm-pwd" id="confirm-pwd" maxlength="130" type="password" class="input-box"
                                placeholder="请再次输入密码">
                     </div>
                     <div class="form-item">
@@ -56,7 +61,7 @@
                         <a v-on:click="updateCaptcha" id="change-code" style="position:relative;left:4.4rem"
                            href="javascript:void(0);">换张图</a>
                     </div>
-                    <input type="submit" value="立即注册" class="submit-btn" data-toggle="modal" data-target="#registerModal">
+                    <input type="submit" value="立即注册" class="submit-btn" data-target="#registerModal">
                 </form>
             </div>
         </div>
@@ -69,8 +74,7 @@
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">系统提示</h4>
                 </div>
-                <div class="modal-body">
-                    注册成功，经过2s之后将自动跳转到登陆页面
+                <div class="modal-body" id="modalInfo">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>

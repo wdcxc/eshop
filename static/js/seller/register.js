@@ -4,10 +4,16 @@
 var csrftoken = Cookies.get("csrftoken");
 var captchaUrl = "/seller/common/generateCaptcha/";
 
-registerForm = new Vue({
+var registerForm = new Vue({
     el: "#registerForm",
     data: {
         seller: {
+            idno:"",
+            name:"",
+            password:"",
+            mobile:"",
+            email:"",
+            confirmPwd:"",
             captchaCode: '',
         },
         captcha: {
@@ -20,16 +26,25 @@ registerForm = new Vue({
             return false;
         },
         doRegister: function () {
+            if(this.seller.password!=this.seller.confirmPwd){
+                $("#modalInfo").html("密码不一致");
+                $("#registerModal").modal("toggle");
+                return
+            }
             var that = this;
-            this.$http.post("/seller/common/doRegister", that.seller, {"headers": {"X-CSRFToken": csrftoken}}).then(response=> {
-                if(response.body.code == 200){
-                    //todo
+            this.$http.post("/seller/common/doRegister", that.seller, {"headers": {"X-CSRFToken": csrftoken}}).then(success=> {
+                $("#modalInfo").html(success.body.msg);
+                $("#registerModal").modal("toggle");
+                if(success.body.code == 200){
+                    setTimeout(function(){
+                        window.location.href = "/seller/common/login";
+                    },2000);
                 }else{
-
+                    that.updateCaptcha();
                 }
 
             }, responser=> {
-                console.log(response.body)
+                console.log(response.body.msg)
             });
 
         }
