@@ -18,10 +18,10 @@
                         <input type="file" class="input-pic">
                         <img class="user-pic" src="{% static "images/customer/user-head.jpg" %}" alt="用户头像">
                     </div>
-                    <p class="user-name">用户名：zihang1013</p>
+                    <p class="user-name">用户名：{{seller.name}}</p>
                     <ul>
-                        <li>店铺名：津津美食<span class="tip">(默认店铺)</span></li>
-                        <li>店铺地址：华南师范大学西区5号</li>
+                        <li>店铺名：{{seller.shopName}}</li>
+                        <li>店铺地址：{{seller.shopAddress}}</li>
                     </ul>
                 </div>
                 <!--订单-->
@@ -29,10 +29,12 @@
                     <div class="info-bar">
                         最新订单<a href="order" class="all-order pull-right">全部订单</a>
                     </div>
+                    {% if orders %}
                     <div class="no-order">
                         <p class="no-order-text">您暂时没有订单</p>
                     </div>
-                    <div class="order-content-box hidden">
+                    {% endif %}
+                    <div class="order-content-box">
                         <div class="order-content">
                             <ul class="order-content-pic">
                                 <li class="img-box">
@@ -48,7 +50,7 @@
                         </div>
                         <a href="#" class="buy-btn">立即发货</a>
                     </div>
-                    <div class="order-content-box hidden">
+                    <div class="order-content-box">
                         <div class="order-content">
                             <ul class="order-content-pic">
                                 <li class="img-box">

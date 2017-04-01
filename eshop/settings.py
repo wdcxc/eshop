@@ -143,6 +143,6 @@ else:
     SESSION_EXPIRE_AGE = 0.5*3600
 
 # 文件上传
-MEDIA_ROOT = STATIC_ROOT + '/media/fileupload/'
-MEDIA_URL = STATIC_URL + '/media/fileupload/'
-FILE_UPLOAD_TEMP_DIR = MEDIA_ROOT + '/tmp/'
+MEDIA_ROOT = STATIC_ROOT + 'media/fileupload/'
+MEDIA_URL = STATIC_URL + 'media/fileupload/'
+FILE_UPLOAD_TEMP_DIR = MEDIA_ROOT + 'tmp/'
