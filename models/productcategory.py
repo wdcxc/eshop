@@ -4,9 +4,6 @@ from django.db import models
 class ProductCategoryModel(models.Model):
     """商品类别目录"""
 
-    class Meta:
-        db_table = "product_category"
-
     def __str__(self):
         return "{id}:{name}".format(id=self.id, name=self.name)
 
@@ -17,9 +14,13 @@ class ProductCategoryModel(models.Model):
     show = models.BooleanField(default=True)  # 是否显示
     addTime = models.DateTimeField(auto_now_add=True)  # 添加时间
 
+    class Meta:
+        db_table = "product_category"
+
 
 class PropertyMetaModel(models.Model):
     """商品属性元型模型"""
+    name = models.CharField(max_length=20)  # 属性名
     category = models.ForeignKey(ProductCategoryModel, related_name="propertyMetas", on_delete=models.CASCADE)  # 归属商品类别
     addTime = models.DateTimeField(auto_now_add=True)  # 添加时间
 

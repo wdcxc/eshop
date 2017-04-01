@@ -24,23 +24,23 @@
                         </p>
                     </div>
                     <!--新增商品-->
-                    <form class="form-horizontal" enctype="multipart/form-data">
+                    <form class="form-horizontal" id="form" v-on:submit.prevent="submitForm">
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">商品名</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="name" placeholder="商品名">
+                                <input v-model="good.name"type="text" class="form-control" id="name" placeholder="商品名">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="price" class="col-sm-2 control-label">商品价格</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="price">
+                                <input v-model="good.price" type="text" class="form-control" id="price">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="brand" class="col-sm-2 control-label">商品品牌</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="brand">
+                                <input v-model="good.brand" type="text" class="form-control" id="brand">
                             </div>
                         </div>
                         <div class="form-group">

@@ -29,7 +29,7 @@
                     <div class="info-bar">
                         最新订单<a href="order" class="all-order pull-right">全部订单</a>
                     </div>
-                    {% if orders %}
+                    {% if not orderProducts %}
                     <div class="no-order">
                         <p class="no-order-text">您暂时没有订单</p>
                     </div>
