@@ -6,6 +6,7 @@ from models.order import OrderModel
 from util.baseview import loginRequire
 from util.geodata import GeoData
 from util.upload import Upload
+from models.collection import CollectionModel
 
 
 class InformationView(CustomerBaseView):

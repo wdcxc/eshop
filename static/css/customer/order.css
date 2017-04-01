@@ -56,11 +56,11 @@ p{
 .commodity-attribute{
     color: #9c9c9c;
 }
-.commodity-price,.commodity-num,.return-money{
-    padding-top: 2rem;
+.commodity-price,.commodity-num,.return-money,.transaction-status,.transaction-operation{
+    padding-top: 1.8rem;
 }
 .table-right{
-    width: 40%;
+    width: 8%;
     position: absolute;
     top: 50%;
     margin-top: -.8rem;
@@ -68,20 +68,12 @@ p{
     overflow: visible;
 }
 .table-right ul li{
-    float: left;
-}
-.transaction-status{
-    width: 55%;
     text-align: center;
 }
 .transaction-status a{
     display: block;
     color: #333;
     text-decoration: none;
-}
-.transaction-operation{
-    width: 30%;
-    text-align: center;
 }
 .transaction-operation a{
     background-color: #fd6d37;
@@ -105,4 +97,7 @@ p{
 .return-money a{
     text-decoration: none;
     color: #333;
+}
+.order-item-hide{
+    visibility: hidden;
 }
