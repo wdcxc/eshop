@@ -12,9 +12,9 @@ class CommonView(BaseView):
     @loginRequire()
     def index(self, request):
         seller = SellerModel.objects.get(id=request.session["user"]["id"])
-        orders = seller.orders.all().order_by("-addTime")[:2]
+        orderProducts = seller.orderProducts.all().order_by("-addTime")[:2]
         self.context["seller"] = seller
-        self.context["orders"] = orders
+        self.context["orderProducts"] = orderProducts
 
     def login(self, request):
         pass
@@ -44,23 +44,23 @@ class CommonView(BaseView):
             self.context["seller"] = seller
         elif request.method == "POST":
             self.response_["type"] = self.RESPONSE_TYPE_JSON
-            keys = ("truename","shopName","shopAddress","idno","email","mobile","thumbnail")
+            keys = ("truename", "shopName", "shopAddress", "idno", "email", "mobile", "thumbnail")
             dict = {}
             for key in keys:
                 dict[key] = request.POST.get(key)
             SellerModel.objects.filter(id=request.session["user"]["id"]).update(**dict)
-            self.context = {"code":200,"msg":"修改卖家信息成功","data":{}}
+            self.context = {"code": 200, "msg": "修改卖家信息成功", "data": {}}
 
     def order(self, request):
         pass
 
-    def goodslist(self,request):
+    def goodslist(self, request):
         pass
-        #todo
+        # todo
 
-    def addgoods(self,request):
+    def addgoods(self, request):
         pass
-        #todo
+        # todo
 
     def modifygoods(self,request):
         pass
@@ -69,7 +69,6 @@ class CommonView(BaseView):
     @valifyCaptcha(errcode=401)
     def doLogin(self, request):
         """商家登录"""
-
         self.response_["type"] = BaseView.RESPONSE_TYPE_JSON
         sellerKeys = ("account", "password")
         seller = {}
@@ -79,11 +78,11 @@ class CommonView(BaseView):
         # 账号密码验证
         seller["password"] = hashlib.sha512(seller["password"].encode("utf8")).hexdigest()
         username_num = SellerModel.objects.filter(name=seller["account"],
-                                             password=seller["password"]).count()
+                                                  password=seller["password"]).count()
         mobile_num = SellerModel.objects.filter(mobile=seller["account"],
-                                           password=seller["password"]).count()
+                                                password=seller["password"]).count()
         email_num = SellerModel.objects.filter(email=seller["account"],
-                                          password=seller["password"]).count()
+                                               password=seller["password"]).count()
         if username_num + mobile_num + email_num == 1:
             if username_num:
                 seller = SellerModel.objects.get(name=seller["account"])
@@ -91,7 +90,7 @@ class CommonView(BaseView):
                 seller = SellerModel.objects.get(mobile=seller["account"])
             elif email_num:
                 seller = SellerModel.objects.get(email=seller["account"])
-            request.session["user"] = {"id":seller.id,"app":self.request_["appadmin"]}
+            request.session["user"] = {"id": seller.id, "app": self.request_["appadmin"]}
             self.context = {"code": 200, "msg": "登录成功", "data": {}}
         else:
             self.context = {"code": 410, "msg": "账号或密码错误", "data": {}}
@@ -100,7 +99,7 @@ class CommonView(BaseView):
     def doRegister(self, request):
         """商家注册"""
         self.response_["type"] = BaseView.RESPONSE_TYPE_JSON
-        sellerKeys = ("name", "password", "mobile", "email","idno")
+        sellerKeys = ("name", "password", "mobile", "email", "idno")
         seller = {}
         for key in sellerKeys:
             seller[key] = request.POST.get(key)
@@ -116,7 +115,7 @@ class CommonView(BaseView):
         elif regex.validateEmail(seller["email"]) is False:
             self.context = {"code": 406, "msg": "邮箱格式验证错误", "data": {}}
         elif regex.validateIdno(seller["idno"]) is False:
-            self.context = {"code":4,"msg":"身份证号码验证错误","data":{}}
+            self.context = {"code": 4, "msg": "身份证号码验证错误", "data": {}}
         else:
             seller["password"] = hashlib.sha512(seller["password"].encode("utf8")).hexdigest()
             # 数据库查重
@@ -127,7 +126,7 @@ class CommonView(BaseView):
             elif SellerModel.objects.filter(email=seller["email"]).exists():
                 self.context = {"code": 409, "msg": "邮箱已存在", "data": {}}
             elif SellerModel.objects.filter(idno=seller["idno"]).exists():
-                self.context = {"code":4,"msg":"身份证号码已存在","data":{}}
+                self.context = {"code": 4, "msg": "身份证号码已存在", "data": {}}
             else:
                 # 插入新数据
                 seller = SellerModel(**seller)
@@ -135,13 +134,13 @@ class CommonView(BaseView):
                 self.context = {"code": 200, "msg": "注册成功", "data": {}}
 
     @loginRequire()
-    def uploadThumbnail(self,request):
+    def uploadThumbnail(self, request):
         """上传卖家头像"""
         self.response_["type"] = self.RESPONSE_TYPE_JSON
         img = request.FILES["img"]
-        result = Upload.uploadImg(img,"seller")
+        result = Upload.uploadImg(img, "seller")
         if result["code"] == 200:
             seller = SellerModel.objects.get(id=request.session["user"]["id"])
-            seller.thumbnail = settings.MEDIA_ROOT+result["data"]["imgUrl"]
+            seller.thumbnail = settings.MEDIA_ROOT + result["data"]["imgUrl"]
             seller.save()
         self.context = result

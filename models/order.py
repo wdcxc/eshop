@@ -32,7 +32,6 @@ class OrderModel(models.Model):
 
 class OrderProductModel(models.Model):
     """订单商品模型"""
-    UNPAY = 1
     UNSEND = 2
     UNRECEIVE = 3
     UNEVALUATE = 4
@@ -41,12 +40,11 @@ class OrderProductModel(models.Model):
     REFUND = 7
     AC_REFUND = 8
     STATUS = (
-        (UNPAY, 'unpay'), (UNSEND, 'unsend'), (UNRECEIVE, 'unreceive'), (UNEVALUATE, 'unevaluate'), (FINISH, 'finish'),
+        (UNSEND, 'unsend'), (UNRECEIVE, 'unreceive'), (UNEVALUATE, 'unevaluate'), (FINISH, 'finish'),
         (CANCEL, 'cancel'), (REFUND, 'refund'), (AC_REFUND, 'accept-refund'))
-
-    status = models.IntegerField(choices=STATUS, default=UNPAY)  # 订单产品状态
-    order = models.ForeignKey(OrderModel, related_name="products", on_delete=models.CASCADE)  # 归属订单
-    seller = models.ForeignKey(SellerModel, related_name="orders", on_delete=models.SET_NULL)  # 卖家
+    status = models.IntegerField(choices=STATUS, default=UNSEND)  # 订单产品状态
+    order = models.ForeignKey(OrderModel, related_name="orderProducts", on_delete=models.CASCADE)  # 归属订单
+    seller = models.ForeignKey(SellerModel, related_name="orderProducts", on_delete=models.SET_NULL)  # 卖家
     product = models.OneToOneField(ProductModel, on_delete=models.CASCADE)  # 商品
     addTime = models.DateTimeField(auto_now_add=True)  # 商品加入订单时间
     sellPrice = models.DecimalField(max_digits=10, decimal_places=2)  # 商品加入订单时价格
@@ -58,6 +56,7 @@ class OrderProductModel(models.Model):
     ACRefundTime = models.DateTimeField(null=True)  # 商家接受退货时间
     refundReason = models.TextField(null=True)  # 退货理由
     evaluation = models.TextField(null=True)  # 订单评价
+    eGrade = models.IntegerField(null=True) # 商品评价
 
     class Meta:
         db_table = 'order_product'

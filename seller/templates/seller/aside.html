@@ -11,7 +11,7 @@
             </p>
             <ul>
                 <li>
-                    <a href="shopinfo">店铺信息</a>
+                    <a href="{% url 'seller:shopinfo' %}">店铺信息</a>
                 </li>
             </ul>
         </li>
@@ -21,7 +21,7 @@
             </p>
             <ul>
                 <li>
-                    <a href="goodslist">商品列表</a>
+                    <a href="{% url 'seller:goodslist' %}">商品列表</a>
                 </li>
             </ul>
         </li>
@@ -31,7 +31,7 @@
             </p>
             <ul>
                 <li>
-                    <a href="order">订单管理</a>
+                    <a href="{% url 'seller:order' %}">订单管理</a>
                 </li>
             </ul>
         </li>
@@ -41,13 +41,13 @@
             </p>
             <ul>
                 <li>
-                    <a href="verify">退款审核</a>
+                    <a href="{% url 'seller:verify' %}">退款审核</a>
                 </li>
                 <li>
-                    <a href="consult">咨询回复</a>
+                    <a href="{% url 'seller:consult' %}">咨询回复</a>
                 </li>
                 <li>
-                    <a href="opinion">意见回复</a>
+                    <a href="{% url 'seller:opinion' %}">意见回复</a>
                 </li>
             </ul>
         </li>

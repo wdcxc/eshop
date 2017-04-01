@@ -10,10 +10,10 @@
 {% block withnavbody %}
     <ul class="category-info">
         <li class="category-name">
-            <h2>所属种类：<span>饼干</span></h2>
+            <h2>所属种类：<span>{{parentCategory.name}} / {{category.name}}</span></h2>
         </li>
         <li class="add-property" style="float: right">
-            <a class="btn btn-primary" data-toggle="modal" data-target="#addModal">新增属性</a>
+            <a class="btn btn-primary" data-id="{{category.id}}" data-toggle="modal" data-target="#addModal">新增属性</a>
         </li>
     </ul>
 <table class="table table-striped table-hover table-bordered">
@@ -22,35 +22,22 @@
         <th>属性名称</th>
         <th>创建时间</th>
         <th>所属种类</th>
-        <th>种类id</th>
         <th>操作</th>
     </tr>
+    {% for metaProperty in metaProperties %}
     <tr>
-        <td>0</td>
-        <td>口感</td>
-        <td>2017-3-31 10:51</td>
-        <td>饼干</td>
-        <td>19</td>
+        <td>{{ metaProperty.id }}</td>
+        <td>{{ metaProperty.name }}</td>
+        <td>{{ metaProperty.addTime }}</td>
+        <td>{{ category.name }}</td>
         <td>
             <div class="btn-group">
-                <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modifyModal">修改</a>
-                <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal">删除</a>
+                <a class="btn btn-info btn-xs update" data-id="{{ metaProperty.id }}" data-target="#modifyModal">修改</a>
+                <a class="btn btn-danger btn-xs delete"  data-id="{{ metaProperty.id }}" data-target="#deleteModal">删除</a>
             </div>
         </td>
     </tr>
-    <tr>
-        <td>1</td>
-        <td>包装</td>
-        <td>2017-3-31 10:51</td>
-        <td>饼干</td>
-        <td>20</td>
-        <td>
-            <div class="btn-group">
-                <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#modifyModal">修改</a>
-                <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal">删除</a>
-            </div>
-        </td>
-    </tr>
+    {% endfor %}
 </table>
 <!--新增属性模态框-->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -66,19 +53,20 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">属性名</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="name" placeholder="属性名">
+                            <input type="text" class="form-control" id="saveName" placeholder="属性名">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="category" class="col-sm-2 control-label">种类</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="category" disabled="disabled" value="饼干">
+                            <input type="text" class="form-control" id="category" disabled="disabled" value="{{category.name}}">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">添加</button>
+                <input type="hidden" id="saveId" value="{{category.id}}">
+                <button type="button" class="btn btn-primary" id="saveAdd">添加</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             </div>
         </div>
@@ -98,19 +86,20 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">属性名</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="name">
+                            <input type="text" class="form-control" id="updateName">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="category" class="col-sm-2 control-label">种类</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="category" disabled="disabled" value="饼干">
+                            <input type="text" class="form-control" id="category" disabled="disabled" value="{{category.name}}">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">保存修改</button>
+                <input type="hidden" id="updateId" value=""/>
+                <button type="button" class="btn btn-primary" id="saveUpdate">保存修改</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             </div>
         </div>
@@ -134,4 +123,63 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script>
+    $(function(){
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", Cookies.get("csrftoken"));
+                }
+            }
+        });
+
+        $("#saveAdd").on("click",function(){
+            $.post(
+                "/admin/productadmin/addProperty",
+                {"categoryId":$("#saveId").val(),"name":$("#saveName").val()},
+                function(result){
+                    if(result.code == 200){
+                        location.reload(true);
+                    }
+                }
+            );
+            return false;
+        });
+
+        $(".update").on("click",function(){
+            let id=$(this).data("id");
+            $("#updateId").val(id);
+            $("#modifyModal").modal("toggle");
+        });
+        $("#saveUpdate").on("click",function(){
+            $.post(
+                "/admin/productadmin/updateProperty",
+                {"id":$("#updateId").val(),"name":$("#updateName").val()},
+                function(result){
+                    if(result.code == 200){
+                        location.reload(true);
+                    }
+                }
+            );
+            return false;
+        });
+
+        $(".delete").on("click",function(){
+            let id=$(this).data("id");
+            $.get(
+                "/admin/productadmin/deleteProperty?id="+id,
+                function(result){
+                    if(result.code == 200){
+                        $("#deleteModal").modal("toggle");
+                        setTimeout(function(){location.reload(true);},2000);
+                    }
+                }
+            );
+        });
+    });
+</script>
 {% endblock %}
