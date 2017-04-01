@@ -1,0 +1,62 @@
+.order-wrapper{
+    overflow: hidden;
+    width: 100%;
+    max-width: 55rem;
+    margin: 0 auto;
+}
+.table-header{
+    height: 2.5rem;
+    line-height: 2.5rem;
+    width: 100%;
+    color: #333;
+    padding: 0 .5rem;
+    background: #F5F5F5;
+    overflow: hidden;
+    border: #F5F5F5 .1rem solid;
+}
+.table-content{
+    height: 5rem;
+    line-height: 5rem;
+    width: 100%;
+}
+.order p{
+    margin: 0;
+}
+.order-table>ul{
+    border: 1px solid #f5f5f5;
+    border-bottom: 0;
+}
+.order-table>ul:last-child{
+    border-bottom: 1px solid #f5f5f5;
+}
+.commodity-attribute,.commodity-name{
+    padding-top: 1rem;
+    line-height: 1.2rem;
+}
+.commodity-operation{
+    margin-top: .5rem;
+}
+.commodity-operation li{
+    padding-top: .5rem;
+    line-height: 1.2rem;
+}
+.commodity-operation li a{
+    color: #333;
+    text-decoration: none;
+}
+.col-md-1-2{
+    width: 5%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-md-3-2{
+    width: 10%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}

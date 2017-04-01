@@ -9,7 +9,54 @@
 
 {% block body %}
     {% include "app/header.html" %}
-
+    <!--购物车 -->
+    <div class="order-wrapper">
+        <div class="order">
+            <div class="order-table">
+                <ul class="table-header">
+                    <li class="col-md-1-2"></li>
+                    <li class="text-center col-md-4">商品</li>
+                    <li class="text-center col-md-2">商品属性</li>
+                    <li class="text-center col-md-1">单价</li>
+                    <li class="text-center col-md-2">数量</li>
+                    <li class="text-center col-md-1">金额</li>
+                    <li class="text-center col-md-3-2">操作</li>
+                </ul>
+                <ul class="table-content">
+                    <li class="col-md-1-2 text-center">
+                        <input type="checkbox" class="checkbox">
+                    </li>
+                    <li class="col-md-4 text-center">
+                        <div class="col-md-3 commodity-pic">
+                            <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
+                        </div>
+                        <div class="col-md-9 commodity-name">
+                            <p>美康粉黛醉美唇膏 持久保湿滋润防水不掉色</p>
+                        </div>
+                    </li>
+                    <li class="col-md-2 text-center commodity-attribute">
+                        <ul>
+                            <li>颜色：啫喱红</li>
+                            <li>功效：防冻裂</li>
+                        </ul>
+                    </li>
+                    <li class="col-md-1 text-center commodity-price">62.00</li>
+                    <li class="col-md-2 text-center commodity-num">1</li>
+                    <li class="col-md-1 text-center commodity-total-price">62.00</li>
+                    <li class="col-md-3-2 text-center">
+                        <ul class="commodity-operation">
+                           <li>
+                               <a href="{% url 'customer:collection' %}">移入收藏夹</a>
+                           </li>
+                            <li>
+                               <a href="#">删除</a>
+                           </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block js %}
