@@ -1,0 +1,24 @@
+.category-info li{
+    float: left;
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+}
+.category-name{
+    font-size: .8rem;
+}
+.category-name h2{
+    margin: 0;
+    font-size: .8rem;
+    line-height: 1.6rem;
+}
+.category-name h2 span{
+    font-size: 1.2rem;
+    color: #337ab7;
+    font-weight: 500;
+}
+.add-property{
+    margin-left: .5rem;
+}
+table th,td{
+    text-align: center;
+}
