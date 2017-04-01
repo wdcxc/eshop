@@ -152,18 +152,6 @@
              $("#file-0c").fileinput({
                 uploadExtraData: {kvId: '10'}
             });
-             $("#modal-input").fileinput({
-                 initialPreview: [
-                     "{% static "images/customer/kouhong-big.jpg" %}"
-                 ],
-                 initialPreviewAsData: true,
-                 initialPreviewConfig: [
-                     {caption: "kouhong.jpg", width: "6rem", key: 1},
-                 ],
-                 deleteUrl: "#",
-                 overwriteInitial: false,
-                 initialCaption: "口红"
-             });
         });
     </script>
 {% endblock %}
