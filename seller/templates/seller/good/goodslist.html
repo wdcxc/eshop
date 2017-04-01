@@ -7,8 +7,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/seller/aside.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/seller/goodslist.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css' %}">
-    <link href="{% static 'lib/bootstrap-fileinput/css/fileinput.css' %}" media="all" rel="stylesheet" type="text/css"/>
-    <link href="{% static 'lib/bootstrap-fileinput/themes/explorer/theme.css' %}" media="all" rel="stylesheet" type="text/css"/>
 {% endblock %}
 {% block body %}
     {% include "seller/header.html" %}
@@ -202,11 +200,6 @@
 
 {% block js %}
     <script src="{% static "js/moment.js" %}"></script>
-    <script src="{% static 'lib/bootstrap-fileinput/js/plugins/sortable.js' %}"></script>
-    <script src="{% static 'lib/bootstrap-fileinput/js/fileinput.js' %}"></script>
-    <script src="{% static 'lib/bootstrap-fileinput/js/locales/fr.js' %}"></script>
-    <script src="{% static 'lib/bootstrap-fileinput/js/locales/es.js' %}"></script>
-    <script src="{% static 'lib/bootstrap-fileinput/themes/explorer/theme.js' %}"></script>
     <script src="{% static "lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
     <script>
          $(function () {
@@ -217,9 +210,6 @@
                 format: 'YYYY-MM-DD'
             });
              $("[data-toggle='popover']").popover();
-             $("#file-0c").fileinput({
-                uploadExtraData: {kvId: '10'}
-            });
         });
     </script>
 {% endblock %}
