@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from  models.product import ProductModel
+from models.product import ProductModel
 
 
 class CustomerModel(models.Model):
@@ -62,3 +62,17 @@ class CollectionModel(models.Model):
 
     class Meta:
         db_table = "customer_collection"
+
+
+class ProductConsultModel(models.Model):
+    """商品咨询模型"""
+
+    question = models.CharField(max_length=100)  # 问题
+    answer = models.CharField(max_length=100)  # 回复
+    customer = models.ForeignKey(CustomerModel, related_name="consults", on_delete=models.CASCADE)  # 买家
+    product = models.ForeignKey(ProductModel, related_name="consults", on_delete=models.CASCADE)  #
+    askTime = models.DateTimeField()  # 提问时间
+    replyTime = models.DateTimeField()  # 回复时间
+
+    class Meta:
+        db_table = "product_consult"

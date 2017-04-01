@@ -50,14 +50,14 @@ class OrderProductModel(models.Model):
     product = models.OneToOneField(ProductModel, on_delete=models.CASCADE)  # 商品
     addTime = models.DateTimeField(auto_now_add=True)  # 商品加入订单时间
     sellPrice = models.DecimalField(max_digits=10, decimal_places=2)  # 商品加入订单时价格
-    amount = models.DecimalField(max_length=10, decimal_places=2)  # 购买数量
+    amount = models.DecimalField(max_digits=10, decimal_places=2)  # 购买数量
     sendTime = models.DateTimeField(null=True)  # 发货时间
     receiveTime = models.DateTimeField(null=True)  # 收货时间
     evaluateTime = models.DateTimeField(null=True)  # 评价时间
     refundTime = models.DateTimeField(null=True)  # 退货时间
     ACRefundTime = models.DateTimeField(null=True)  # 商家接受退货时间
-    refundReason = models.TextField()  # 退货理由
-    evaluation = models.TextField()  # 订单评价
+    refundReason = models.TextField(null=True)  # 退货理由
+    evaluation = models.TextField(null=True)  # 订单评价
 
     class Meta:
         db_table = 'order_product'

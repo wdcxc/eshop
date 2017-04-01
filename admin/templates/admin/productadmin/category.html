@@ -13,7 +13,7 @@
             <a class="btn btn-info btn-xs" href="/admin/productadmin/updateCategory?id={{category.id}}">修改</a>
             <a class="btn btn-danger btn-xs" v-on:click="deleteCategory({{category.id}})">删除</a>
             <a class="btn btn-primary btn-xs" href="/admin/productadmin/addCategory?parentId={{category.id}}">添加子类别</a>
-            <a class="btn btn-default btn-xs" href="/admin/productadmin/property">属性管理</a>
+            <a class="btn btn-default btn-xs" href="/admin/productadmin/property?id={{category.id}}">属性管理</a>
         </div>
     </div>
     {% endfor %}

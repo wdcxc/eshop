@@ -1,5 +1,5 @@
 from admin.views.adminbaseview import AdminBaseView
-from models.productcategory import ProductCategoryModel
+from models.productcategory import ProductCategoryModel,PropertyMetaModel
 from util.baseview import loginRequire
 
 
@@ -18,7 +18,27 @@ class ProductAdminView(AdminBaseView):
     @loginRequire()
     def property(self,request):
         """商品属性管理首页"""
+        id = request.GET.get("id")
+        category = ProductCategoryModel.objects.get(id=id)
+        self.context["category"] = category
+
+    @loginRequire()
+    def addProperty(self,request):
+        """新增商品类别属性"""
+        category = ProductCategoryModel.objects.get(id=request.POST.get("categoryId"))
+
+    @loginRequire()
+    def updateProperty(self,request):
+        """修改商品类别属性"""
         pass
+
+    @loginRequire()
+    def deleteProperty(self,request):
+        """删除商品类别属性"""
+        self.response_["type"] = self.RESPONSE_TYPE_JSON
+        id = request.GET.get("id")
+        PropertyMetaModel.objects.get(id=id).delete()
+        self.context = {"code":200,"msg":"删除商品类别属性成功","data":{"id":id}}
 
     @loginRequire()
     def product(self,request):
