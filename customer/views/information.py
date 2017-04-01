@@ -67,34 +67,35 @@ class InformationView(CustomerBaseView):
         else:
             self.response_["type"] = self.RESPONSE_TYPE_JSON
             address = customer.receiveAddresses.get(id=id)
-            keys = ("id","name","province","city","dist","mobile","address")
+            keys = ("id", "name", "province", "city", "dist", "mobile", "address")
             dict = {}
             for key in keys:
                 dict[key] = address.__dict__[key]
             provinces = list(GeoData.geoData.keys())
             citys = list(GeoData.geoData[address.province].keys())
             dists = GeoData.geoData[address.province][address.city]
-            self.context = {"code":200,"msg":"","data":{"address":dict,"provinces":provinces,"citys":citys,"dists":dists}}
+            self.context = {"code": 200, "msg": "",
+                            "data": {"address": dict, "provinces": provinces, "citys": citys, "dists": dists}}
 
     @loginRequire()
-    def addAddress(self,request):
+    def addAddress(self, request):
         """新增收货地址"""
         self.response_["type"] = self.RESPONSE_TYPE_JSON
-        keys = ("name","mobile","address","province","dist","city")
+        keys = ("name", "mobile", "address", "province", "dist", "city")
         dict = {}
         for key in keys:
             dict[key] = request.POST.get(key)
         self.context["customer"].receiveAddresses.create(**dict)
-        self.context = {"code":200,"msg":"新增收获地址成功","data":{}}
+        self.context = {"code": 200, "msg": "新增收获地址成功", "data": {}}
 
     @loginRequire()
-    def citys(self,request):
+    def citys(self, request):
         """获取城市列表"""
         self.response_["type"] = self.RESPONSE_TYPE_JSON
         print(request.GET)
         provice = request.GET.get("province")
         citys = list(GeoData.geoData[provice].keys())
-        self.context = {"code":200,"msg":"获取城市列表成功","data":{"province":provice,"citys":citys}}
+        self.context = {"code": 200, "msg": "获取城市列表成功", "data": {"province": provice, "citys": citys}}
 
     @loginRequire()
     def dists(self, request):
@@ -103,22 +104,22 @@ class InformationView(CustomerBaseView):
         provice = request.GET.get("province")
         city = request.GET.get("city")
         dists = GeoData.geoData[provice][city]
-        self.context = {"code": 200, "msg": "获取城市列表成功", "data": {"province": provice, "city": city,"dists":dists}}
+        self.context = {"code": 200, "msg": "获取城市列表成功", "data": {"province": provice, "city": city, "dists": dists}}
 
     @loginRequire()
-    def deleteAddress(self,request):
+    def deleteAddress(self, request):
         """删除收货地址"""
         self.response_["type"] = self.RESPONSE_TYPE_JSON
         id = request.POST.get("id")
         customer = self.context["customer"]
         customer.receiveAddresses.get(id=id).delete()
-        self.context = {"code":200,"msg":"删除收货地址成功","data":{"id":id}}
+        self.context = {"code": 200, "msg": "删除收货地址成功", "data": {"id": id}}
 
     @loginRequire()
-    def updateAddress(self,request):
+    def updateAddress(self, request):
         """修改收货地址"""
         self.response_["type"] = self.RESPONSE_TYPE_JSON
-        keys = ("id","name","mobile","province","city","dist","address")
+        keys = ("id", "name", "mobile", "province", "city", "dist", "address")
         dict = {}
         for key in keys:
             dict[key] = request.POST.get(key)
@@ -126,10 +127,10 @@ class InformationView(CustomerBaseView):
         address = customer.receiveAddresses.filter(id=dict["id"])
         del dict["id"]
         address.update(**dict)
-        self.context = {"code":200,"msg":"","data":{}}
+        self.context = {"code": 200, "msg": "", "data": {}}
 
     @loginRequire()
-    def setDefaultAddr(self,request):
+    def setDefaultAddr(self, request):
         """设置默认收货地址"""
         self.response_["type"] = self.RESPONSE_TYPE_JSON
         id = request.POST.get("id")

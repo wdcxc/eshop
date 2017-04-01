@@ -1,6 +1,7 @@
 from django.db import models
 
-from models.productcategory import ProductCategoryModel
+from models.customer import CustomerModel
+from models.productcategory import ProductCategoryModel, PropertyMetaModel
 from models.seller import SellerModel
 
 
@@ -22,3 +23,26 @@ class ProductModel(models.Model):
 
     class Meta:
         db_table = "product"
+
+
+class Property(models.Model):
+    """商品属性模型"""
+    meta = models.ForeignKey(PropertyMetaModel, related_name="properties", on_delete=models.CASCADE)
+    value = models.CharField(max_length=50, default="")
+
+    class Meta:
+        db_table = "product_property"
+
+
+class ProductConsultModel(models.Model):
+    """商品咨询模型"""
+
+    question = models.CharField(max_length=100)  # 问题
+    answer = models.CharField(max_length=100)  # 回复
+    customer = models.ForeignKey(CustomerModel, related_name="consults", on_delete=models.CASCADE)  # 买家
+    product = models.ForeignKey(ProductModel, related_name="consults", on_delete=models.CASCADE)  #
+    askTime = models.DateTimeField()  # 提问时间
+    replyTime = models.DateTimeField()  # 回复时间
+
+    class Meta:
+        db_table = "product_consult_model"
