@@ -42,9 +42,9 @@
                                 <li class="text-center col-md-1">单价</li>
                                 <li class="text-center col-md-1">数量</li>
                                 <li class="text-center col-md-1">商品操作</li>
-                                <li class="text-center col-md-1">合计</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
+                                <li class="text-center col-md-1">合计</li>
                             </ul>
                             <div class="order">
                                 <p class="order-detail">
@@ -66,7 +66,15 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
-                                        <li class="col-md-1 text-center return-money hide"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-1 text-center return-money order-item-hide"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">等待买家付款</p>
+                                            <a class="order-detail" href="#">取消购买</a>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a class="btn" data-toggle="modal" data-target="#payModal"
+                                               role="button">支付</a>
+                                        </li>
                                     </ul>
                                     <ul class="table-content">
                                         <li class="col-md-4">
@@ -80,20 +88,20 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
-                                        <li class="col-md-1 text-center return-money hide"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-1 text-center return-money order-item-hide"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">等待买家付款</p>
+                                            <a class="order-detail" href="#">取消购买</a>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a class="btn" data-toggle="modal" data-target="#payModal"
+                                               role="button">支付</a>
+                                        </li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
                                             <li>
                                                 <p class="total-price">124.00</p>
-                                            </li>
-                                            <li class="transaction-status">
-                                                <p class="status-text">等待买家付款</p>
-                                                <a class="order-detail" href="#">取消订单</a>
-                                            </li>
-                                            <li class="transaction-operation">
-                                                <a class="btn" data-toggle="modal" data-target="#payModal"
-                                                   role="button">一键支付</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -120,6 +128,14 @@
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
                                         <li class="col-md-1 text-center return-money"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">买家已付款</p>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a tabindex="0" class="btn" role="button" data-toggle="popover"
+                                               data-placement="top" data-trigger="focus" title="系统提示"
+                                               data-content="已提醒卖家">提醒发货</a>
+                                        </li>
                                     </ul>
                                     <ul class="table-content">
                                         <li class="col-md-4">
@@ -134,25 +150,25 @@
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
                                         <li class="col-md-1 text-center return-money"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">买家已付款</p>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a tabindex="0" class="btn" role="button" data-toggle="popover"
+                                               data-placement="top" data-trigger="focus" title="系统提示"
+                                               data-content="已提醒卖家">提醒发货</a>
+                                        </li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
                                             <li>
                                                 <p class="total-price">124.00</p>
                                             </li>
-                                            <li class="transaction-status">
-                                                <p class="status-text">买家已付款</p>
-                                            </li>
-                                            <li class="transaction-operation">
-                                                <a tabindex="0" class="btn" role="button" data-toggle="popover"
-                                                   data-placement="top" data-trigger="focus" title="系统提示"
-                                                   data-content="已提醒卖家">提醒发货</a>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="order">
+                                <div class="order">
                                 <p class="order-detail">
                                     <span class="detail-text">订单编号：00003</span>
                                     <span class="detail-text">订单生成时间：2017-3-25 10:00</span>
@@ -173,6 +189,14 @@
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
                                         <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">卖家已发货</p>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a tabindex="0" class="btn" role="button" data-toggle="popover"
+                                               data-placement="top" data-trigger="focus" title="系统提示"
+                                               data-content="已确认收货">确认收货</a>
+                                        </li>
                                     </ul>
                                     <ul class="table-content">
                                         <li class="col-md-4">
@@ -187,19 +211,19 @@
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
                                         <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">卖家已发货</p>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a tabindex="0" class="btn" role="button" data-toggle="popover"
+                                               data-placement="top" data-trigger="focus" title="系统提示"
+                                               data-content="已确认收货">确认收货</a>
+                                        </li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
                                             <li>
                                                 <p class="total-price">124.00</p>
-                                            </li>
-                                            <li class="transaction-status">
-                                                <p class="status-text">卖家已发货</p>
-                                            </li>
-                                            <li class="transaction-operation">
-                                                <a tabindex="0" class="btn" role="button" data-toggle="popover"
-                                                   data-placement="top" data-trigger="focus" title="系统提示"
-                                                   data-content="已确认收货">确认收货</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -228,9 +252,9 @@
                                 <li class="text-center col-md-1">单价</li>
                                 <li class="text-center col-md-1">数量</li>
                                 <li class="text-center col-md-1">商品操作</li>
-                                <li class="text-center col-md-1">合计</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
+                                <li class="text-center col-md-1">合计</li>
                             </ul>
                             <div class="order">
                                 <p class="order-detail">
@@ -252,7 +276,15 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
-                                        <li class="col-md-1 text-center return-money hide"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-1 text-center return-money order-item-hide"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">等待买家付款</p>
+                                            <a class="order-detail" href="#">取消购买</a>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a class="btn" data-toggle="modal" data-target="#payModal"
+                                               role="button">支付</a>
+                                        </li>
                                     </ul>
                                     <ul class="table-content">
                                         <li class="col-md-4">
@@ -266,20 +298,20 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
-                                        <li class="col-md-1 text-center return-money hide"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-1 text-center return-money order-item-hide"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">等待买家付款</p>
+                                            <a class="order-detail" href="#">取消购买</a>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a class="btn" data-toggle="modal" data-target="#payModal"
+                                               role="button">支付</a>
+                                        </li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
                                             <li>
                                                 <p class="total-price">124.00</p>
-                                            </li>
-                                            <li class="transaction-status">
-                                                <p class="status-text">等待买家付款</p>
-                                                <a class="order-detail" href="#">取消订单</a>
-                                            </li>
-                                            <li class="transaction-operation">
-                                                <a class="btn" data-toggle="modal" data-target="#payModal"
-                                                   role="button">一键支付</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -308,9 +340,9 @@
                                 <li class="text-center col-md-1">单价</li>
                                 <li class="text-center col-md-1">数量</li>
                                 <li class="text-center col-md-1">商品操作</li>
-                                <li class="text-center col-md-1">合计</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
+                                <li class="text-center col-md-1">合计</li>
                             </ul>
                             <div class="order">
                                 <p class="order-detail">
@@ -333,6 +365,14 @@
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
                                         <li class="col-md-1 text-center return-money"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">买家已付款</p>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a tabindex="0" class="btn" role="button" data-toggle="popover"
+                                               data-placement="top" data-trigger="focus" title="系统提示"
+                                               data-content="已提醒卖家">提醒发货</a>
+                                        </li>
                                     </ul>
                                     <ul class="table-content">
                                         <li class="col-md-4">
@@ -347,19 +387,19 @@
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
                                         <li class="col-md-1 text-center return-money"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">买家已付款</p>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a tabindex="0" class="btn" role="button" data-toggle="popover"
+                                               data-placement="top" data-trigger="focus" title="系统提示"
+                                               data-content="已提醒卖家">提醒发货</a>
+                                        </li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
                                             <li>
                                                 <p class="total-price">124.00</p>
-                                            </li>
-                                            <li class="transaction-status">
-                                                <p class="status-text">买家已付款</p>
-                                            </li>
-                                            <li class="transaction-operation">
-                                                <a tabindex="0" class="btn" role="button" data-toggle="popover"
-                                                   data-placement="top" data-trigger="focus" title="系统提示"
-                                                   data-content="已提醒卖家">提醒发货</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -388,9 +428,9 @@
                                 <li class="text-center col-md-1">单价</li>
                                 <li class="text-center col-md-1">数量</li>
                                 <li class="text-center col-md-1">商品操作</li>
-                                <li class="text-center col-md-1">合计</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
+                                <li class="text-center col-md-1">合计</li>
                             </ul>
                             <div class="order">
                                 <p class="order-detail">
@@ -413,6 +453,14 @@
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
                                         <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">卖家已发货</p>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a tabindex="0" class="btn" role="button" data-toggle="popover"
+                                               data-placement="top" data-trigger="focus" title="系统提示"
+                                               data-content="已确认收货">确认收货</a>
+                                        </li>
                                     </ul>
                                     <ul class="table-content">
                                         <li class="col-md-4">
@@ -427,19 +475,19 @@
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
                                         <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">卖家已发货</p>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a tabindex="0" class="btn" role="button" data-toggle="popover"
+                                               data-placement="top" data-trigger="focus" title="系统提示"
+                                               data-content="已确认收货">确认收货</a>
+                                        </li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
                                             <li>
                                                 <p class="total-price">124.00</p>
-                                            </li>
-                                            <li class="transaction-status">
-                                                <p class="status-text">卖家已发货</p>
-                                            </li>
-                                            <li class="transaction-operation">
-                                                <a tabindex="0" class="btn" role="button" data-toggle="popover"
-                                                   data-placement="top" data-trigger="focus" title="系统提示"
-                                                   data-content="已确认收货">确认收货</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -467,10 +515,10 @@
                                 <li class="text-center col-md-4">商品</li>
                                 <li class="text-center col-md-1">单价</li>
                                 <li class="text-center col-md-1">数量</li>
-                                <li class="text-center col-md-1">合计</li>
                                 <li class="text-center col-md-1">商品操作</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
+                                <li class="text-center col-md-1">合计</li>
                             </ul>
                             <div class="order">
                                 <p class="order-detail">
@@ -493,6 +541,13 @@
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
                                         <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">交易成功</p>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a class="btn" href="goodsevaluate"
+                                               role="button">评价商品</a>
+                                        </li>
                                     </ul>
                                     <ul class="table-content">
                                         <li class="col-md-4">
@@ -507,18 +562,18 @@
                                         <li class="col-md-1 text-center commodity-price">62.00</li>
                                         <li class="col-md-1 text-center commodity-num">1</li>
                                         <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
+                                        <li class="col-md-2 text-center transaction-status">
+                                            <p class="status-text">交易成功</p>
+                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation">
+                                            <a class="btn" href="goodsevaluate"
+                                               role="button">评价商品</a>
+                                        </li>
                                     </ul>
                                     <div class="table-right">
                                         <ul>
                                             <li>
                                                 <p class="total-price">124.00</p>
-                                            </li>
-                                            <li class="transaction-status">
-                                                <p class="status-text">交易成功</p>
-                                            </li>
-                                            <li class="transaction-operation">
-                                                <a class="btn" href="goodsevaluate"
-                                                   role="button">评价商品</a>
                                             </li>
                                         </ul>
                                     </div>
