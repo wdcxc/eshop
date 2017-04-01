@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^common/order', CommonView.as_view(), name="order"),
     url(r'^common/goodslist', CommonView.as_view(), name="goodslist"),
     url(r'^common/addgoods', CommonView.as_view(), name="addgoods"),
+    url(r'^common/modifygoods', CommonView.as_view(), name="modifygoods"),
     url(r'^common/uploadThumbnail$', CommonView.as_view(), name="uploadThumbnail"),
 ]

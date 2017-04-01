@@ -62,6 +62,10 @@ class CommonView(BaseView):
         pass
         #todo
 
+    def modifygoods(self,request):
+        pass
+        #todo
+
     @valifyCaptcha(errcode=401)
     def doLogin(self, request):
         """商家登录"""
