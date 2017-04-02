@@ -14,4 +14,7 @@ urlpatterns = [
     url(r'^common/success$',CommonView.as_view(), name = "success"),
     url(r'^common/activity$',CommonView.as_view(), name = "activity"),
     url(r'^common/fail$',CommonView.as_view(), name = "fail"),
+    url(r'^common/contact$',CommonView.as_view(), name = "contact"),
+    url(r'^common/about',CommonView.as_view(), name = "about"),
+    url(r'^common/help',CommonView.as_view(), name = "help"),
 ]

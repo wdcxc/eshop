@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}关于我们{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/about.css' %}">
+{% endblock %}
+{% block body %}
+    <div class="wrapper bg-white">
+        <div id="logo">
+            <a href="index">eshop</a>
+            <span>关于我们</span>
+        </div>
+    </div>
+    <div class="wrapper-bottom"></div>
+    <div class="content">
+        <div class="shadow-box">
+            <div class="content-box">
+                <article>
+                    <h3>关于eshop</h3>
+                    <p>eshop是梓航和晓川的毕业设计项目</p>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

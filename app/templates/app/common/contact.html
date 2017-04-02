@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}联系我们{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/about.css' %}">
+{% endblock %}
+{% block body %}
+    <div class="wrapper bg-white">
+        <div id="logo">
+            <a href="index">eshop</a>
+            <span>联系我们</span>
+        </div>
+    </div>
+    <div class="wrapper-bottom"></div>
+    <div class="content">
+        <div class="shadow-box">
+            <div class="content-box">
+                <article>
+                    <h3>联系方式</h3>
+                    <ul>
+                        <li>晓川：15603005920</li>
+                        <li>梓航：15603006097</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    
+{% endblock %}

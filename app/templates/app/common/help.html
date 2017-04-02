@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}帮助中心{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/about.css' %}">
+{% endblock %}
+{% block body %}
+    <div class="wrapper bg-white">
+        <div id="logo">
+            <a href="index">eshop</a>
+            <span>帮助中心</span>
+        </div>
+    </div>
+    <div class="wrapper-bottom"></div>
+    <div class="content">
+        <div class="shadow-box">
+            <div class="content-box">
+                <article>
+                    <h3>网站操作说明</h3>
+                    <p>eshop是一个小规模的电商网站，操作简单易用。</p>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    
+{% endblock %}

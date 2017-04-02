@@ -8,7 +8,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand"><strong>eshop</strong> 系统后台管理</a>
+            <a class="navbar-brand" style="color: #337ab7;"><strong>eshop</strong>系统后台管理</a>
         </div>
     </div>
 </nav>
@@ -35,18 +35,18 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input v-model="inputCaptchaCode" type="text" placeholder="请输入验证码">
+                                <input v-model="inputCaptchaCode" type="text" placeholder="请输入验证码" style="width: 10rem;height: 1.5rem;padding-left: .2rem;margin-right: 1.2rem;margin-left: .2rem;">
                                 <a v-on:click="updateCaptcha"><img v-bind:src="captcha.imageUrl" alt="验证码" height="30"></a>
                             </div>
                             <button type="submit" class="btn btn-primary form-control">登录</button>
                         </form>
-                    </div> <!-- login panel-body -->
+                    </div>
                     <div class="panel-footer"><a href="#">忘记密码</a></div>
-                </div> <!-- login panel -->
-            </div> <!-- login col -->
-        </div> <!-- row -->
-    </div> <!-- container -->
-</div> <!-- jumpbotron -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 {% block js %}
 <script src="{% static 'js/js.cookie.js' %}"></script>

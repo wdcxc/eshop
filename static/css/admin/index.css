@@ -60,6 +60,8 @@
     width:8rem;
     float:left;
     margin-bottom:0.2rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
 }
 
 .affix-tab li a{

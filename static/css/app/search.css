@@ -208,6 +208,27 @@
 .pagination li a{
     color: #333;
 }
+.no-commodity{
+    margin: 3rem 0;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #eee;
+    padding: 2rem;
+    position: relative;
+}
+.no-commodity p{
+    margin-top: 1rem;
+}
+.search-name{
+    color:red;
+    margin: 0.2rem;
+}
+.no-commodity h3{
+    position: absolute;
+    top:0;
+    left:.5rem;
+    font-size: .8rem;
+}
 
 
 

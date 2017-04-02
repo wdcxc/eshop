@@ -1,8 +1,12 @@
-.order-wrapper{
+.shopcart-wrapper{
     overflow: hidden;
     width: 100%;
     max-width: 55rem;
-    margin: 0 auto;
+    margin: 2rem auto;
+}
+.shopcart-table>ul{
+    border: 1px solid #f5f5f5;
+    border-bottom: 0;
 }
 .table-header{
     height: 2.5rem;
@@ -10,31 +14,29 @@
     width: 100%;
     color: #333;
     padding: 0 .5rem;
-    background: #F5F5F5;
     overflow: hidden;
-    border: #F5F5F5 .1rem solid;
+    border-top: 5px solid #48b9e5 !important;
+    background: #d0e7fa;
 }
 .table-content{
-    height: 5rem;
-    line-height: 5rem;
+    height: 6rem;
+    line-height: 6rem;
     width: 100%;
+    background: #eef6ff;
+    margin: 1rem 0;
 }
-.order p{
+.shopcart p{
     margin: 0;
 }
-.order-table>ul{
-    border: 1px solid #f5f5f5;
-    border-bottom: 0;
-}
-.order-table>ul:last-child{
+.shopcart-table>ul:last-child{
     border-bottom: 1px solid #f5f5f5;
 }
 .commodity-attribute,.commodity-name{
-    padding-top: 1rem;
+    padding-top: 1.2rem;
     line-height: 1.2rem;
 }
 .commodity-operation{
-    margin-top: .5rem;
+    margin-top: .7rem;
 }
 .commodity-operation li{
     padding-top: .5rem;
@@ -45,7 +47,7 @@
     text-decoration: none;
 }
 .col-md-1-2{
-    width: 5%;
+    width: 8%;
     float: left;
     position: relative;
     min-height: 1px;
@@ -53,10 +55,92 @@
     padding-left: 15px;
 }
 .col-md-3-2{
-    width: 10%;
+    width: 12%;
     float: left;
     position: relative;
     min-height: 1px;
     padding-right: 15px;
     padding-left: 15px;
 }
+.table-header .checkbox,.table-footer .checkbox{
+    display: inline-block;
+    margin-left: .5rem;
+    margin-right: .2rem;
+}
+.table-content .checkbox{
+    margin: 2rem 1rem;
+}
+.commodity-pic img{
+    width: 100%;
+}
+.table-footer{
+    height: 2.5rem;
+    line-height: 2.5rem;
+    width: 100%;
+    color: #333;
+    padding: 0 .5rem;
+    background: #F5F5F5;
+    overflow: hidden;
+    border: #F5F5F5 .1rem solid;
+}
+.reduce,.add{
+    text-align: center;
+    width: 1rem;
+}
+.number{
+    text-align: center;
+    width: 1.5rem;
+}
+.commodity-num input{
+    height: 1rem;
+}
+.commodity-total-price{
+    color: red;
+}
+.table-footer{
+    padding: 0;
+}
+.table-footer li{
+   float: left;
+}
+.all-select{
+    margin-left: 1.2rem;
+}
+.select-num{
+    margin-left: 32rem;
+}
+.total-price{
+    margin-left: 1rem;
+}
+.num{
+    font-size: 1rem;
+    margin: 0 .5rem;
+    color: red;
+}
+.pay{
+    width: 5rem;
+    text-align: center;
+    font-size: .9rem;
+    background: red;
+    float: right !important;
+}
+.pay a{
+    color: #fff;
+    text-decoration: none;
+}
+.pay:hover{
+    background: #ff5500;
+}
+.no-commodity{
+    width: 100%;
+    margin: 1rem 0;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid #eee;
+}
+.no-commodity p{
+    margin-top: 1rem;
+    color: #666;
+}
+
+
