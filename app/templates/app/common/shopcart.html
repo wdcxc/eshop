@@ -10,15 +10,17 @@
 {% block body %}
     {% include "app/header.html" %}
     <!--购物车 -->
-    <div class="order-wrapper">
-        <div class="order">
-            <div class="order-table">
+    <div class="shopcart-wrapper">
+        <div class="shopcart">
+            <div class="shopcart-table">
                 <ul class="table-header">
-                    <li class="col-md-1-2"></li>
+                    <li class="col-md-1-2">
+                        <input type="checkbox" class="checkbox select-all">全选
+                    </li>
                     <li class="text-center col-md-4">商品</li>
                     <li class="text-center col-md-2">商品属性</li>
                     <li class="text-center col-md-1">单价</li>
-                    <li class="text-center col-md-2">数量</li>
+                    <li class="text-center col-md-3-2">数量</li>
                     <li class="text-center col-md-1">金额</li>
                     <li class="text-center col-md-3-2">操作</li>
                 </ul>
@@ -27,22 +29,28 @@
                         <input type="checkbox" class="checkbox">
                     </li>
                     <li class="col-md-4 text-center">
-                        <div class="col-md-3 commodity-pic">
-                            <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
+                        <div class="col-md-4 commodity-pic">
+                            <img src="{% static "images/app/JavaScript&jQuery交互式Web前端开发.jpg" %}" alt="商品图片">
                         </div>
-                        <div class="col-md-9 commodity-name">
-                            <p>美康粉黛醉美唇膏 持久保湿滋润防水不掉色</p>
+                        <div class="col-md-8 commodity-name">
+                            <p>JavaScript&jQuery交互式Web前端开发</p>
                         </div>
                     </li>
                     <li class="col-md-2 text-center commodity-attribute">
                         <ul>
-                            <li>颜色：啫喱红</li>
-                            <li>功效：防冻裂</li>
+                            <li>包装：平装</li>
+                            <li>出版社：清华大学出版社</li>
                         </ul>
                     </li>
                     <li class="col-md-1 text-center commodity-price">62.00</li>
-                    <li class="col-md-2 text-center commodity-num">1</li>
-                    <li class="col-md-1 text-center commodity-total-price">62.00</li>
+                    <li class="col-md-3-2 text-center commodity-num">
+                        <div class="control-group">
+                            <input class="reduce" type="button" value="-" disabled="disabled">
+                            <input class="number" type="text" value="1">
+                            <input class="add" type="button" value="+">
+                        </div>
+                    </li>
+                    <li class="col-md-1 text-center commodity-total-price"></li>
                     <li class="col-md-3-2 text-center">
                         <ul class="commodity-operation">
                            <li>
@@ -54,11 +62,67 @@
                         </ul>
                     </li>
                 </ul>
+                <ul class="table-content">
+                    <li class="col-md-1-2 text-center">
+                        <input type="checkbox" class="checkbox">
+                    </li>
+                    <li class="col-md-4 text-center">
+                        <div class="col-md-4 commodity-pic">
+                            <img src="{% static "images/app/JavaScriptDOM编程艺术.jpg" %}" alt="商品图片">
+                        </div>
+                        <div class="col-md-8 commodity-name">
+                            <p>JavaScriptDOM编程艺术</p>
+                        </div>
+                    </li>
+                    <li class="col-md-2 text-center commodity-attribute">
+                        <ul>
+                            <li>包装：平装</li>
+                            <li>出版社：清华大学出版社</li>
+                        </ul>
+                    </li>
+                    <li class="col-md-1 text-center commodity-price">62.00</li>
+                    <li class="col-md-3-2 text-center commodity-num">
+                        <div class="control-group">
+                            <input class="reduce" type="button" value="-" disabled="disabled">
+                            <input class="number" type="text" value="1">
+                            <input class="add" type="button" value="+">
+                        </div>
+                    </li>
+                    <li class="col-md-1 text-center commodity-total-price"></li>
+                    <li class="col-md-3-2 text-center">
+                        <ul class="commodity-operation">
+                           <li>
+                               <a href="{% url 'customer:collection' %}">移入收藏夹</a>
+                           </li>
+                            <li>
+                               <a href="#">删除</a>
+                           </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="no-commodity hidden">
+                    <img src="{% static 'images/app/monkey.jpg' %}" alt="没有商品时的图片">
+                    <p>购物车暂时没有商品</p>
+                </div>
+                <ul class="table-footer">
+                    <li class="all-select">
+                       <input type="checkbox" class="checkbox select-all">全选
+                    </li>
+                    <li class="select-num">
+                        已选商品<span class="num"></span>件
+                    </li>
+                    <li class="total-price">
+                        合计:￥<span class="num"></span>
+                    </li>
+                    <li class="pay">
+                        <a href="{% url 'app:order' %}">结算</a></a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 {% endblock %}
 
 {% block js %}
-
+    <script src="{% static 'js/app/shopcart.js' %}"></script>
 {% endblock %}
