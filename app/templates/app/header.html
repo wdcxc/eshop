@@ -37,9 +37,8 @@
                    aria-expanded="false">
                     客户服务<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">帮助中心</a></li>
-                    <li><a href="#">联系客服</a></li>
-                    <li><a href="#">意见建议</a></li>
+                    <li><a href="{% url 'app:contact' %}">联系客服</a></li>
+                    <li><a href="{% url 'customer:opinion' %}">意见建议</a></li>
                 </ul>
             </li>
         </ul>

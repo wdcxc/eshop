@@ -11,7 +11,8 @@
     {% include "app/header.html" %}
     <!--购物车 -->
     <div class="shopcart-wrapper">
-        <div class="shopcart">
+        <div id="shopcart">
+            <h2>{{ title }}</h2>
             <div class="shopcart-table">
                 <ul class="table-header">
                     <li class="col-md-1-2">
@@ -80,7 +81,7 @@
                             <li>出版社：清华大学出版社</li>
                         </ul>
                     </li>
-                    <li class="col-md-1 text-center commodity-price">62.00</li>
+                    <li class="col-md-1 text-center commodity-price">56.00</li>
                     <li class="col-md-3-2 text-center commodity-num">
                         <div class="control-group">
                             <input class="reduce" type="button" value="-" disabled="disabled">
@@ -109,10 +110,10 @@
                        <input type="checkbox" class="checkbox select-all">全选
                     </li>
                     <li class="select-num">
-                        已选商品<span class="num"></span>件
+                        已选商品<span class="num">0</span>件
                     </li>
                     <li class="total-price">
-                        合计:￥<span class="num"></span>
+                        合计:￥<span class="num">0</span>元
                     </li>
                     <li class="pay">
                         <a href="{% url 'app:order' %}">结算</a></a>

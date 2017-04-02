@@ -1,0 +1,48 @@
+body{
+    background-color: #f6f9fb;
+}
+.wrapper-bottom{
+    margin: 0 auto;
+    width: 48rem;
+    height: 3px;
+    background: #f07700;
+    line-height: 0;
+    font-size: 0;
+    overflow: hidden;
+}
+.content{
+    margin: 0 auto;
+    width: 48rem;
+    padding-top: 2rem;
+}
+.shadow-box{
+    background-color: #ebeeef;
+    width: 47.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    height: 27.4rem
+}
+.content-box{
+    background: #fff;
+    position: relative;
+    top: -0.5rem;
+    right: -0.5rem;
+    width: 47.5rem;
+    height: 27.4rem;
+    box-shadow: -1px 1px 1px rgb(232,235,236);
+}
+.content-box article h3{
+    text-align: center;
+    padding: 1rem 0;
+}
+.content-box article p{
+    text-indent: 1cm;
+    margin: 0 2rem;
+    font-size: .8rem;
+    line-height: 1rem;
+}
+.content-box article ul li{
+    text-align: center;
+    font-size: .8rem;
+    padding: .5rem 0;
+}

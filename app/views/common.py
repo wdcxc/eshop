@@ -39,6 +39,15 @@ class CommonView(BaseView):
     def fail(self,request):
         pass
 
+    def contact(self,request):
+        pass
+
+    def about(self,request):
+        pass
+
+    def help(self,request):
+        pass
+
     def _sortProductCategories(self,productCategories):
         categories = list(productCategories.values())
         sortedCategoriesDict = {}
