@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% csrf_token %}
+{% load static %}
+{% block title %}新增商品{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/seller/header.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/seller/aside.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/seller/addgoods.css' %}">
+<link rel="stylesheet" type="text/css"
+      href="{% static 'lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css' %}">
+<link href="{% static 'lib/bootstrap-fileinput/css/fileinput.css' %}" media="all" rel="stylesheet" type="text/css"/>
+<link href="{% static 'lib/bootstrap-fileinput/themes/explorer/theme.css' %}" media="all" rel="stylesheet"
+      type="text/css"/>
+{% endblock %}
+{% block body %}
+{% include "seller/header.html" %}
+<div class="content center-block">
+    <div class="col-main">
+        <div class="main-wrap">
+            <div class="info">
+                <!--标题-->
+                <div class="info-head">
+                    <p>
+                        <span class="head-text">新增商品</span>/
+                        <span class="for-head-text">add goods</span>
+                    </p>
+                </div>
+                <!--新增商品-->
+                <form class="form-horizontal" id="form" v-on:submit.prevent="submitForm">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">商品名</label>
+                        <div class="col-sm-6">
+                            <input v-model="goods.name" type="text" class="form-control" id="name" placeholder="商品名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="col-sm-2 control-label">商品价格</label>
+                        <div class="col-sm-6">
+                            <input v-model="goods.price" type="text" class="form-control" id="price">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount" class="col-sm-2 control-label">商品数量</label>
+                        <div class="col-sm-6">
+                            <input v-model="goods.amount" type="text" class="form-control" id="amount">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="brand" class="col-sm-2 control-label">商品品牌</label>
+                        <div class="col-sm-6">
+                            <input v-model="goods.brand" type="text" class="form-control" id="brand">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="effect" class="col-sm-2 control-label">商品状态</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" v-model="goods.status">
+                                <option value="0">预售</option>
+                                <option value="1">上架</option>
+                                <option value="4">待定</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="type" class="col-sm-2 control-label">种类</label>
+                        <div class="col-md-6">
+                            <div class="col-md-4" style="padding-left: 0">
+                                <input type="text" class="form-control" value="{{category.g1.name}}" disabled="disabled">
+                            </div>
+                            <div class="col-md-4" style="padding-left: 0">
+                                <input type="text" class="form-control" value="{{category.g2.name}}" disabled="disabled">
+                            </div>
+                            <div class="col-md-4" style="padding: 0">
+                                <input type="text" id="categoryId" data-id="{{category.g3.id}}" class="form-control" value="{{category.g3.name}}" disabled="disabled">
+                            </div>
+                        </div>
+                    </div>
+                    {% for propertyMeta in propertyMetas %}
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{propertyMeta.name}}</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control property" id="{{propertyMeta.id}}">
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <label for="description" class="col-sm-2 control-label">商品描述</label>
+                        <div class="col-sm-6">
+                            <textarea v-model="goods.description" rows="3" class="form-control" id="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="picture" class="col-sm-2 control-label">商品图片</label>
+                        <div class="col-sm-6">
+                            <input id="uploadImage" name="productImages" class="file-loading" type="file" multiple>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <button type="submit" class="btn" data-target="#addModal"
+                               style="color: #fff;background-color: red">新增商品</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% include "seller/aside.html" %}
+</div>
+<!--新增商品模态框-->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+            </div>
+            <div class="modal-body" id="modalInfo">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script src="{% static 'js/moment.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-fileinput/js/plugins/sortable.js' %}"></script>
+<script src="{% static 'lib/bootstrap-fileinput/js/fileinput.js' %}"></script>
+<script src="{% static 'lib/bootstrap-fileinput/js/locales/es.js' %}"></script>
+<script src="{% static 'lib/bootstrap-fileinput/themes/explorer/theme.js' %}"></script>
+<script src="{% static 'lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' %}"></script>
+<script>
+     var csrfToken = Cookies.get("csrftoken");
+     var uploadImages = new Set();
+     var properties = {};
+     $(function () {
+        $('#manufacture-date').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+
+        $('#guarantee-date').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+
+        $("#uploadImage").fileinput({
+            uploadUrl:"/seller/goods/uploadImage",
+            deleteUrl:"/seller/goods/deleteImage",
+            maxFileCount:5,
+            ajaxSettings:{
+                beforeSend: function(xhr, settings) {
+                    if (!this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrfToken);
+                    }
+                }
+            },
+            <!--initialPreview: [-->
+                <!--'/static/media/fileupload/seller/20170331/1490966555.898324_activity.jpg',-->
+            <!--],-->
+            <!--initialPreviewAsData: true,-->
+            <!--initialPreviewConfig: [-->
+                <!--{-->
+                    <!--caption: 'desert1.jpg',-->
+                    <!--width: '50px',-->
+                    <!--key: 100,-->
+                    <!--extra: {id: 100}-->
+                <!--},-->
+            <!--],-->
+        });
+
+        $('#uploadImage').on('fileuploaded', function(event, data, previewId, index) {
+            response = data.response;
+            uploadImages.add("/static/media/fileupload/"+response.data.imgUrl);
+        });
+    });
+
+    var form = new Vue({
+        el:"#form",
+        data:{
+            goods:{
+                name:"",
+                price:"",
+                amount:"",
+                brand:"",
+                status:1,
+                categoryId:$("#categoryId").data("id"),
+                uploadImages:[],
+                properties:{},
+                description:"",
+            }
+        },
+        methods:{
+            submitForm:function(){
+                this.goods.uploadImages = Array.from(uploadImages);
+                var that = this;
+                $(".property").each(function(){
+                    that.goods.properties[$(this).attr("id")] = $(this).val();
+                });
+                console.log(this.goods);
+                this.$http.post("/seller/goods/addGoods",this.goods,{"headers":{"X-CSRFToken":csrfToken}})
+                          .then(success=>{
+                            $("#modalInfo").html(success.body.msg);
+                            $("#addModal").modal("toggle");
+                            if(success.body.code == 200){
+                                setTimeout(function(){location.href = "/seller/goods/goodslist";},2000);
+                            }
+                          },error=>{
+                            console.log(error);
+                          });
+            }
+        }
+    });
+</script>
+{% endblock %}

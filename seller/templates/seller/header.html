@@ -4,7 +4,7 @@
         <ul class="nav-operation">
             <li class="operation-item">
                 hi，
-                <a href="{% url 'seller:index' %}" class="nav-user-name" style="color: #ff2832;margin-right: .2rem;">zihang1013</a>
+                <a href="{% url 'seller:index' %}" class="nav-user-name" style="color: #ff2832;margin-right: .2rem;">{{seller.name}}</a>
                 <a href="{% url 'seller:login' %}" rel="nofollow" class="logout">[退出]</a>
             </li>
             <li class="operation-item">

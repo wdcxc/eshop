@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from seller.views.common import CommonView
-from seller.views.good import GoodView
+from seller.views.goods import GoodView
 
 app_name = "seller"
 
@@ -26,9 +26,12 @@ urlpatterns = [
 
 # 商品
 urlpatterns += [
-    url(r'^good/goodslist', GoodView.as_view(), name="goodslist"),
-    url(r'^good/addGood', GoodView.as_view(), name="addGood"),
-    url(r'^good/updateGood', GoodView.as_view(), name="updateGood"),
-    url(r'^good/deleteGood', GoodView.as_view(), name="deleteGood"),
-    url(r'^good/offShelve', GoodView.as_view(), name="offShelve"),
+    url(r'^goods/goodslist', GoodView.as_view(), name="goodslist"),
+    url(r'^goods/addGoods', GoodView.as_view(), name="addGoods"),
+    url(r'^goods/updateGoods', GoodView.as_view(), name="updateGoods"),
+    url(r'^goods/deleteGoods', GoodView.as_view(), name="deleteGoods"),
+    url(r'^goods/offShelve', GoodView.as_view(), name="offShelve"),
+    url(r'^goods/uploadImage$',GoodView.as_view(),name="uploadImage"),
+    url(r'^goods/deleteImage$',GoodView.as_view(),name="deleteImage"),
+    url(r'^goods/getSubCategories$',GoodView.as_view(),name="getSubCategories"),
 ]

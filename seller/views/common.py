@@ -3,12 +3,13 @@ import hashlib
 from django.conf import settings
 
 from models.seller import SellerModel
+from seller.views.sellerbaseview import SellerBaseView
 from util.baseview import BaseView, valifyCaptcha, loginRequire
 from util.regex import Regex
 from util.upload import Upload
 
 
-class CommonView(BaseView):
+class CommonView(SellerBaseView):
     @loginRequire()
     def index(self, request):
         seller = SellerModel.objects.get(id=request.session["user"]["id"])
