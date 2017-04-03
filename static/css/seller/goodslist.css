@@ -18,7 +18,7 @@ table td img{
 .goods-operation{
     width: 9rem;
 }
-.goods-name,.goods-price,.goods-sale-num,.goods-evaluate-num,.goods-good-evaluate,.goods-operation{
+.goods-name,.goods-price,.goods-sale-num,.goods-amount,.goods-add-time,.goods-operation{
     padding: 1.2rem 0 !important;
 }
 .operation-content li{
@@ -32,4 +32,16 @@ table td img{
 }
 .form-group{
     margin-bottom: 1.2rem;
+}
+.goods-operation select{
+    display: inline-block;
+    margin-top: .1rem;
+    height: 1.7rem;
+    font-size: .7rem;
+    line-height: 1.42;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: .2rem;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
