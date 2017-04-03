@@ -76,7 +76,18 @@ class GoodView(SellerBaseView):
 
     @loginRequire()
     def deleteGoods(self, request):
-        pass
+        """删除商品"""
+        self.response_['type'] = self.RESPONSE_TYPE_JSON
+        id = request.GET.get("id")
+        seller = self.context["seller"]
+        try:
+            seller.products.filter(id=id).delete()
+        except Exception as e:
+            print(e)
+            self.context = {"code":4,"msg":"删除商品失败","data":{"id":id}}
+        else:
+            self.context = {"code":200,"msg":"删除商品成功","data":{"id":id}}
+
 
     @loginRequire()
     def offShelve(self, request):

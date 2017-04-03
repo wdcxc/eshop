@@ -52,11 +52,11 @@
                                         <td class="goods-good-evaluate">{{product.addTime}}</td>
                                         <td class="goods-operation">
                                             <ul class="operation-content">
-                                                <li class="modify"><a class="btn btn-default" href="{% url 'seller:updateGoods' %}">修改</a></li>
+                                                <li class="modify"><a class="btn btn-default" href="{% url 'seller:updateGoods' %}?id={{product.id}}">修改</a></li>
                                                 <li class="off-shelf"><a tabindex="0" class="btn btn-primary" role="button" data-toggle="popover"
                                                        data-placement="top" data-trigger="focus" title="系统提示"
                                                        data-content="商品成功下架">下架</a></li>
-                                                <li class="delete"><a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">删除</a></li>
+                                                <li class="delete"><a class="btn btn-danger del-goods" data-id="{{product.id}}" data-target="#deleteModal">删除</a></li>
                                             </ul>
                                         </td>
                                     </tr>
@@ -144,8 +144,8 @@
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">系统提示</h4>
                 </div>
-                <div class="modal-body">
-                    删除商品成功！
+                <div id="delModalInfo" class="modal-body">
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
@@ -167,6 +167,14 @@
                 format: 'YYYY-MM-DD'
             });
              $("[data-toggle='popover']").popover();
+
+            $(".del-goods").on("click",function(){
+                $.get("/seller/goods/deleteGoods?id="+$(this).data("id"),function(result){
+                    $("#delModalInfo").html(result.msg);
+                    $("#deleteModal").modal("toggle");
+                    setTimeout(function(){location.reload(true);},2000);
+                });
+            });
         });
     </script>
 
