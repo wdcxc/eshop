@@ -72,7 +72,17 @@ class GoodView(SellerBaseView):
 
     @loginRequire()
     def updateGoods(self, request):
-        pass
+        """修改商品信息"""
+        if request.method == "GET":
+            product = self.context["seller"].products.get(id=request.GET.get("id"))
+            self.context["product"] = product
+
+            g3Category = product.category
+            g2Category = ProductCategoryModel.objects.get(id=g3Category.parentId)
+            g1Category = ProductCategoryModel.objects.get(id=g2Category.parentId)
+            self.context["category"] = {"g1":g1Category,"g2":g2Category,"g3":g3Category}
+
+            self.context["imageUrls"] = [image.url for image in product.images.all()]
 
     @loginRequire()
     def deleteGoods(self, request):
