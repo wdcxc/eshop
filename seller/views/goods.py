@@ -19,19 +19,20 @@ class GoodView(SellerBaseView):
 
         seller = self.context["seller"]
         products = seller.products.all().order_by("-addTime")
+        withImageProducts = []
         for product in products:
             product.__dict__.update({"image":product.images.all()[0]})
+            withImageProducts.append(product.__dict__)
 
         page = request.GET.get("page")
-        paginator = Paginator(products,2)
+        paginator = Paginator(withImageProducts,2)
         try:
-            products = paginator.page(page)
+            withImageProducts = paginator.page(page)
         except PageNotAnInteger:
-            products = paginator.page(1)
+            withImageProducts = paginator.page(1)
         except EmptyPage:
-            products = paginator.page(paginator.num_pages)
-        self.context["products"] = [product.__dict__ for product in products]
-
+            withImageProducts = paginator.page(paginator.num_pages)
+        self.context["products"] = withImageProducts
 
     @loginRequire()
     def addGoods(self, request):
@@ -132,8 +133,14 @@ class GoodView(SellerBaseView):
 
 
     @loginRequire()
-    def offShelve(self, request):
-        pass
+    def updateStatus(self, request):
+        """修改商品状态"""
+        self.response_["type"] = self.RESPONSE_TYPE_JSON
+        seller = self.context["seller"]
+        product = seller.products.get(id=request.GET.get("id"))
+        product.status = request.GET.get("status")
+        product.save()
+        self.context = {"code":200,"msg":"修改商品状态成功","data":{"id":product.id}}
 
     @loginRequire()
     def uploadImage(self, request):

@@ -35,6 +35,7 @@
                                     <th>商品价格</th>
                                     <th>商品销量</th>
                                     <th>库存量</th>
+                                    <th>状态</th>
                                     <th>添加时间</th>
                                     <th>商品操作</th>
                                 </tr>
@@ -47,15 +48,16 @@
                                         <td class="goods-price">￥{{product.price}}</td>
                                         <td class="goods-sale-num">{{product.soldoutAmount}}</td>
                                         <td class="goods-amount">{{product.amount}}</td>
+                                        <td class="goods-amount">
+                                            {% ifequal product.status 0 %}预售{% endifequal %}
+                                            {% ifequal product.status 1 %}上架{% endifequal %}
+                                            {% ifequal product.status 2 %}下架{% endifequal %}
+                                            {% ifequal product.status 4 %}待定{% endifequal %}
+                                        </td>
                                         <td class="goods-add-time">{{product.addTime}}</td>
                                         <td class="goods-operation">
                                             <ul class="operation-content">
                                                 <li class="modify"><a class="btn btn-primary" href="{% url 'seller:updateGoods' %}?id={{product.id}}">修改</a></li>
-                                                <select>
-                                                    <option value="0">预售</option>
-                                                    <option value="1">上架</option>
-                                                    <option value="2">下架</option>
-                                                </select>
                                                 <li class="delete"><a class="btn btn-danger del-goods" data-id="{{product.id}}" data-target="#deleteModal">删除</a></li>
                                             </ul>
                                         </td>
