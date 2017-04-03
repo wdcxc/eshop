@@ -84,6 +84,8 @@ class GoodView(SellerBaseView):
 
             self.context["imageUrls"] = [image.url for image in product.images.all()]
 
+            self.context["properties"] = product.properties.all()
+
     @loginRequire()
     def deleteGoods(self, request):
         """删除商品"""
