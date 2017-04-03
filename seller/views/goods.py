@@ -21,8 +21,12 @@ class GoodView(SellerBaseView):
         products = seller.products.all().order_by("-addTime")
         withImageProducts = []
         for product in products:
-            product.__dict__.update({"image":product.images.all()[0]})
-            withImageProducts.append(product.__dict__)
+            try:
+                product.__dict__.update({"image":product.images.all()[0]})
+            except Exception as e:
+                print(e)
+            else:
+                withImageProducts.append(product.__dict__)
 
         page = request.GET.get("page")
         paginator = Paginator(withImageProducts,2)
