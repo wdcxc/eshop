@@ -159,23 +159,25 @@
                     }
                 }
             },
-            <!--initialPreview: [-->
-                <!--'/static/media/fileupload/seller/20170331/1490966555.898324_activity.jpg',-->
-            <!--],-->
-            <!--initialPreviewAsData: true,-->
-            <!--initialPreviewConfig: [-->
-                <!--{-->
-                    <!--caption: 'desert1.jpg',-->
-                    <!--width: '50px',-->
-                    <!--key: 100,-->
-                    <!--extra: {id: 100}-->
-                <!--},-->
-            <!--],-->
+            ajaxDeleteSettings:{
+                beforeSend: function(xhr, settings) {
+                    if (!this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrfToken);
+                    }
+                }
+            },
+            initialPreview: [],
+            initialPreviewAsData: true,
+            initialPreviewConfig: [],
         });
 
         $('#uploadImage').on('fileuploaded', function(event, data, previewId, index) {
             response = data.response;
-            uploadImages.add("/static/media/fileupload/"+response.data.imgUrl);
+            uploadImages.add(response.id);
+        });
+
+        $("#uploadImage").on('filedeleted',function(event,key){
+            uploadImages.delete(key);
         });
     });
 
