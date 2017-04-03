@@ -1,0 +1,13 @@
+.wrapper{
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 4rem;
+    height: initial;
+    overflow: hidden;
+}
+table th,td{
+    text-align: center;
+}
+.panel{
+    padding: 0;
+}

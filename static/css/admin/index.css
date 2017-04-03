@@ -13,6 +13,7 @@
     margin:0;
     padding-left:1rem;
     display:inline-block;
+    color: #337ab7;
 }
 
 .header-right{
@@ -26,11 +27,10 @@
     display:inline-block;
     height: 1rem;
     margin-right:1rem;
-    color:#286090;
+    color:#337ab7;
 }
 
 .header-right .dropdown .dropdown-toggle:hover{
-    color:black;
     cursor:pointer;
 }
 
@@ -49,49 +49,47 @@
     position:fixed;
     width:8rem;
     height:100%;
-    background-color:#272A34;
+    background-color: #3d3d3d;
     overflow:auto;
     z-index:5;
     padding-top:3rem;
-
 }
-
 .affix-tab li{
     width:8rem;
     float:left;
-    margin-bottom:0.2rem;
-    height: 1.6rem;
-    line-height: 1.6rem;
+    height: 2rem;
+    line-height: 2rem;
+    border-top: 1px solid #5c5c5c;
 }
-
+.affix-tab li:first-child{
+    border-top: none;
+}
 .affix-tab li a{
     display:inline-block;
     width:8rem;
-    color:orange;
+    color: #fff;
     text-decoration:none;
     text-align:left;
     padding-left:2rem;
 }
-
 .affix-tab li a:hover{
-    background-color:white;
-    color:#272A34;
-    font-weight:bold;
+    background-color:#333;
 }
-
 .affix-tab li .affix-active-item{
-    background-color:white;
-    color:#272A34;
-    font-weight:bold;
+    background-color:#e02222;
+    color:#fff;
 }
-
+.affix-tab li .affix-active-item:hover{
+    background-color:#e02222;
+    color:#fff;
+}
 .content {
     padding-top:3rem;
     padding-left:9rem;
     padding-right:1rem;
 }
-
 .info-hide{
     display:none;
 }
+
 

@@ -2,9 +2,55 @@
 {% block title %} eshop admin index {% endblock %}
 {% load static %}
 
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/index.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/common/index.css' %}"/>
+{% endblock %}
+
 {% block withnavbody %}
-<div class="content">
-   <p>admin common index</p>
+<div class="wrapper">
+    <div class="panel panel-info col-md-5">
+        <div class="panel-heading">新增买家</div>
+        <table class="table table-hover">
+            <thead>
+                <th>买家名</th>
+                <th>买家注册时间</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>zihang</td>
+                <td>2017-4-3 16:00</td>
+            </tr>
+            <tr>
+                <td>zihang</td>
+                <td>2017-4-3 16:00</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel panel-info col-md-5 col-md-offset-1">
+        <div class="panel-heading">新增卖家</div>
+        <table class="table table-hover">
+            <thead>
+                <th>卖家名</th>
+                <th>卖家注册时间</th>
+                <th>卖家店铺</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>zihang</td>
+                <td>2017-4-3 16:00</td>
+                <td>津津美食</td>
+            </tr>
+            <tr>
+                <td>zihang</td>
+                <td>2017-4-3 16:00</td>
+                <td>津津美食</td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
 </div>
 {% endblock %}
 

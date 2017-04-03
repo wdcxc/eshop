@@ -1,3 +1,64 @@
-{% extends "admin/base.html" %}
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/index.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/customeradmin/index.css' %}"/>
+{% endblock %}
+
+{% csrf_token %}
+
 {% block withnavbody %}
+    <div class="search">
+        <form class="search-form">
+            <div class="input-group col-md-3">
+                <input type="text" class="form-control" placeholder="请输入买家名"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-primary btn-search">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </span>
+            </div>
+        </form>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>买家名</th>
+                    <th>买家注册时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>zihang</td>
+                    <td>2017-3-25 12:00</td>
+                    <td>
+                        <a class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">封号</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--确认封号模态框-->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+            </div>
+            <div class="modal-body">确定对买家zihang进行封号吗？</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script>
+
+</script>
 {% endblock %}
