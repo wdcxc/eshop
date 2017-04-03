@@ -45,7 +45,7 @@ class ProductImageModel(models.Model):
     """商品图片"""
     name = models.CharField(max_length=20,null=True)  # 图片名称
     order = models.IntegerField(default=0)  # 显示顺序,数字越大，显示越前
-    product = models.ForeignKey(ProductModel, related_name="images", on_delete=models.CASCADE)  # 关联产品
+    product = models.ForeignKey(ProductModel, related_name="images", on_delete=models.CASCADE,null=True)  # 关联产品
     url = models.URLField()  # 图片链接地址
     addTime = models.DateTimeField(auto_now_add=True)  # 图片添加时间
 
