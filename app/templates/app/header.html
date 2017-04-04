@@ -48,8 +48,8 @@
 <div class="logo-wrapper">
     <div id="logo" style="margin:1rem .6rem"><a href="{% url 'app:index' %}">eshop</a></div>
     <div class="search-bar">
-        <form>
-            <input id="search-text" type="text" placeholder="搜索你想要的商品" autocomplete="off">
+        <form method="get" action="{% url 'app:search' %}">
+            <input id="search-text" name="name" type="text" placeholder="搜索你想要的商品" autocomplete="on">
             <input id="search-btn" value="搜 索" type="submit">
         </form>
     </div>

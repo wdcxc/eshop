@@ -16,12 +16,15 @@
                     <span class="all-goods">全部商品</span>
                 </div>
             </div>
+            {% if not products %}
             <div class="no-commodity">
                 <h3><span class="search-name">松子</span>搜索到<span style="color: red">0</span>件商品</h3>
                 <img src="{% static 'images/app/monkey.jpg' %}" alt="找不到商品的图片">
                 <p>没有找到和<span class="search-name">松子</span>相关的商品</p>
             </div>
-            <div class="container-fluid center-block hidden" style="max-width: 60rem">
+            {% endif %}
+
+            <div class="container-fluid center-block {% if not products %}hidden{% endif %}" style="max-width: 60rem">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="select-box">
@@ -95,127 +98,40 @@
                                 </li>
                             </ul>
                         </div>
+                        {% for product in products %}
                         <div class="col-md-3 col-xs-4">
                             <div class="commodity">
-                                <a href="#">
-                                    <img src="{% static 'images/app/search-img.jpg' %}">
-                                    <p class="price">¥56.90</p>
-                                    <p class="title">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
+                                <a href="{% url 'app:introduction' %}?id={{product.id}}">
+                                    <img src="{{product.images}}">
+                                    <p class="price">¥{{product.price}}</p>
+                                    <p class="title">{{product.description}}</p>
                                     <p style="padding: .5rem">
-                                        <span class="sale-volume">销量1110</span>
-                                        <span class="evaluate">好评95%</span>
+                                        <span class="sale-volume">销量 {{product.soldoutAmount}}</span>
+                                        <span class="evaluate">好评 95%</span>
                                     </p>
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="commodity">
-                                <a href="#">
-                                    <img src="{% static 'images/app/search-img.jpg' %}">
-                                    <p class="price">¥56.90</p>
-                                    <p class="title">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-                                    <p style="padding: .5rem">
-                                        <span class="sale-volume">销量1110</span>
-                                        <span class="evaluate">好评95%</span>
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="commodity">
-                                <a href="#">
-                                    <img src="{% static 'images/app/search-img.jpg' %}">
-                                    <p class="price">¥56.90</p>
-                                    <p class="title">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-                                    <p style="padding: .5rem">
-                                        <span class="sale-volume">销量1110</span>
-                                        <span class="evaluate">好评95%</span>
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="commodity">
-                                <a href="#">
-                                    <img src="{% static 'images/app/search-img.jpg' %}">
-                                    <p class="price">¥56.90</p>
-                                    <p class="title">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-                                    <p style="padding: .5rem">
-                                        <span class="sale-volume">销量1110</span>
-                                        <span class="evaluate">好评95%</span>
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="commodity">
-                                <a href="#">
-                                    <img src="{% static 'images/app/search-img.jpg' %}">
-                                    <p class="price">¥56.90</p>
-                                    <p class="title">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-                                    <p style="padding: .5rem">
-                                        <span class="sale-volume">销量1110</span>
-                                        <span class="evaluate">好评95%</span>
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="commodity">
-                                <a href="#">
-                                    <img src="{% static 'images/app/search-img.jpg' %}">
-                                    <p class="price">¥56.90</p>
-                                    <p class="title">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-                                    <p style="padding: .5rem">
-                                        <span class="sale-volume">销量1110</span>
-                                        <span class="evaluate">好评95%</span>
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="commodity">
-                                <a href="#">
-                                    <img src="{% static 'images/app/search-img.jpg' %}">
-                                    <p class="price">¥56.90</p>
-                                    <p class="title">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-                                    <p style="padding: .5rem">
-                                        <span class="sale-volume">销量1110</span>
-                                        <span class="evaluate">好评95%</span>
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-4">
-                            <div class="commodity">
-                                <a href="#">
-                                    <img src="{% static 'images/app/search-img.jpg' %}">
-                                    <p class="price">¥56.90</p>
-                                    <p class="title">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
-                                    <p style="padding: .5rem">
-                                        <span class="sale-volume">销量1110</span>
-                                        <span class="evaluate">好评95%</span>
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
+                        {% endfor %}
                         <nav class="text-center" aria-label="Page navigation">
                             <ul class="pagination pagination-lg">
+                                {% if products.has_previous %}
                                 <li>
-                                    <a href="#" aria-label="Previous">
+                                    <a href="?page={{products.previous_page_number}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
+                                {% endif %}
+                                {% if productsAmount > 8 %}
+                                <li><a>{{products.number}} / {{products.paginator.num_pages}}</a></li>
+                                {% endif %}
+                                {% if products.has_next %}
                                 <li>
-                                    <a href="#" aria-label="Next">
+                                    <a href="?page={{products.next_page_number}}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
+                                {% endif %}
                             </ul>
                         </nav>
                     </div>

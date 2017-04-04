@@ -45,6 +45,7 @@ $(document).ready(function() {
 	});
 
 	$(".select dd").click(function(){
+	    alert(1);
 		if ($(".select-result dd").length > 1) {
 			$(".select-no").hide();
 			$(".eliminateCriteria").show();
@@ -56,8 +57,8 @@ $(document).ready(function() {
 	});
 
 	$("#selectA").click(function () {
-		console.log("1111");
-		$("#selectA").remove();
+		alert(1111);
+		$(this).remove();
 		$("#select1").find(".select-all").addClass("selected").siblings().removeClass("selected");
 	});
 
@@ -80,6 +81,7 @@ $(document).ready(function() {
 		$(".select-no").show();
 		$(".select-result").hide();
 	});
+
 	$(".sort").find("li").click(function(){
 		$(".sort").find("li").css("background-color","#fff");
 		$(this).css("background-color","#F5F5F5");

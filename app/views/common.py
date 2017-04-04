@@ -1,12 +1,14 @@
+from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from django.urls import reverse
 
 from app.views.appbaseview import AppBaseView
 from models.carousel import CarouselModel
+from models.product import ProductModel
 from models.productcategory import ProductCategoryModel
 
 
 class CommonView(AppBaseView):
-    def index(self,request):
+    def index(self, request):
         """商城首页"""
         self.response_["type"] = self.RESPONSE_TYPE_DEFAULT
         # 轮播图
@@ -14,43 +16,58 @@ class CommonView(AppBaseView):
         self.context["carousels"] = []
         self.context["carouselsCount"] = range(len(carousels))
         for carousel in carousels:
-            self.context["carousels"].append({"title":carousel.title,"imgUrl":carousel.imgUrl,"linkUrl":carousel.linkUrl})
-        # 商品分类导航栏
-            productCategories = ProductCategoryModel.objects.all().order_by("-grade","show","-order","-id")
+            self.context["carousels"].append(
+                {"title": carousel.title, "imgUrl": carousel.imgUrl, "linkUrl": carousel.linkUrl})
+            # 商品分类导航栏
+            productCategories = ProductCategoryModel.objects.all().order_by("-grade", "show", "-order", "-id")
             sortedProductCategories = self._sortProductCategories(productCategories)
             self.context["categories"] = sortedProductCategories
 
-    def success(self,request):
+    def success(self, request):
         pass
 
-    def introduction(self,request):
+    def introduction(self, request):
         pass
 
-    def order(self,request):
+    def order(self, request):
         pass
 
-    def search(self,request):
+    def search(self, request):
+        """搜索"""
+        name = request.GET.get("name")
+        if name:
+            raw = ProductModel.objects.filter(name__icontains=name)
+            page = request.GET.get("page")
+            self.context["productsAmount"] = raw.count()
+
+            paginator = Paginator(raw, 8)
+            try:
+                products = paginator.page(page)
+            except EmptyPage:
+                products = paginator.page(paginator.num_pages)
+            except PageNotAnInteger:
+                products = paginator.page(1)
+            self.context["products"] = products
+
+    def shopcart(self, request):
         pass
 
-    def shopcart(self,request):
+    def activity(self, request):
         pass
 
-    def activity(self,request):
+    def fail(self, request):
         pass
 
-    def fail(self,request):
+    def contact(self, request):
         pass
 
-    def contact(self,request):
+    def about(self, request):
         pass
 
-    def about(self,request):
+    def help(self, request):
         pass
 
-    def help(self,request):
-        pass
-
-    def logout(self,request):
+    def logout(self, request):
         """退出登陆"""
         self.response_["type"] = self.RESPONSE_TYPE_REDIRECT
         if "user" in request.session:
@@ -59,13 +76,12 @@ class CommonView(AppBaseView):
             del self.context["customer"]
         self.context["redirectPath"] = reverse("app:index")
 
-
-    def _sortProductCategories(self,productCategories):
+    def _sortProductCategories(self, productCategories):
         categories = list(productCategories.values())
         sortedCategoriesDict = {}
         while categories:
             curGrade = categories[0]["grade"]
-            for i,category in enumerate(categories):
+            for i, category in enumerate(categories):
                 if category["grade"] == curGrade:
                     if category["id"] in sortedCategoriesDict:
                         category.update(sortedCategoriesDict[category["id"]])
@@ -73,7 +89,7 @@ class CommonView(AppBaseView):
                     if category["parentId"] in sortedCategoriesDict:
                         sortedCategoriesDict[category["parentId"]]["subCategories"].append(category)
                     else:
-                        sortedCategoriesDict[category["parentId"]] = {"subCategories":[category]}
+                        sortedCategoriesDict[category["parentId"]] = {"subCategories": [category]}
                     del categories[i]
                 else:
                     break

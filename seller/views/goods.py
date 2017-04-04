@@ -22,14 +22,14 @@ class GoodView(SellerBaseView):
         withImageProducts = []
         for product in products:
             try:
-                product.__dict__.update({"image":product.images.all()[0]})
+                product.__dict__.update({"image": product.images.all()[0]})
             except Exception as e:
                 print(e)
-            else:
+            finally:
                 withImageProducts.append(product.__dict__)
 
         page = request.GET.get("page")
-        paginator = Paginator(withImageProducts,2)
+        paginator = Paginator(withImageProducts, 5)
         try:
             withImageProducts = paginator.page(page)
         except PageNotAnInteger:
@@ -65,19 +65,22 @@ class GoodView(SellerBaseView):
             if dict["status"] == str(ProductModel.ONSHELVE):
                 dict["onShelveTime"] = datetime.now()
 
-            goods = ProductModel(**dict)
-            goods.save()
+            try:
+                goods = ProductModel(**dict)
+                goods.save()
+            except Exception as e:
+                self.context = {"code": 4, "msg": "请输入有效信息", "data": {"error": str(e)}}
+            else:
+                uploadImageIds = request.POST.getlist("uploadImages[]")
+                for imageId in uploadImageIds:
+                    goods.images.add(ProductImageModel.objects.get(id=imageId))
 
-            uploadImageIds = request.POST.getlist("uploadImages[]")
-            for imageId in uploadImageIds:
-                goods.images.add(ProductImageModel.objects.get(id=imageId))
+                propertyMetas = category.propertyMetas.all()
+                for meta in propertyMetas:
+                    property = {"meta": meta, "value": request.POST.get("properties[" + str(meta.id) + "]")}
+                    goods.properties.create(**property)
 
-            propertyMetas = category.propertyMetas.all()
-            for meta in propertyMetas:
-                property = {"meta": meta, "value": request.POST.get("properties[" + str(meta.id) + "]")}
-                goods.properties.create(**property)
-
-            self.context = {"code": 200, "msg": "添加商品成功", "data": {"id": goods.id}}
+                self.context = {"code": 200, "msg": "添加商品成功", "data": {"id": goods.id}}
 
     @loginRequire()
     def updateGoods(self, request):
@@ -89,16 +92,16 @@ class GoodView(SellerBaseView):
             g3Category = product.category
             g2Category = ProductCategoryModel.objects.get(id=g3Category.parentId)
             g1Category = ProductCategoryModel.objects.get(id=g2Category.parentId)
-            self.context["category"] = {"g1":g1Category,"g2":g2Category,"g3":g3Category}
+            self.context["category"] = {"g1": g1Category, "g2": g2Category, "g3": g3Category}
 
-            self.context["images"] = [{"id":image.id,"url":image.url} for image in product.images.all()]
+            self.context["images"] = [{"id": image.id, "url": image.url} for image in product.images.all()]
 
             self.context["properties"] = product.properties.all()
         elif request.method == "POST":
             self.response_["type"] = self.RESPONSE_TYPE_JSON
 
             product = self.context["seller"].products.filter(id=request.POST.get('id'))
-            keys = ("name","price","amount","brand","status","description")
+            keys = ("name", "price", "amount", "brand", "status", "description")
             dict = {}
             for key in keys:
                 dict[key] = request.POST.get(key)
@@ -112,14 +115,13 @@ class GoodView(SellerBaseView):
             product.save()
 
             for property in product.properties.all():
-                property.value = request.POST.get("properties["+str(property.id)+"]")
+                property.value = request.POST.get("properties[" + str(property.id) + "]")
                 property.save()
 
             for imgId in request.POST.getlist("uploadImages[]"):
                 product.images.add(ProductImageModel.objects.get(id=imgId))
 
-            self.context = {"code":200,"msg":"修改商品信息成功","data":{"id":product.id}}
-
+            self.context = {"code": 200, "msg": "修改商品信息成功", "data": {"id": product.id}}
 
     @loginRequire()
     def deleteGoods(self, request):
@@ -131,10 +133,9 @@ class GoodView(SellerBaseView):
             seller.products.filter(id=id).delete()
         except Exception as e:
             print(e)
-            self.context = {"code":4,"msg":"删除商品失败","data":{"id":id}}
+            self.context = {"code": 4, "msg": "删除商品失败", "data": {"id": id}}
         else:
-            self.context = {"code":200,"msg":"删除商品成功","data":{"id":id}}
-
+            self.context = {"code": 200, "msg": "删除商品成功", "data": {"id": id}}
 
     @loginRequire()
     def updateStatus(self, request):
@@ -144,18 +145,20 @@ class GoodView(SellerBaseView):
         product = seller.products.get(id=request.GET.get("id"))
         product.status = request.GET.get("status")
         product.save()
-        self.context = {"code":200,"msg":"修改商品状态成功","data":{"id":product.id}}
+        self.context = {"code": 200, "msg": "修改商品状态成功", "data": {"id": product.id}}
 
     @loginRequire()
     def uploadImage(self, request):
         """上传商品图片"""
         self.response_["type"] = self.RESPONSE_TYPE_JSON
         image = request.FILES["productImages"]
-        storeRes =  Upload.uploadImg(dir="product", img=image)
+        storeRes = Upload.uploadImg(dir="product", img=image)
         if storeRes["code"] == 200:
-            img = ProductImageModel(name=image.name,url="/static/media/fileupload/"+storeRes["data"]["imgUrl"])
+            img = ProductImageModel(name=image.name, url="/static/media/fileupload/" + storeRes["data"]["imgUrl"])
             img.save()
-            storeRes.update({"initialPreview":[img.url],"initialPreviewConfig":[{"key":img.id,"caption":img.name}],"id":img.id})
+            storeRes.update(
+                {"initialPreview": [img.url], "initialPreviewConfig": [{"key": img.id, "caption": img.name}],
+                 "id": img.id})
             self.context = storeRes
         else:
             self.context = storeRes
@@ -165,7 +168,7 @@ class GoodView(SellerBaseView):
         """删除商品图片"""
         self.response_["type"] = self.RESPONSE_TYPE_JSON
         if request.method == "GET":
-            id =request.GET.get("key")
+            id = request.GET.get("key")
         elif request.method == "POST":
             id = request.POST.get("key")
         if id:
