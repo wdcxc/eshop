@@ -44,7 +44,7 @@ var loginForm = new Vue({
             this.$http.post('/customer/common/doLogin', that.customer, {"headers":{"X-CSRFToken":csrftoken}})
                 .then(response => {
                     if(response.body.code == 200){
-                        window.location.href = "/customer/information/index";
+                        window.location.href = response.body.data.redirectPath;
                     } else {
                         that.updateCaptcha();
                         this.infoMsg.msg = response.body.msg;

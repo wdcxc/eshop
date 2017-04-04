@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^common/bill', CommonView.as_view(), name="bill"),
     url(r'^common/refundapply', CommonView.as_view(), name="refundapply"),
     url(r'^common/goodsevaluate', CommonView.as_view(), name="goodsevaluate"),
-    url(r'^common/logout$', CommonView.as_view(), name="logout"),
+    url(r'.*/logout$', CommonView.as_view(), name="logout"),
 ]
 
 # 买家信息

@@ -1,9 +1,11 @@
+from django.urls import reverse
+
+from app.views.appbaseview import AppBaseView
 from models.carousel import CarouselModel
 from models.productcategory import ProductCategoryModel
-from util.baseview import BaseView
 
 
-class CommonView(BaseView):
+class CommonView(AppBaseView):
     def index(self,request):
         """商城首页"""
         self.response_["type"] = self.RESPONSE_TYPE_DEFAULT
@@ -47,6 +49,16 @@ class CommonView(BaseView):
 
     def help(self,request):
         pass
+
+    def logout(self,request):
+        """退出登陆"""
+        self.response_["type"] = self.RESPONSE_TYPE_REDIRECT
+        if "user" in request.session:
+            del request.session["user"]
+        if "customer" in self.context:
+            del self.context["customer"]
+        self.context["redirectPath"] = reverse("app:index")
+
 
     def _sortProductCategories(self,productCategories):
         categories = list(productCategories.values())

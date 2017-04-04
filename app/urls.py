@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^common/contact$',CommonView.as_view(), name = "contact"),
     url(r'^common/about',CommonView.as_view(), name = "about"),
     url(r'^common/help',CommonView.as_view(), name = "help"),
+    url(r'.*/logout$',CommonView.as_view(), name = "logout"),
 ]
