@@ -11,12 +11,55 @@
     </div>
 </header>
 <ul class="affix-tab">
-    <li><a {% ifequal controller "common" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:index' %}">总览</a></li>
-    <li><a {% ifequal controller "customeradmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:customerAdminIndex' %}">买家管理</a></li>
-    <li><a {% ifequal controller "selleradmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:sellerAdminIndex' %}">卖家管理</a></li>
-    <li><a {% ifequal controller "adminadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:adminAdminAdminIndex' %}">管理员管理</a></li>
-    <li><a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:appAdminIndex' %}">商城管理</a></li>
-    <li><a {% ifequal controller "productadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:productAdminIndex' %}">商品管理</a></li>
+    <li>
+        <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+        <a {% ifequal controller "common" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:index' %}">总览</a>
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
+        <a {% ifequal controller "customeradmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:customerAdminIndex' %}">买家管理</a>
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+        <a {% ifequal controller "selleradmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:sellerAdminIndex' %}">卖家管理</a>
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <a {% ifequal controller "adminadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:adminAdminAdminIndex' %}">管理员管理</a>
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+        <h2>商城管理</h2>{% comment %}<a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:appAdminIndex' %}"></a>{% endcomment %}
+        <ul class="sub-menu">
+            <li>
+                <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %}
+                   href="{% url 'admin:appAdminCarousel' %}">
+                    轮播图管理</a>
+            </li>
+            <li>
+                <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %}
+                   href="{% url 'admin:appAdminProductCategory' %}">
+                    商品目录导航管理</a>
+            </li>
+            <li>
+                <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %}
+                   href="{% url 'admin:appAdminShoppingGuide' %}">
+                    商品导购管理</a>
+            </li>
+        </ul>
+    </li>
+    <li style="margin-top: 5.9rem">
+        <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
+        <h2>商品管理</h2>
+        <ul class="sub-menu">
+            <li>
+                <a {% ifequal controller "productadmin" %}class="affix-active-item"{% endifequal %}
+                   href="{% url 'admin:productAdminCategory' %}">
+                    商品目录管理</a>
+            </li>
+        </ul>
+    </li>
+    {% comment %}<li><a {% ifequal controller "productadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:productAdminIndex' %}">商品管理</a></li>{% endcomment %}
 </ul>
 {% comment %}<div class="page-sidebar nav-collapse collapse">
     <ul class="page-sidebar-menu">

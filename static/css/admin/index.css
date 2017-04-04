@@ -50,11 +50,11 @@
     width:8rem;
     height:100%;
     background-color: #3d3d3d;
-    overflow:auto;
     z-index:5;
     padding-top:3rem;
 }
 .affix-tab li{
+    position: relative;
     width:8rem;
     float:left;
     height: 2rem;
@@ -64,13 +64,18 @@
 .affix-tab li:first-child{
     border-top: none;
 }
+.affix-tab li span{
+    position: absolute;
+    color: #fff;
+    top: .6rem;
+    left: 1rem;
+}
 .affix-tab li a{
     display:inline-block;
     width:8rem;
     color: #fff;
     text-decoration:none;
-    text-align:left;
-    padding-left:2rem;
+    text-align:center;
 }
 .affix-tab li a:hover{
     background-color:#333;
@@ -82,6 +87,26 @@
 .affix-tab li .affix-active-item:hover{
     background-color:#e02222;
     color:#fff;
+}
+.affix-tab li h2{
+    margin: 0;
+    color: #fff;
+    font-size: .7rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    text-align: center;
+}
+.sub-menu li{
+    font-size: .6rem;
+}
+.sub-menu li{
+    border-top: 1px solid #5c5c5c !important;
+    border-bottom: none;
+}
+.sub-menu li a{
+    padding-left: 2.6rem;
+    text-align: left;
+    width: 8rem
 }
 .content {
     padding-top:3rem;
