@@ -1,6 +1,8 @@
 # coding:utf-8
 import hashlib
 
+from django.urls import reverse
+
 from customer.views.customerbaseview import CustomerBaseView
 from models.customer import CustomerModel
 from util.baseview import BaseView, valifyCaptcha
@@ -43,6 +45,7 @@ class CommonView(CustomerBaseView):
         """买家登录
         允许用户名/手机/邮箱登录
         """
+        print(request.META.HTTP_REFERER)
         self.response_["type"] = BaseView.RESPONSE_TYPE_JSON
         customerKeys = ("account", "password")
         customer = {}
@@ -68,7 +71,6 @@ class CommonView(CustomerBaseView):
             self.context = {"code": 200, "msg": "登录成功", "data": {"account": loginedCustomer.id}}
         else:
             self.context = {"code": 410, "msg": "账号或密码错误", "data": {}}
-        print(self.context)
 
     def register(self, request):
         pass
@@ -108,3 +110,13 @@ class CommonView(CustomerBaseView):
                                          email=customer["email"])
                 customer.save()
                 self.context = {"code": 200, "msg": "注册成功", "data": {"id": customer.id}}
+
+    def logout(self,request):
+        """退出登陆"""
+
+        self.response_["type"]=self.RESPONSE_TYPE_REDIRECT
+        if "user" in request.session:
+            del request.session["user"]
+        if "customer" in self.context:
+            del self.context["customer"]
+        self.context["redirectPath"] = reverse("customer:login")

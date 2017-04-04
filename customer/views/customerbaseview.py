@@ -7,7 +7,6 @@ from util.baseview import BaseView
 class CustomerBaseView(BaseView):
     def beforeAction(self, request):
         super(CustomerBaseView, self).beforeAction(request)
-        print(request.session.__dict__)
         if self.request_["controller"] != "common":
             if "user" in request.session:
                 try:
