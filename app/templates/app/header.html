@@ -1,7 +1,7 @@
 <!--顶部导航条 -->
 <header class="nav-wrapper">
     <div class="nav-content">
-        <div class="nav-welcome hidden">
+        <div class="nav-welcome {% if customer %}hidden{% endif %}">
                 <span>欢迎来到eshop,请
                     <a href="{% url 'customer:login' %}" style="color: #ff2832">登录</a>
                     <a href="{% url 'customer:register' %}">成为会员</a>
@@ -11,7 +11,7 @@
             <li class="operation-item">
                 hi，
                 <a href="{% url 'customer:index' %}" class="nav-user-name" style="color: #ff2832;margin-right: .2rem;">{{ customer.name }}</a>
-                <a href="{% url 'customer:login' %}" rel="nofollow" class="logout">[退出]</a>
+                <a href="logout" rel="nofollow" class="logout">[退出]</a>
             </li>
             <li class="operation-item">
                 <a target="_blank" href="{% url 'app:shopcart' %}" name="购物车" rel="nofollow">
@@ -46,7 +46,7 @@
 </header>
 <!--搜索框 -->
 <div class="logo-wrapper">
-    <div id="logo" style="margin:1rem .6rem"><a href="#">eshop</a></div>
+    <div id="logo" style="margin:1rem .6rem"><a href="{% url 'app:index' %}">eshop</a></div>
     <div class="search-bar">
         <form>
             <input id="search-text" type="text" placeholder="搜索你想要的商品" autocomplete="off">
