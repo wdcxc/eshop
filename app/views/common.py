@@ -5,6 +5,7 @@ from app.views.appbaseview import AppBaseView
 from models.carousel import CarouselModel
 from models.product import ProductModel
 from models.productcategory import ProductCategoryModel
+from models.seller import SellerModel
 
 
 class CommonView(AppBaseView):
@@ -36,7 +37,7 @@ class CommonView(AppBaseView):
         """搜索"""
         name = request.GET.get("name")
         if name:
-            raw = ProductModel.objects.filter(name__icontains=name)
+            raw = ProductModel.objects.filter(name__icontains=name,status=ProductModel.ONSHELVE)
             page = request.GET.get("page")
             self.context["productsAmount"] = raw.count()
 
@@ -57,6 +58,7 @@ class CommonView(AppBaseView):
                     product["image"] = ProductModel.objects.get(id=product["id"]).images.all()[0]
                 except:
                     pass
+                product["seller"] = SellerModel.objects.get(id=product["seller_id"])
 
             self.context["products"] = products
 
