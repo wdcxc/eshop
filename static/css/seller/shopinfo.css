@@ -6,9 +6,10 @@
 }
 .file-pic{
     width: 5rem;
+    height: 5rem;
     float: left;
     margin-left: 2rem;
-    margin-top: 1rem;
+    margin-top: .6rem;
     position: relative;
     text-align: center;
 }
@@ -24,11 +25,8 @@
 .user-pic{
     padding: 0;
     margin: .1rem;
-    display: inline-block;
-    max-width: 100%;
-    height: auto;
-    line-height: 1.6;
-    background-color: #fff;
+    width: 100%;
+    height: 100%;
     border: 1px solid #ddd;
     border-radius: 50%;
     transition: all 0.2s ease-in-out;
