@@ -46,12 +46,9 @@
 
 										 <div class="select-content">
 											<dd class="select-all selected"><a href="#">全部</a></dd>
-											<dd><a href="#">百草味</a></dd>
-											<dd><a href="#">良品铺子</a></dd>
-											<dd><a href="#">新农哥</a></dd>
-											<dd><a href="#">楼兰蜜语</a></dd>
-											<dd><a href="#">口水娃</a></dd>
-											<dd><a href="#">考拉兄弟</a></dd>
+                                             {% for brand in brands %}
+											<dd><a href="#" data-value="{{brand}}">{{brand}}</a></dd>
+                                             {% endfor %}
 										 </div>
 
 									</dl>
@@ -61,10 +58,9 @@
 										<dt class="select-option">种类</dt>
 										<div class="select-content">
 											<dd class="select-all selected"><a href="#">全部</a></dd>
-											<dd><a href="#">东北松子</a></dd>
-											<dd><a href="#">巴西松子</a></dd>
-											<dd><a href="#">夏威夷果</a></dd>
-											<dd><a href="#">松子</a></dd>
+                                            {% for category in categories %}
+											<dd><a href="#" data-id="{{category.id}}">{{category.name}}</a></dd>
+                                            {% endfor %}
 										</div>
 									</dl>
 								</li>

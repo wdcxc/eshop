@@ -40,6 +40,10 @@ class CommonView(AppBaseView):
             page = request.GET.get("page")
             self.context["productsAmount"] = raw.count()
 
+            if raw:
+                self.context["brands"] = [pd.brand for pd in raw[0].category.products.all().only("brand")]
+                self.context["categories"] = ProductCategoryModel.objects.filter(parentId=raw[0].category.parentId)
+
             paginator = Paginator(raw.values(), 8)
             try:
                 products = paginator.page(page)
@@ -55,6 +59,9 @@ class CommonView(AppBaseView):
                     pass
 
             self.context["products"] = products
+
+
+
 
     def shopcart(self, request):
         pass
