@@ -207,13 +207,11 @@
 .title{
     padding: .4rem;
 }
-.evaluate{
+.shop{
     float: right;
-    color: #9c9c9c;
-}
-.evaluate-num{
     color: #005aa0;
     font-weight: 700;
+    margin-right: .2rem;
 }
 .pagination li a{
     color: #333;
