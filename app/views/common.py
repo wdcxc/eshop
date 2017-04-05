@@ -40,13 +40,20 @@ class CommonView(AppBaseView):
             page = request.GET.get("page")
             self.context["productsAmount"] = raw.count()
 
-            paginator = Paginator(raw, 8)
+            paginator = Paginator(raw.values(), 8)
             try:
                 products = paginator.page(page)
             except EmptyPage:
                 products = paginator.page(paginator.num_pages)
             except PageNotAnInteger:
                 products = paginator.page(1)
+
+            for product in products:
+                try:
+                    product["image"] = ProductModel.objects.get(id=product["id"]).images.all()[0]
+                except:
+                    pass
+
             self.context["products"] = products
 
     def shopcart(self, request):

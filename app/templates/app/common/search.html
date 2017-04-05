@@ -31,7 +31,7 @@
                             <ul class="select">
 								<p class="select-total">
 									<span>松子</span>
-									<span>搜索到<strong>997</strong>件相关商品</span>
+									<span>搜索到<strong>{{productsAmount}}</strong>件相关商品</span>
 								</p>
 								<li class="select-result" style="display: none">
 									<dl>
@@ -102,7 +102,7 @@
                         <div class="col-md-3 col-xs-4">
                             <div class="commodity">
                                 <a href="{% url 'app:introduction' %}?id={{product.id}}">
-                                    <img src="{{product.images}}">
+                                    <img src="{{product.image.url}}" alt="{{product.image.name}}">
                                     <p class="price">¥{{product.price}}</p>
                                     <p class="title">{{product.description}}</p>
                                     <p style="padding: .5rem">
@@ -117,7 +117,7 @@
                             <ul class="pagination pagination-lg">
                                 {% if products.has_previous %}
                                 <li>
-                                    <a href="?page={{products.previous_page_number}}" aria-label="Previous">
+                                    <a id="prePage" data-page="{{products.previous_page_number}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
@@ -127,7 +127,7 @@
                                 {% endif %}
                                 {% if products.has_next %}
                                 <li>
-                                    <a href="?page={{products.next_page_number}}" aria-label="Next">
+                                    <a id="nextPage" data-page="{{products.next_page_number}}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>

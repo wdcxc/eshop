@@ -7,7 +7,7 @@ $(document).ready(function() {
 		if ($(this).hasClass("select-all")) {
 			$("#selectA").remove();
 		} else {
-			var copyThisA = $(this).clone();
+			var copyThisA = $(this).clone(false);
 			if ($("#selectA").length > 0) {
 				$("#selectA").find("a").html($(this).text());
 			} else {
@@ -44,8 +44,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$(".select dd").click(function(){
-	    alert(1);
+	$(".select-list dd").click(function(){
 		if ($(".select-result dd").length > 1) {
 			$(".select-no").hide();
 			$(".eliminateCriteria").show();
@@ -56,20 +55,29 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#selectA").click(function () {
-		alert(1111);
-		$(this).remove();
-		$("#select1").find(".select-all").addClass("selected").siblings().removeClass("selected");
+	$(".select").on("click","#selectA",function () {
+	    if ($(".select-result dd").length == 2) {
+            $(".eliminateCriteria").click();
+        }else{
+	        $("#selectA").remove();
+		    $("#select1").find(".select-all").addClass("selected").siblings().removeClass("selected");
+	    }
 	});
-
-	$("#selectB").click(function(){
-		$("#selectB").remove();
-		$("#select2").find(".select-all").addClass("selected").siblings().removeClass("selected");
+	$(".select").on("click","#selectB",function () {
+	    if ($(".select-result dd").length == 2) {
+            $(".eliminateCriteria").click();
+        }else{
+	        $("#selectB").remove();
+		    $("#select2").find(".select-all").addClass("selected").siblings().removeClass("selected");
+	    }
 	});
-
-	$("#selectC").click(function(){
-		$("#selectC").remove();
-		$("#select3").find(".select-all").addClass("selected").siblings().removeClass("selected");
+	$(".select").on("click","#selectC",function () {
+	    if ($(".select-result dd").length == 2) {
+            $(".eliminateCriteria").click();
+        }else{
+	        $("#selectC").remove();
+		    $("#select3").find(".select-all").addClass("selected").siblings().removeClass("selected");
+	    }
 	});
 
 	$(".eliminateCriteria").click(function(){
