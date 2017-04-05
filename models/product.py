@@ -11,7 +11,8 @@ class ProductModel(models.Model):
     OFFSHELVE = 2
     SOLDOUT = 3
     UNCERTAIN = 4
-    STATUS = ((PRESELL,"persell"),(ONSHELVE, "onshelve"), (OFFSHELVE, "offshelve"),(SOLDOUT,"soldout"),(UNCERTAIN,"uncertain"))
+    STATUS = ((PRESELL, "persell"), (ONSHELVE, "onshelve"), (OFFSHELVE, "offshelve"), (SOLDOUT, "soldout"),
+              (UNCERTAIN, "uncertain"))
 
     status = models.IntegerField(choices=STATUS, default=PRESELL)  # 商品状态
     name = models.CharField(max_length=100)  # 商品名称
@@ -26,6 +27,7 @@ class ProductModel(models.Model):
     onShelveTime = models.DateTimeField(null=True)  # 商品上架时间
     offShelveTime = models.DateTimeField(null=True)  # 商品下架时间
     description = models.TextField(null=True)  # 商品描述
+    thumbnail = models.URLField(null=True)  # 商品缩略图
 
     class Meta:
         db_table = "product"
@@ -43,9 +45,9 @@ class PropertyModel(models.Model):
 
 class ProductImageModel(models.Model):
     """商品图片"""
-    name = models.CharField(max_length=20,null=True)  # 图片名称
+    name = models.CharField(max_length=20, null=True)  # 图片名称
     order = models.IntegerField(default=0)  # 显示顺序,数字越大，显示越前
-    product = models.ForeignKey(ProductModel, related_name="images", on_delete=models.CASCADE,null=True)  # 关联产品
+    product = models.ForeignKey(ProductModel, related_name="images", on_delete=models.CASCADE, null=True)  # 关联产品
     url = models.URLField()  # 图片链接地址
     addTime = models.DateTimeField(auto_now_add=True)  # 图片添加时间
 

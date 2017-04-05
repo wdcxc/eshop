@@ -28,4 +28,24 @@ $(document).ready(function () {
 		$(".option-list").find("li").css("background-color","#fff");
 		$(this).css("background-color","#F5F5F5");
 	});
+
+	$("#order").on("click",function(){
+	    id = $("#id").val();
+	    num = $(".number").val();
+	    location.href = "/app/common/order?id="+id+"&num="+num;
+	});
+
+	$("#shopcart").on("click",function(){
+        id = $("#id").val();
+	    num = $(".number").val();
+	    $.get("/app/common/addShopcart?id="+id+"&num="+num,
+	        function(result){
+	            alert(result.msg);
+	            if(result.code==200){
+	                location.href = "/app/common/shopcart";
+	            }
+	        }
+	    );
+	    return false;
+	});
 });

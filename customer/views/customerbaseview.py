@@ -1,5 +1,3 @@
-from django.urls import reverse
-
 from models.customer import CustomerModel
 from util.baseview import BaseView
 
@@ -13,12 +11,12 @@ class CustomerBaseView(BaseView):
                     customer = CustomerModel.objects.get(id=request.session["user"]["id"])
                 except CustomerModel.DoesNotExist:
                     self.response_["type"] = self.RESPONSE_TYPE_REDIRECT
-                    self.context["redirectPath"] = reverse("customer:login")
+                    self.context["redirectPath"] = "/customer/common/login"
                     return self.afterAction(request)
                 else:
                     self.context["customer"] = customer
                     self.context["shopcartsNum"] = customer.shopcarts.all().count()
             else:
                 self.response_["type"] = self.RESPONSE_TYPE_REDIRECT
-                self.context["redirectPath"] = reverse("customer:login")
+                self.context["redirectPath"] = "/customer/common/login"
                 return self.afterAction(request)

@@ -15,21 +15,22 @@
             <h3>确认收货地址</h3>
             <button type="button" class="btn" data-toggle="modal" data-target="#addressModal" style="background-color: #F03726;color: #fff">增加新地址</button>
             <ul>
-                <li class="user-addresslist address-selected">
+                {% for address in addresses %}
+                <li class="user-addresslist {% if address.default %}address-selected{% endif %}" id="{{address.id}}">
                     <div class="address-text">
                         <div class="user">
                             <span class="user-detail">
-                                <span class="user-name">刘梓航</span>
-                                <span class="user-phone">15603006097</span>
+                                <span class="user-name">{{address.name}}</span>
+                                <span class="user-phone">{{address.mobile}}</span>
                             </span>
                         </div>
                         <div class="address-detail">收货地址：
-                            <span class="province">广东</span>省
-                            <span class="city">广州</span>市
-                            <span class="dist">天河</span>区
-                            <span class="street">华南师范大学</span>
+                            <span class="province">{{address.province}}</span>
+                            <span class="city">{{address.city}}</span>
+                            <span class="dist">{{address.dist}}</span>
+                            <span class="street">{{address.address}}</span>
                         </div>
-                        <ins class="deftip">默认地址</ins>
+                        {% if address.default %}<ins class="deftip">默认地址</ins>{% endif %}
                     </div>
                     <div class="addr-option">
                         <a class="set-default hidden">设为默认</a>
@@ -37,28 +38,7 @@
                         <a class="delete-address">删除</a>
                     </div>
                 </li>
-                <li class="user-addresslist">
-                    <div class="address-text">
-                        <div class="user">
-                            <span class="user-detail">
-                                <span class="user-name">陈晓川</span>
-                                <span class="user-phone">15603005920</span>
-                            </span>
-                        </div>
-                        <div class="address-detail">收货地址：
-                            <span class="province">广东</span>省
-                            <span class="city">广州</span>市
-                            <span class="dist">天河</span>区
-                            <span class="street">华南师范大学</span>
-                        </div>
-                        <ins class="deftip hidden">默认地址</ins>
-                    </div>
-                    <div class="addr-option">
-                        <a class="set-default">设为默认</a>
-                        <a data-toggle="modal" data-target="#addressModal">编辑</a>
-                        <a class="delete-address">删除</a>
-                    </div>
-                </li>
+                {% endfor %}
             </ul>
         </div>
         <div class="clearfix"></div>
@@ -73,69 +53,51 @@
                     <li class="text-center col-md-2">数量</li>
                     <li class="text-center col-md-1">金额</li>
                 </ul>
+                {% for product in products %}
                 <ul class="table-content">
                     <li class="col-md-6 text-center">
                         <div class="col-md-3 commodity-pic">
-                            <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
+                            <img src="{{product.p.thumbnail}}" alt="商品缩略图" width="60" height="60">
                         </div>
                         <div class="col-md-9 commodity-name">
-                            <p>美康粉黛醉美唇膏 持久保湿滋润防水不掉色</p>
+                            <p>{{product.p.name}}</p>
                         </div>
                     </li>
                     <li class="col-md-2 text-center commodity-attribute">
                         <ul>
-                            <li>颜色：啫喱红</li>
-                            <li>功效：防冻裂</li>
+                            <li>品牌：{{product.p.brand}}</li>
                         </ul>
                     </li>
-                    <li class="col-md-1 text-center commodity-price">62.00</li>
-                    <li class="col-md-2 text-center commodity-num">1</li>
-                    <li class="col-md-1 text-center commodity-total-price">62.00</li>
+                    <li class="col-md-1 text-center commodity-price">{{product.p.price}}</li>
+                    <li class="col-md-2 text-center commodity-num">{{product.num}}</li>
+                    <li class="col-md-1 text-center commodity-total-price"></li>
                 </ul>
-                <ul class="table-content">
-                    <li class="col-md-6 text-center">
-                        <div class="col-md-3 commodity-pic">
-                            <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
-                        </div>
-                        <div class="col-md-9 commodity-name">
-                            <p>美康粉黛醉美唇膏 持久保湿滋润防水不掉色</p>
-                        </div>
-                    </li>
-                    <li class="col-md-2 text-center commodity-attribute">
-                        <ul>
-                            <li>颜色：啫喱红</li>
-                            <li>功效：润滑</li>
-                        </ul>
-                    </li>
-                    <li class="col-md-1 text-center commodity-price">62.00</li>
-                    <li class="col-md-2 text-center commodity-num">1</li>
-                    <li class="col-md-1 text-center commodity-total-price">62.00</li>
-                </ul>
+                {% endfor %}
                 <ul class="table-content order-other">
                     <li class="col-md-8">
                         买家留言：<input type="text" placeholder="选填，建议填写和卖家达成一致的说明"/>
                     </li>
                 </ul>
             </div>
-            <p class="total-price">合计（含运费）¥<span class="pay-sum" style="margin-left: .2rem;">126.00</span></p>
+            <p class="total-price">合计（含运费）¥<span class="pay-sum" style="margin-left: .2rem;">???</span></p>
             <div class="pay-confirm text-right">
-                <p>实付款：<span style="font-size: 1.3rem">¥<span class="pay-sum">126.00</span></span></p>
+                <p>实付款：<span style="font-size: 1.3rem">¥<span class="pay-sum">???</span></span></p>
                 <p>
-                    <span class="font-bold">寄送至：</span>
-                    <span class="province">广东</span>省
-                    <span class="city">广州</span>市
-                    <span class="dist">天河</span>区
-                    <span class="street">华南师范大学西二620</span>
+                    <span class="font-bold desAddr">寄送至：</span>
+                    <span class="province desAddr"></span>
+                    <span class="city desAddr"></span>
+                    <span class="dist desAddr"></span>
+                    <span class="street desAddr"></span>
                 </p>
                 <p>
-                    <span class="font-bold">收货人：</span>
-                    <span class="receiver-name">刘梓航</span>
-                    <span class="receiver-phone">15603006097</span>
+                    <span class="font-bold desAddr">收货人：</span>
+                    <span class="receiver-name desAddr"></span>
+                    <span class="receiver-phone desAddr"></span>
                 </p>
             </div>
             <div class="clearfix"></div>
             <div class="submit-order">
-                <a class="back-to-shopcart" href="shopcart.html"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>返回购物车</a>
+                <a class="back-to-shopcart" href="{% url 'app:shopcart' %}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>返回购物车</a>
                 <a class="submit-btn pull-right" data-toggle="modal" data-target="#payModal">提交订单</a>
             </div>
         </div>

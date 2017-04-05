@@ -12,55 +12,50 @@
     {% include "app/header.html" %}
     <!--商品内容-->
     <div class="content">
+        <input type="hidden" id="id" value="{{product.id}}"/>
         <!--商品图片-->
         <div class="content-left">
             <span class="commodity-image">
-                <img src="{% static 'images/app/goods1_mid.jpg' %}" alt="商品图片1" width="400" height="400">
+                <img src="{{product.firstImage.url}}" alt="{{product.firstImage.name}}" width="400" height="400">
             </span>
             <ul class="commodity-list">
+                {% for image in product.images %}
                 <li>
-                   <img src="{% static 'images/app/goods1_mid.jpg' %}" alt="商品图片1">
+                   <img src="{{image.url}}" alt="{{image.name}}">
                 </li>
-                <li>
-                    <img src="{% static 'images/app/goods2_mid.jpg' %}" alt="商品图片2">
-                </li>
-                <li>
-                    <img src="{% static 'images/app/goods3_mid.jpg' %}" alt="商品图片3">
-                </li>
+                {% endfor %}
             </ul>
         </div>
         <!--商品详情-->
         <div class="content-right">
-            <h2 class="commodity-name">良品铺子 手剥松子218g 坚果炒货 巴西松子</h2>
+            <h2 class="commodity-name">{{product.name}}</h2>
             <div class="detail-list">
                 <div class="commodity-price">
-                    价格<span class="price">￥<span style="font-size: 1.2rem;font-weight: bold">56.90</span></span></dd>
+                    价格<span class="price">￥<span style="font-size: 1.2rem;font-weight: bold">{{product.price}}</span></span></dd>
                 </div>
                 <ul class="sale-num">
-                    <li class="month-sale">月销量<span class="num">100</span></li>
-                    <li class="total-sale">总销量<span class="num">200</span></li>
-                    <li class="total-evaluate">总评价<span class="num">200</span></li>
+                    <li class="month-sale">种类<span class="num">{{product.category.name}}</span></li>
+                    <li class="total-sale">总销量<span class="num">{{product.soldoutAmount}}</span></li>
+                    <li class="total-evaluate">总评价<span class="num">???</span></li>
                 </ul>
                 <ul class="commodity-attribute">
+                    {% for property in product.properties %}
                     <li>
-                        <label class="attribute-name">口味</label>
-                        <span class="attribute-select">原味</span>
+                        <label class="attribute-name">{{property.meta.name}}</label>
+                        <span class="attribute-select">{{property.value}}</span>
                     </li>
-                    <li>
-                        <label class="attribute-name">包装</label>
-                        <span class="attribute-select">单人装</span>
-                    </li>
+                    {% endfor %}
                     <li>
                         <label class="attribute-name">数量</label>
                         <input class="reduce" name="" type="button" value="-">
                         <input class="number" name="" type="text" value="1">
                         <input class="add" name="" type="button" value="+">
-                        <span class="stock">库存1000件</span>
+                        <span class="stock">库存{{product.amount}}件</span>
                     </li>
                 </ul>
                 <div class="button-group">
-                    <a href="{% url 'app:order' %}" class="buy-rightnow">马上购买</a>
-                    <a href="{% url 'app:shopcart' %}" class="add-to-shopcart">加入购物车</a>
+                    <a href="#" id="order" class="buy-rightnow">马上购买</a>
+                    <a href="#" id="shopcart" class="add-to-shopcart">加入购物车</a>
                 </div>
             </div>
         </div>
@@ -73,26 +68,18 @@
                         <div class="title">
                             <h2>同类商品</h2>
                         </div>
+                        {% for recmandProduct in recmandProducts %}
                         <li class="goods-list">
                             <div class="goods-img">
-                                <a href="{% url 'app:introduction' %}"> <img class="" src="{% static 'images/app/same-kind-goods.jpg' %}"> </a>
+                                <a href="{% url 'app:introduction' %}?id={{recmandProduct.id}}"> <img class="" src="{{recmandProduct.thumbnail}}"> </a>
                             </div>
-                            <div class="goods-name"><a href="{% url 'app:introduction' %}">
-                                【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
+                            <div class="goods-name"><a href="{% url 'app:introduction' %}?id={{recmandProduct.id}}">
+                                {{recmandProduct.name}}
                             </a>
                             </div>
-                            <div class="goods-price">￥35.90</div>
+                            <div class="goods-price">￥{{recmandProduct.price}}</div>
                         </li>
-                        <li class="goods-list">
-                            <div class="goods-img">
-                                <a href="{% url 'app:introduction' %}"> <img class="" src="{% static 'images/app/same-kind-goods.jpg' %}"> </a>
-                            </div>
-                            <div class="goods-name"><a href="{% url 'app:introduction' %}">
-                                【三只松鼠_开口松子】零食坚果特产炒货东北红松子原味
-                            </a>
-                            </div>
-                            <div class="goods-price">￥35.90</div>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -245,11 +232,10 @@
                     <div role="tabpanel" class="tab-pane fade active in" id="introduction" aria-labelledby="introduction-tab" style="padding:0">
                         <h4 class="goods-attribute">产品参数：</h4>
                         <div class="attribute-content">
-                            <div class="col-md-4">产地：广东省广州市</div>
-                            <div class="col-md-4">生产日期：2017-3-25</div>
-                            <div class="col-md-4">保质日期：2018-3-28</div>
-                            <div class="col-md-4">使用方法：开袋即食</div>
-                            <div class="col-md-4">存储方式：放在阴凉通风处</div>
+                            <div class="col-md-4">品牌：{{product.category.name}}</div>
+                            {% for property in product.properties %}
+                            <div class="col-md-4">{{property.meta.name}}：{{property.value}}</div>
+                            {% endfor %}
                         </div>
                         <h4 class="goods-detail">商品细节：</h4>
                         <div class="detail-content">

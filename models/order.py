@@ -25,6 +25,7 @@ class OrderModel(models.Model):
     addTime = models.DateTimeField(auto_now_add=True)  # 订单添加时间
     payTime = models.DateTimeField(null=True)  # 付款时间
     cancelTime = models.DateTimeField(null=True)  # 订单取消时间
+    customerMsg = models.TextField(null=True)  # 买家留言
 
     class Meta:
         db_table = 'order'
@@ -56,7 +57,7 @@ class OrderProductModel(models.Model):
     ACRefundTime = models.DateTimeField(null=True)  # 商家接受退货时间
     refundReason = models.TextField(null=True)  # 退货理由
     evaluation = models.TextField(null=True)  # 订单评价
-    eGrade = models.IntegerField(null=True) # 商品评价
+    eGrade = models.IntegerField(null=True)  # 商品评价
 
     class Meta:
         db_table = 'order_product'

@@ -3,12 +3,15 @@ from django.urls import reverse
 
 from app.views.appbaseview import AppBaseView
 from models.carousel import CarouselModel
+from models.customer import ShopcartModel
 from models.product import ProductModel
 from models.productcategory import ProductCategoryModel
 from models.seller import SellerModel
+from util.baseview import loginRequire
 
 
 class CommonView(AppBaseView):
+
     def index(self, request):
         """商城首页"""
         self.response_["type"] = self.RESPONSE_TYPE_DEFAULT
@@ -27,17 +30,45 @@ class CommonView(AppBaseView):
     def success(self, request):
         pass
 
+    @loginRequire(redirectUrl='/customer/common/login')
     def introduction(self, request):
-        pass
+        """商品详情页"""
+        try:
+            product = ProductModel.objects.get(id=request.GET.get("id"))
+        except Exception as e:
+            print(e)
+        product.__dict__.update({
+            "images": product.images.all(),
+            "properties": product.properties.all(),
+            "category": product.category,
+        })
+        if product.images.all():
+            product.__dict__.update({"firstImage": product.__dict__["images"][0]})
+        self.context["product"] = product.__dict__
 
+        # 同类商品推荐
+        self.context["recmandProducts"] = ProductModel.objects.filter(category=product.category).exclude(id=product.id)[
+                                          :2]
+
+    @loginRequire(redirectUrl='/customer/common/login')
     def order(self, request):
-        pass
+        """下单"""
+        if request.method == "GET":
+            customer = self.context["customer"]
+            self.context["addresses"] = customer.receiveAddresses.all()
+            products = request.GET.get("products")
+            products = products[1:-2].split(",")
+            orderProducts = [product.split(':') for product in products]
+            self.context["products"] = [{"p": ShopcartModel.objects.get(id=product[0]).product, "num": product[1]}
+                                        for product in orderProducts]
+        elif request.method == 'POST':
+            pass
 
     def search(self, request):
         """搜索"""
         name = request.GET.get("name")
         if name:
-            raw = ProductModel.objects.filter(name__icontains=name,status=ProductModel.ONSHELVE)
+            raw = ProductModel.objects.filter(name__icontains=name, status=ProductModel.ONSHELVE)
             page = request.GET.get("page")
             self.context["productsAmount"] = raw.count()
 
@@ -62,11 +93,37 @@ class CommonView(AppBaseView):
 
             self.context["products"] = products
 
-
-
-
+    @loginRequire(redirectUrl='/customer/common/login')
     def shopcart(self, request):
-        pass
+        """购物车"""
+        self.context["shopcarts"] = self.context["customer"].shopcarts.all()
+
+    @loginRequire(redirectUrl='/customer/common/login')
+    def addShopcart(self, request):
+        """添加购物车"""
+        self.response_["type"] = self.RESPONSE_TYPE_JSON
+        id = request.GET.get("id")
+        num = request.GET.get("num")
+        try:
+            customer = self.context["customer"]
+            product = ProductModel.objects.get(id=id)
+            customer.shopcarts.create(product=product, amount=num)
+        except Exception as e:
+            self.context = {"code": 4, "msg": "添加购物车失败", "data": {"pid": id, "error": str(e)}}
+        else:
+            self.context = {"code": 200, "msg": "添加购物车成功", "data": {"pid": id}}
+
+    @loginRequire(redirectUrl='/customer/common/login')
+    def deleteShopcart(self, request):
+        """删除购物车"""
+        try:
+            self.response_["type"] = self.RESPONSE_TYPE_JSON
+            id = request.GET.get("id")
+            customer = self.context["customer"]
+            customer.shopcarts.get(id=id).delete()
+            self.context = {"code": 200, "msg": "删除购物车商品成功", "data": {"id": id}}
+        except Exception as e:
+            self.context = {"code": 4, "msg": "删除购物车商品失败", "data": {"id": id, "error": str(e)}}
 
     def activity(self, request):
         pass

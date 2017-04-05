@@ -48,6 +48,7 @@ class ShopcartModel(models.Model):
     """购物车模型"""
     customer = models.ForeignKey(CustomerModel, related_name="shopcarts", on_delete=models.CASCADE)  # 归属买家
     product = models.ForeignKey(ProductModel, related_name="shopcarts", on_delete=models.CASCADE)  # 商品
+    amount = models.IntegerField(default=1) # 商品数量
     addTime = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -66,7 +67,6 @@ class CollectionModel(models.Model):
 
 class ProductConsultModel(models.Model):
     """商品咨询模型"""
-
     question = models.CharField(max_length=100)  # 问题
     answer = models.CharField(max_length=100)  # 回复
     customer = models.ForeignKey(CustomerModel, related_name="consults", on_delete=models.CASCADE)  # 买家

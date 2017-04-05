@@ -38,11 +38,12 @@ class CommonView(CustomerBaseView):
         pass
 
     def login(self, request):
-        refer = request.META["HTTP_REFERER"]
-        refer_app = refer.split("/")[3]
-        if refer_app != self.request_["appadmin"]:
-            request.session["refer_app"] = refer_app
-        request.session["refer"] = refer
+        if "HTTP_REFERER" in request.META:
+            refer = request.META["HTTP_REFERER"]
+            refer_app = refer.split("/")[3]
+            if refer_app != "customer":
+                request.session["refer_app"] = refer_app
+                request.session["refer"] = refer
 
     @valifyCaptcha(errcode=401)
     def doLogin(self, request):
@@ -72,12 +73,15 @@ class CommonView(CustomerBaseView):
             elif email_num:
                 loginedCustomer = CustomerModel.objects.get(email=customer["account"])
             request.session["user"] = {"id": loginedCustomer.id, "app": self.request_["appadmin"]}
-            if "refer" in request.session:
-                self.context = {"code": 200, "msg": "登录成功", "data": {"account": loginedCustomer.id,"redirectPath":request.session["refer"]}}
+            if "refer" in request.session and "refer_app" in request.session:
+                self.context = {"code": 200, "msg": "登录成功",
+                                "data": {"account": loginedCustomer.id, "redirectPath": request.session["refer"]}}
             else:
-                self.context = {"code": 200, "msg": "登录成功", "data": {"account": loginedCustomer.id,"redirectPath":reverse("customer:index")}}
+                self.context = {"code": 200, "msg": "登录成功",
+                                "data": {"account": loginedCustomer.id, "redirectPath": reverse("customer:index")}}
         else:
             self.context = {"code": 410, "msg": "账号或密码错误", "data": {}}
+        print(self.context)
 
     def register(self, request):
         pass
@@ -118,11 +122,15 @@ class CommonView(CustomerBaseView):
                 customer.save()
                 self.context = {"code": 200, "msg": "注册成功", "data": {"id": customer.id}}
 
-    def logout(self,request):
+    def logout(self, request):
         """退出登陆"""
-        self.response_["type"]=self.RESPONSE_TYPE_REDIRECT
+        self.response_["type"] = self.RESPONSE_TYPE_REDIRECT
         if "user" in request.session:
             del request.session["user"]
         if "customer" in self.context:
             del self.context["customer"]
+        if "refer" in request.session:
+            del request.session["refer"]
+        if "refer_app" in request.session:
+            del request.session["refer_app"]
         self.context["redirectPath"] = reverse("customer:login")
