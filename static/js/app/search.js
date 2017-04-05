@@ -2,6 +2,8 @@
  * Created by zihang on 2017/3/16.
  */
 $(document).ready(function() {
+		var string;
+
         $("#select1").find("dd").click(function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
@@ -108,4 +110,56 @@ $(document).ready(function() {
 	$("#nextPage").on("click",function(){
 
 	});
+
+	$("#select1").find("dd").on("click",function () {
+		let oldParam=location.search+"&brand="+$(this).find("a").data("value");
+		string=getParamString(oldParam);
+		window.location.href=window.location.pathname+string;
+	});
+	$("#select2").find("dd").on("click",function () {
+		let oldParam=location.search+"&category_id="+$(this).find("a").data("id");
+		string=getParamString(oldParam);
+		window.location.href=window.location.pathname+string;
+	});
+	$(".sort").find("li").on("click",function () {
+		let oldParam=location.search+"&method="+$(this).find("a").data("method");
+		string=getParamString(oldParam);
+		window.location.href=window.location.pathname+string;
+	});
+	$(".pagination").find("li").on("click",function () {
+		location.search=location.search+"&page="+$(this).find("a").data("page");
+		string=getParamString(oldParam);
+		window.location.href=window.location.pathname+string;
+	});
 });
+function getParamString(oldParam){
+	var i=0;
+	var a=[],params=[],arr=[];
+	var string="?";
+	var object={};
+	params = decodeURI(oldParam);
+	arr = params.substring(1).split("&");
+	for (i = 0; i < arr.length; i++) {
+		a = arr[i].split("=");
+		object[a[0]] = a[1];
+	}
+	for (var key in object) {
+		string = string + key + "=" + object[key] + "&";
+	}
+	string = string.substr(0, string.length - 1);
+	return string;
+}
+
+
+/*
+$(function () {
+	(function ($) {
+		$.getUrlParam = function (name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return unescape(r[2]);
+			return null;
+		}
+	})(jQuery);
+	var xx = $.getUrlParam('reurl');
+});*/

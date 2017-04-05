@@ -4,7 +4,6 @@
 {% block title %}商品详情{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'lib/cloud-image/cloud-zoom.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/introduction.css' %}">
 {% endblock %}
 
@@ -25,6 +24,11 @@
                 </li>
                 {% endfor %}
             </ul>
+            <div class="collect">
+                <a tabindex="0" role="button" data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" data-content="收藏商品成功">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>收藏商品
+                </a>
+            </div>
         </div>
         <!--商品详情-->
         <div class="content-right">
@@ -254,4 +258,7 @@
 
 {% block js %}
     <script src="{% static "js/app/introduction.js" %}"></script>
+    <script>
+        $(function () { $("[data-toggle='popover']").popover(); });
+    </script>
 {% endblock %}
