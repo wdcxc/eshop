@@ -100,4 +100,12 @@ $(document).ready(function() {
 	$(".commodity").mouseleave(function () {
 		$(this).css("box-shadow","none");
 	});
+
+
+	$("#prePage").on("click",function(){
+
+	});
+	$("#nextPage").on("click",function(){
+
+	});
 });
