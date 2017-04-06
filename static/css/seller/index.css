@@ -5,9 +5,10 @@
     background: url("../../images/customer/user_message_bg.png") no-repeat;
 }
 .file-pic{
-    width: 5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     float: left;
-    margin-left: 2.5rem;
+    margin-left: 2.6rem;
     margin-top: 1.8rem;
     position: relative;
     text-align: center;
@@ -26,7 +27,7 @@
     margin: .1rem;
     display: inline-block;
     max-width: 100%;
-    height: auto;
+    height: 100%;
     line-height: 1.6;
     background-color: #fff;
     border: 1px solid #ddd;
