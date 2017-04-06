@@ -28,4 +28,12 @@ $(document).ready(function () {
     $(".delete-address").click(function () {
        $(this).parents("li").css("display","none");
     });
+
+    $("#pay").on("click",function(){
+        $.post()
+    });
+
+    $("#cancel").on("click",function(){
+
+    });
 });

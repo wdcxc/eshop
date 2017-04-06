@@ -68,12 +68,13 @@ def loginRequire(redirectUrl=None):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(view, request, *args, **kwargs):
-            if "user" not in request.session or request.session["user"] is None or request.session["user"]["app"] != view.request_["appadmin"]:
-                if redirectUrl:
+            if "user" not in request.session or request.session["user"] is None or \
+                    (not (request.session["user"]["app"] == "customer" and view.request_["appadmin"] == "app") and (request.session["user"]["app"] != view.request_["appadmin"])):
+                if redirectUrl: 
                     view.context["redirectPath"] = redirectUrl
                 else:
                     view.context["redirectPath"] = "/{app}/{controller}/login".format(app=view.request_["appadmin"],
-                                                                                      controller="common")
+                                                                                          controller="common")
                 view.response_["type"] = BaseView.RESPONSE_TYPE_REDIRECT
             else:
                 view.context["user"] = request.session["user"]
