@@ -54,4 +54,10 @@ $(document).ready(function () {
             }
         });
     });
+
+    /*统计订单总价格*/
+    let totalMoney=0;
+    totalMoney=($(".commodity-price").text()*$(".commodity-num").text()).toFixed(2);
+    $(".commodity-total-price").text(totalMoney);
+    $(".pay-sum").text(totalMoney);
 });
