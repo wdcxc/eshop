@@ -14,18 +14,18 @@
             <h2>您已成功付款</h2>
             <div class="success-info">
                 <ul>
-                    <li>付款金额<em>¥9.90</em></li>
+                    <li>付款金额<em>¥{{order.totalPrice}}</em></li>
                     <div class="user-info">
-                        <p>收货人：刘梓航</p>
-                        <p>联系电话：15603006097</p>
-                        <p>收货地址：广州市 天河区 华南师范大学西二620</p>
+                        <p>收货人：{{order.receiveAddress.name}}</p>
+                        <p>联系电话：{{order.receiveAddress.mobile}}</p>
+                        <p>收货地址：{{order.receiveAddress.province}} {{order.receiveAddress.city}} {{order.receiveAddress.dist}} {{order.receiveAddress.address}}</p>
                     </div>
                     请认真核对您的收货信息，如有错误请联系客服
 
                 </ul>
                 <div class="option">
                     <span class="info">您可以</span>
-                    <a href="introduction.html">查看<span>已买到的宝贝</span></a>
+                    <a href="{% url 'customer:order' %}">查看<span>已买到的宝贝</span></a>
                 </div>
             </div>
         </div>

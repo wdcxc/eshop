@@ -2,6 +2,16 @@
  * Created by zihang on 2017/4/2.
  */
 $(document).ready(function(){
+    var csrfToken = Cookies.get("csrftoken");
+
+    $.ajaxSetup({
+        beforeSend:function(xhr,settings){
+            if(!this.crossDomain){
+                xhr.setRequestHeader("X-CSRFToken",csrfToken);
+            }
+        }
+    });
+
     $(".add").each(function(){
         var number=$(this).siblings(".number");
         number.val(parseInt(number.val()));
@@ -54,26 +64,33 @@ $(document).ready(function(){
             delete order[$(this).data("id")];
         }
 
-        console.log(order);
-
         let selectNum = 0;
         let totalPrice = 0.0;
         for(i in order){
             selectNum++;
             totalPrice += parseFloat(order[i]["price"]);
-            console.log(totalPrice);
         }
         $(".select-num .num").html(selectNum);
         $(".total-price .num").html(totalPrice);
     });
 
     $("#pay").on("click",function(){
-        url = "/app/common/order?products=[";
+        url = "/app/order/addOrder";
+        data = "";
         for(i in order){
-            url += i + ":" + order[i]["num"] + ',';
+            data += i + ":" + order[i]["num"] + ",";
         }
-        url += "]";
-        location.href = url;
+        $.post(
+            url,
+            {"order":data},
+            function(result){
+                if(result.code==200){
+                    location.href = "/app/order/order?id="+result.data.id;
+                }else{
+                    alert(result.msg);
+                }
+            }
+        );
         return false;
     });
 

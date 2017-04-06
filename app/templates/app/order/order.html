@@ -60,22 +60,22 @@
                             <img src="{{product.p.thumbnail}}" alt="商品缩略图" width="60" height="60">
                         </div>
                         <div class="col-md-9 commodity-name">
-                            <p>{{product.p.name}}</p>
+                            <p>{{product.product.name}}</p>
                         </div>
                     </li>
                     <li class="col-md-2 text-center commodity-attribute">
                         <ul>
-                            <li>品牌：{{product.p.brand}}</li>
+                            <li>品牌：{{product.product.brand}}</li>
                         </ul>
                     </li>
-                    <li class="col-md-1 text-center commodity-price">{{product.p.price}}</li>
-                    <li class="col-md-2 text-center commodity-num">{{product.num}}</li>
+                    <li class="col-md-1 text-center commodity-price">{{product.product.price}}</li>
+                    <li class="col-md-2 text-center commodity-num">{{product.amount}}</li>
                     <li class="col-md-1 text-center commodity-total-price"></li>
                 </ul>
                 {% endfor %}
                 <ul class="table-content order-other">
                     <li class="col-md-8">
-                        买家留言：<input type="text" placeholder="选填，建议填写和卖家达成一致的说明"/>
+                        买家留言：<input id="customerMsg" type="text" placeholder="选填，建议填写和卖家达成一致的说明"/>
                     </li>
                 </ul>
             </div>

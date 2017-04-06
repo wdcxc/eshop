@@ -2,6 +2,7 @@
  * Created by zihang on 2017/3/20.
  */
 $(document).ready(function () {
+    // 显示订单支付地址
     function changeAddress(){
         let addr = $(".address-selected .address-detail");
         $(".desAddr.province").html($(addr.children(".province")[0]).html());
@@ -29,11 +30,28 @@ $(document).ready(function () {
        $(this).parents("li").css("display","none");
     });
 
+    // 支付订单
     $("#pay").on("click",function(){
-        $.post()
+        let addressId = $(".address-selected").attr("id");
+        $.get(
+            "/app/order/payOrder"+location.search+"&addressId="+addressId+"&customerMsg="+$("#customerMsg").val(),
+            function(result){
+                if(result.code == 200){
+                    location.href = "/app/order/success"+location.search;
+                }else{
+                    alert(result.msg);
+                }
+            });
     });
 
+    // 取消支付订单
     $("#cancel").on("click",function(){
-
+        $.get("/app/order/cancelOrder"+location.search,function(result){
+             if(result.code == 200){
+                location.href = "/app/order/fail"+location.search;
+            }else{
+                alert(result.msg);
+            }
+        });
     });
 });

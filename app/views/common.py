@@ -3,7 +3,6 @@ from django.urls import reverse
 
 from app.views.appbaseview import AppBaseView
 from models.carousel import CarouselModel
-from models.customer import ShopcartModel
 from models.product import ProductModel
 from models.productcategory import ProductCategoryModel
 from models.seller import SellerModel
@@ -11,7 +10,6 @@ from util.baseview import loginRequire
 
 
 class CommonView(AppBaseView):
-
     def index(self, request):
         """商城首页"""
         self.response_["type"] = self.RESPONSE_TYPE_DEFAULT
@@ -26,9 +24,6 @@ class CommonView(AppBaseView):
             productCategories = ProductCategoryModel.objects.all().order_by("-grade", "show", "-order", "-id")
             sortedProductCategories = self._sortProductCategories(productCategories)
             self.context["categories"] = sortedProductCategories
-
-    def success(self, request):
-        pass
 
     @loginRequire(redirectUrl='/customer/common/login')
     def introduction(self, request):
@@ -49,20 +44,6 @@ class CommonView(AppBaseView):
         # 同类商品推荐
         self.context["recmandProducts"] = ProductModel.objects.filter(category=product.category).exclude(id=product.id)[
                                           :2]
-
-    @loginRequire(redirectUrl='/customer/common/login')
-    def order(self, request):
-        """下单"""
-        if request.method == "GET":
-            customer = self.context["customer"]
-            self.context["addresses"] = customer.receiveAddresses.all()
-            products = request.GET.get("products")
-            products = products[1:-2].split(",")
-            orderProducts = [product.split(':') for product in products]
-            self.context["products"] = [{"p": ShopcartModel.objects.get(id=product[0]).product, "num": product[1]}
-                                        for product in orderProducts]
-        elif request.method == 'POST':
-            pass
 
     def search(self, request):
         """搜索"""
@@ -126,9 +107,6 @@ class CommonView(AppBaseView):
             self.context = {"code": 4, "msg": "删除购物车商品失败", "data": {"id": id, "error": str(e)}}
 
     def activity(self, request):
-        pass
-
-    def fail(self, request):
         pass
 
     def contact(self, request):
