@@ -2,7 +2,7 @@ from datetime import datetime
 
 from app.views.appbaseview import AppBaseView
 from models.customer import ShopcartModel
-from models.order import OrderModel
+from models.order import OrderModel, OrderProductModel
 from util.baseview import loginRequire
 
 
@@ -87,6 +87,8 @@ class OrderView(AppBaseView):
                 else:
                     order.payTime = datetime.now()
                     order.status = OrderModel.UNSEND
+                    for ordProduct in order.products.all():
+                        ordProduct.update(status=OrderProductModel.UNSEND)
                     order.customerMsg = customerMsg
                     order.save()
                     self.context = {"code": 200, "msg": "订单支付成功", "data": {"id": id}}

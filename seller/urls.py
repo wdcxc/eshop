@@ -2,6 +2,7 @@ from django.conf.urls import url
 
 from seller.views.common import CommonView
 from seller.views.goods import GoodView
+from seller.views.order import OrderView
 
 app_name = "seller"
 
@@ -20,7 +21,6 @@ urlpatterns = [
     url(r'^common/verify', CommonView.as_view(), name="verify"),
     url(r'^common/personalinfo', CommonView.as_view(), name="personalinfo"),
     url(r'^common/shopinfo', CommonView.as_view(), name="shopinfo"),
-    url(r'^common/order', CommonView.as_view(), name="order"),
     url(r'^common/uploadThumbnail$', CommonView.as_view(), name="uploadThumbnail"),
 ]
 
@@ -34,4 +34,10 @@ urlpatterns += [
     url(r'^goods/uploadImage$',GoodView.as_view(),name="uploadImage"),
     url(r'^goods/deleteImage$',GoodView.as_view(),name="deleteImage"),
     url(r'^goods/getSubCategories$',GoodView.as_view(),name="getSubCategories"),
+]
+
+# 订单
+urlpatterns += [
+    url(r'^order/order', OrderView.as_view(), name="order"),
+    url(r'^order/sendProduct', OrderView.as_view(), name="sendProduct"),
 ]

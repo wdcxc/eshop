@@ -50,6 +50,19 @@ class CommonView(AppBaseView):
         name = request.GET.get("name")
         if name:
             raw = ProductModel.objects.filter(name__icontains=name, status=ProductModel.ONSHELVE)
+            brand = request.GET.get("brand")
+            if brand:
+                raw = raw.filter(brand=brand)
+            categoryId = request.GET.get("category_id")
+            if categoryId:
+                raw = raw.filter(category=ProductCategoryModel.objects.get(id=categoryId))
+            order = request.GET.get("method")
+            if order:
+                if order == "price":
+                    raw = raw.order_by(order)
+                elif order == "number":
+                    raw = raw.order_by("-" + "soldoutAmount")
+
             page = request.GET.get("page")
             self.context["productsAmount"] = raw.count()
 

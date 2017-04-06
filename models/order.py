@@ -50,7 +50,7 @@ class OrderProductModel(models.Model):
     product = models.ForeignKey(ProductModel, on_delete=models.CASCADE)  # 商品
     addTime = models.DateTimeField(auto_now_add=True)  # 商品加入订单时间
     sellPrice = models.DecimalField(max_digits=10, decimal_places=2, null=True)  # 商品支付时价格
-    amount = models.DecimalField(max_digits=10, decimal_places=2)  # 购买数量
+    amount = models.IntegerField(default=0)  # 购买数量
     sendTime = models.DateTimeField(null=True)  # 发货时间
     receiveTime = models.DateTimeField(null=True)  # 收货时间
     evaluateTime = models.DateTimeField(null=True)  # 评价时间

@@ -16,7 +16,7 @@
                 <div class="user-info">
                     <div class="file-pic">
                         <input type="file" class="input-pic">
-                        <img class="user-pic" src="{% static "images/customer/user-head.jpg" %}" alt="用户头像">
+                        <img class="user-pic" src="{% if seller.thumbnail %}{{seller.thumbnail}}{% else %}{% static "images/customer/user-head.jpg" %}{% endif %}" alt="用户头像">
                     </div>
                     <p class="user-name">用户名：{{seller.name}}</p>
                     <ul>
@@ -27,48 +27,31 @@
                 <!--订单-->
                 <div class="order-info">
                     <div class="info-bar">
-                        最新订单<a href="order" class="all-order pull-right">全部订单</a>
+                        最新订单<a href="{% url 'seller:order' %}" class="all-order pull-right">全部订单</a>
                     </div>
                     {% if not orderProducts %}
                     <div class="no-order">
                         <p class="no-order-text">您暂时没有订单</p>
                     </div>
                     {% endif %}
+                    {% for ordPd in orderProducts %}
                     <div class="order-content-box">
                         <div class="order-content">
                             <ul class="order-content-pic">
                                 <li class="img-box">
-                                    <img src="{% static "images/customer/honey.jpg" %}" alt="订单商品图片">
+                                    <img src="{{ordPd.product.thumbnail}}" alt="订单商品图片">
                                 </li>
                             </ul>
+                            <div class="evaluate">{{ordPd.product.name}}</div>
                             <div class="detail-content">
-                                <p class="delivery-time">2017-3-23 21:52:47</p>
-                                <p class="delivery-num">共一件商品</p>
+                                <p class="delivery-time">{{ordPd.addTime}}</p>
+                                <p class="delivery-num">共 {{ordPd.amount}} 件商品</p>
                             </div>
-                            <div class="evaluate">买家已付款</div>
-                            <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>23.80</div>
+                            <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>{{ordPd.totalPrice}}</div>
                         </div>
-                        <a href="#" class="buy-btn">立即发货</a>
+                        <a href="#" class="buy-btn" data-id="{{ordPd.id}}">立即发货</a>
                     </div>
-                    <div class="order-content-box">
-                        <div class="order-content">
-                            <ul class="order-content-pic">
-                                <li class="img-box">
-                                    <img src="{% static "images/customer/honey.jpg" %}" alt="订单商品图片">
-                                </li>
-                                <li class="img-box">
-                                    <img src="{% static "images/customer/kouhong-big.jpg" %}" alt="订单商品图片">
-                                </li>
-                            </ul>
-                            <div class="detail-content">
-                                <p class="delivery-time">2017-3-23 21:52:47</p>
-                                <p class="delivery-num">共两件商品</p>
-                            </div>
-                            <div class="evaluate">买家已付款</div>
-                            <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>47.60</div>
-                        </div>
-                        <a href="#" class="buy-btn">立即发货</a>
-                    </div>
+                    {% endfor %}
                 </div>
                 <!--我的消息-->
                 <div class="my-message">
@@ -86,6 +69,7 @@
                                 </div>
                                 <div id="collapseOne" class="panel-collapse collapse in">
                                     <div class="panel-body">
+                                        {% if refundOrdPds %}
                                         <table class="table table-bordered table-hover">
                                             <thead>
                                             <tr>
@@ -97,22 +81,18 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            {% for refundOrdPd in refundOrdPds %}
                                             <tr>
-                                                <td>2017-3-27 12:00</td>
-                                                <td>zihang1013</td>
-                                                <td>00001</td>
-                                                <td style="max-width: 6rem">与说明不符</td>
-                                                <td><a href="verify">去退款审核页面审核</a></td>
+                                                <td>{{refundOrdPd.refundTime}}</td>
+                                                <td>{{refundOrdPd.order.customer.name}}</td>
+                                                <td>{{refundOrdPd.order.id}}</td>
+                                                <td style="max-width: 6rem">{{refundOrdPd.refundReason}}</td>
+                                                <td><a href="verify?id={{refundOrdPd.id}}">去退款审核页面审核</a></td>
                                             </tr>
-                                            <tr>
-                                                <td>2017-3-27 12:00</td>
-                                                <td>zihang1013</td>
-                                                <td>00001</td>
-                                                <td style="max-width: 6rem">与说明不符</td>
-                                                <td><a href="verify">去退款审核页面审核</a></td>
-                                            </tr>
+                                            {% endfor %}
                                             </tbody>
                                         </table>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -127,6 +107,7 @@
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse">
                                     <div class="panel-body">
+                                        {% if productConsults %}
                                         <table class="table table-bordered table-hover">
                                             <thead>
                                             <tr>
@@ -137,61 +118,58 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            {% for pc in productConsults %}
                                             <tr>
-                                                <td>2017-3-27 12:00</td>
-                                                <td>zihang1013</td>
-                                                <td style="max-width: 10rem">寄过来的零食过了保质期,打开之后发现产品变质了</td>
-                                                <td><a href="consult">去咨询回复页面回复</a></td>
+                                                <td>{{pc.askTime}}</td>
+                                                <td>{{pc.customer.name}}</td>
+                                                <td style="max-width: 10rem">{{pc.question}}</td>
+                                                <td><a href="consult?id={{pc.id}}">去咨询回复页面回复</a></td>
                                             </tr>
-                                            <tr>
-                                                <td>2017-3-27 12:00</td>
-                                                <td>zihang1013</td>
-                                                <td style="max-width: 10rem">寄过来的零食过了保质期,打开之后发现产品变质了</td>
-                                                <td><a href="consult">去咨询回复页面回复</a></td>
-                                            </tr>
+                                            {% endfor %}
                                             </tbody>
                                         </table>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-warning">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion"
-                                           href="#collapseThree">
-                                            意见回复
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <table class="table table-bordered table-hover">
-                                            <thead>
-                                            <tr>
-                                                <th>时间</th>
-                                                <th>买家名</th>
-                                                <th>意见内容</th>
-                                                <th>操作</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>2017-3-27 12:00</td>
-                                                <td>zihang1013</td>
-                                                <td style="max-width: 10rem">商家的服务态度很好，发货也很快，赞一个</td>
-                                                <td><a href="opinion">去意见回复页面回复</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017-3-27 12:00</td>
-                                                <td>zihang1013</td>
-                                                <td style="max-width: 10rem">商家的服务态度很好，发货也很快，赞一个</td>
-                                                <td><a href="opinion">去意见回复页面回复</a></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--<div class="panel panel-warning">-->
+                                <!--<div class="panel-heading">-->
+                                    <!--<h4 class="panel-title">-->
+                                        <!--<a data-toggle="collapse" data-parent="#accordion"-->
+                                           <!--href="#collapseThree">-->
+                                            <!--意见回复-->
+                                        <!--</a>-->
+                                    <!--</h4>-->
+                                <!--</div>-->
+                                <!--<div id="collapseThree" class="panel-collapse collapse">-->
+                                    <!--<div class="panel-body">-->
+                                        <!--<table class="table table-bordered table-hover">-->
+                                            <!--<thead>-->
+                                            <!--<tr>-->
+                                                <!--<th>时间</th>-->
+                                                <!--<th>买家名</th>-->
+                                                <!--<th>意见内容</th>-->
+                                                <!--<th>操作</th>-->
+                                            <!--</tr>-->
+                                            <!--</thead>-->
+                                            <!--<tbody>-->
+                                            <!--<tr>-->
+                                                <!--<td>2017-3-27 12:00</td>-->
+                                                <!--<td>zihang1013</td>-->
+                                                <!--<td style="max-width: 10rem">商家的服务态度很好，发货也很快，赞一个</td>-->
+                                                <!--<td><a href="opinion">去意见回复页面回复</a></td>-->
+                                            <!--</tr>-->
+                                            <!--<tr>-->
+                                                <!--<td>2017-3-27 12:00</td>-->
+                                                <!--<td>zihang1013</td>-->
+                                                <!--<td style="max-width: 10rem">商家的服务态度很好，发货也很快，赞一个</td>-->
+                                                <!--<td><a href="opinion">去意见回复页面回复</a></td>-->
+                                            <!--</tr>-->
+                                            <!--</tbody>-->
+                                        <!--</table>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
@@ -202,5 +180,17 @@
 {% endblock %}
 
 {% block js %}
-
+<script>
+    $(function(){
+        $(".buy-btn").on("click",function(){
+            $.get("/seller/order/sendProduct?id="+$(this).data("id"),
+                function(result){
+                    alert(result.msg);
+                    location.reload(true);
+                }
+            );
+            return false;
+        });
+    });
+</script>
 {% endblock %}

@@ -2,6 +2,8 @@ import hashlib
 
 from django.conf import settings
 
+from models.customer import ProductConsultModel
+from models.order import OrderProductModel
 from models.seller import SellerModel
 from seller.views.sellerbaseview import SellerBaseView
 from util.baseview import BaseView, valifyCaptcha, loginRequire
@@ -13,9 +15,20 @@ class CommonView(SellerBaseView):
     @loginRequire()
     def index(self, request):
         seller = SellerModel.objects.get(id=request.session["user"]["id"])
-        orderProducts = seller.orderProducts.all().order_by("-addTime")[:2]
         self.context["seller"] = seller
-        self.context["orderProducts"] = orderProducts
+
+        orderProducts = OrderProductModel.objects.filter(product__in=seller.products.all()).order_by("-addTime")
+        unSendOrdProducts = orderProducts.filter(status=OrderProductModel.UNSEND)[:2]
+        for ordPd in unSendOrdProducts:
+            ordPd.__dict__.update({"totalPrice":ordPd.amount*ordPd.sellPrice,"product":ordPd.product})
+        self.context["orderProducts"] = [ordPd.__dict__ for ordPd in unSendOrdProducts]
+
+        refundOrdPds = orderProducts.filter(status=OrderProductModel.REFUND)[:2]
+        self.context["refundOrdPds"] = refundOrdPds
+
+        productConsults = ProductConsultModel.objects.filter(product__in=seller.products.all()).order_by("-askTime")
+        self.context["productConsults"] = productConsults[:2]
+
 
     def login(self, request):
         pass
@@ -39,7 +52,7 @@ class CommonView(SellerBaseView):
         pass
 
     def shopinfo(self, request):
-        """买家信息"""
+        """卖家信息"""
         if request.method == "GET":
             seller = SellerModel.objects.get(id=request.session["user"]["id"])
             self.context["seller"] = seller
@@ -51,21 +64,6 @@ class CommonView(SellerBaseView):
                 dict[key] = request.POST.get(key)
             SellerModel.objects.filter(id=request.session["user"]["id"]).update(**dict)
             self.context = {"code": 200, "msg": "修改卖家信息成功", "data": {}}
-
-    def order(self, request):
-        pass
-
-    def goodslist(self, request):
-        pass
-        # todo
-
-    def addgoods(self, request):
-        pass
-        # todo
-
-    def modifygoods(self,request):
-        pass
-        #todo
 
     @valifyCaptcha(errcode=401)
     def doLogin(self, request):
