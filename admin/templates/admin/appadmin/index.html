@@ -1,0 +1,98 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/index.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/appadmin/index.css' %}"/>
+{% endblock %}
+
+{% csrf_token %}
+
+{% block withnavbody %}
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">轮播图管理</h3>
+        <a href="{% url 'admin:appAdminCarousel' %}">去轮播图管理页面查看更多轮播图</a>
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover table-bordered">
+            <tr>
+                <th>序号</th>
+                <th>标题</th>
+                <th>是否显示</th>
+                <th>显示权重</th>
+                <th>图片链接地址</th>
+                <th>点击链接地址</th>
+                <th>添加日期</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>轮播1</td>
+                <td>是</td>
+                <td>1</td>
+                <td>/static/media/fileupload/carousel/20170021/ad1.jpg</td>
+                <td>/app/common/index</td>
+                <td>March 21, 2017, 12:11 p.m.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>轮播2</td>
+                <td>是</td>
+                <td>2</td>
+                <td>/static/media/fileupload/carousel/20170021/ad2.jpg</td>
+                <td>/app/common/index</td>
+                <td>March 21, 2017, 12:11 p.m.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">商品目录导航</h3>
+        <a href="{% url 'admin:appAdminProductCategory' %}">去商品目录管理页面查看更多商品类别</a>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>类别名</th>
+                <th>是否显示</th>
+                <th>显示权重</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>家用电器</td>
+            <td>是</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>空调</td>
+            <td>是</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>电视</td>
+            <td>是</td>
+            <td>1</td>
+        </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">商品导购管理</h3>
+        </div>
+        <div class="panel-body">
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script>
+
+</script>
+{% endblock %}
