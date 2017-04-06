@@ -19,9 +19,10 @@ class OrderView(AppBaseView):
         orderStr = request.POST.get("order")[:-1].split(',')
         for order in orderStr:
             scid, num = order.split(":")
-            print(scid, num)
-            product = ShopcartModel.objects.get(id=scid).product
+            shopcart = ShopcartModel.objects.get(id=scid)
+            product = shopcart.product
             newOrder.products.create(product=product, amount=num)
+            shopcart.delete()
 
         self.context = {"code": 200, "msg": "添加订单成功", "data": {"id": newOrder.id}}
 
