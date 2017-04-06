@@ -45,9 +45,8 @@
 .user-info ul{
     line-height: 1.5rem;
     position: absolute;
-    right: 6rem;
+    left: 34rem;
     top: 2.5rem;
-    margin-left: 6rem;
     font-size: .8rem;
     color: #666;
 }

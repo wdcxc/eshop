@@ -1,6 +1,11 @@
 {% extends "admin/base.html" %}
 {% load static %}
 
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/index.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/appadmin/productcategory.css' %}"/>
+{% endblock %}
+
 {% block withnavbody %}
 <div class="col-md-offset-4">
     <h3>商城首页商品目录导航管理</h3>
@@ -8,67 +13,91 @@
 <a class="btn btn-primary" href="{% url 'admin:productAdminAddCategory' %}">添加新商品分类</a>
 <hr/>
 {% if categories %}
-<form class="form-horizontal">
+<form class="form">
     {% csrf_token %}
-    {% for grade1 in categories %}
-    <div class="col-md-offset-1">
-        <div class="form-group">
-            <div class="col-md-2"><label>{{grade1.name}}</label></div>
-            <div class="col-md-2">
-                <label class="radio-inline">
-                    <input type="radio" data-id={{grade1.id}} name="{{grade1.id}}-show" value="True" {% if grade1.show %}checked="true"{% endif %} /> 显示
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" data-id={{grade1.id}} name="{{grade1.id}}-show" value="False" {% if not grade1.show %}checked="true"{% endif %} /> 隐藏
-                </label>
-            </div>
-            <div class="col-md-4">
-                <label>显示权重</label>
-                <input type="text" data-id={{grade1.id}} name="{{grade1.id}}-order" value="{{grade1.order}}" />
-            </div>
-        </div><!-- grade1 form-group -->
-        {% for grade2 in grade1.subCategories %}
-        <div class="col-md-offset-1">
-            <div class="form-group">
-                <div class="col-md-2"><label>{{grade2.name}}</label></div>
-                <div class="col-md-2">
-                    <label class="radio-inline">
-                        <input type="radio" data-id={{grade2.id}} name="{{grade2.id}}-show" value="True" {% if grade2.show %}checked="true"{% endif %}> 显示
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" data-id={{grade2.id}} name="{{grade2.id}}-show" value="False" {% if not grade2.show %}checked="true"{% endif %}> 隐藏
-                    </label>
-                </div>
-                <div class="col-md-4">
-                    <label>显示权重</label>
-                    <input type="text" data-id={{grade2.id}} name="{{grade2.id}}-order" value="{{grade2.order}}"/>
-                </div>
-            </div> <!-- grade2 form-group -->
-            {% for grade3 in grade2.subCategories %}
-            <div class="col-md-offset-1">
-                <div class="form-group">
-                    <div class="col-md-2"><label>{{grade3.name}}</label></div>
-                    <div class="col-md-2">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>类别级别</th>
+                <th>类别名</th>
+                <th>显示or隐藏</th>
+                <th>显示权重</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grade1 in categories %}
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <label>{{ grade1.name }}</label>
+                    </td>
+                    <td>
                         <label class="radio-inline">
-                            <input type="radio" data-id={{grade3.id}} name="{{grade3.id}}-show" value="True" {% if grade3.show %}checked="true"{% endif %}> 显示
+                            <input type="radio" data-id={{ grade1.id }} name="{{ grade1.id }}-show" value="True"
+                                   {% if grade1.show %}checked="true"{% endif %}/> 显示
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" data-id={{grade3.id}} name="{{grade3.id}}-show" value="False" {% if not grade3.show %}checked="true"{% endif %}> 隐藏
+                            <input type="radio" data-id={{ grade1.id }} name="{{ grade1.id }}-show" value="False"
+                                   {% if not grade1.show %}checked="true"{% endif %}/> 隐藏
                         </label>
-                    </div>
-                    <div class="col-md-4">
+                    </td>
+                    <td>
                         <label>显示权重</label>
-                        <input type="text" data-id={{grade3.id}} name="{{grade3.id}}-order" value="{{grade3.order}}"/>
-                    </div>
-                </div> <!-- grade3 form-group -->
-            </div> <!-- grade3 col-offset -->
+                        <input type="text" data-id={{ grade1.id }} name="{{ grade1.id }}-order"
+                               value="{{ grade1.order }}"/>
+                    </td>
+                </tr>
+                {% for grade2 in grade1.subCategories %}
+                <tr>
+                    <td>2</td>
+                    <td>
+                        <label>{{ grade2.name }}</label>
+                    </td>
+                    <td>
+                        <label class="radio-inline">
+                            <input type="radio" data-id={{ grade2.id }} name="{{ grade2.id }}-show" value="True"
+                                   {% if grade2.show %}checked="true"{% endif %}> 显示
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" data-id={{ grade2.id }} name="{{ grade2.id }}-show" value="False"
+                                   {% if not grade2.show %}checked="true"{% endif %}> 隐藏
+                        </label>
+                    </td>
+                    <td>
+                        <label>显示权重</label>
+                        <input type="text" data-id={{ grade2.id }} name="{{ grade2.id }}-order"
+                               value="{{ grade2.order }}"/>
+                    </td>
+                </tr>
+                {% for grade3 in grade2.subCategories %}
+                <tr>
+                    <td>3</td>
+                    <td>
+                        <label>{{ grade3.name }}</label>
+                    </td>
+                    <td>
+                        <label class="radio-inline">
+                            <input type="radio" data-id={{ grade3.id }} name="{{ grade3.id }}-show" value="True"
+                                   {% if grade3.show %}checked="true"{% endif %}> 显示
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" data-id={{ grade3.id }} name="{{ grade3.id }}-show" value="False"
+                                   {% if not grade3.show %}checked="true"{% endif %}> 隐藏
+                        </label>
+                    </td>
+                    <td>
+                        <label>显示权重</label>
+                        <input type="text" data-id={{ grade3.id }} name="{{ grade3.id }}-order"
+                               value="{{ grade3.order }}"/>
+                    </td>
+                </tr>
             {% endfor %}
-        </div> <!-- grade2 col-offset -->
         {% endfor %}
-    </div> <!-- grade1 col-offset -->
-    {% endfor %}
-    <div class="col-md-offset-4">
-        <button id="submit" class="btn btn-primary">更新</button>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="pull-right">
+        <button id="submit" class="update-btn btn btn-primary">更新</button>
     </div>
 </form>
 {% endif %}

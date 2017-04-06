@@ -112,6 +112,7 @@
     padding-top:3rem;
     padding-left:9rem;
     padding-right:1rem;
+    overflow: hidden;
 }
 .info-hide{
     display:none;

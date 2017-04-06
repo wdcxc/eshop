@@ -1,22 +1,45 @@
 {% extends "admin/base.html" %}
 {% load static %}
 
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/index.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/admin/productionadmin/category.css' %}"/>
+{% endblock %}
+
 {% block withnavbody %}
 <a class="btn btn-primary" href="{% url 'admin:productAdminAddCategory' %}">添加新商品类别</a>
 <hr/>
 <div id="categoryContainer">
     {% csrf_token %}
-    {% for category in categories %}
-    <div class="col-md-offset-{{category.grade}}" style="margin-bottom:1rem">
-        <strong>{{category.name}} </strong>{% if category.show %}<span class="label label-success">显示</span>{% else %}<span class="label label-danger">不显示</span>{% endif %}（权重 <span class="badge">{{category.order}}</span>）
-        <div class="btn-group">
-            <a class="btn btn-info btn-xs" href="/admin/productadmin/updateCategory?id={{category.id}}">修改</a>
-            <a class="btn btn-danger btn-xs" v-on:click="deleteCategory({{category.id}})">删除</a>
-            <a class="btn btn-primary btn-xs" href="/admin/productadmin/addCategory?parentId={{category.id}}">添加子类别</a>
-            <a class="btn btn-default btn-xs" href="/admin/productadmin/property?id={{category.id}}">属性管理</a>
-        </div>
-    </div>
-    {% endfor %}
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>类别级别</th>
+            <th>类别名</th>
+            <th>是否显示</th>
+            <th>权重</th>
+            <th>类别操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+        <tr>
+            <th>{{ category.grade }}</th>
+            <td>{{category.name}}</td>
+            <td>{% if category.show %}<span class="label label-success">显示</span>{% else %}<span class="label label-danger">不显示</span>{% endif %}</td>
+            <td><span class="badge">{{category.order}}</span></td>
+            <td>
+                <div class="btn-group">
+                    <a class="btn btn-info btn-xs" href="/admin/productadmin/updateCategory?id={{ category.id }}">修改</a>
+                    <a class="btn btn-danger btn-xs" v-on:click="deleteCategory({{ category.id }})">删除</a>
+                    <a class="btn btn-primary btn-xs" href="/admin/productadmin/addCategory?parentId={{ category.id }}">添加子类别</a>
+                    <a class="btn btn-default btn-xs" href="/admin/productadmin/property?id={{ category.id }}">属性管理</a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
 

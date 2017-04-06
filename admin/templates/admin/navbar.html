@@ -29,8 +29,9 @@
     </li>
     <li>
         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-        <h2>商城管理</h2>{% comment %}<a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:appAdminIndex' %}"></a>{% endcomment %}
-        <ul class="sub-menu">
+        {% comment %}<h2>商城管理</h2>{% endcomment %}
+        <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:appAdminIndex' %}">商城管理</a>
+        {% comment %}<ul class="sub-menu">
             <li>
                 <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %}
                    href="{% url 'admin:appAdminCarousel' %}">
@@ -46,9 +47,9 @@
                    href="{% url 'admin:appAdminShoppingGuide' %}">
                     商品导购管理</a>
             </li>
-        </ul>
+        </ul>{% endcomment %}
     </li>
-    <li style="margin-top: 5.9rem">
+    <li>
         <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
         <h2>商品管理</h2>
         <ul class="sub-menu">

@@ -150,13 +150,16 @@
     color: #337ab7;
     text-decoration: none;
 }
-.commodity-attribute{
-    padding-top: 1rem;
+.commodity-attribute,.commodity-name{
+    padding-top: 1.8rem;
     line-height: 1.2rem;
 }
 .commodity-name{
-    line-height: 1.2rem;
-    padding-top: 1.6rem;
+    padding-left: 3rem;
+    text-align: left;
+}
+.commodity-pic{
+    padding-right: 0;
 }
 .order-other input{
     width: 20rem;

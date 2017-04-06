@@ -38,10 +38,10 @@
                     价格<span class="price">￥<span style="font-size: 1.2rem;font-weight: bold">{{product.price}}</span></span></dd>
                 </div>
                 <ul class="sale-num">
-                    <li class="month-sale">种类<span class="num">{{product.category.name}}</span></li>
                     <li class="total-sale">总销量<span class="num">{{product.soldoutAmount}}</span></li>
                     <li class="total-evaluate">总评价<span class="num">???</span></li>
                 </ul>
+                <p class="commodity-category">种类<span class="num">{{product.category.name}}</span></p>
                 <ul class="commodity-attribute">
                     {% for property in product.properties %}
                     <li>
@@ -59,7 +59,7 @@
                 </ul>
                 <div class="button-group">
                     <a href="#" id="order" class="buy-rightnow">马上购买</a>
-                    <a href="#" id="shopcart" class="add-to-shopcart">加入购物车</a>
+                    <a tabindex="0" role="button" id="shopcart" class="add-to-shopcart" data-toggle="modal" data-target="#addShopcartModal">加入购物车</a>
                 </div>
             </div>
         </div>
@@ -250,6 +250,24 @@
                             <img src="{% static "images/app/detail5.jpg" %}" alt="商品细节图片5">
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--加入购物车模态框-->
+    <div class="modal fade" id="addShopcartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                </div>
+                <div class="modal-body">
+                    加入购物车成功！
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
                 </div>
             </div>
         </div>
