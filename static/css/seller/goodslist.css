@@ -23,7 +23,7 @@ table td img{
 }
 .operation-content li{
     float: left;
-    margin: .3rem;
+    margin-left: 1.2rem;
 }
 .content nav{
     position: absolute;
