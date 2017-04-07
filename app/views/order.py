@@ -72,7 +72,7 @@ class OrderView(AppBaseView):
                     self.context = {"code": 4, "msg": "商品购买数量不能为负", "data": {"id": id}}
                     break
                 elif ordProduct.product.amount < ordProduct.amount:
-                    self.context = {"code": 4, "msg": ordProduct.product.name + "商品库存不足,只剩" + ordProduct.product.amount,
+                    self.context = {"code": 4, "msg": ordProduct.product.name + "商品库存不足,只剩" + str(ordProduct.product.amount),
                                     "data": {"id": id}}
                     break
                 else:

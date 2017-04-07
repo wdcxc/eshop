@@ -41,6 +41,9 @@ class CommonView(AppBaseView):
             product.__dict__.update({"firstImage": product.__dict__["images"][0]})
         self.context["product"] = product.__dict__
 
+        if self.context["customer"].collections.filter(product=product).exists():
+            self.context["collected"] = True
+
         # 同类商品推荐
         self.context["recmandProducts"] = ProductModel.objects.filter(category=product.category).exclude(id=product.id)[
                                           :2]
@@ -158,3 +161,20 @@ class CommonView(AppBaseView):
                 else:
                     break
         return sortedCategoriesDict[0]["subCategories"] if sortedCategoriesDict[0] else {}
+
+    @loginRequire()
+    def addCollection(self,request):
+        """添加收藏"""
+        self.response_["type"] = self.RESPONSE_TYPE_JSON
+        pid = request.GET.get("pid")
+        product = ProductModel.objects.get(id=pid)
+        customer = self.context["customer"]
+        if customer.collections.filter(product=product).exists():
+            self.context = {"code":4,"msg":"商品已被收藏","data":{"id":pid}}
+        else:
+            try:
+                collection = customer.collections.create(product=product)
+            except Exception:
+                self.context = {"code":4,"msg":"收藏商品失败","data":{"id":pid}}
+            else:
+                self.context = {"code":200,"msg":"收藏商品成功","data":{"id":collection.id}}

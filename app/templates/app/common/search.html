@@ -64,18 +64,6 @@
 										</div>
 									</dl>
 								</li>
-								<li class="select-list">
-									<dl id="select3">
-										<dt class="select-option">选购热点</dt>
-										<div class="select-content">
-											<dd class="select-all selected"><a href="#">全部</a></dd>
-											<dd><a href="#">手剥松子</a></dd>
-											<dd><a href="#">薄壳松子</a></dd>
-											<dd><a href="#">进口零食</a></dd>
-											<dd><a href="#">有机零食</a></dd>
-										</div>
-									</dl>
-								</li>
 							</ul>
                         </div>
                         <div class="sort-option">
@@ -97,12 +85,12 @@
                         <div class="col-md-3 col-xs-4">
                             <div class="commodity">
                                 <a href="{% url 'app:introduction' %}?id={{product.id}}">
-                                    <img src="{{product.image.url}}" alt="{{product.image.name}}">
+                                    <img src="{{product.thumbnail}}" alt="产品缩略图">
                                     <p class="price">¥{{product.price}}</p>
                                     <p class="title">{{product.name}}</p>
                                     <p style="padding: .5rem">
                                         <span class="sale-volume">销量 {{product.soldoutAmount}}</span>
-                                        <span class="shop">津津美食</span>
+                                        <span class="shop">{{product.seller.name}}</span>
                                     </p>
                                 </a>
                             </div>

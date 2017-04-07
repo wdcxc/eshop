@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}我的收藏{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/aside.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/collection.css' %}">
+{% endblock %}
+{% block body %}
+    {% include "app/header.html" %}
+    <div class="content center-block">
+        <div class="col-main">
+            <div class="main-wrap">
+                <div class="info" style="float:left">
+                    <!--标题-->
+                    <div class="info-head">
+                        <p>
+                            <span class="head-text">我的收藏</span>/
+                            <span class="for-head-text">my collection</span>
+                        </p>
+                    </div>
+                    <!--收藏列表-->
+                    <div class="collection-list">
+                        {% for collection in collections %}
+                        <div class="col-md-3">
+                            <div class="commodity">
+                                <a class="commodity-detail" href="#">
+                                    <img src="{{collection.product.thumbnail}}" width="100" height="250">
+                                    <p class="price">¥{{collection.product.price}}</p>
+                                    <p class="title">{{collection.product.name}}</p>
+                                    <p class="sale">
+                                        <span class="sale-volume">销量{{collection.product.soldoutAmount}}</span>
+                                        <span class="evaluate">好评95%</span>
+                                    </p>
+                                    <a class="add-to-shopcart" href="{% url 'app:shopcart' %}">加入购物车</a>
+                                    {% ifequal collection.product.status 2 %}
+                                    <span class="off-shelf">已下架</span>
+                                    {% endifequal %}
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination" style="margin-right: .6rem;float: right;">
+                                {% if collections.has_previous %}
+                                <li>
+                                    <a href="?page={{collections.previous_page_number}}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                {% endif %}
+                                <li><a>{{collections.number}} / {{collections.paginator.num_pages}}</a></li>
+                                {% if collections.has_next %}
+                                <li>
+                                    <a href="?page={{collections.next_page_number}}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% include "customer/aside.html" %}
+    </div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

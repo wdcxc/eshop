@@ -1,8 +1,10 @@
 from django.conf.urls import url
 
+from customer.views.collection import CollectionView
 from customer.views.common import CommonView
 from customer.views.information import InformationView
 from customer.views.order import OrderView
+
 app_name = "customer"
 
 # common
@@ -15,7 +17,6 @@ urlpatterns = [
     url(r'^common/generateCaptcha/[0-9\.]*$', CommonView.as_view(), name="generateCaptcha"),
     url(r'^common/valifyCaptcha$', CommonView.as_view(), name="valifyCaptcha"),
     url(r'^common/evaluate$', CommonView.as_view(), name="evaluate"),
-    url(r'^common/collection', CommonView.as_view(), name="collection"),
     url(r'^common/consult', CommonView.as_view(), name="consult"),
     url(r'^common/opinion', CommonView.as_view(), name="opinion"),
     url(r'^common/message', CommonView.as_view(), name="message"),
@@ -42,4 +43,9 @@ urlpatterns += [
 # 订单
 urlpatterns += [
     url(r'^order/order$',OrderView.as_view(),name="order"), # 订单
+]
+
+# 收藏
+urlpatterns +=[
+    url(r'^collection/collection$', CollectionView.as_view(), name="collection"),
 ]

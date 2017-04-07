@@ -43,7 +43,7 @@
                                 <tbody>
                                     {% for product in products %}
                                     <tr>
-                                        <td class="goods-image"><img src="{{product.image.url}}" alt="{{product.image.name}}"></td>
+                                        <td class="goods-image"><img src="{{product.thumbnail}}" alt="商品缩略图"></td>
                                         <td class="goods-name">{{product.name}}</td>
                                         <td class="goods-price">￥{{product.price}}</td>
                                         <td class="goods-sale-num">{{product.soldoutAmount}}</td>

@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^common/about', CommonView.as_view(), name="about"),
     url(r'^common/help', CommonView.as_view(), name="help"),
     url(r'.*/logout$', CommonView.as_view(), name="logout"),
+    url(r'^common/addCollection',CommonView.as_view(),name="addCollection"),
 ]
 
 # 订单
