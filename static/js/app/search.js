@@ -2,7 +2,6 @@
  * Created by zihang on 2017/3/16.
  */
 $(document).ready(function() {
-		var string;
 
         $("#select1").find("dd").click(function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
@@ -113,7 +112,7 @@ $(document).ready(function() {
 
 	$("#select1").find("dd").on("click",function () {
 		let oldParam=location.search+"&brand="+$(this).find("a").data("value");
-		string=getParamString(oldParam);
+		string,object=getParamString(oldParam);
 		window.location.href=window.location.pathname+string;
 	});
 	$("#select2").find("dd").on("click",function () {
@@ -150,16 +149,3 @@ function getParamString(oldParam){
 	return string;
 }
 
-
-/*
-$(function () {
-	(function ($) {
-		$.getUrlParam = function (name) {
-			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-			var r = window.location.search.substr(1).match(reg);
-			if (r != null) return unescape(r[2]);
-			return null;
-		}
-	})(jQuery);
-	var xx = $.getUrlParam('reurl');
-});*/

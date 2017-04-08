@@ -24,14 +24,14 @@
     margin: 0;
 }
 .title{
-    padding: 0 .2rem;
+    padding: 0 .4rem;
     margin-bottom: 0;
 }
 .sale{
     padding: .6rem .4rem;
     margin: 0;
 }
-.evaluate {
+.seller{
     float: right;
     color: #9c9c9c;
 }
@@ -54,6 +54,7 @@
     text-decoration: none;
 }
 .add-to-shopcart:hover{
+    background-color: #fd6d37;
     color: #fff;
     text-decoration: none;
 }
@@ -71,4 +72,24 @@
     text-align: center;
     vertical-align: middle;
     padding-top: .7rem;
+}
+.delete{
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    width: 1.3rem;
+    height: 1.3rem;
+    line-height: 1.3rem;
+    border: none;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4) none repeat scroll 0 0;
+    color: #fff;
+    font-size: .7rem;
+    text-decoration: none;
+}
+.delete:hover{
+    background-color: #fd6d37;
+    color: white;
 }

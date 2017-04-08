@@ -16,23 +16,23 @@
             </li>
             {% endif %}
             <li class="operation-item">
-                <a target="_blank" href="{% url 'app:shopcart' %}" name="购物车" rel="nofollow">
+                <a href="{% url 'app:shopcart' %}" name="购物车" rel="nofollow">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"
                                   style="color:#ff2832"></span> 购物车
                     <span class="goods-number">{{shopcartsNum}}</span>
                 </a>
             </li>
             <li class="operation-item">
-                <a target="_blank" href="{% url 'customer:collection' %}" name="收藏夹" rel="nofollow">
+                <a href="{% url 'customer:collection' %}" name="收藏夹" rel="nofollow">
                             <span class="glyphicon glyphicon-heart" aria-hidden="true"
                                   style="color:#ff2832"></span> 收藏夹
                 </a>
             </li>
             <li class="operation-item">
-                <a target="_blank" href="{% url 'customer:order' %}" name="我的订单" rel="nofollow">我的订单</a>
+                <a href="{% url 'customer:order' %}" name="我的订单" rel="nofollow">我的订单</a>
             </li>
             <li class="operation-item">
-                <a target="_blank" href="{% url 'customer:index' %}" name="个人中心" rel="nofollow">个人中心</a>
+                <a href="{% url 'customer:index' %}" name="个人中心" rel="nofollow">个人中心</a>
             </li>
             <li class="operation-item dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
