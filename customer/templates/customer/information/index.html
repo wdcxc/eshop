@@ -44,10 +44,10 @@
                                     </li>
                                     {% endfor %}
                                 </ul>
-                                <div class="detail-content">
-                                    <p class="delivery-time">{{ order.addTime }}</p>
-                                    <p class="delivery-num">{{ order.productsNum }}</p>
-                                </div>
+                                <ul class="detail-content">
+                                    <li class="delivery-time">{{ order.addTime }}</li>
+                                    <li class="delivery-num">x{{ order.productsNum }}</li>
+                                </ul>
                                 <div class="evaluate">{{ order.status.text }}</div>
                                 <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>{{ order.totalPrice }}</div>
                             </div>
