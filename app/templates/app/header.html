@@ -8,11 +8,13 @@
                 </span>
         </div>
         <ul class="nav-operation">
+            {% if customer %}
             <li class="operation-item">
                 hi，
                 <a href="{% url 'customer:index' %}" class="nav-user-name" style="color: #ff2832;margin-right: .2rem;">{{ customer.name }}</a>
                 <a href="logout" rel="nofollow" class="logout">[退出]</a>
             </li>
+            {% endif %}
             <li class="operation-item">
                 <a target="_blank" href="{% url 'app:shopcart' %}" name="购物车" rel="nofollow">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"
@@ -38,7 +40,7 @@
                     客户服务<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="{% url 'app:contact' %}">联系客服</a></li>
-                    <li><a href="{% url 'customer:opinion' %}">意见建议</a></li>
+                    <li><a href="{% url 'customer:suggestion' %}">意见建议</a></li>
                 </ul>
             </li>
         </ul>

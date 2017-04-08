@@ -104,4 +104,12 @@ $(document).ready(function(){
         return false;
     });
 
+    $(".add-collection").on("click",function(){
+        $.get("/app/common/addCollection?pid="+$(this).data("id"),
+            function(result){
+                alert(result.msg);
+            }
+        )
+    });
+
 });

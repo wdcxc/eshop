@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+from models.admin import AdminModel
 from models.product import ProductModel
 
 
@@ -48,7 +49,7 @@ class ShopcartModel(models.Model):
     """购物车模型"""
     customer = models.ForeignKey(CustomerModel, related_name="shopcarts", on_delete=models.CASCADE)  # 归属买家
     product = models.ForeignKey(ProductModel, related_name="shopcarts", on_delete=models.CASCADE)  # 商品
-    amount = models.IntegerField(default=1) # 商品数量
+    amount = models.IntegerField(default=1)  # 商品数量
     addTime = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -57,9 +58,9 @@ class ShopcartModel(models.Model):
 
 class CollectionModel(models.Model):
     """买家收藏模型"""
-    customer = models.ForeignKey(CustomerModel, related_name="collections", on_delete=models.CASCADE)
-    product = models.ForeignKey(ProductModel, related_name="collections", on_delete=models.CASCADE)
-    addTime = models.DateTimeField(auto_now_add=True)
+    customer = models.ForeignKey(CustomerModel, related_name="collections", on_delete=models.CASCADE)  # 收藏买家
+    product = models.ForeignKey(ProductModel, related_name="collections", on_delete=models.CASCADE)  # 收藏商品
+    addTime = models.DateTimeField(auto_now_add=True)  # 收藏时间
 
     class Meta:
         db_table = "customer_collection"
@@ -76,3 +77,25 @@ class ProductConsultModel(models.Model):
 
     class Meta:
         db_table = "product_consult"
+
+
+class Suggestion(models.Model):
+    """意见反馈模型"""
+    PRODUCT = 0
+    SELLER_SERVICE = 1
+    PAY = 2
+    REFUND = 3
+    OTHER = 4
+    TYPE = (
+    (PRODUCT, "product"), (SELLER_SERVICE, "seller service"), (PAY, "pay"), (REFUND, "refund"), (OTHER, "other"))
+
+    customer = models.ForeignKey(CustomerModel,related_name="suggestions",on_delete=models.CASCADE) # 提议顾客
+    type = models.IntegerField(choices=TYPE, default=PRODUCT)  # 意见类型
+    suggestion = models.TextField()  # 建议内容
+    reply = models.TextField()  # 建议回复
+    addTime = models.DateTimeField(auto_now_add=True)  # 建议添加时间
+    replyTime = models.DateTimeField(null=True)  # 回复时间
+    replyer = models.ForeignKey(AdminModel, related_name="customerSuggestions", on_delete=models.SET_NULL,null=True)  # 回复管理员
+
+    class Meta:
+        db_table = "customer_suggestion"

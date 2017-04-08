@@ -25,7 +25,7 @@
                         {% for collection in collections %}
                         <div class="col-md-3">
                             <div class="commodity">
-                                <a class="commodity-detail" href="#">
+                                <a class="commodity-detail" href="{% url 'app:introduction' %}?id={{collection.product.id}}">
                                     <img src="{{collection.product.thumbnail}}" width="100" height="250">
                                     <p class="price">¥{{collection.product.price}}</p>
                                     <p class="title">{{collection.product.name}}</p>
@@ -33,7 +33,7 @@
                                         <span class="sale-volume">销量{{collection.product.soldoutAmount}}</span>
                                         <span class="evaluate">好评95%</span>
                                     </p>
-                                    <a class="add-to-shopcart" href="{% url 'app:shopcart' %}">加入购物车</a>
+                                    <a class="add-to-shopcart" data-id="{{collection.product.id}}">加入购物车</a>
                                     {% ifequal collection.product.status 2 %}
                                     <span class="off-shelf">已下架</span>
                                     {% endifequal %}
@@ -69,5 +69,18 @@
 {% endblock %}
 
 {% block js %}
-
+<script>
+    $(function(){
+        $(".add-to-shopcart").on("click",function(){
+            $.get("/app/common/addShopcart?id="+$(this).data("id")+"&num=1",
+                function(result){
+                    alert(result.msg);
+                    if(result.code == 200){
+                        location.href = "/app/common/shopcart";
+                    }
+                }
+            );
+        });
+    });
+</script>
 {% endblock %}

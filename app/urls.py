@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^common/help', CommonView.as_view(), name="help"),
     url(r'.*/logout$', CommonView.as_view(), name="logout"),
     url(r'^common/addCollection',CommonView.as_view(),name="addCollection"),
+    url(r'^common/deleteCollection',CommonView.as_view(),name="deleteCollection"),
 ]
 
 # 订单

@@ -13,15 +13,6 @@ class CommonView(CustomerBaseView):
     def evaluate(self, request):
         pass
 
-    def consult(self, request):
-        pass
-
-    def opinion(self, request):
-        pass
-
-    def message(self, request):
-        pass
-
     def bill(self, request):
         pass
 
@@ -35,12 +26,13 @@ class CommonView(CustomerBaseView):
         pass
 
     def login(self, request):
-        if "HTTP_REFERER" in request.META:
-            refer = request.META["HTTP_REFERER"]
-            refer_app = refer.split("/")[3]
-            if refer_app != "customer":
-                request.session["refer_app"] = refer_app
-                request.session["refer"] = refer
+        pass
+        # if "HTTP_REFERER" in request.META:
+        #     refer = request.META["HTTP_REFERER"]
+        #     refer_app = refer.split("/")[3]
+        #     if refer_app != "customer":
+        #         request.session["refer_app"] = refer_app
+        #         request.session["refer"] = refer
 
     @valifyCaptcha(errcode=401)
     def doLogin(self, request):

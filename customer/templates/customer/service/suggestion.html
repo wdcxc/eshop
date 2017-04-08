@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% csrf_token %}
 {% load static %}
 {% block title %}意见反馈{% endblock %}
 {% block css %}
@@ -22,26 +22,23 @@
                     </div>
                     <!--意见内容-->
                     <div class="content">
-                        <form role="form">
+                        <form role="form" id="form" v-on:submit.prevent="submitForm">
                             <div class="form-group">
                                 <label class="classify-text" for="classify">请留下您的宝贵意见：</label>
-                                <select id="classify" class="form-control" style="margin-left: 6.5rem">
-                                    <option value="0">请选择意见的类型</option>
-                                    <option value="1">产品意见</option>
-                                    <option value="2">促销意见</option>
-                                    <option value="3">支付意见</option>
-                                    <option value="4">退款意见</option>
-                                    <option value="5">售后意见</option>
-                                    <option value="6">退换货意见</option>
-                                    <option value="7">其他意见</option>
+                                <select id="classify" class="form-control" style="margin-left: 6.5rem" v-model="suggestion.type">
+                                    <option value="0">产品意见</option>
+                                    <option value="1">卖家服务</option>
+                                    <option value="2">支付意见</option>
+                                    <option value="3">退款意见</option>
+                                    <option value="4">其他意见</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="description-text" for="description">意见内容描述：</label>
-                                <textarea id="description" class="form-control" style="margin-left: 6.5rem" rows="5" placeholder="在此描述您的意见的具体内容"></textarea>
+                                <textarea v-model="suggestion.suggestion" id="description" class="form-control" style="margin-left: 6.5rem" rows="5" placeholder="在此描述您的意见的具体内容"></textarea>
                             </div>
                             <div class="form-group">
-                                <a class="btn submit-btn" style="margin-left: 6.5rem" data-toggle="modal" data-target="#submitModal">提交</a>
+                                <button class="btn submit-btn" style="margin-left: 6.5rem" data-target="#submitModal">提交</button>
                             </div>
                         </form>
                     </div>
@@ -59,8 +56,7 @@
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">系统提示</h4>
                 </div>
-                <div class="modal-body">
-                    意见提交成功，等待商家处理
+                <div class="modal-body" id="modalInfo">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
@@ -71,5 +67,6 @@
 {% endblock %}
 
 {% block js %}
-
+<script src="{% static 'js/js.cookie.js' %}"></script>
+<script src="{% static 'js/customer/service/suggestion.js' %}"></script>
 {% endblock %}
