@@ -40,7 +40,9 @@ urlpatterns += [
 
 # 订单
 urlpatterns += [
-    url(r'^order/order$', OrderView.as_view(), name="order"),  # 订单
+    url(r'^order/order$', OrderView.as_view(), name="order"),  # 待发货订单
+    url(r'^order/receiveorder$', OrderView.as_view(), name="receiveorder"),  # 待收货订单
+    url(r'^order/evaluateorder$', OrderView.as_view(), name="evaluateorder"),  # 待评价订单
 ]
 
 # 收藏
@@ -52,6 +54,8 @@ urlpatterns += [
 urlpatterns += [
     url(r'^service/suggestion$', ServiceView.as_view(), name="suggestion"),  # 添加意见
     url(r'^service/addSuggestion$', ServiceView.as_view(), name="addSuggestion"),  # 添加意见
-    url(r'^service/message$', ServiceView.as_view(), name="message"), # 消息
+    url(r'^service/message$', ServiceView.as_view(), name="message"), # 咨询信息
     url(r'^service/consult$', ServiceView.as_view(), name="consult"), # 商品咨询
+    url(r'^service/suggestionMessage$', ServiceView.as_view(), name="suggestionMessage"),  # 意见信息
+    url(r'^service/refundMessage$', ServiceView.as_view(), name="refundMessage"),  # 退款信息
 ]

@@ -29,3 +29,9 @@ class ServiceView(CustomerBaseView):
 
     def message(self, request):
         pass
+
+    def suggestionMessage(self, request):
+        pass
+
+    def refundMessage(self, request):
+        pass

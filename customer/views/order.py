@@ -6,11 +6,11 @@ from util.baseview import loginRequire
 
 class OrderView(CustomerBaseView):
     @loginRequire()
-    def receiveproduct(self,request):
+    def receiveorder(self,request):
         pass
 
     @loginRequire()
-    def evaluateproduct(self,request):
+    def evaluateorder(self,request):
         pass
 
     @loginRequire()

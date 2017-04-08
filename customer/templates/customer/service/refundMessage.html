@@ -24,35 +24,35 @@
                     <div class="message-content">
                         <!--信息导航-->
                         <ul id="myTabs" class="nav nav-tabs nav-justified" role="tablist">
-                        <li role="presentation" class="active"><a href="{% url 'customer:message' %}">商品咨询</a></li>
+                        <li role="presentation"><a href="{% url 'customer:message' %}">商品咨询</a></li>
                         <li role="presentation"><a href="{% url 'customer:suggestionMessage' %}">意见反馈</a></li>
-                            <li role="presentation"><a href="{% url 'customer:refundMessage' %}">退款反馈</a></li>
+                            <li role="presentation" class="active"><a href="{% url 'customer:refundMessage' %}">退款反馈</a></li>
                     </ul>
                         <div id="myTabContent" class="tab-content">
-                            <!--咨询内容-->
-                            <div role="tabpanel" class="tab-pane fade active in" id="consult"
-                                 aria-labelledby="consult-tab">
+                            <!--退款反馈-->
+                            <div role="tabpanel" class="tab-pane fade active in" id="refund"
+                                 aria-labelledby="refund-tab">
                                 <div class="table">
                                     <ul class="table-header">
-                                        <li class="text-center col-md-2">咨询时间</li>
-                                        <li class="text-center col-md-2">问题类型</li>
-                                        <li class="text-center col-md-3">问题详情</li>
-                                        <li class="text-center col-md-2">回复时间</li>
-                                        <li class="text-center col-md-3">回复内容</li>
+                                        <li class="text-center col-md-2">退款时间</li>
+                                        <li class="text-center col-md-2">退款类型</li>
+                                        <li class="text-center col-md-3">退款原因</li>
+                                        <li class="text-center col-md-2">商家反馈时间</li>
+                                        <li class="text-center col-md-3">反馈内容</li>
+                                    </ul>
+                                    <ul class="table-content">
+                                        <li class="col-md-2 text-center refund-time">2017-3-25 20:00</li>
+                                        <li class="col-md-2 text-center refund-type">退款/退货</li>
+                                        <li class="col-md-3 refund-detail">和说明的不同：我买的是红色的，送过来是紫色的</li>
+                                        <li class="col-md-2 text-center reply-time">2017-3-25 21:00</li>
+                                        <li class="col-md-3 reply-content">卖家已接受退款，金额已退还到您的账户上，商品请邮寄到<span class="address">广东省 广州市 天河区 华南师范大学</span></li>
                                     </ul>
                                     <ul class="table-content">
                                         <li class="col-md-2 text-center consult-time">2017-3-25 20:00</li>
-                                        <li class="col-md-2 text-center question-type">产品问题</li>
-                                        <li class="col-md-3 question-detail">寄过来的零食过了保质期,打开之后发现产品变质了</li>
+                                        <li class="col-md-2 text-center question-type">退款</li>
+                                        <li class="col-md-3 question-detail">不想要了</li>
                                         <li class="col-md-2 text-center reply-time">2017-3-25 21:00</li>
-                                        <li class="col-md-3 reply-content">实在不好意思，我们以后会严把质量关，保证以后不会再出现这种情况</li>
-                                    </ul>
-                                    <ul class="table-content">
-                                        <li class="col-md-2 text-center consult-time">2017-3-25 20:00</li>
-                                        <li class="col-md-2 text-center question-type">产品问题</li>
-                                        <li class="col-md-3 question-detail">寄过来的零食过了保质期,打开之后发现产品变质了</li>
-                                        <li class="col-md-2 text-center reply-time">2017-3-25 21:00</li>
-                                        <li class="col-md-3 reply-content">实在不好意思，我们以后会严把质量关，保证以后不会再出现这种情况</li>
+                                        <li class="col-md-3 reply-content">不接受退款</li>
                                     </ul>
                                     <nav aria-label="Page navigation">
                                         <ul class="pagination">
