@@ -31,9 +31,12 @@
                                     <p class="title">{{collection.product.name}}</p>
                                     <p class="sale">
                                         <span class="sale-volume">销量{{collection.product.soldoutAmount}}</span>
-                                        <span class="evaluate">好评95%</span>
+                                        <span class="seller">seller</span>
                                     </p>
                                     <a class="add-to-shopcart" data-id="{{collection.product.id}}">加入购物车</a>
+                                    <a class="delete">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </a>
                                     {% ifequal collection.product.status 2 %}
                                     <span class="off-shelf">已下架</span>
                                     {% endifequal %}
@@ -41,6 +44,7 @@
                             </div>
                         </div>
                         {% endfor %}
+                        <div class="clearfix"></div>
                         <nav aria-label="Page navigation">
                             <ul class="pagination" style="margin-right: .6rem;float: right;">
                                 {% if collections.has_previous %}
