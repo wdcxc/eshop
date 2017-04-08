@@ -42,7 +42,9 @@ urlpatterns += [
 
 # 订单
 urlpatterns += [
-    url(r'^order/order$',OrderView.as_view(),name="order"), # 订单
+    url(r'^order/order$',OrderView.as_view(),name="order"), # 待发货订单
+    url(r'^order/receiveproduct$',OrderView.as_view(),name="receiveproduct"), # 待收货订单
+    url(r'^order/evaluateproduct$',OrderView.as_view(),name="evaluateproduct"), # 待评价订单
 ]
 
 # 收藏

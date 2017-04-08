@@ -6,6 +6,14 @@ from util.baseview import loginRequire
 
 class OrderView(CustomerBaseView):
     @loginRequire()
+    def receiveproduct(self,request):
+        pass
+
+    @loginRequire()
+    def evaluateproduct(self,request):
+        pass
+
+    @loginRequire()
     def order(self, request):
         customer = self.context["customer"]
         allOrders = customer.orders.all().order_by("-addTime")
