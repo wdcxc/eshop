@@ -27,7 +27,7 @@
                 <!--订单-->
                 <div class="order-info">
                     <div class="info-bar">
-                        我的订单<a href="order" class="all-order pull-right">全部订单</a>
+                        我的订单<a href="{% url 'customer:order' %}" class="all-order pull-right">全部订单</a>
                     </div>
                     {% if not orders %}
                     <div class="no-order">
@@ -35,12 +35,12 @@
                     </div>
                     {% else %}
                         {% for order in orders %}
-                        <div class="order-content-box hidden">
+                        <div class="order-content-box">
                             <div class="order-content">
                                 <ul class="order-content-pic">
                                     {% for product in order.products %}
                                     <li class="img-box">
-                                        <img src="{{ product.thumbnailLink }}" alt="订单商品图片">
+                                        <img src="{{ product.thumbnail }}" alt="订单商品图片">
                                     </li>
                                     {% endfor %}
                                 </ul>
@@ -51,7 +51,7 @@
                                 <div class="evaluate">{{ order.status.text }}</div>
                                 <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>{{ order.totalPrice }}</div>
                             </div>
-                            <a href="/customer/common/order?id={{order.id}}" class="buy-btn">详情</a>
+                            <a href="{% url 'customer:order' %}?id={{order.id}}" class="buy-btn">详情</a>
                         </div>
                         {% endfor %}
                     {% endif %}
