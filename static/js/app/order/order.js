@@ -56,8 +56,15 @@ $(document).ready(function () {
     });
 
     /*统计订单总价格*/
-    let totalMoney=0;
-    totalMoney=($(".commodity-price").text()*$(".commodity-num").text()).toFixed(2);
-    $(".commodity-total-price").text(totalMoney);
-    $(".pay-sum").text(totalMoney);
+    function calTotalPrice(){
+        let totalMoney=0;
+        $(".commodity-price").each(function(){
+            let price = parseFloat($(this).text());
+            let amount = parseInt($(this).siblings(".commodity-num").text());
+            $(this).siblings(".commodity-total-price").text(price*amount);
+            totalMoney += price*amount;
+        });
+        $(".pay-sum").text(totalMoney);
+    };
+    calTotalPrice();
 });

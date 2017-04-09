@@ -57,7 +57,7 @@
                 <ul class="table-content">
                     <li class="col-md-6 text-center">
                         <div class="col-md-4 commodity-pic">
-                            <img src="{{product.p.thumbnail}}" alt="商品缩略图" width="60" height="60">
+                            <img src="{{product.product.thumbnail}}" alt="商品缩略图" width="60" height="60">
                         </div>
                         <div class="col-md-8 commodity-name">
                             <p>{{product.product.name}}</p>
@@ -185,5 +185,5 @@
 {% endblock %}
 
 {% block js %}
-    <script src="{% static "js/app/order.js" %}"></script>
+    <script src="{% static "js/app/order/order.js" %}"></script>
 {% endblock %}

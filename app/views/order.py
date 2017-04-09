@@ -72,12 +72,14 @@ class OrderView(AppBaseView):
                     self.context = {"code": 4, "msg": "商品购买数量不能为负", "data": {"id": id}}
                     break
                 elif ordProduct.product.amount < ordProduct.amount:
-                    self.context = {"code": 4, "msg": ordProduct.product.name + "商品库存不足,只剩" + str(ordProduct.product.amount),
+                    self.context = {"code": 4,
+                                    "msg": ordProduct.product.name + "商品库存不足,只剩" + str(ordProduct.product.amount),
                                     "data": {"id": id}}
                     break
                 else:
                     ordProduct.sellPrice = ordProduct.product.price
-                    order.totalPrice += ordProduct.product.price
+                    ordProduct.save()
+                    order.totalPrice += ordProduct.sellPrice*ordProduct.amount
             else:
                 # 支付订单
                 try:
@@ -87,8 +89,7 @@ class OrderView(AppBaseView):
                 else:
                     order.payTime = datetime.now()
                     order.status = OrderModel.UNSEND
-                    for ordProduct in order.products.all():
-                        ordProduct.update(status=OrderProductModel.UNSEND)
+                    order.products.update(status=OrderProductModel.UNSEND)
                     order.customerMsg = customerMsg
                     order.save()
                     self.context = {"code": 200, "msg": "订单支付成功", "data": {"id": id}}

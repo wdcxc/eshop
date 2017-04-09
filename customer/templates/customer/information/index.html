@@ -67,11 +67,11 @@
                         <p class="no-collection-text">您暂时没有收藏的商品，到首页<a href="{% url 'app:index' %}">逛逛去</a></p>
                     </div>
                     {% endif %}
-                    <ul class="collection-list hidden">
+                    <ul class="collection-list">
                         {% for collection in collections %}
                         <li class="list-item col-md-2">
-                            <a href="">
-                                <img src="{{collection.product.thumbnailLink}}" alt="收藏商品图片">
+                            <a href="{% url 'app:introduction' %}?id={{collection.product.id}}">
+                                <img src="{{collection.product.thumbnail}}" alt="收藏商品图片">
                             </a>
                             <p class="goods-price">¥{{collection.product.price}}</p>
                             <p class="goods-name">{{collection.product.name}}</p>

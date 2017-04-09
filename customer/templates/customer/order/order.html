@@ -3,152 +3,137 @@
 {% load static %}
 {% block title %}订单管理{% endblock %}
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/aside.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/customer/order.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/customer/aside.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/customer/order.css' %}">
 {% endblock %}
 {% block body %}
-    {% include "app/header.html" %}
-    <div class="content center-block">
-        <div class="col-main">
-            <div class="main-wrap">
-                <div class="info">
-                    <!--标题-->
-                    <div class="info-head">
-                        <p>
-                            <span class="head-text">订单管理</span>/
-                            <span class="for-head-text">order management</span>
-                        </p>
-                    </div>
-                    <!--订单列表-->
-                    <div class="order-list">
-                        <ul class="nav nav-tabs nav-justified" style="padding: .5rem">
-                            <li role="presentation" class="active"><a href="{% url 'customer:order' %}">待发货</a></li>
-                            <li role="presentation"><a href="{% url 'customer:receiveorder' %}">待收货</a></li>
-                            <li role="presentation"><a href="{% url 'customer:evaluateorder' %}">待评价</a></li>
-                        </ul>
-                        <div class="clearfix"></div>
-                        <div id="myTabContent" class="tab-content">
-                            <div class="container tab-pane fade order-table active in" id="toSentOrder" role="tabpanel" aria-labelledby="tosent">
+{% include "app/header.html" %}
+<div class="content center-block">
+    <div class="col-main">
+        <div class="main-wrap">
+            <div class="info">
+                <!--标题-->
+                <div class="info-head">
+                    <p>
+                        <span class="head-text">订单管理</span>/
+                        <span class="for-head-text">order management</span>
+                    </p>
+                </div>
+                <!--订单列表-->
+                <div class="order-list">
+                    <ul class="nav nav-tabs nav-justified" style="padding: .5rem">
+                        <li role="presentation" class="active"><a href="{% url 'customer:order' %}">待发货</a></li>
+                        <li role="presentation"><a href="{% url 'customer:receiveorder' %}">待收货</a></li>
+                        <li role="presentation"><a href="{% url 'customer:evaluateorder' %}">待评价</a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="container tab-pane fade order-table active in" id="toSentOrder" role="tabpanel"
+                             aria-labelledby="tosent">
                             <ul class="table-header">
                                 <li class="text-center col-md-4">商品</li>
                                 <li class="text-center col-md-1">单价</li>
                                 <li class="text-center col-md-1">数量</li>
-                                <li class="text-center col-md-1">商品操作</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
                                 <li class="text-center col-md-1">合计</li>
                             </ul>
+                            {% for order in orders %}
                             <div class="order">
                                 <p class="order-detail">
-                                    <span class="detail-text">订单编号：00002</span>
-                                    <span class="detail-text">订单生成时间：2017-3-25 10:00</span>
+                                    <span class="detail-text">订单编号：{{order.id}}</span>
+                                    <span class="detail-text">订单生成时间：{{order.addTime}}</span>
                                 </p>
                                 <div class="order-content">
+                                    {% for product in order.products %}
                                     <ul class="table-content">
                                         <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
                                                 <a href="#">
-                                                    <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
+                                                    <img src="{{product.product.thumbnail}}" alt="商品图片">
                                                 </a>
                                             </div>
                                             <ul class="col-md-9 commodity-detail">
-                                                <li class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</li>
-                                                <li class="commodity-attribute">颜色：啫喱红</li>
+                                                <li class="commodity-name">{{product.product.name}}</li>
+                                                <li class="commodity-attribute">{{product.product.brand}}</li>
                                             </ul>
                                         </li>
-                                        <li class="col-md-1 text-center commodity-price">62.00</li>
-                                        <li class="col-md-1 text-center commodity-num">1</li>
-                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款</a></li>
+                                        <li class="col-md-1 text-center commodity-price">{{product.sellPrice}}</li>
+                                        <li class="col-md-1 text-center commodity-num">{{product.amount}}</li>
                                         <li class="col-md-2 text-center transaction-status">
-                                            <p class="status-text">买家已付款</p>
+                                            <p class="status-text">{{product.status}}买家已付款</p>
                                         </li>
                                         <li class="col-md-2 text-center transaction-operation">
                                             <a tabindex="0" class="btn" role="button" data-toggle="popover"
                                                data-placement="top" data-trigger="focus" title="系统提示"
-                                               data-content="已提醒卖家">提醒发货</a>
+                                               data-content="退款/退货">退款/退货</a>
                                         </li>
                                     </ul>
-                                    <ul class="table-content">
-                                        <li class="col-md-4">
-                                            <div class="col-md-3 commodity-pic">
-                                                <img src="{% static "images/app/kouhong.jpg" %}" alt="商品图片">
-                                            </div>
-                                            <ul class="col-md-9 commodity-detail">
-                                                <li class="commodity-name">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</li>
-                                                <li class="commodity-attribute">颜色：玫瑰紫</li>
-                                            </ul>
-                                        </li>
-                                        <li class="col-md-1 text-center commodity-price">62.00</li>
-                                        <li class="col-md-1 text-center commodity-num">1</li>
-                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款</a></li>
-                                        <li class="col-md-2 text-center transaction-status">
-                                            <p class="status-text">买家已付款</p>
-                                        </li>
-                                        <li class="col-md-2 text-center transaction-operation">
-                                            <a tabindex="0" class="btn" role="button" data-toggle="popover"
-                                               data-placement="top" data-trigger="focus" title="系统提示"
-                                               data-content="已提醒卖家">提醒发货</a>
-                                        </li>
-                                    </ul>
+                                    {% endfor %}
                                     <div class="table-right">
                                         <ul>
                                             <li>
-                                                <p class="total-price">124.00</p>
+                                                <p class="total-price">{{order.totalPrice}}</p>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
                             <nav aria-label="Page navigation">
                                 <ul class="pagination">
+                                    {% if orders.has_previous %}
                                     <li>
-                                        <a href="#" aria-label="Previous">
+                                        <a href="?page={{orders.previous_page_number}}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                         </a>
                                     </li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
+                                    {% endif %}
+                                    <li><a href="#">{{orders.number}} / {{orders.paginator.num_pages}}</a></li>
+                                    {% if orders.has_next %}
                                     <li>
-                                        <a href="#" aria-label="Next">
+                                        <a href="?page={{orders.next_page_number}}" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>
+                                    {% endif %}
                                 </ul>
                             </nav>
-                        </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    {% include "customer/aside.html" %}
     </div>
-    <!--支付模态框 -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="payModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">付款</h4>
-                </div>
-                <div class="modal-body">
-                    <p style="font-size: .6rem">需支付：<span class="pay-sum" style="font-size: 1.2rem">126.00</span>元</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" style="background-color: #ff6400;color: #fff">支付</button>
-                    <button type="button" class="btn btn-default">取消</button>
-                </div>
+    {% include "customer/aside.html" %}
+</div>
+<!--支付模态框 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="payModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">付款</h4>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: .6rem">需支付：<span class="pay-sum" style="font-size: 1.2rem">126.00</span>元</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" style="background-color: #ff6400;color: #fff">支付</button>
+                <button type="button" class="btn btn-default">取消</button>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block js %}
-    <script>
+<script>
         $(function () {
             $("[data-toggle='popover']").popover();
         });
-    </script>
+
+</script>
 {% endblock %}
