@@ -67,14 +67,22 @@ $(document).ready(function() {
 	        $("#selectA").remove();
 		    $("#select1").find(".select-all").addClass("selected").siblings().removeClass("selected");
 	    }
+		let oldSearch=location.search;
+		let name=['brand'];
+		let string=deleteParam(oldSearch,name);
+		window.location.href=window.location.pathname+string;
 	});
 	$(".select").on("click","#selectB",function () {
 	    if ($(".select-result dd").length == 2) {
-            $(".eliminateCriteria").click();
+			$(".eliminateCriteria").click();
         }else{
 	        $("#selectB").remove();
 		    $("#select2").find(".select-all").addClass("selected").siblings().removeClass("selected");
 	    }
+	    let oldSearch=location.search;
+		let name=['category_id'];
+		let string=deleteParam(oldSearch,name);
+		window.location.href=window.location.pathname+string;
 	});
 
 	$(".eliminateCriteria").click(function(){
@@ -85,6 +93,10 @@ $(document).ready(function() {
 		$(".eliminateCriteria").hide();
 		$(".select-no").show();
 		$(".select-result").hide();
+		let oldSearch=location.search;
+		let name=['brand','category_id'];
+		let string=deleteParam(oldSearch,name);
+		window.location.href=window.location.pathname+string;
 	});
 
 	$(".sort").find("li").click(function(){
@@ -114,8 +126,8 @@ $(document).ready(function() {
 			window.location.href=window.location.pathname+string;
 		}else{
 			let oldSearch=location.search;
-			let string;
-			string=deleteParam(oldSearch,'brand');
+			let string;let name=['brand'];
+			string=deleteParam(oldSearch,name);
 			window.location.href=window.location.pathname+string;
 		}
 	});
@@ -126,8 +138,8 @@ $(document).ready(function() {
 			window.location.href=window.location.pathname+string;
 		}else{
 			let oldSearch=location.search;
-			let string;
-			string=deleteParam(oldSearch,'category_id');
+			let string;let name=['category_id'];
+			string=deleteParam(oldSearch,name);
 			window.location.href=window.location.pathname+string;
 		}
 	});
@@ -164,8 +176,11 @@ function deleteParam(oldSearch,name){
 		a = arr[i].split("=");
 		object[a[0]] = a[1];
 	}
-	if(object[name]){
-		delete object[name];
+	for(i=0;i<name.length;i++){
+		console.log(111);
+		if(object[name[i]]) {
+			delete object[name[i]];
+		}
 	}
 	for (var key in object) {
 		string = string + key + "=" + object[key] + "&";
