@@ -48,4 +48,45 @@ $(document).ready(function () {
 	    );
 	    return false;
 	});
+
+});
+
+$(function () {
+    $("[data-toggle='popover']").popover();
+    $("#collect").on("click",function(){
+        var that = $(this);
+        $.get("/app/common/addCollection?pid="+$(this).data("id"),
+            function(result){
+                if(result.code==200){
+                    that.popover("toggle");
+                    setTimeout(function(){
+                        that.popover("toggle");
+                        $(".collect").toggleClass("hidden");
+                        $(".collected").toggleClass("hidden");
+                    },1000);
+                }else{
+                    alert(result.msg);
+                }
+            }
+        );
+
+    });
+    $("#collected").on("click",function(){
+       var that = $(this);
+       $.get(
+           "/app/common/deleteCollection?id="+$(this).data("id"),
+           function(result){
+               if(result.code==200){
+                  that.popover("toggle");
+                   setTimeout(function(){
+                       that.popover("toggle");
+                       $(".collected").toggleClass("hidden");
+                       $(".collect").toggleClass("hidden");
+                   },1000);
+               }else{
+                   alert(result.msg);
+               }
+           }
+       );
+    });
 });

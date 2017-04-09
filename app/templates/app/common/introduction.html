@@ -24,14 +24,14 @@
                 </li>
                 {% endfor %}
             </ul>
-            <div class="collect {% if collected %}hidden{% endif %} ">
+            <div class="collect {% if collection %}hidden{% endif %} ">
                 <a tabindex="0" id="collect" role="button" data-container="body" data-placement="right" data-id="{{product.id}}" data-content="收藏商品成功">
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>收藏商品
                 </a>
             </div>
-            <div class="collect {% if not collected %}hidden{% endif %}">
-                <a tabindex="0" id="collected">
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>商品已收藏
+            <div class="collect {% if not collection %}hidden{% endif %}">
+                 <a tabindex="0" id="collected" role="button" data-container="body" data-placement="right" data-id="{{collection.id}}" data-content="商品已取消收藏">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>取消收藏
                 </a>
             </div>
         </div>
@@ -281,26 +281,4 @@
 
 {% block js %}
     <script src="{% static "js/app/introduction.js" %}"></script>
-    <script>
-        $(function () {
-            $("[data-toggle='popover']").popover();
-            $("#collect").on("click",function(){
-                var that = $(this);
-                $.get("/app/common/addCollection?pid="+$(this).data("id"),
-                    function(result){
-                        if(result.code==200){
-                            that.popover("toggle");
-                            setTimeout(function(){
-                                that.popover("toggle");
-                                $(".collect").toggleClass("hidden");
-                            },2000);
-                        }else{
-                            alert(result.msg);
-                        }
-                    }
-                );
-
-            });
-        });
-    </script>
 {% endblock %}
