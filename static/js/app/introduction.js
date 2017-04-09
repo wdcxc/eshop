@@ -2,26 +2,29 @@
  * Created by zihang on 2017/3/21.
  */
 $(document).ready(function () {
-    var image=$(".commodity-image");
-    var number=$(".number");
+    let image=$(".commodity-image");
+    let number=$(".number");
+    let stock=parseInt($(".stock").text());
     $(".commodity-list").find("li").click(function () {
         $(this).addClass("image-selected").siblings().removeClass("image-selected");
         image.find("img").attr("src",$(this).find("img").attr("src"));
         image.find("img").attr("alt",$(this).find("img").attr("alt"));
     });
-    $(".reduce").attr('disabled',true);
     $(".add").click(function () {
         number.val(parseInt(number.val())+1);
         if(parseInt(number.val())!=1){
             $(".reduce").attr('disabled',false);
         }
+        if(parseInt(number.val())>=stock){
+            $(".add").attr('disabled',true);
+        }
     });
 
-    $(".reduce").click(function () {
+    $(".reduce").on('click',function () {
         number.val(parseInt(number.val())-1);
         if(parseInt(number.val())==1){
            $(".reduce").attr('disabled',true);
-       }
+       };
     });
 
     $(".option-list").find("li").click(function(){
@@ -48,4 +51,16 @@ $(document).ready(function () {
 	    );
 	    return false;
 	});
+    number.on('change',function () {
+        if(number.val()<1){
+            alert("商品数量至少选择1");
+            number.val(1);
+            $('.add').attr('disabled',false);
+        }
+        else if(number.val()>stock){
+            alert("商品数量不能超过库存量");
+            number.val(stock);
+            $('.reduce').attr('disabled',false);
+        }
+    })
 });

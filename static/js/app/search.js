@@ -2,6 +2,27 @@
  * Created by zihang on 2017/3/16.
  */
 $(document).ready(function() {
+		let splitArray=location.search.substring(1).split('&');
+		let object={};
+		let tempArray=[];
+		for(let i=0;i<splitArray.length;i++){
+			tempArray=splitArray[i].split('=');
+			object[tempArray[0]]=tempArray[1];
+		}
+		console.log();
+		if(object.hasOwnProperty('method')){
+			let method=object['method'];
+			$('.sort').find('a').each(function () {
+				$(this).parent().css('background-color', '#fff');
+				if ($(this).data('method') == method) {
+					$(this).parent().css('background-color', '#f5f5f5');
+				}
+			});
+		}
+		if(object.hasOwnProperty('brand')){
+			let brand=decodeURI(object['brand']);
+
+		}
 
         $("#select1").find("dd").click(function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
@@ -27,20 +48,6 @@ $(document).ready(function() {
 				$("#selectB").find("a").html($(this).text());
 			} else {
 				$(".select-result dl").append(copyThisB.attr("id", "selectB"));
-			}
-		}
-	});
-
-	$("#select3").find("dd").click(function() {
-		$(this).addClass("selected").siblings().removeClass("selected");
-		if ($(this).hasClass("select-all")) {
-			$("#selectC").remove();
-		} else {
-			var copyThisC = $(this).clone();
-			if ($("#selectC").length > 0) {
-				$("#selectC").find("a").html($(this).text());
-			} else {
-				$(".select-result dl").append(copyThisC.attr("id", "selectC"));
 			}
 		}
 	});
@@ -92,8 +99,9 @@ $(document).ready(function() {
 	});
 
 	$(".sort").find("li").click(function(){
-		$(".sort").find("li").css("background-color","#fff");
-		$(this).css("background-color","#F5F5F5");
+		let oldParam=location.search+"&method="+$(this).find("a").data("method");
+		string=getParamString(oldParam);
+		window.location.href=window.location.pathname+string;
 	});
 	$(".commodity").mouseenter(function () {
 		$(this).css("box-shadow","0px 1px 3px rgba(34, 25, 25, 0.2)");
@@ -112,16 +120,11 @@ $(document).ready(function() {
 
 	$("#select1").find("dd").on("click",function () {
 		let oldParam=location.search+"&brand="+$(this).find("a").data("value");
-		string,object=getParamString(oldParam);
-		window.location.href=window.location.pathname+string;
+		string=getParamString(oldParam);
+		//window.location.href=window.location.pathname+string;
 	});
 	$("#select2").find("dd").on("click",function () {
 		let oldParam=location.search+"&category_id="+$(this).find("a").data("id");
-		string=getParamString(oldParam);
-		window.location.href=window.location.pathname+string;
-	});
-	$(".sort").find("li").on("click",function () {
-		let oldParam=location.search+"&method="+$(this).find("a").data("method");
 		string=getParamString(oldParam);
 		window.location.href=window.location.pathname+string;
 	});
