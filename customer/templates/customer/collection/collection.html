@@ -34,7 +34,7 @@
                                         <span class="seller">seller</span>
                                     </p>
                                     <a class="add-to-shopcart" data-id="{{collection.product.id}}">加入购物车</a>
-                                    <a class="delete">
+                                    <a class="delete" data-id="{{collection.id}}">
                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                     </a>
                                     {% ifequal collection.product.status 2 %}
@@ -73,18 +73,5 @@
 {% endblock %}
 
 {% block js %}
-<script>
-    $(function(){
-        $(".add-to-shopcart").on("click",function(){
-            $.get("/app/common/addShopcart?id="+$(this).data("id")+"&num=1",
-                function(result){
-                    alert(result.msg);
-                    if(result.code == 200){
-                        location.href = "/app/common/shopcart";
-                    }
-                }
-            );
-        });
-    });
-</script>
+<script src="{% static 'js/customer/collection/collection.js' %}"></script>
 {% endblock %}
