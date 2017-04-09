@@ -37,7 +37,7 @@
                                 <li class="text-center col-md-1">数量</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
-                                <li class="text-center col-md-1">合计</li>
+                                <li class="text-center col-md-2">合计</li>
                             </ul>
                             {% for order in orders %}
                             <div class="order">
@@ -49,12 +49,12 @@
                                     {% for product in order.products %}
                                     <ul class="table-content">
                                         <li class="col-md-4">
-                                            <div class="col-md-3 commodity-pic">
+                                            <div class="col-md-4 commodity-pic">
                                                 <a href="#">
                                                     <img src="{{product.product.thumbnail}}" alt="商品图片">
                                                 </a>
                                             </div>
-                                            <ul class="col-md-9 commodity-detail">
+                                            <ul class="col-md-8 commodity-detail">
                                                 <li class="commodity-name">{{product.product.name}}</li>
                                                 <li class="commodity-attribute">{{product.product.brand}}</li>
                                             </ul>
@@ -66,12 +66,12 @@
                                         </li>
                                         <li class="col-md-2 text-center transaction-operation">
                                             <a tabindex="0" class="btn" role="button" data-toggle="popover"
-                                               data-placement="top" data-trigger="focus" title="系统提示"
+                                               data-placement="top" data-trigger="focus"
                                                data-content="退款/退货">退款/退货</a>
                                         </li>
                                     </ul>
                                     {% endfor %}
-                                    <div class="table-right">
+                                    <div class="table-right" style="width: 16%">
                                         <ul>
                                             <li>
                                                 <p class="total-price">{{order.totalPrice}}</p>
