@@ -9,7 +9,6 @@ $(document).ready(function() {
 			tempArray=splitArray[i].split('=');
 			object[tempArray[0]]=tempArray[1];
 		}
-		console.log();
 		if(object.hasOwnProperty('method')){
 			let method=object['method'];
 			$('.sort').find('a').each(function () {
@@ -21,36 +20,34 @@ $(document).ready(function() {
 		}
 		if(object.hasOwnProperty('brand')){
 			let brand=decodeURI(object['brand']);
-
+			$("#select1").find('a').each(function () {
+				if($(this).data('value')==brand){
+					$(this).parent().addClass('selected').siblings().removeClass("selected");
+					let copyThisA = $(this).parent().clone(false);
+					if ($("#selectA").length > 0) {
+						$("#selectA").find("a").html($(this).parent().text());
+					} else {
+						$(".select-result").css("display","block");
+						$(".select-result dl").append(copyThisA.attr("id", "selectA"));
+					}
+				}
+			});
 		}
-
-        $("#select1").find("dd").click(function(){
-		$(this).addClass("selected").siblings().removeClass("selected");
-		if ($(this).hasClass("select-all")) {
-			$("#selectA").remove();
-		} else {
-			var copyThisA = $(this).clone(false);
-			if ($("#selectA").length > 0) {
-				$("#selectA").find("a").html($(this).text());
-			} else {
-				$(".select-result dl").append(copyThisA.attr("id", "selectA"));
-			}
+		if(object.hasOwnProperty('category_id')){
+			let category_id=object['category_id'];
+			$("#select2").find('a').each(function () {
+				if($(this).data('id')==category_id){
+					$(this).parent().addClass('selected').siblings().removeClass("selected");
+					let copyThisB = $(this).parent().clone(false);
+					if ($("#selectB").length > 0) {
+						$("#selectB").find("a").html($(this).parent().text());
+					} else {
+						$(".select-result").css("display","block");
+						$(".select-result dl").append(copyThisB.attr("id", "selectB"));
+					}
+				}
+			});
 		}
-	});
-
-	$("#select2").find("dd").click(function() {
-		$(this).addClass("selected").siblings().removeClass("selected");
-		if ($(this).hasClass("select-all")) {
-			$("#selectB").remove();
-		} else {
-			var copyThisB = $(this).clone();
-			if ($("#selectB").length > 0) {
-				$("#selectB").find("a").html($(this).text());
-			} else {
-				$(".select-result dl").append(copyThisB.attr("id", "selectB"));
-			}
-		}
-	});
 
 	$(".select-list dd").click(function(){
 		if ($(".select-result dd").length > 1) {
@@ -77,14 +74,6 @@ $(document).ready(function() {
         }else{
 	        $("#selectB").remove();
 		    $("#select2").find(".select-all").addClass("selected").siblings().removeClass("selected");
-	    }
-	});
-	$(".select").on("click","#selectC",function () {
-	    if ($(".select-result dd").length == 2) {
-            $(".eliminateCriteria").click();
-        }else{
-	        $("#selectC").remove();
-		    $("#select3").find(".select-all").addClass("selected").siblings().removeClass("selected");
 	    }
 	});
 
@@ -119,14 +108,28 @@ $(document).ready(function() {
 	});
 
 	$("#select1").find("dd").on("click",function () {
-		let oldParam=location.search+"&brand="+$(this).find("a").data("value");
-		string=getParamString(oldParam);
-		//window.location.href=window.location.pathname+string;
+		if(!$(this).hasClass('select-all')){
+			let oldParam=location.search+"&brand="+$(this).find("a").data("value");
+			string=getParamString(oldParam);
+			window.location.href=window.location.pathname+string;
+		}else{
+			let oldSearch=location.search;
+			let string;
+			string=deleteParam(oldSearch,'brand');
+			window.location.href=window.location.pathname+string;
+		}
 	});
 	$("#select2").find("dd").on("click",function () {
-		let oldParam=location.search+"&category_id="+$(this).find("a").data("id");
-		string=getParamString(oldParam);
-		window.location.href=window.location.pathname+string;
+		if(!$(this).hasClass('select-all')){
+			let oldParam=location.search+"&category_id="+$(this).find("a").data("id");
+			string=getParamString(oldParam);
+			window.location.href=window.location.pathname+string;
+		}else{
+			let oldSearch=location.search;
+			let string;
+			string=deleteParam(oldSearch,'category_id');
+			window.location.href=window.location.pathname+string;
+		}
 	});
 	$(".pagination").find("li").on("click",function () {
 		location.search=location.search+"&page="+$(this).find("a").data("page");
@@ -136,7 +139,7 @@ $(document).ready(function() {
 });
 function getParamString(oldParam){
 	var i=0;
-	var a=[],params=[],arr=[];
+	var a=[],params,arr=[];
 	var string="?";
 	var object={};
 	params = decodeURI(oldParam);
@@ -144,6 +147,25 @@ function getParamString(oldParam){
 	for (i = 0; i < arr.length; i++) {
 		a = arr[i].split("=");
 		object[a[0]] = a[1];
+	}
+	for (var key in object) {
+		string = string + key + "=" + object[key] + "&";
+	}
+	string = string.substr(0, string.length - 1);
+	return string;
+}
+function deleteParam(oldSearch,name){
+	var i=0;
+	var a=[],arr=[];
+	var string="?";
+	var object={};
+	arr = oldSearch.substring(1).split("&");
+	for (i = 0; i < arr.length; i++) {
+		a = arr[i].split("=");
+		object[a[0]] = a[1];
+	}
+	if(object[name]){
+		delete object[name];
 	}
 	for (var key in object) {
 		string = string + key + "=" + object[key] + "&";
