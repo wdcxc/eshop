@@ -129,24 +129,5 @@
 {% endblock %}
 
 {% block js %}
-    <script>
-        $(function () {
-            $("[data-toggle='popover']").popover();
-
-            $(".receive").on("click",function(){
-                let that = $(this);
-                $.get(
-                    "/customer/order/receiveProduct?id="+$(this).data("id"),
-                    function(result){
-                        if(result.code == 200){
-                            that.popover("toggle");
-                            setTimeout(function(){location.reload(true);},2000);
-                        }else{
-                            alert(result.msg);
-                        }
-                    }
-                );
-            });
-        });
-    </script>
+<script src="{% static 'js/customer/order/receiveorder.js' %}"></script>
 {% endblock %}

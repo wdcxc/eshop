@@ -128,9 +128,5 @@
 {% endblock %}
 
 {% block js %}
-    <script>
-        $(function () {
-            $("[data-toggle='popover']").popover();
-        });
-    </script>
+<script src="{% static 'js/customer/order/order.js' %}"></script>
 {% endblock %}
