@@ -120,10 +120,11 @@
                 </div>
             </div>
             <!--商品导购区-->
-			{% for 
+			{% for channel in guideChannels %}
             <div class="tabs">
-                <div class="shop-sub-title">食品/茶酒/生鲜</div>
+                <div class="shop-sub-title">{{channel.name}}</div>
                 <ul id="myTabs" class="nav nav-tabs" role="tablist">
+					{% for subChannel in channel.subChannels %}
                     <li role="presentation"><a href="#commodity-1" id="commodity-1-tab" role="tab" data-toggle="tab"
                                                         aria-controls="commodity-1" aria-expanded="false">食品</a></li>
                     <li role="presentation" class="active"><a href="#commodity-2" role="tab" id="commodity-2-tab"
@@ -132,6 +133,7 @@
                     <li role="presentation"><a href="#commodity-3" role="tab" id="commodity-3-tab"
                                                               data-toggle="tab" aria-controls="commodity-3"
                                                               aria-expanded="true">生鲜</a></li>
+					{% endfor %}
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="container tab-pane fade" id="commodity-1" aria-labelledby="commodity-1-tab" style="padding:0">
@@ -391,6 +393,7 @@
                     </div>
                 </div>
             </div>
+			{% endfor %}
         </div>
     </div>
 {% endblock %}
