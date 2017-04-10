@@ -4,6 +4,7 @@ from app.views.appbaseview import AppBaseView
 from models.customer import ShopcartModel
 from models.order import OrderModel, OrderProductModel
 from util.baseview import loginRequire
+from util.geodata import GeoData
 
 
 class OrderView(AppBaseView):
@@ -35,6 +36,7 @@ class OrderView(AppBaseView):
             orderId = request.GET.get("id")
             order = customer.orders.get(id=orderId)
             self.context["products"] = order.products.all()
+            self.context["provinces"] = GeoData.geoData.keys()
 
     @loginRequire(redirectUrl='/customer/common/login')
     def fail(self, request):

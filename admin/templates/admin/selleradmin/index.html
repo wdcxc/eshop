@@ -9,9 +9,9 @@
 
 {% block withnavbody %}
     <div class="search">
-        <form class="search-form">
+        <form class="search-form" method="get" action="{% url 'admin:sellerAdminIndex' %}">
             <div class="input-group col-md-3">
-                <input type="text" class="form-control" placeholder="请输入卖家名"/>
+                <input type="text" name='name' class="form-control" placeholder="请输入卖家名"/>
                 <span class="input-group-btn">
                     <button class="btn btn-primary btn-search">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -29,14 +29,16 @@
                 </tr>
             </thead>
             <tbody>
+                {% for seller in sellers %}
                 <tr>
-                    <td>zihang</td>
-                    <td>2017-3-25 12:00</td>
-                    <td>啥都卖店铺</td>
+                    <td>{{seller.name}}</td>
+                    <td>{{seller.registTime}}</td>
+                    <td>{{seller.shopName}}</td>
                     <td>
                         <a class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">封号</a>
                     </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

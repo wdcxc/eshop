@@ -17,14 +17,12 @@
                 <th>买家注册时间</th>
             </thead>
             <tbody>
+            {% for customer in customers %}
             <tr>
-                <td>zihang</td>
-                <td>2017-4-3 16:00</td>
+                <td>{{customer.name}}</td>
+                <td>{{customer.registTime}}</td>
             </tr>
-            <tr>
-                <td>wdcxc</td>
-                <td>2017-4-3 16:00</td>
-            </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
@@ -37,16 +35,13 @@
                 <th>卖家店铺</th>
             </thead>
             <tbody>
+            {% for seller in sellers %}
             <tr>
-                <td>zihang</td>
-                <td>2017-4-3 16:00</td>
-                <td>津津美食</td>
+                <td>{{seller.name}}</td>
+                <td>{{seller.registTime}}</td>
+                <td>{{seller.shopName}}</td>
             </tr>
-            <tr>
-                <td>wdcxc</td>
-                <td>2017-4-3 16:00</td>
-                <td>好日子商铺</td>
-            </tr>
+            {% endfor %}
             </tbody>
 
         </table>

@@ -5,6 +5,8 @@ from django.urls import reverse
 
 from admin.views.adminbaseview import AdminBaseView
 from models.admin import AdminModel
+from models.customer import CustomerModel
+from models.seller import SellerModel
 from util.baseview import loginRequire
 from util.baseview import valifyCaptcha
 
@@ -41,7 +43,11 @@ class CommonView(AdminBaseView):
 
     @loginRequire()
     def index(self, request):
-        pass
+        """总览"""
+        customers = CustomerModel.objects.all().order_by("-registTime")[:5]
+        self.context["customers"] = customers
+        sellers = SellerModel.objects.all().order_by("-registTime")[:5]
+        self.context["sellers"] = sellers
 
     def forbidden(self,request):
         pass
