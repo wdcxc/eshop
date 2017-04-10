@@ -96,7 +96,7 @@ class Suggestion(models.Model):
     customer = models.ForeignKey(CustomerModel,related_name="suggestions",on_delete=models.CASCADE) # 提议顾客
     type = models.IntegerField(choices=TYPE, default=PRODUCT)  # 意见类型
     suggestion = models.TextField()  # 建议内容
-    reply = models.TextField()  # 建议回复
+    reply = models.TextField(null=True)  # 建议回复
     addTime = models.DateTimeField(auto_now_add=True)  # 建议添加时间
     replyTime = models.DateTimeField(null=True)  # 回复时间
     replyer = models.ForeignKey(AdminModel, related_name="customerSuggestions", on_delete=models.SET_NULL,null=True)  # 回复管理员

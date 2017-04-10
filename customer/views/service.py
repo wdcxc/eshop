@@ -1,3 +1,5 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from customer.views.customerbaseview import CustomerBaseView
 from util.baseview import loginRequire
 
@@ -30,8 +32,21 @@ class ServiceView(CustomerBaseView):
     def message(self, request):
         pass
 
+    @loginRequire()
     def suggestionMessage(self, request):
-        pass
+        """意见回复"""
+        customer = self.context["customer"]
+        suggestions = customer.suggestions.filter(reply__isnull=False).order_by("addTime")
+        paginator = Paginator(suggestions,2)
+        page = request.GET.get("page")
+        try:
+            self.context["suggestions"] = paginator.page(page)
+        except EmptyPage:
+            self.context["suggestions"] = paginator.page(paginator.num_pages)
+        except PageNotAnInteger:
+            self.context["suggestions"] = paginator.page(1)
 
+    @loginRequire()
     def refundMessage(self, request):
+        """退款回复"""
         pass
