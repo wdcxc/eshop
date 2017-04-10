@@ -26,7 +26,7 @@ class OrderModel(models.Model):
     payTime = models.DateTimeField(null=True)  # 付款时间
     cancelTime = models.DateTimeField(null=True)  # 订单取消时间
     customerMsg = models.TextField(null=True)  # 买家留言
-    totalPrice = models.DecimalField(max_digits=10,decimal_places=2,default=0) # 订单支付总价
+    totalPrice = models.DecimalField(max_digits=10, decimal_places=2, default=0)  # 订单支付总价
 
     class Meta:
         db_table = 'order'
@@ -45,6 +45,11 @@ class OrderProductModel(models.Model):
     STATUS = (
         (UNSEND, 'unsend'), (UNRECEIVE, 'unreceive'), (UNEVALUATE, 'unevaluate'), (FINISH, 'finish'),
         (CANCEL, 'cancel'), (REFUND, 'refund'), (AC_REFUND, 'accept-refund'))
+    GOOD = 101
+    MIDDLE = 102
+    BAD = 103
+    EVALUATION = ((GOOD,"good"),(MIDDLE,"middle"),(BAD,"bad"))
+
     status = models.IntegerField(choices=STATUS, default=UNPAY)  # 订单产品状态
     order = models.ForeignKey(OrderModel, related_name="products", on_delete=models.CASCADE)  # 归属订单
     product = models.ForeignKey(ProductModel, on_delete=models.CASCADE)  # 商品
@@ -58,7 +63,7 @@ class OrderProductModel(models.Model):
     ACRefundTime = models.DateTimeField(null=True)  # 商家接受退货时间
     refundReason = models.TextField(null=True)  # 退货理由
     evaluation = models.TextField(null=True)  # 订单评价
-    eGrade = models.IntegerField(null=True)  # 商品评价
+    eGrade = models.IntegerField(null=True,choices=EVALUATION)  # 商品评价等级
 
     class Meta:
         db_table = 'order_product'

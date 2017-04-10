@@ -39,14 +39,13 @@
                                 <li class="text-center col-md-2">交易操作</li>
                                 <li class="text-center col-md-1">合计</li>
                             </ul>
-                            {% for order in orders %}
+                            {% for product in products %}
                             <div class="order">
                                 <p class="order-detail">
-                                    <span class="detail-text">订单编号：{{order.id}}</span>
-                                    <span class="detail-text">订单生成时间：{{order.addTime}}</span>
+                                    <span class="detail-text">订单编号：{{product.id}}</span>
+                                    <span class="detail-text">订单生成时间：{{product.addTime}}</span>
                                 </p>
                                 <div class="order-content">
-                                    {% for product in order.products %}
                                     <ul class="table-content">
                                         <li class="col-md-4">
                                             <div class="col-md-3 commodity-pic">
@@ -62,7 +61,7 @@
                                         <li class="col-md-1 text-center commodity-price">{{product.sellPrice}}</li>
                                         <li class="col-md-1 text-center commodity-num">{{product.amount}}</li>
                                         <li class="col-md-2 text-center transaction-status">
-                                            <p class="status-text">{{product.status}}买家已付款</p>
+                                            <p class="status-text">买家已付款</p>
                                         </li>
                                         <li class="col-md-2 text-center transaction-operation">
                                             <a tabindex="0" class="btn" role="button" data-toggle="popover"
@@ -70,11 +69,10 @@
                                                data-content="退款/退货">退款/退货</a>
                                         </li>
                                     </ul>
-                                    {% endfor %}
                                     <div class="table-right">
                                         <ul>
                                             <li>
-                                                <p class="total-price">{{order.totalPrice}}</p>
+                                                <p class="total-price">???</p>
                                             </li>
                                         </ul>
                                     </div>
@@ -83,17 +81,17 @@
                             {% endfor %}
                             <nav aria-label="Page navigation">
                                 <ul class="pagination">
-                                    {% if orders.has_previous %}
+                                    {% if products.has_previous %}
                                     <li>
-                                        <a href="?page={{orders.previous_page_number}}" aria-label="Previous">
+                                        <a href="?page={{products.previous_page_number}}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                         </a>
                                     </li>
                                     {% endif %}
-                                    <li><a href="#">{{orders.number}} / {{orders.paginator.num_pages}}</a></li>
-                                    {% if orders.has_next %}
+                                    <li><a href="#">{{products.number}} / {{products.paginator.num_pages}}</a></li>
+                                    {% if products.has_next %}
                                     <li>
-                                        <a href="?page={{orders.next_page_number}}" aria-label="Next">
+                                        <a href="?page={{products.next_page_number}}" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>

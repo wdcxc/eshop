@@ -19,9 +19,6 @@ class CommonView(CustomerBaseView):
     def refundapply(self, request):
         pass
 
-    def goodsevaluate(self, request):
-        pass
-
     def forgetpwd(self, request):
         pass
 

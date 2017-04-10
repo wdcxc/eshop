@@ -21,3 +21,4 @@ class OrderView(SellerBaseView):
             self.context = {"code": 200, "msg": "商品已发货", "data": {"id": id}}
         else:
             self.context = {"code": 4, "msg": "商品状态出错", "data": {"id": id}}
+
