@@ -34,19 +34,10 @@
                                     </ul>
                                 </div>
                                 <div class="col-md-8 evaluate">
-                                    <select class="evaluate-list">
-                                        <option class="good-evaluate col-md-4 text-center">
-                                            <span>好评</span>
-                                            <input type="text" value="good" class="hidden"/>
-                                        </option>
-                                        <option class="middle-evaluate col-md-4 text-center">
-                                            <span>中评</span>
-                                            <input type="text" value="middle" class="hidden"/>
-                                        </option>
-                                        <option class="bad-evaluate col-md-4 text-center">
-                                            <span>差评</span>
-                                            <input type="text" value="bad" class="hidden"/>
-                                        </option>
+                                    <select class="evaluate-list form-control" style="width: 5rem;margin-bottom: 1rem;">
+                                        <option class="good-evaluate col-md-4 text-center">好评</option>
+                                        <option class="middle-evaluate col-md-4 text-center">中评</option>
+                                        <option class="bad-evaluate col-md-4 text-center">差评</option>
                                     </select>
                                     <textarea v-model="evaluation.evaluation" class="evaluate-text" rows="7"
                                               placeholder="请写下您对宝贝的评价，对别人帮助很大的哦"></textarea>

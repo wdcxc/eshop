@@ -33,16 +33,6 @@
         </li>
         <li class="menu-item text-center">
             <p>
-                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>我的账单
-            </p>
-            <ul>
-                <li>
-                    <a href="{% url 'customer:bill' %}">账单明细</a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item text-center">
-            <p>
                 <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>我的收藏
             </p>
             <ul>
@@ -57,13 +47,10 @@
             </p>
             <ul>
                 <li>
-                    <a href="{% url 'customer:consult' %}">商品咨询</a>
-                </li>
-                <li>
                     <a href="{% url 'customer:suggestion' %}">意见反馈</a>
                 </li>
                 <li>
-                    <a href="{% url 'customer:message' %}">我的消息</a>
+                    <a href="{% url 'customer:suggestionMessage' %}">我的消息</a>
                 </li>
             </ul>
         </li>

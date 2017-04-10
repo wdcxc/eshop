@@ -37,7 +37,7 @@
                                 <li class="text-center col-md-1">数量</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
-                                <li class="text-center col-md-1">合计</li>
+                                <li class="text-center col-md-2">合计</li>
                             </ul>
                             {% for product in products %}
                             <div class="order">
@@ -64,15 +64,13 @@
                                             <p class="status-text">买家已付款</p>
                                         </li>
                                         <li class="col-md-2 text-center transaction-operation">
-                                            <a tabindex="0" class="btn" role="button" data-toggle="popover"
-                                               data-placement="top" data-trigger="focus" title="系统提示"
-                                               data-content="退款/退货">退款/退货</a>
+                                            <a class="btn" role="button" data-toggle="modal" data-target="#refundModal">退款/退货</a>
                                         </li>
                                     </ul>
-                                    <div class="table-right">
+                                    <div class="table-right" style="width: 16%">
                                         <ul>
                                             <li>
-                                                <p class="total-price">???</p>
+                                                <p class="total-price"></p>
                                             </li>
                                         </ul>
                                     </div>
@@ -106,21 +104,21 @@
     </div>
     {% include "customer/aside.html" %}
 </div>
-<!--支付模态框 -->
-<div class="modal fade" tabindex="-1" role="dialog" id="payModal">
+<!--退款理由填写模态框 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="refundModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">付款</h4>
+                <h4 class="modal-title">退款理由填写</h4>
             </div>
             <div class="modal-body">
-                <p style="font-size: .6rem">需支付：<span class="pay-sum" style="font-size: 1.2rem">126.00</span>元</p>
+                <textarea class="form-control" rows="3" placeholder="请填写你的退款理由"></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" style="background-color: #ff6400;color: #fff">支付</button>
-                <button type="button" class="btn btn-default">取消</button>
+                <button type="button" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             </div>
         </div>
     </div>
@@ -129,9 +127,9 @@
 
 {% block js %}
 <script>
-        $(function () {
-            $("[data-toggle='popover']").popover();
-        });
+    $(document).ready(function () {
+
+    })
 
 </script>
 {% endblock %}
