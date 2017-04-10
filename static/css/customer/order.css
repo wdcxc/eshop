@@ -32,6 +32,7 @@ p{
     overflow: hidden;
     position: relative;
     padding-bottom: .5rem;
+    padding-top: .8rem;
 }
 .commodity-pic{
     width: 3.5rem;
@@ -64,7 +65,7 @@ p{
     width: 8%;
     position: absolute;
     top: 50%;
-    margin-top: -.8rem;
+    margin-top: -.4rem;
     right: 0;
     overflow: visible;
 }
