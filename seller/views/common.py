@@ -89,8 +89,12 @@ class CommonView(SellerBaseView):
                 seller = SellerModel.objects.get(mobile=seller["account"])
             elif email_num:
                 seller = SellerModel.objects.get(email=seller["account"])
-            request.session["user"] = {"id": seller.id, "app": self.request_["appadmin"]}
-            self.context = {"code": 200, "msg": "登录成功", "data": {}}
+
+            if seller.lock:
+                self.context = {"code": 4, "msg": "账号被锁定，请联系管理员", "data": {}}
+            else:
+                request.session["user"] = {"id": seller.id, "app": self.request_["appadmin"]}
+                self.context = {"code": 200, "msg": "登录成功", "data": {}}
         else:
             self.context = {"code": 410, "msg": "账号或密码错误", "data": {}}
 

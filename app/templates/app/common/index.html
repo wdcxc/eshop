@@ -125,17 +125,99 @@
                 <div class="shop-sub-title">{{channel.name}}</div>
                 <ul id="myTabs" class="nav nav-tabs" role="tablist">
 					{% for subChannel in channel.subChannels %}
-                    <li role="presentation"><a href="#commodity-1" id="commodity-1-tab" role="tab" data-toggle="tab"
-                                                        aria-controls="commodity-1" aria-expanded="false">食品</a></li>
-                    <li role="presentation" class="active"><a href="#commodity-2" role="tab" id="commodity-2-tab"
-                                                              data-toggle="tab" aria-controls="commodity-2"
-                                                              aria-expanded="true">茶酒</a></li>
-                    <li role="presentation"><a href="#commodity-3" role="tab" id="commodity-3-tab"
-                                                              data-toggle="tab" aria-controls="commodity-3"
-                                                              aria-expanded="true">生鲜</a></li>
+                    <li role="presentation" class="{% if forloop.first %}active{% endif %}"><a href="#commodity-{{forloop.counter}}" role="tab" id="commodity-{{forloop.counter}}-tab"
+                                                              data-toggle="tab" aria-controls="commodity-{{forloop.counter}}"
+                                                              aria-expanded="true">{{subChannel.name}}</a></li>
 					{% endfor %}
                 </ul>
                 <div id="myTabContent" class="tab-content">
+                    {% for subChannel in channel.subChannels %}
+                    <div role="tabpanel" class="container tab-pane fade" id="commodity-{{forloop.counter}}" aria-labelledby="commodity-{{forloop.counter}}-tab" style="padding:0">
+                        <div class="row commodity-content">
+                            <div class="col-md-3 col-xs-6" style="border-top: 1px solid #eee;">
+								<div class="commodity-name-price">
+									<div class="commodity-name">
+										香槟
+									</div>
+									<div class="commodity-price ">
+										仅售：¥100
+									</div>
+								</div>
+                                    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity1.png' %} " /></a>
+                            </div>
+                            <div class="col-md-4 col-xs-6">
+                                <div class="commodity-row-two">
+								    <div class="commodity-name-price">
+									    <div class="commodity-name">
+										    水果拼盘
+									    </div>
+									    <div class="commodity-price">
+										    仅售：¥13.8
+									    </div>
+								    </div>
+								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity2.png' %}" /></a>
+							    </div>
+							    <div class="commodity-row-two">
+								    <div class="commodity-name-price">
+									    <div class="commodity-name">
+										    水果拼盘
+									    </div>
+									    <div class="commodity-price">
+										    仅售：¥13.8
+									    </div>
+								    </div>
+								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity2.png' %}" /></a>
+							    </div>
+                            </div>
+                            <div class="col-md-5 col-xs-12">
+                                <div class="commodity-quarter-two col-md-6 col-xs-6">
+								    <div class="commodity-name-price">
+									    <div class="commodity-name">
+										    坚果礼盒
+									    </div>
+									    <div class="commodity-price">
+										    仅售：¥13.8
+									    </div>
+								    </div>
+								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity3.png' %}" /></a>
+							    </div>
+                                <div class="commodity-quarter-two col-md-6 col-xs-6">
+								    <div class="commodity-name-price">
+									    <div class="commodity-name">
+										    坚果礼盒
+									    </div>
+									    <div class="commodity-price">
+										    仅售：¥13.8
+									    </div>
+								    </div>
+								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity3.png' %}" /></a>
+							    </div>
+                                <div class="commodity-quarter-two col-md-6 col-xs-6">
+								    <div class="commodity-name-price">
+									    <div class="commodity-name">
+										    坚果礼盒
+									    </div>
+									    <div class="commodity-price">
+										    仅售：¥13.8
+									    </div>
+								    </div>
+								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity3.png' %}" /></a>
+							    </div>
+                                <div class="commodity-quarter-two col-md-6 col-xs-6">
+								    <div class="commodity-name-price">
+									    <div class="commodity-name">
+										    坚果礼盒
+									    </div>
+									    <div class="commodity-price">
+										    仅售：¥13.8
+									    </div>
+								    </div>
+								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity3.png' %}" /></a>
+							    </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                     <div role="tabpanel" class="container tab-pane fade" id="commodity-1" aria-labelledby="commodity-1-tab" style="padding:0">
                         <div class="row commodity-content">
                             <div class="col-md-3 col-xs-6" style="border-top: 1px solid #eee;">
@@ -217,176 +299,6 @@
 									    </div>
 								    </div>
 								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity3.png' %}" /></a>
-							    </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade active in" id="commodity-2" aria-labelledby="commodity-2-tab">
-                        <div class="row commodity-content">
-                            <div class="col-md-3 col-xs-6" style="border-top: 1px solid #eee;">
-								<div class="commodity-name-price">
-									<div class="commodity-name">
-										香槟
-									</div>
-									<div class="commodity-price ">
-										仅售：¥100
-									</div>
-								</div>
-                                    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity1.png' %} " /></a>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="commodity-row-two">
-								    <div class="commodity-name-price">
-									    <div class="commodity-name">
-										    水果拼盘
-									    </div>
-									    <div class="commodity-price">
-										    仅售：¥13.8
-									    </div>
-								    </div>
-								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity2.png' %}" /></a>
-							    </div>
-							    <div class="commodity-row-two">
-								    <div class="commodity-name-price">
-									    <div class="commodity-name">
-										    水果拼盘
-									    </div>
-									    <div class="commodity-price">
-										    仅售：¥13.8
-									    </div>
-								    </div>
-								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity2.png' %}" /></a>
-							    </div>
-                            </div>
-                            <div class="col-md-5 col-xs-12">
-                                <div class="commodity-quarter-two col-md-6 col-xs-6">
-								    <div class="commodity-name-price">
-									    <div class="commodity-name">
-										    坚果礼盒
-									    </div>
-									    <div class="commodity-price">
-										    仅售：¥13.8
-									    </div>
-								    </div>
-								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity3.png' %}" /></a>
-							    </div>
-                                <div class="commodity-quarter-two col-md-6 col-xs-6">
-								    <div class="commodity-name-price">
-									    <div class="commodity-name">
-										    坚果礼盒
-									    </div>
-									    <div class="commodity-price">
-										    仅售：¥13.8
-									    </div>
-								    </div>
-								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity3.png' %}" /></a>
-							    </div>
-                                <div class="commodity-quarter-two col-md-6 col-xs-6">
-								    <div class="commodity-name-price">
-									    <div class="commodity-name">
-										    坚果礼盒
-									    </div>
-									    <div class="commodity-price">
-										    仅售：¥13.8
-									    </div>
-								    </div>
-								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity3.png' %}" /></a>
-							    </div>
-                                <div class="commodity-quarter-two col-md-6 col-xs-6">
-								    <div class="commodity-name-price">
-									    <div class="commodity-name">
-										    坚果礼盒
-									    </div>
-									    <div class="commodity-price">
-										    仅售：¥13.8
-									    </div>
-								    </div>
-								    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity3.png' %}" /></a>
-							    </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="commodity-3" aria-labelledby="commodity-3-tab">
-                        <div class="row commodity-content">
-                            <div class="col-md-3 col-xs-6" style="border-top: 1px solid #eee;">
-								<div class="commodity-name-price">
-									<div class="commodity-name">
-										香槟
-									</div>
-									<div class="commodity-price ">
-										仅售：¥100
-									</div>
-								</div>
-                                    <a href="#"><img src="{% static 'images/app/commodity1.png' %} " /></a>
-                            </div>
-                            <div class="col-md-4 col-xs-6">
-                                <div class="commodity-row-two">
-								    <div class="commodity-name-price">
-									    <div class="commodity-name">
-										    水果拼盘
-									    </div>
-									    <div class="commodity-price">
-										    仅售：¥13.8
-									    </div>
-								    </div>
-								    <a href="# "><img src="{% static 'images/app/commodity2.png' %}" /></a>
-							    </div>
-							    <div class="commodity-row-two">
-								    <div class="commodity-name-price">
-									    <div class="commodity-name">
-										    水果拼盘
-									    </div>
-									    <div class="commodity-price">
-										    仅售：¥13.8
-									    </div>
-								    </div>
-								    <a href="# "><img src="{% static 'images/app/commodity2.png' %}" /></a>
-							    </div>
-                            </div>
-                            <div class="col-md-5 col-xs-12">
-                                <div class="commodity-quarter-two col-md-6 col-xs-6">
-								    <div class="commodity-name-price">
-									    <div class="commodity-name">
-										    坚果礼盒
-									    </div>
-									    <div class="commodity-price">
-										    仅售：¥13.8
-									    </div>
-								    </div>
-								    <a href="# "><img src="{% static 'images/app/commodity3.png' %}" /></a>
-							    </div>
-                                <div class="commodity-quarter-two col-md-6 col-xs-6">
-								    <div class="commodity-name-price">
-									    <div class="commodity-name">
-										    坚果礼盒
-									    </div>
-									    <div class="commodity-price">
-										    仅售：¥13.8
-									    </div>
-								    </div>
-								    <a href="# "><img src="{% static 'images/app/commodity3.png' %}" /></a>
-							    </div>
-                                <div class="commodity-quarter-two col-md-6 col-xs-6">
-								    <div class="commodity-name-price">
-									    <div class="commodity-name">
-										    坚果礼盒
-									    </div>
-									    <div class="commodity-price">
-										    仅售：¥13.8
-									    </div>
-								    </div>
-								    <a href="# "><img src="{% static 'images/app/commodity3.png' %}" /></a>
-							    </div>
-                                <div class="commodity-quarter-two col-md-6 col-xs-6">
-								    <div class="commodity-name-price">
-									    <div class="commodity-name">
-										    坚果礼盒
-									    </div>
-									    <div class="commodity-price">
-										    仅售：¥13.8
-									    </div>
-								    </div>
-								    <a href="# "><img src="{% static 'images/app/commodity3.png' %}" /></a>
 							    </div>
                             </div>
                         </div>

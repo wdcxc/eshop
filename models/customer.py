@@ -24,6 +24,10 @@ class CustomerModel(models.Model):
     birthday = models.DateField(null=True)  # 生日
     sex = models.IntegerField(choices=SEX, default=SECRET)  # 性别
     level = models.IntegerField(default=0)  # 等级
+    lockTime = models.DateTimeField(null=True)  # 账号时间
+    lockReason = models.TextField(null=True)  # 账号锁定理由
+    lock = models.BooleanField(default=False)  # 账号是否锁定
+
 
     class Meta:
         db_table = "customer"

@@ -6,6 +6,7 @@ from models.carousel import CarouselModel
 from models.product import ProductModel
 from models.productcategory import ProductCategoryModel
 from models.seller import SellerModel
+from models.shoppingguide import ShoppingGuideChannel, ShoppingGuideSubchannel
 from util.baseview import loginRequire
 
 
@@ -24,6 +25,11 @@ class CommonView(AppBaseView):
             productCategories = ProductCategoryModel.objects.all().order_by("-grade", "show", "-order", "-id")
             sortedProductCategories = self._sortProductCategories(productCategories)
             self.context["categories"] = sortedProductCategories
+        # 商品导购
+            guideChannels = ShoppingGuideChannel.objects.filter(show=True).order_by("-order")
+            for channel in guideChannels:
+                channel.__dict__.update({"subChannels":ShoppingGuideSubchannel.objects.filter(parentId=channel.id)})
+            self.context["guideChannels"] = [channel.__dict__ for channel in guideChannels]
 
     @loginRequire(redirectUrl='/customer/common/login')
     def introduction(self, request):

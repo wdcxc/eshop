@@ -58,13 +58,17 @@ class CommonView(CustomerBaseView):
                 loginedCustomer = CustomerModel.objects.get(mobile=customer["account"])
             elif email_num:
                 loginedCustomer = CustomerModel.objects.get(email=customer["account"])
-            request.session["user"] = {"id": loginedCustomer.id, "app": self.request_["appadmin"]}
-            if "refer" in request.session and "refer_app" in request.session:
-                self.context = {"code": 200, "msg": "登录成功",
-                                "data": {"account": loginedCustomer.id, "redirectPath": request.session["refer"]}}
+
+            if loginedCustomer.lock:
+                self.context = {"code": 4, "msg": "账号被锁定，请联系管理员", "data": {}}
             else:
-                self.context = {"code": 200, "msg": "登录成功",
-                                "data": {"account": loginedCustomer.id, "redirectPath": reverse("customer:index")}}
+                request.session["user"] = {"id": loginedCustomer.id, "app": self.request_["appadmin"]}
+                if "refer" in request.session and "refer_app" in request.session:
+                    self.context = {"code": 200, "msg": "登录成功",
+                                    "data": {"account": loginedCustomer.id, "redirectPath": request.session["refer"]}}
+                else:
+                    self.context = {"code": 200, "msg": "登录成功",
+                                    "data": {"account": loginedCustomer.id, "redirectPath": reverse("customer:index")}}
         else:
             self.context = {"code": 410, "msg": "账号或密码错误", "data": {}}
         print(self.context)
