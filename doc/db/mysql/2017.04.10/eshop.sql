@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2017-04-10 21:46:39
+Date: 2017-04-10 23:45:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +34,7 @@ CREATE TABLE `admin` (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('2', 'admin', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', '2017-04-10 12:40:29.650244', '1', '2017-03-25 11:29:31.542917', '0');
+INSERT INTO `admin` VALUES ('2', 'admin', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', '2017-04-10 14:25:10.143442', '1', '2017-03-25 11:29:31.542917', '0');
 INSERT INTO `admin` VALUES ('9', 'test', 'ee26b0dd4af7e749aa1a8ee3c10ae9923f618980772e473f8819a5d4940e0db27ac185f8a0e1d5f84f88bc887fd67b143732c304cc5fa9ad8e6f57f50028a8ff', '2017-03-27 13:42:32.194601', '0', '2017-03-26 15:50:38.316031', '2');
 INSERT INTO `admin` VALUES ('10', 'root', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', null, '1', '2017-03-26 15:50:55.918497', '2');
 
@@ -275,6 +275,9 @@ CREATE TABLE `customer` (
   `sex` int(11) NOT NULL,
   `level` int(11) NOT NULL,
   `truename` varchar(30) DEFAULT NULL,
+  `lock` tinyint(1) NOT NULL,
+  `lockReason` longtext,
+  `lockTime` datetime(6),
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `mobile` (`mobile`),
@@ -284,7 +287,7 @@ CREATE TABLE `customer` (
 -- ----------------------------
 -- Records of customer
 -- ----------------------------
-INSERT INTO `customer` VALUES ('1', 'wdcxc!', '696ed12e9d81ec95308f7f31b6847778ed4443058c528b65dfaa2d9d5193e0da6c7af022b84a0e8781625bcd4a4fc3a5a6527c6e78c78ad5f210abe8131fa138', 'wdcxc', '15603005920', 'a@b.com', '/static/media/fileupload/customer/20170330/1490857498.593217_activity.jpg', '2017-03-30 02:41:38.169109', '2017-03-02', '1', '0', '*');
+INSERT INTO `customer` VALUES ('1', 'wdcxc!', '696ed12e9d81ec95308f7f31b6847778ed4443058c528b65dfaa2d9d5193e0da6c7af022b84a0e8781625bcd4a4fc3a5a6527c6e78c78ad5f210abe8131fa138', 'wdcxc', '15603005920', 'a@b.com', '/static/media/fileupload/customer/20170330/1490857498.593217_activity.jpg', '2017-03-30 02:41:38.169109', '2017-03-02', '1', '0', '*', '0', null, null);
 
 -- ----------------------------
 -- Table structure for customer_collection
@@ -357,7 +360,7 @@ CREATE TABLE `customer_suggestion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` int(11) NOT NULL,
   `suggestion` longtext NOT NULL,
-  `reply` longtext NOT NULL,
+  `reply` longtext,
   `addTime` datetime(6) NOT NULL,
   `replyTime` datetime(6) DEFAULT NULL,
   `replyer_id` int(11) DEFAULT NULL,
@@ -372,8 +375,8 @@ CREATE TABLE `customer_suggestion` (
 -- ----------------------------
 -- Records of customer_suggestion
 -- ----------------------------
-INSERT INTO `customer_suggestion` VALUES ('1', '1', 'xx的服务态度让我很不爽', '', '2017-04-08 14:02:50.125675', null, null, '1');
-INSERT INTO `customer_suggestion` VALUES ('2', '4', '666……888', '', '2017-04-08 14:03:55.728527', null, null, '1');
+INSERT INTO `customer_suggestion` VALUES ('1', '1', 'xx的服务态度让我很不爽', 'yes', '2017-04-08 14:02:50.125675', '2017-04-08 14:02:50.125675', null, '1');
+INSERT INTO `customer_suggestion` VALUES ('2', '4', '666……888', null, '2017-04-08 14:03:55.728527', null, null, '1');
 
 -- ----------------------------
 -- Table structure for django_content_type
@@ -406,7 +409,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of django_migrations
@@ -492,6 +495,8 @@ INSERT INTO `django_migrations` VALUES ('79', 'models', '0024_suggestion_custome
 INSERT INTO `django_migrations` VALUES ('80', 'models', '0025_auto_20170408_2202', '2017-04-08 14:02:11.562908');
 INSERT INTO `django_migrations` VALUES ('81', 'models', '0026_auto_20170408_2249', '2017-04-08 14:49:08.411822');
 INSERT INTO `django_migrations` VALUES ('82', 'models', '0027_auto_20170410_1054', '2017-04-10 02:54:12.269859');
+INSERT INTO `django_migrations` VALUES ('83', 'models', '0028_auto_20170410_2218', '2017-04-10 14:18:10.399569');
+INSERT INTO `django_migrations` VALUES ('84', 'models', '0029_auto_20170410_2309', '2017-04-10 15:09:56.921434');
 
 -- ----------------------------
 -- Table structure for django_session
@@ -512,7 +517,7 @@ INSERT INTO `django_session` VALUES ('4z58f9u0x471b0bhuoj3vpt1e20dsuhc', 'NDY3Mj
 INSERT INTO `django_session` VALUES ('a0c7v6wamqxnt4ki43y8ncolu42c99aj', 'ZWFkNmU4ZGM1NThiNDZjYWQwNmM2YjE5OWY5YTVjY2IwYjdiYWY2Yjp7Il9zZXNzaW9uX2V4cGlyeSI6ODY0MDAsInVzZXIiOnsiaWQiOjUsImFwcCI6InNlbGxlciJ9fQ==', '2017-04-03 11:43:23.798458');
 INSERT INTO `django_session` VALUES ('g8d0vh9j0zmkhmver3147qz32y7exijb', 'MDI5N2UyNTE4NTJhN2JlOTgzNDcwODgzYmMzYjczY2IzZTVjNmEwZTp7Il9zZXNzaW9uX2V4cGlyeSI6ODY0MDAsImNhcHRjaGFDb2RlIjoiZHNwayJ9', '2017-03-30 13:52:33.552504');
 INSERT INTO `django_session` VALUES ('g9kojloybyxv6gd5nlr0dr8pp2w0vbsi', 'MDdlNDY4YjE0MWJjMzI1M2UxNjVjNTk0ZjlkYzA1NWUyMmI0MzBkNDp7Il9zZXNzaW9uX2V4cGlyeSI6ODY0MDAsInJlZmVyIjoiaHR0cDovL3d3dy5lc2hvcC5jb20vYXBwL2NvbW1vbi9zZWFyY2g/bmFtZT0lRTglQTclODYiLCJyZWZlcl9hcHAiOiJhcHAiLCJ1c2VyIjp7ImlkIjoxLCJhcHAiOiJjdXN0b21lciJ9fQ==', '2017-04-08 09:04:50.449371');
-INSERT INTO `django_session` VALUES ('nntzpi08mpyo1lmvgj52wcwwo6firutx', 'MGRmYjZlMGJjMmM5MGZjMjNlODMyNTlhNmE2ZDExMTUzOTE0OWI0Mjp7Il9zZXNzaW9uX2V4cGlyeSI6ODY0MDAsImNhcHRjaGFDb2RlIjoiNnpzYSIsInVzZXIiOnsiYXBwIjoiY3VzdG9tZXIiLCJpZCI6MX19', '2017-04-11 13:43:04.070199');
+INSERT INTO `django_session` VALUES ('nntzpi08mpyo1lmvgj52wcwwo6firutx', 'ZjMwZmQxNzJhOWI1YjdhMzRiZmM0ZGMzYjllYjU5MjZkMjlmY2E5YTp7InVzZXIiOnsiaWQiOjEsImFwcCI6ImN1c3RvbWVyIn0sIl9zZXNzaW9uX2V4cGlyeSI6ODY0MDB9', '2017-04-11 15:30:58.908227');
 INSERT INTO `django_session` VALUES ('tmc0wjw0pmc30n15wylptdapdfk8gaba', 'ZTNkMWJiMzMzZWFiNGY5Y2RmYzg4ZWZiODBmYTQyMTk4NGUxNDBmMDp7Il9zZXNzaW9uX2V4cGlyeSI6ODY0MDAsInVzZXIiOnsiaWQiOjIsImxvZ2luVGltZSI6IjIwMTctMDMtMjggMTk6MjY6MDcuMTg0MDg2IiwidXNlcm5hbWUiOiJhZG1pbiJ9fQ==', '2017-03-29 11:26:11.663969');
 
 -- ----------------------------
@@ -853,6 +858,9 @@ CREATE TABLE `seller` (
   `shopAddress` varchar(100) NOT NULL,
   `shopName` varchar(30) NOT NULL,
   `thumbnail` varchar(200) DEFAULT NULL,
+  `lock` tinyint(1) NOT NULL,
+  `lockReason` longtext,
+  `lockTime` datetime(6),
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `idno` (`idno`),
@@ -863,8 +871,8 @@ CREATE TABLE `seller` (
 -- ----------------------------
 -- Records of seller
 -- ----------------------------
-INSERT INTO `seller` VALUES ('5', 'seller', '696ed12e9d81ec95308f7f31b6847778ed4443058c528b65dfaa2d9d5193e0da6c7af022b84a0e8781625bcd4a4fc3a5a6527c6e78c78ad5f210abe8131fa138', '15603005920', 'a@b.com', '', '123456789012345678', '2017-03-31 10:15:03.266385', '火星基地!', '啥都卖小店', '/static/media/fileupload/seller/20170331/1490967221.610906_activity3.jpg');
-INSERT INTO `seller` VALUES ('6', 'hahaha', 'd9e6762dd1c8eaf6d61b3c6192fc408d4d6d5f1176d0c29169bc24e71c3f274ad27fcd5811b313d681f7e55ec02d73d499c95455b6b5bb503acf574fba8ffe85', '15603005929', '1@2.com', '', '123456789012345679', '2017-04-03 02:10:54.523315', '', '', null);
+INSERT INTO `seller` VALUES ('5', 'seller', '696ed12e9d81ec95308f7f31b6847778ed4443058c528b65dfaa2d9d5193e0da6c7af022b84a0e8781625bcd4a4fc3a5a6527c6e78c78ad5f210abe8131fa138', '15603005920', 'a@b.com', '', '123456789012345678', '2017-03-31 10:15:03.266385', '火星基地!', '啥都卖小店', '/static/media/fileupload/seller/20170331/1490967221.610906_activity3.jpg', '0', null, null);
+INSERT INTO `seller` VALUES ('6', 'hahaha', 'd9e6762dd1c8eaf6d61b3c6192fc408d4d6d5f1176d0c29169bc24e71c3f274ad27fcd5811b313d681f7e55ec02d73d499c95455b6b5bb503acf574fba8ffe85', '15603005929', '1@2.com', '', '123456789012345679', '2017-04-03 02:10:54.523315', '', '', null, '0', null, null);
 
 -- ----------------------------
 -- Table structure for shoppingguide_channel
