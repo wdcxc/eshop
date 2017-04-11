@@ -114,9 +114,6 @@ p{
     position: absolute;
     right: 0;
 }
-.status-text{
-    padding-right: .5rem;
-}
 .col-md-3-2{
     width: 10%;
     float: left;
