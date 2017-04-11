@@ -33,19 +33,19 @@
                                  aria-labelledby="refund-tab">
                                 <div class="table">
                                     <ul class="table-header">
-                                        <li class="text-center col-md-2">退款时间</li>
+                                        <li class="text-center col-md-3">退款时间</li>
                                         <li class="text-center col-md-2">退款状态</li>
-                                        <li class="text-center col-md-3">退款原因</li>
-                                        <li class="text-center col-md-2">商家反馈时间</li>
-                                        <li class="text-center col-md-3">反馈内容</li>
+                                        <li class="text-center col-md-2">退款原因</li>
+                                        <li class="text-center col-md-3">商家反馈时间</li>
+                                        <li class="text-center col-md-2">反馈内容</li>
                                     </ul>
                                     {% for refund in refunds %}
                                     <ul class="table-content">
-                                        <li class="col-md-2 text-center refund-time">{{ refund.refundTime }}</li>
+                                        <li class="col-md-3 text-center refund-time">{{ refund.refundTime }}</li>
                                         <li class="col-md-2 text-center refund-type">{{ refund.status }}</li>
-                                        <li class="col-md-3 refund-detail">{{ refund.refundReason }}</li>
-                                        <li class="col-md-2 text-center reply-time">{{ refund.refundDealTime|default_if_none:"" }}</li>
-                                        <li class="col-md-3 reply-content">{{ refund.refundDealResult|default_if_none:"" }}</li>
+                                        <li class="col-md-2 refund-detail">{{ refund.refundReason }}</li>
+                                        <li class="col-md-3 text-center reply-time">{{ refund.refundDealTime|default_if_none:"" }}</li>
+                                        <li class="col-md-2 reply-content">{{ refund.refundDealResult|default_if_none:"" }}</li>
                                     </ul>
                                     {% endfor %}
                                     <nav aria-label="Page navigation">
