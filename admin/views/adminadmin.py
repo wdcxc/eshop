@@ -161,3 +161,7 @@ class AdminAdminView(AdminBaseView):
             nodeId = request.POST.get("id")
             NodeModel.objects.filter(id=nodeId).update(**vals)
             self.context = {"code":200,"msg":"修改节点成功","data":{"id":nodeId}}
+
+    @loginRequire()
+    def setting(self, request):
+        pass

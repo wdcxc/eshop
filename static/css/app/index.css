@@ -278,10 +278,15 @@
 }
 .commodity-content{
     max-width: 60rem;
-    border: 1px solid #eee;
-    border-top: none;
     margin: 0 auto;
     width: 100%;
+}
+.commodity-content>div{
+    border: 1px solid #eee;
+    border-left: none;
+}
+.commodity-content>div:first-child{
+    border-left: 1px solid #eee;
 }
 .commodity-name-price{
     text-align: center;
@@ -301,7 +306,7 @@
 }
 .commodity-content a img{
     width: 100%;
-    margin-top: 50%;
+    margin-top: 30%;
 }
 .commodity-row-two{
     border-top: 1px solid #eee;
@@ -333,6 +338,9 @@
 .commodity-content .col-md-3,.commodity-content .col-md-4,.commodity-content .col-md-5{
     padding-left: 0;
     padding-right: 0;
+}
+.tab{
+    margin-top: 2rem;
 }
 
 
