@@ -5,7 +5,7 @@
             <li class="operation-item">
                 hi，
                 <a href="{% url 'seller:index' %}" class="nav-user-name" style="color: #ff2832;margin-right: .2rem;">{{seller.name}}</a>
-                <a href="{% url 'seller:login' %}" rel="nofollow" class="logout">[退出]</a>
+                <a href="{% url 'seller:logout' %}" rel="nofollow" class="logout">[退出]</a>
             </li>
             <li class="operation-item">
                 <a href="{% url 'seller:order' %}" name="交易订单" rel="nofollow">交易订单</a>

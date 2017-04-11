@@ -102,138 +102,65 @@
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade" id="evaluate" aria-labelledby="evaluate-tab">
-                        <h4 class="high-praise">好评度：<span>90%</span></h4>
+                        <h4 class="high-praise">好评度：<span>{{ goodpercent }}%</span></h4>
                         <div class="evaluate-option">
                             <ul class="option-list">
                                 <li>
-                                    <a title="全部评价">全部评价(100)</a>
+                                    <a title="全部评价">全部评价({{total}})</a>
                                 </li>
                                 <li>
-                                    <a title="好评">好评(90)</a>
+                                    <a title="好评">好评({{good}})</a>
                                 </li>
                                 <li>
-                                    <a title="中评">中评(10)</a>
+                                    <a title="中评">中评({{middle}})</a>
                                 </li>
                                 <li>
-                                    <a title="差评">差评(0)</a>
+                                    <a title="差评">差评({{bad}})</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="evaluate-content">
                             <ul class="comments-list">
+                                {% for evaluation in evaluations %}
                                 <li class="comment">
                                     <div class="commenter-pic">
-                                        <img src="{% static 'images/app/commenter-head.jpg' %}" alt="评论者头像">
+                                        <img src="{{ evaluation.order.customer.avatar }}" alt="评论者头像">
                                     </div>
                                     <div class="comment-main">
                                         <header class="comment-hd">
                                             <div class="comment-meta">
-                                                <span class="commenter-name">zihang1013</span>
-                                                <span class="comment-time">评论于2017-3-26 23:00</span>
+                                                <span class="commenter-name">{{ evaluation.order.customer.name }}</span>
+                                                <span class="comment-time">评论于{{ evaluation.evaluateTime }}</span>
                                             </div>
                                         </header>
                                         <div class="comment-bd">
                                             <div class="comment-text">
-                                                式样不错，合适初春穿
-                                                <p class="comment-time">评论于2017-3-31 12:00</p>
+                                                {{ evaluation.evaluation }}
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="comment">
-                                    <div class="commenter-pic">
-                                        <img src="{% static 'images/app/commenter-head.jpg' %}" alt="评论者头像">
-                                    </div>
-                                    <div class="comment-main">
-                                        <header class="comment-hd">
-                                            <div class="comment-meta">
-                                                <span class="commenter-name">zihang1013</span>
-                                                <span class="comment-time">评论于2017-3-26 23:00</span>
-                                            </div>
-                                        </header>
-                                        <div class="comment-bd">
-                                            <div class="comment-text">
-                                                式样不错，合适初春穿
-                                                <p class="comment-time">评论于2017-3-31 12:00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="comment">
-                                    <div class="commenter-pic">
-                                        <img src="{% static 'images/app/commenter-head.jpg' %}" alt="评论者头像">
-                                    </div>
-                                    <div class="comment-main">
-                                        <header class="comment-hd">
-                                            <div class="comment-meta">
-                                                <span class="commenter-name">zihang1013</span>
-                                                <span class="comment-time">评论于2017-3-26 23:00</span>
-                                            </div>
-                                        </header>
-                                        <div class="comment-bd">
-                                            <div class="comment-text">
-                                                式样不错，合适初春穿
-                                                <p class="comment-time">评论于2017-3-31 12:00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="comment">
-                                    <div class="commenter-pic">
-                                        <img src="{% static 'images/app/commenter-head.jpg' %}" alt="评论者头像">
-                                    </div>
-                                    <div class="comment-main">
-                                        <header class="comment-hd">
-                                            <div class="comment-meta">
-                                                <span class="commenter-name">zihang1013</span>
-                                                <span class="comment-time">评论于2017-3-26 23:00</span>
-                                            </div>
-                                        </header>
-                                        <div class="comment-bd">
-                                            <div class="comment-text">
-                                                式样不错，合适初春穿
-                                                <p class="comment-time">评论于2017-3-31 12:00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="comment">
-                                    <div class="commenter-pic">
-                                        <img src="{% static 'images/app/commenter-head.jpg' %}" alt="评论者头像">
-                                    </div>
-                                    <div class="comment-main">
-                                        <header class="comment-hd">
-                                            <div class="comment-meta">
-                                                <span class="commenter-name">zihang1013</span>
-                                                <span class="comment-time">评论于2017-3-26 23:00</span>
-                                            </div>
-                                        </header>
-                                        <div class="comment-bd">
-                                            <div class="comment-text">
-                                                式样不错，合适初春穿
-                                                <p class="comment-time">评论于2017-3-31 12:00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                {% endfor %}
                             </ul>
                             <nav aria-label="Page navigation">
                                 <ul class="pagination">
+                                    {% if evaluations.has_previous %}
                                     <li>
-                                        <a href="#" aria-label="Previous">
+                                        <a href="?page={{evaluations.previous_page_number}}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                         </a>
                                     </li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
+                                    {% endif %}
+                                    {% if evaluations.number > 1 %}
+                                    <li><a href="#">{{ evaluations.number }} / {{evaluations.paginator.num_pages }}</a></li>
+                                    {% endif %}
+                                    {% if evaluations.has_next %}
                                     <li>
-                                        <a href="#" aria-label="Next">
+                                        <a href="?page={{ evaluations.next_page_number }}" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>
+                                    {% endif %}
                                 </ul>
                             </nav>
                         </div>

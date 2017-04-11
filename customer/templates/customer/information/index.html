@@ -38,20 +38,18 @@
                         <div class="order-content-box">
                             <div class="order-content">
                                 <ul class="order-content-pic">
-                                    {% for product in order.products %}
                                     <li class="img-box">
-                                        <img src="{{ product.product.thumbnail }}" alt="订单商品图片">
+                                        <img src="{{ order.product.thumbnail }}" alt="订单商品图片">
                                     </li>
-                                    {% endfor %}
                                 </ul>
                                 <div class="detail-content">
                                     <p class="delivery-time">{{ order.addTime }}</p>
-                                    <p class="delivery-num"></p>
+                                    <p class="delivery-num">{{ order.amount }}</p>
                                 </div>
                                 <div class="evaluate">{{ order.status.text }}</div>
                                 <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>{{ order.totalPrice }}</div>
                             </div>
-                            <a href="{% url 'customer:order' %}?id={{order.id}}" class="buy-btn">详情</a>
+                            <a href="{% url 'customer:order' %}?id={{order.product.id}}" class="buy-btn">详情</a>
                         </div>
                         {% endfor %}
                     {% endif %}

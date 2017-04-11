@@ -5,6 +5,7 @@ from django.urls import reverse
 
 from app.views.appbaseview import AppBaseView
 from models.carousel import CarouselModel
+from models.order import OrderProductModel
 from models.product import ProductModel
 from models.productcategory import ProductCategoryModel
 from models.seller import SellerModel
@@ -31,7 +32,7 @@ class CommonView(AppBaseView):
         guideChannels = ShoppingGuideChannel.objects.filter(show=True).order_by("-order")
         guideSubChannels = ShoppingGuideSubchannel.objects.filter(show=True).order_by("-order")
         guideProducts = ShoppingGuideProduct.objects.filter(show=True).order_by("-order")
-        self.context["channels"] = self._sortShoppingGuide(guideChannels,guideSubChannels,guideProducts)
+        self.context["channels"] = self._sortShoppingGuide(guideChannels, guideSubChannels, guideProducts)
 
     @loginRequire(redirectUrl='/customer/common/login')
     def introduction(self, request):
@@ -52,6 +53,23 @@ class CommonView(AppBaseView):
         collection = self.context["customer"].collections.filter(product=product)
         if collection.exists():
             self.context["collection"] = collection[0]
+
+        # 评价
+        evaluations = product.ordProducts.filter(evaluation__isnull=False).order_by("-evaluateTime")
+        self.context["total"] = evaluations.count()
+        self.context["good"] = evaluations.filter(eGrade=OrderProductModel.GOOD).count()
+        self.context["middle"] = evaluations.filter(eGrade=OrderProductModel.MIDDLE).count()
+        self.context["bad"] = evaluations.filter(eGrade=OrderProductModel.BAD).count()
+        self.context["goodpercent"] = 100 if not self.context["total"] else self.context["good"] / self.context[
+            "total"] * 100
+        page = request.GET.get("page")
+        paginator = Paginator(evaluations, 10)
+        try:
+            self.context["evaluations"] = paginator.page(page)
+        except EmptyPage:
+            self.context["evaluations"] = paginator.page(paginator.num_pages)
+        except PageNotAnInteger:
+            self.context["evaluations"] = paginator.page(1)
 
         # 同类商品推荐
         self.context["recmandProducts"] = ProductModel.objects.filter(category=product.category).exclude(id=product.id)[

@@ -2,7 +2,7 @@
 
 from customer.views.customerbaseview import CustomerBaseView
 from models.customer import CustomerModel
-from models.order import OrderModel
+from models.order import OrderProductModel
 from util.baseview import loginRequire
 from util.geodata import GeoData
 from util.upload import Upload
@@ -14,19 +14,20 @@ class InformationView(CustomerBaseView):
         """买家首页"""
         customer = self.context["customer"]
         # 订单
-        orders = customer.orders.all().order_by("-addTime")
-        self.context["unpayOrderNum"] = orders.filter(status=OrderModel.UNPAY).count()
-        self.context["unsendOrderNum"] = orders.filter(status=OrderModel.UNSEND).count()
-        self.context["unreceiveOrderNum"] = orders.filter(status=OrderModel.UNRECEIVE).count()
-        self.context["unevaluateOrderNum"] = orders.filter(status=OrderModel.UNEVALUATE).count()
+        orders = OrderProductModel.objects.filter(order__customer=customer).order_by("-addTime")
+        self.context["unpayOrderNum"] = orders.filter(status=OrderProductModel.UNPAY).count()
+        self.context["unsendOrderNum"] = orders.filter(status=OrderProductModel.UNSEND).count()
+        self.context["unreceiveOrderNum"] = orders.filter(status=OrderProductModel.UNRECEIVE).count()
+        self.context["unevaluateOrderNum"] = orders.filter(status=OrderProductModel.UNEVALUATE).count()
         orders = orders[:2]
         for order in orders:
-            products = order.products.all()
-            order.__dict__.update({"products": products, "totalPrice": 0, "productsNum": products.count()})
-            for product in products:
-                order.__dict__["totalPrice"] += 0 if not product.sellPrice else product.sellPrice
-            orderStatusDict = {OrderModel.UNPAY: "待付款", OrderModel.UNSEND: "待发货", OrderModel.UNRECEIVE: "待收获",
-                               OrderModel.UNEVALUATE: "待评价",OrderModel.CANCEL:"取消"}
+            order.__dict__.update({"totalPrice": 0,"product":order.product})
+            order.__dict__["totalPrice"] += 0 if not order.sellPrice else order.sellPrice
+            orderStatusDict = {OrderProductModel.UNPAY: "待付款", OrderProductModel.UNSEND: "待发货",
+                               OrderProductModel.UNRECEIVE: "待收货",
+                               OrderProductModel.UNEVALUATE: "待评价", OrderProductModel.CANCEL: "取消",
+                               OrderProductModel.REFUND: "退货", OrderProductModel.AC_REFUND: "商家接受退货",
+                               OrderProductModel.RF_REFUND: "商家拒绝退货", OrderProductModel.FINISH: "订单完成"}
             order.__dict__.update({"status": {"code": order.status, "text": orderStatusDict[order.status]}})
         self.context["orders"] = [order.__dict__ for order in orders]
         # 收藏

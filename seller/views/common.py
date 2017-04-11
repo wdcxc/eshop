@@ -1,6 +1,7 @@
 import hashlib
 
 from django.conf import settings
+from django.urls import reverse
 
 from models.customer import ProductConsultModel
 from models.order import OrderProductModel
@@ -9,7 +10,6 @@ from seller.views.sellerbaseview import SellerBaseView
 from util.baseview import BaseView, valifyCaptcha, loginRequire
 from util.regex import Regex
 from util.upload import Upload
-
 
 class CommonView(SellerBaseView):
     @loginRequire()
@@ -144,3 +144,13 @@ class CommonView(SellerBaseView):
             seller.thumbnail = settings.MEDIA_ROOT + result["data"]["imgUrl"]
             seller.save()
         self.context = result
+
+    @loginRequire()
+    def logout(self,request):
+        """退出登录"""
+        self.response_["type"] = self.RESPONSE_TYPE_REDIRECT
+        if "user" in request.session:
+            del request.session["user"]
+        if "seller" in self.context:
+            del self.context["seller"]
+        self.context["redirectPath"] = reverse("seller:login")
