@@ -122,65 +122,119 @@
             <!--商品导购区-->
 			{% for channel in guideChannels %}
             <div class="tabs">
-                <div class="shop-sub-title">{{channel.name}}</div>
-                <ul id="myTabs" class="nav nav-tabs" role="tablist">
-					{% for subChannel in channel.subChannels %}
-                    <li role="presentation" class="{% if forloop.first %}active{% endif %}"><a href="#commodity-{{forloop.counter}}" role="tab" id="commodity-{{forloop.counter}}-tab"
-                                                              data-toggle="tab" aria-controls="commodity-{{forloop.counter}}"
-                                                              aria-expanded="true">{{subChannel.name}}</a></li>
-					{% endfor %}
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                    {% for subChannel in channel.subChannels %}
-                    <div role="tabpanel" class="container tab-pane fade" id="commodity-{{forloop.counter}}" aria-labelledby="commodity-{{forloop.counter}}-tab" style="padding:0">
-                        <div class="row commodity-content">
-                            <div class="col-md-3 col-xs-6" style="border-top: 1px solid #eee;">
-								<div class="commodity-name-price">
-									<div class="commodity-name">
-										香槟
-									</div>
-									<div class="commodity-price ">
-										仅售：¥100
-									</div>
-								</div>
-                                    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity1.png' %} " /></a>
+                <div class="tab">
+                    <div class="shop-sub-title">{{channel.name}}</div>
+                    <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                        {% for subChannel in channel.subChannels %}
+                            <li role="presentation" class="{% if forloop.first %}active{% endif %}"><a
+                                    href="#commodity-{{ forloop.counter }}" role="tab"
+                                    id="commodity-{{ forloop.counter }}-tab"
+                                    data-toggle="tab" aria-controls="commodity-{{ forloop.counter }}"
+                                    aria-expanded="true">{{ subChannel.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        {% for subChannel in channel.subChannels %}
+                            <div role="tabpanel" class="container tab-pane fade {% if forloop.first %}active in{% endif %}" id="commodity-{{ forloop.counter }}"
+                                 aria-labelledby="commodity-{{ forloop.counter }}-tab" style="padding:0">
+                                <div class="row commodity-content">
+                                    <div class="col-md-3 col-xs-6">
+                                        <div class="commodity-name-price">
+                                            <div class="commodity-name">
+                                                香槟
+                                            </div>
+                                            <div class="commodity-price ">
+                                                仅售：¥100
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'app:introduction' %}"><img
+                                                src="{% static 'images/app/commodity1.png' %} "/></a>
+                                    </div>
+                                    <div class="col-md-3 col-xs-6">
+                                        <div class="commodity-name-price">
+                                            <div class="commodity-name">
+                                                香槟
+                                            </div>
+                                            <div class="commodity-price ">
+                                                仅售：¥100
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'app:introduction' %}"><img
+                                                src="{% static 'images/app/commodity1.png' %} "/></a>
+                                    </div>
+                                    <div class="col-md-3 col-xs-6">
+                                        <div class="commodity-name-price">
+                                            <div class="commodity-name">
+                                                香槟
+                                            </div>
+                                            <div class="commodity-price ">
+                                                仅售：¥100
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'app:introduction' %}"><img
+                                                src="{% static 'images/app/commodity1.png' %} "/></a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-3 col-xs-6" style="border-top: 1px solid #eee;">
-								<div class="commodity-name-price">
-									<div class="commodity-name">
-										香槟
-									</div>
-									<div class="commodity-price ">
-										仅售：¥100
-									</div>
-								</div>
-                                    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity1.png' %} " /></a>
-                            </div>
-                            <div class="col-md-3 col-xs-6" style="border-top: 1px solid #eee;">
-								<div class="commodity-name-price">
-									<div class="commodity-name">
-										香槟
-									</div>
-									<div class="commodity-price ">
-										仅售：¥100
-									</div>
-								</div>
-                                    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity1.png' %} " /></a>
-                            </div>
-                            <div class="col-md-3 col-xs-6" style="border-top: 1px solid #eee;">
-								<div class="commodity-name-price">
-									<div class="commodity-name">
-										香槟
-									</div>
-									<div class="commodity-price ">
-										仅售：¥100
-									</div>
-								</div>
-                                    <a href="{% url 'app:introduction' %}"><img src="{% static 'images/app/commodity1.png' %} " /></a>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
+                </div>
+                <div class="tab">
+                    <div class="shop-sub-title">{{channel.name}}</div>
+                    <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                        {% for subChannel in channel.subChannels %}
+                            <li role="presentation" class="{% if forloop.first %}active{% endif %}"><a
+                                    href="#commodity-{{ forloop.counter }}" role="tab"
+                                    id="commodity-{{ forloop.counter }}-tab"
+                                    data-toggle="tab" aria-controls="commodity-{{ forloop.counter }}"
+                                    aria-expanded="true">{{ subChannel.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        {% for subChannel in channel.subChannels %}
+                            <div role="tabpanel" class="container tab-pane fade {% if forloop.first %}active in{% endif %}" id="commodity-{{ forloop.counter }}"
+                                 aria-labelledby="commodity-{{ forloop.counter }}-tab" style="padding:0">
+                                <div class="row commodity-content">
+                                    <div class="col-md-3 col-xs-6">
+                                        <div class="commodity-name-price">
+                                            <div class="commodity-name">
+                                                香槟
+                                            </div>
+                                            <div class="commodity-price ">
+                                                仅售：¥100
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'app:introduction' %}"><img
+                                                src="{% static 'images/app/commodity1.png' %} "/></a>
+                                    </div>
+                                    <div class="col-md-3 col-xs-6">
+                                        <div class="commodity-name-price">
+                                            <div class="commodity-name">
+                                                香槟
+                                            </div>
+                                            <div class="commodity-price ">
+                                                仅售：¥100
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'app:introduction' %}"><img
+                                                src="{% static 'images/app/commodity1.png' %} "/></a>
+                                    </div>
+                                    <div class="col-md-3 col-xs-6">
+                                        <div class="commodity-name-price">
+                                            <div class="commodity-name">
+                                                香槟
+                                            </div>
+                                            <div class="commodity-price ">
+                                                仅售：¥100
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'app:introduction' %}"><img
+                                                src="{% static 'images/app/commodity1.png' %} "/></a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
 			{% endfor %}

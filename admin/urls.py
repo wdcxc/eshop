@@ -34,6 +34,7 @@ urlpatterns += [
     url(r'^adminadmin/addNode$', AdminAdminView.as_view(), name="adminAdminAddNode"),
     url(r'^adminadmin/deleteNode$', AdminAdminView.as_view(), name="adminAdminDeleteNode"),
     url(r'^adminadmin/updateNode$', AdminAdminView.as_view(), name="adminAdminUpdateNode"),
+    url(r'^adminadmin/setting$', AdminAdminView.as_view(), name="adminAdminSetting"),
 ]
 
 # customeradmin 买家管理

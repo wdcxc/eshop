@@ -4,7 +4,7 @@
         <div class="dropdown">
             <div href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{user.username}} <span class="caret"></span></div>
             <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="#"><span class="glyphicon glyphicon-asterisk"></span> 设置</a></li>
+                <li><a href="{% url 'admin:adminAdminSetting' %}"><span class="glyphicon glyphicon-asterisk"></span> 设置</a></li>
                 <li><a href="{% url 'admin:logout' %}"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
             </ul>
         </div>
@@ -32,8 +32,8 @@
         <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:appAdminIndex' %}">商城管理</a>
     </li>
     <li>
-        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-        <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:appAdminIndex' %}">账户管理</a>
+        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+        <a href="{% url 'admin:logout' %}">退出</a>
     </li>
 </ul>
 
