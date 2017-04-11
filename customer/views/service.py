@@ -58,7 +58,7 @@ class ServiceView(CustomerBaseView):
         """退款回复"""
         customer = self.context["customer"]
         ordProducts = OrderProductModel.objects.filter(order__customer=customer, status__in=(
-        OrderProductModel.AC_REFUND, OrderProductModel.REFUND))
+            OrderProductModel.AC_REFUND, OrderProductModel.REFUND, OrderProductModel.RF_REFUND))
         page = request.GET.get("page")
         paginator = Paginator(ordProducts, 2)
         try:
@@ -68,6 +68,7 @@ class ServiceView(CustomerBaseView):
         except PageNotAnInteger:
             self.context["refunds"] = paginator.page(1)
 
-        refundStatusDict = {OrderProductModel.REFUND:"等待商家处理",OrderProductModel.AC_REFUND:"商家接受退货",OrderProductModel.RF_REFUND:"商家拒接退货"}
+        refundStatusDict = {OrderProductModel.REFUND: "等待商家处理", OrderProductModel.AC_REFUND: "商家接受退货",
+                            OrderProductModel.RF_REFUND: "商家拒绝退货"}
         for refund in self.context["refunds"]:
             refund.status = refundStatusDict[refund.status]
