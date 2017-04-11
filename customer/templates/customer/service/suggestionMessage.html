@@ -40,10 +40,10 @@
                                     </ul>
                                     {% for suggestion in suggestions %}
                                     <ul class="table-content">
-                                        <li class="col-md-2 text-center opinion-time">{{ suggestion.addTime }}</li>
+                                        <li class="col-md-2 text-center opinion-time" style="padding: 0">{{ suggestion.addTime }}</li>
                                         <li class="col-md-2 text-center opinion-type">{{ suggestion.type }}</li>
                                         <li class="col-md-3 opinion-detail">{{ suggestion.suggestion }}</li>
-                                        <li class="col-md-2 text-center reply-time">{{ suggestion.replyTime }}</li>
+                                        <li class="col-md-2 text-center reply-time" style="padding: 0">{{ suggestion.replyTime }}</li>
                                         <li class="col-md-3 reply-content">{{ suggestion.reply }}</li>
                                     </ul>
                                     {% endfor %}

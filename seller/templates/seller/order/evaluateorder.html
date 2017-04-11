@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
-{% block title %}订单管理{% endblock %}
+{% block title %}待评价订单{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/seller/header.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/seller/aside.css' %}">
@@ -24,9 +24,9 @@
                     <div class="content">
                         <div class="order-list">
                             <ul class="nav nav-tabs nav-justified" style="padding: .5rem">
-                                <li role="presentation" class="active"><a href="{% url 'seller:order' %}">待发货</a></li>
+                                <li role="presentation"><a href="{% url 'seller:order' %}">待发货</a></li>
                                 <li role="presentation"><a href="{% url 'seller:receiveorder' %}">待收货</a></li>
-                                <li role="presentation"><a href="{% url 'seller:evaluateorder' %}">待评价</a></li>
+                                <li role="presentation" class="active"><a href="{% url 'seller:evaluateorder' %}">待评价</a></li>
                             </ul>
                             <div class="clearfix"></div>
                             <div id="myTabContent" class="tab-content">
@@ -36,10 +36,9 @@
                                     <ul class="table-header">
                                         <li class="text-center col-md-5">商品</li>
                                         <li class="text-center col-md-1">单价</li>
-                                        <li class="text-center col-md-1">数量</li>
+                                        <li class="text-center col-md-2">数量</li>
                                         <li class="text-center col-md-1">合计</li>
                                         <li class="text-center col-md-2">交易状态</li>
-                                        <li class="text-center col-md-3-2">交易操作</li>
                                     </ul>
                                     <div class="order">
                                         <p class="order-detail">
@@ -58,19 +57,15 @@
                                                     </ul>
                                                 </li>
                                                 <li class="col-md-1 text-center commodity-price">62.00</li>
-                                                <li class="col-md-1 text-center commodity-num">1</li>
+                                                <li class="col-md-2 text-center commodity-num">1</li>
                                             </ul>
-                                            <div class="table-right">
+                                            <div class="table-right" style="right: -14%;width: 45%;">
                                                 <ul>
                                                     <li>
                                                         <p class="total-price">62.00</p>
                                                     </li>
-                                                    <li class="transaction-status">
-                                                        <p class="status-text">买家已付款</p>
-                                                    </li>
-                                                    <li class="transaction-operation">
-                                                        <a class="btn" data-toggle="modal" data-target="#sentModal"
-                                                           role="button">发货</a>
+                                                    <li class="transaction-status" style="margin-left: 8%;">
+                                                        <p class="status-text">买家已收货，等待买家评价</p>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -100,24 +95,6 @@
             </div>
         </div>
     {% include "seller/aside.html" %}
-    </div>
-    <!--发货模态框-->
-    <div class="modal fade" id="sentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
-                </div>
-                <div class="modal-body">
-                    已发货，等待买家签收
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
-                </div>
-            </div>
-        </div>
     </div>
 {% endblock %}
 

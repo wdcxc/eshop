@@ -6,7 +6,15 @@ from util.baseview import loginRequire
 class OrderView(SellerBaseView):
     @loginRequire()
     def order(self, request):
-        """订单首页"""
+        """待发货订单"""
+        pass
+
+    def receiveorder(self, request):
+        """待收货订单"""
+        pass
+
+    def evaluateorder(self, request):
+        """待评价订单"""
         pass
 
     @loginRequire()

@@ -60,7 +60,7 @@
                                         </li>
                                         <li class="col-md-1 text-center commodity-price">{{product.sellPrice}}</li>
                                         <li class="col-md-1 text-center commodity-num">{{product.amount}}</li>
-                                        <li class="col-md-1 text-center return-money"><a href="refundapply">退款/退货</a></li>
+                                        <li class="col-md-1 text-center return-money"><a role="button" data-toggle="modal" data-target="#refundModal">退款</a></li>
                                         <li class="col-md-2 text-center transaction-status">
                                             <p class="status-text">交易成功</p>
                                         </li>
@@ -106,21 +106,21 @@
         </div>
     {% include "customer/aside.html" %}
     </div>
-    <!--支付模态框 -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="payModal">
+    <!--退款理由填写模态框 -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="refundModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">付款</h4>
+                    <h4 class="modal-title">退款理由填写</h4>
                 </div>
                 <div class="modal-body">
-                    <p style="font-size: .6rem">需支付：<span class="pay-sum" style="font-size: 1.2rem">126.00</span>元</p>
+                    <textarea class="form-control" rows="3" placeholder="请填写你的退款理由"></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn" style="background-color: #ff6400;color: #fff">支付</button>
-                    <button type="button" class="btn btn-default">取消</button>
+                    <button type="button" class="btn btn-primary">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
             </div>
         </div>

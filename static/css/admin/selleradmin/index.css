@@ -1,5 +1,22 @@
 .search{
+    position: relative;
     overflow: hidden;
+    padding-bottom: 2rem;
+}
+.search nav{
+    position: absolute;
+    bottom: -.8rem;
+    right: 0;
+}
+.search h2{
+    position: absolute;
+    font-size: .8rem;
+    margin: 0;
+    left: .2rem;
+}
+.search h2 span{
+    font-size: 1.4rem;
+    color: #337ab7;
 }
 .search .input-group{
     float: right;
@@ -13,4 +30,7 @@ table th,td{
 table td{
     padding-bottom: .6rem;
     padding-top:.6rem;
+}
+td a{
+    margin-left: .5rem;
 }

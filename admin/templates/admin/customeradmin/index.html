@@ -9,6 +9,7 @@
 
 {% block withnavbody %}
     <div class="search">
+        <h2>共有<span class="buyer-num">20</span>个买家</h2>
         <form class="search-form" method="get" action="{% url 'admin:customerAdminIndex' %}">
             <div class="input-group col-md-3">
                 <input type="text" name="name" class="form-control" placeholder="请输入买家名"/>
@@ -24,6 +25,7 @@
                 <tr>
                     <th>买家名</th>
                     <th>买家注册时间</th>
+                    <th style="min-width: 4rem">状态</th>
                     <th>操作</th>
                 </tr>
             </thead>
@@ -32,23 +34,57 @@
                 <tr>
                     <td>{{customer.name}}</td>
                     <td>{{customer.registTime}}</td>
+                    <td></td>
                     <td>
+                        <a class="btn btn-default" data-toggle="modal" data-target="#cancelModal">取消封号</a>
                         <a class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">封号</a>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
+            <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
         </table>
     </div>
     <!--确认封号模态框-->
-<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                </div>
+                <div class="modal-body">确定对买家zihang进行封号吗？</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--取消封号模态框-->
+    <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="myModalLabel">系统提示</h4>
             </div>
-            <div class="modal-body">确定对买家zihang进行封号吗？</div>
+            <div class="modal-body">确定对买家zihang取消封号吗？</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary">确定</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

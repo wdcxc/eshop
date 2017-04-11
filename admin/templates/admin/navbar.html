@@ -29,99 +29,12 @@
     </li>
     <li>
         <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-        {% comment %}<h2>商城管理</h2>{% endcomment %}
         <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:appAdminIndex' %}">商城管理</a>
-        {% comment %}<ul class="sub-menu">
-            <li>
-                <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %}
-                   href="{% url 'admin:appAdminCarousel' %}">
-                    轮播图管理</a>
-            </li>
-            <li>
-                <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %}
-                   href="{% url 'admin:appAdminProductCategory' %}">
-                    商品目录导航管理</a>
-            </li>
-            <li>
-                <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %}
-                   href="{% url 'admin:appAdminShoppingGuide' %}">
-                    商品导购管理</a>
-            </li>
-        </ul>{% endcomment %}
     </li>
     <li>
-        <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
-        <h2>商品管理</h2>
-        <ul class="sub-menu">
-            <li>
-                <a {% ifequal controller "productadmin" %}class="affix-active-item"{% endifequal %}
-                   href="{% url 'admin:productAdminCategory' %}">
-                    商品目录管理</a>
-            </li>
-        </ul>
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:appAdminIndex' %}">账户管理</a>
     </li>
-    {% comment %}<li><a {% ifequal controller "productadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:productAdminIndex' %}">商品管理</a></li>{% endcomment %}
 </ul>
-{% comment %}<div class="page-sidebar nav-collapse collapse">
-    <ul class="page-sidebar-menu">
-        <li class="start active">
-            <a href="{% url 'admin:index' %}">
-                <span class="title">总览</span>
-                <span class="selected"></span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{% url 'admin:customerAdminIndex' %}">
-                <span class="title">买家管理</span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{% url 'admin:sellerAdminIndex' %}">
-                <span class="title">卖家管理</span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{% url 'admin:adminAdminAdminIndex' %}">
-                <span class="title">管理员管理</span>
-            </a>
-        </li>
-        <li class="">
-            <a href="{% url 'admin:appAdminIndex' %}">
-                <span class="title">商城管理</span>
-                <span class="arrow "></span>
-            </a>
-            <ul class="sub-menu">
-                <li>
-                    <a href="{% url 'admin:appAdminCarousel' %}">
-                        轮播图管理</a>
-                </li>
-                <li>
-                    <a href="{% url 'admin:appAdminProductCategory' %}">
-                        商品目录导航管理</a>
-                </li>
-                <li>
-                    <a href="{% url 'admin:appAdminShoppingGuide' %}">
-                        商品导购管理</a>
-                </li>
-            </ul>
-        </li>
-        <li class="">
-            <a href="{% url 'admin:productAdminIndex' %}">
-                <span class="title">商品管理</span>
-                <span class="arrow "></span>
-            </a>
-            <ul class="sub-menu">
-                <li>
-                    <a href="{% url 'admin:productAdminCategory' %}">
-                        商品目录管理</a>
-                </li>
-                <li>
-                    <a href="{% url 'admin:productAdminProduct' %}">
-                        商品管理</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</div>{% endcomment %}
 
 

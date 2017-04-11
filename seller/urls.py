@@ -39,5 +39,7 @@ urlpatterns += [
 # 订单
 urlpatterns += [
     url(r'^order/order', OrderView.as_view(), name="order"),
+    url(r'^order/receiveorder', OrderView.as_view(), name="receiveorder"),
+    url(r'^order/evaluateorder', OrderView.as_view(), name="evaluateorder"),
     url(r'^order/sendProduct', OrderView.as_view(), name="sendProduct"),
 ]

@@ -32,9 +32,8 @@
                             <div class="container tab-pane fade order-table active in" id="toReceiveOrder" role="tabpanel" aria-labelledby="toreceive">
                             <ul class="table-header">
                                 <li class="text-center col-md-4">商品</li>
-                                <li class="text-center col-md-1">单价</li>
+                                <li class="text-center col-md-2">单价</li>
                                 <li class="text-center col-md-1">数量</li>
-                                <li class="text-center col-md-1">商品操作</li>
                                 <li class="text-center col-md-2">交易状态</li>
                                 <li class="text-center col-md-2">交易操作</li>
                                 <li class="text-center col-md-1">合计</li>
@@ -58,9 +57,8 @@
                                                 <li class="commodity-attribute">{{ product.product.brand }}</li>
                                             </ul>
                                         </li>
-                                        <li class="col-md-1 text-center commodity-price">{{ product.sellPrice }}</li>
+                                        <li class="col-md-2 text-center commodity-price">{{ product.sellPrice }}</li>
                                         <li class="col-md-1 text-center commodity-num">{{product.amount}}</li>
-                                        <li class="col-md-1 text-center return-money"><a href="">退款/退货</a></li>
                                         <li class="col-md-2 text-center transaction-status">
                                             <p class="status-text">卖家已发货</p>
                                         </li>

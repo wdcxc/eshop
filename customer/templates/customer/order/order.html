@@ -33,10 +33,9 @@
                              aria-labelledby="tosent">
                             <ul class="table-header">
                                 <li class="text-center col-md-4">商品</li>
-                                <li class="text-center col-md-1">单价</li>
-                                <li class="text-center col-md-1">数量</li>
+                                <li class="text-center col-md-2">单价</li>
+                                <li class="text-center col-md-2">数量</li>
                                 <li class="text-center col-md-2">交易状态</li>
-                                <li class="text-center col-md-2">交易操作</li>
                                 <li class="text-center col-md-2">合计</li>
                             </ul>
                             {% for product in products %}
@@ -58,14 +57,12 @@
                                                 <li class="commodity-attribute">{{product.product.brand}}</li>
                                             </ul>
                                         </li>
-                                        <li class="col-md-1 text-center commodity-price">{{product.sellPrice}}</li>
-                                        <li class="col-md-1 text-center commodity-num">{{product.amount}}</li>
+                                        <li class="col-md-2 text-center commodity-price">{{product.sellPrice}}</li>
+                                        <li class="col-md-2 text-center commodity-num">{{product.amount}}</li>
                                         <li class="col-md-2 text-center transaction-status">
                                             <p class="status-text">买家已付款</p>
                                         </li>
-                                        <li class="col-md-2 text-center transaction-operation">
-                                            <a class="btn" role="button" data-toggle="modal" data-target="#refundModal">退款/退货</a>
-                                        </li>
+                                        <li class="col-md-2 text-center transaction-operation"></li>
                                     </ul>
                                     <div class="table-right" style="width: 16%">
                                         <ul>
@@ -103,25 +100,6 @@
         </div>
     </div>
     {% include "customer/aside.html" %}
-</div>
-<!--退款理由填写模态框 -->
-<div class="modal fade" tabindex="-1" role="dialog" id="refundModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">退款理由填写</h4>
-            </div>
-            <div class="modal-body">
-                <textarea class="form-control" rows="3" placeholder="请填写你的退款理由"></textarea>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">确定</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            </div>
-        </div>
-    </div>
 </div>
 {% endblock %}
 
