@@ -60,8 +60,8 @@ class OrderView(CustomerBaseView):
     def refund(self, request):
         """订单退款"""
         self.response_["type"] = self.RESPONSE_TYPE_JSON
-        id = request.GET.get("id")
-        refundReason = request.GET.get("refundReason")
+        id = request.POST.get("id")
+        refundReason = request.POST.get("refundReason")
         customer = self.context["customer"]
         try:
             ordProduct = OrderProductModel.objects.get(id=id, order__customer=customer)

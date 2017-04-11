@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}退款申请审核{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/seller/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/seller/aside.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/seller/verify.css' %}">
+{% endblock %}
+{% block body %}
+    {% include "seller/header.html" %}
+    <div class="content center-block">
+        <div class="col-main">
+            <div class="main-wrap">
+                <div class="info">
+                    <!--标题-->
+                    <div class="info-head">
+                        <p>
+                            <span class="head-text">退款申请审核</span>/
+                            <span class="for-head-text">refund verify</span>
+                        </p>
+                    </div>
+                    <!--审核内容-->
+                    <div class="content">
+                        <div class="verify-wrapper">
+                            {% for refund in refunds %}
+                            <div class="verify-content">
+                                <div class="col-md-4 refund-order">
+                                    <div class="col-md-3 commodity-pic">
+                                        <img src="{{ refund.product.thumbnail }}" alt="商品图片">
+                                    </div>
+                                    <ul class="col-md-9 commodity-detail">
+                                        <li class="commodity-name">{{ refund.product.name }}</li>
+                                        <li class="commodity-attribute">{{ refund.product.brand }}</li>
+                                    </ul>
+                                    <ul class="order-detail">
+                                        <li>订单编号：<span class="order-num">{{ refund.id }}</span></li>
+                                        <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：<span
+                                                class="price">{{ refund.sellPrice }}</span></li>
+                                        <li>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：<span class="num">{{ refund.amount }}</span></li>
+                                        <li>总&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计：<span
+                                                class="total-price">???</span></li>
+                                        <li>买&nbsp;&nbsp;家&nbsp;&nbsp;名：<span
+                                                class="customer-name">{{ refund.order.customer.name }}</span></li>
+                                        <li>成交时间：<span class="order-time">{{ refund.addTime }}</span></li>
+                                        <li>退款时间：<span class="refund-time">{{ refund.refundTime }}</span></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-7 refund-detail">
+                                    <form class="form-horizontal" id="form" v-on:submit.prevent="submitForm">
+                                        <div class="form-group">
+                                            <label for="type" class="col-sm-2 control-label">退款状态</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="type"
+                                                       value="买家申请退货" disabled="disabled">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="price" class="col-sm-2 control-label">退款金额</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="price"
+                                                       value="???" disabled="disabled">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">退款说明</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" rows="4" disabled="disabled">{{ refund.refundReason }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="verify" class="col-sm-2 control-label">审核情况</label>
+                                            <div class="col-md-10">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="accessRefund"
+                                                           value="8" v-model="refund.status"> 接受退款
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="inlineRadioOptions" id="noAccessRefund"
+                                                           value="9" v-model="refund.status"> 不接受退款
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">处理说明</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" rows="4" v-model="refund.refundDealResult"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-6 col-sm-10">
+                                                <button class="btn btn-default" data-toggle="modal"
+                                                   data-target="#submitModal">提交审核</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    {% if refunds.has_previous %}
+                                    <li>
+                                        <a href="?page={{ refunds.previous_page_number }}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                    <li><a href="#">{{ refunds.number }} / {{ refunds.paginator.num_pages }}</a></li>
+                                    {% if refunds.has_next %}
+                                    <li>
+                                        <a href="?page={{ refunds.next_page_number }}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% include "seller/aside.html" %}
+    </div>
+    <!--提交模态框-->
+    <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                </div>
+                <div class="modal-body">
+                    退款申请审核提交成功
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

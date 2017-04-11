@@ -2,6 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from customer.views.customerbaseview import CustomerBaseView
 from models.customer import Suggestion
+from models.order import OrderProductModel
 from util.baseview import loginRequire
 
 
@@ -55,4 +56,18 @@ class ServiceView(CustomerBaseView):
     @loginRequire()
     def refundMessage(self, request):
         """退款回复"""
-        pass
+        customer = self.context["customer"]
+        ordProducts = OrderProductModel.objects.filter(order__customer=customer, status__in=(
+        OrderProductModel.AC_REFUND, OrderProductModel.REFUND))
+        page = request.GET.get("page")
+        paginator = Paginator(ordProducts, 2)
+        try:
+            self.context["refunds"] = paginator.page(page)
+        except EmptyPage:
+            self.context["refunds"] = paginator.page(paginator.num_pages)
+        except PageNotAnInteger:
+            self.context["refunds"] = paginator.page(1)
+
+        refundStatusDict = {OrderProductModel.REFUND:"等待商家处理",OrderProductModel.AC_REFUND:"商家接受退货",OrderProductModel.RF_REFUND:"商家拒接退货"}
+        for refund in self.context["refunds"]:
+            refund.status = refundStatusDict[refund.status]

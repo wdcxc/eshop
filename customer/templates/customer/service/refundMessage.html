@@ -34,39 +34,37 @@
                                 <div class="table">
                                     <ul class="table-header">
                                         <li class="text-center col-md-2">退款时间</li>
-                                        <li class="text-center col-md-2">退款类型</li>
+                                        <li class="text-center col-md-2">退款状态</li>
                                         <li class="text-center col-md-3">退款原因</li>
                                         <li class="text-center col-md-2">商家反馈时间</li>
                                         <li class="text-center col-md-3">反馈内容</li>
                                     </ul>
+                                    {% for refund in refunds %}
                                     <ul class="table-content">
-                                        <li class="col-md-2 text-center refund-time">2017-3-25 20:00</li>
-                                        <li class="col-md-2 text-center refund-type">退款/退货</li>
-                                        <li class="col-md-3 refund-detail">和说明的不同：我买的是红色的，送过来是紫色的</li>
-                                        <li class="col-md-2 text-center reply-time">2017-3-25 21:00</li>
-                                        <li class="col-md-3 reply-content">卖家已接受退款，金额已退还到您的账户上，商品请邮寄到<span class="address">广东省 广州市 天河区 华南师范大学</span></li>
+                                        <li class="col-md-2 text-center refund-time">{{ refund.refundTime }}</li>
+                                        <li class="col-md-2 text-center refund-type">{{ refund.status }}</li>
+                                        <li class="col-md-3 refund-detail">{{ refund.refundReason }}</li>
+                                        <li class="col-md-2 text-center reply-time">{{ refund.refundDealTime|default_if_none:"" }}</li>
+                                        <li class="col-md-3 reply-content">{{ refund.refundDealResult|default_if_none:"" }}</li>
                                     </ul>
-                                    <ul class="table-content">
-                                        <li class="col-md-2 text-center consult-time">2017-3-25 20:00</li>
-                                        <li class="col-md-2 text-center question-type">退款</li>
-                                        <li class="col-md-3 question-detail">不想要了</li>
-                                        <li class="col-md-2 text-center reply-time">2017-3-25 21:00</li>
-                                        <li class="col-md-3 reply-content">不接受退款</li>
-                                    </ul>
+                                    {% endfor %}
                                     <nav aria-label="Page navigation">
                                         <ul class="pagination">
+                                            {% if refunds.has_previous %}
                                             <li>
-                                                <a href="#" aria-label="Previous">
+                                                <a href="?page={{refunds.previous_page_number}}" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                 </a>
                                             </li>
-                                            <li><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
+                                            {% endif %}
+                                            <li><a href="#">{{ refunds.number }} / {{ refunds.paginator.num_pages }}</a></li>
+                                            {% if refunds.has_next %}
                                             <li>
-                                                <a href="#" aria-label="Next">
+                                                <a href="?page={{refunds.next_page_number}}" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                 </a>
                                             </li>
+                                            {% endif %}
                                         </ul>
                                     </nav>
                                 </div>

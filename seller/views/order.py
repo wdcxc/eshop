@@ -61,3 +61,20 @@ class OrderView(SellerBaseView):
             self.context = {"code": 200, "msg": "商品已发货", "data": {"id": id}}
         else:
             self.context = {"code": 4, "msg": "商品状态出错", "data": {"id": id}}
+
+    @loginRequire()
+    def refund(self,request):
+        """退款处理"""
+        seller = self.context["seller"]
+
+        if request.method == "GET":
+            refunds = OrderProductModel.objects.filter(product__seller=seller,status=OrderProductModel.REFUND).order_by('addTime')
+            page = request.GET.get("page")
+            paginator = Paginator(refunds,1)
+            try:
+                self.context["refunds"] = paginator.page(page)
+            except EmptyPage:
+                self.context["refunds"] = paginator.page(paginator.num_pages)
+            except PageNotAnInteger:
+                self.context["refunds"] = paginator.page(1)
+

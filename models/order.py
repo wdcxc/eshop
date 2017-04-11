@@ -42,9 +42,10 @@ class OrderProductModel(models.Model):
     CANCEL = 6
     REFUND = 7
     AC_REFUND = 8
+    RF_REFUND = 9
     STATUS = (
         (UNSEND, 'unsend'), (UNRECEIVE, 'unreceive'), (UNEVALUATE, 'unevaluate'), (FINISH, 'finish'),
-        (CANCEL, 'cancel'), (REFUND, 'refund'), (AC_REFUND, 'accept-refund'))
+        (CANCEL, 'cancel'), (REFUND, 'refund'), (AC_REFUND, 'accept-refund'),(RF_REFUND,'refuse-refund'))
     GOOD = 101
     MIDDLE = 102
     BAD = 103
@@ -60,8 +61,9 @@ class OrderProductModel(models.Model):
     receiveTime = models.DateTimeField(null=True)  # 收货时间
     evaluateTime = models.DateTimeField(null=True)  # 评价时间
     refundTime = models.DateTimeField(null=True)  # 退货时间
-    ACRefundTime = models.DateTimeField(null=True)  # 商家接受退货时间
+    refundDealTime = models.DateTimeField(null=True)  # 商家处理退货时间
     refundReason = models.TextField(null=True)  # 退货理由
+    refundDealResult =models.TextField(null=True) # 退货处理结果
     evaluation = models.TextField(null=True)  # 订单评价
     eGrade = models.IntegerField(null=True, choices=EVALUATION)  # 商品评价等级
 

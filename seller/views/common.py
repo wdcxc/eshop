@@ -45,9 +45,6 @@ class CommonView(SellerBaseView):
     def opinion(self, request):
         pass
 
-    def verify(self, request):
-        pass
-
     def personalinfo(self, request):
         pass
 
