@@ -10,9 +10,6 @@ from util.regex import Regex
 
 
 class CommonView(CustomerBaseView):
-    def evaluate(self, request):
-        pass
-
     def bill(self, request):
         pass
 

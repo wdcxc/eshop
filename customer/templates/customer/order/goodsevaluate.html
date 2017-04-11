@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% csrf_token %}
 {% load static %}
 {% block title %}评价商品{% endblock %}
 {% block css %}
@@ -23,6 +23,7 @@
                     <!--评价内容-->
                     <div class="content">
                         <form id="form" v-on:submit.prevent="submitForm">
+                            <input type="hidden" id="id" value="{{product.id}}">
                             <div class="form-group commodity-evaluate">
                                 <div class="col-md-2 commodity">
                                     <div class="commodity-pic">
@@ -34,12 +35,12 @@
                                     </ul>
                                 </div>
                                 <div class="col-md-8 evaluate">
-                                    <select class="evaluate-list form-control" style="width: 5rem;margin-bottom: 1rem;">
-                                        <option class="good-evaluate col-md-4 text-center">好评</option>
-                                        <option class="middle-evaluate col-md-4 text-center">中评</option>
-                                        <option class="bad-evaluate col-md-4 text-center">差评</option>
+                                    <select v-model="product.eGrade" class="evaluate-list form-control" style="width: 5rem;margin-bottom: 1rem;">
+                                        <option class="good-evaluate col-md-4 text-center" value="101">好评</option>
+                                        <option class="middle-evaluate col-md-4 text-center" value="102">中评</option>
+                                        <option class="bad-evaluate col-md-4 text-center" value="103">差评</option>
                                     </select>
-                                    <textarea v-model="evaluation.evaluation" class="evaluate-text" rows="7"
+                                    <textarea v-model="product.evaluation" class="evaluate-text" rows="7"
                                               placeholder="请写下您对宝贝的评价，对别人帮助很大的哦"></textarea>
                                 </div>
                             </div>
@@ -62,9 +63,7 @@
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">系统提示</h4>
                 </div>
-                <div class="modal-body">
-                    您的评价已经提交，欢迎您继续购买
-                </div>
+                <div class="modal-body"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
                 </div>
@@ -73,5 +72,6 @@
     </div>
 {% endblock %}
 {% block js %}
-    <script src="{% static "js/customer/goodsevaluate.js" %}"></script>
+    <script src="{% static "js/js.cookie.js" %}"></script>
+    <script src="{% static "js/customer/order/goodsevaluate.js" %}"></script>
 {% endblock %}

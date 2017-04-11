@@ -17,7 +17,6 @@ urlpatterns = [
     url(r'^common/forgetpwd$', CommonView.as_view(), name="forgetPwd"),
     url(r'^common/generateCaptcha/[0-9\.]*$', CommonView.as_view(), name="generateCaptcha"),
     url(r'^common/valifyCaptcha$', CommonView.as_view(), name="valifyCaptcha"),
-    url(r'^common/evaluate$', CommonView.as_view(), name="evaluate"),
     url(r'^common/bill', CommonView.as_view(), name="bill"),
     url(r'^common/refundapply', CommonView.as_view(), name="refundapply"),
     url(r'.*/logout$', CommonView.as_view(), name="logout"),  # 登出账号
@@ -45,6 +44,7 @@ urlpatterns += [
     url(r'^order/refund$', OrderView.as_view(), name="refund"),  # 订单退款
     url(r'^order/receiveProduct$', OrderView.as_view(), name="receiveProduct"),  # 收货
     url(r'^order/goodsevaluate', OrderView.as_view(), name="goodsevaluate"), # 订单评价
+    url(r'^order/evaluate$', OrderView.as_view(), name="evaluate"),
 ]
 
 # 收藏
