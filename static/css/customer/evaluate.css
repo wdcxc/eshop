@@ -22,7 +22,7 @@
     border: #F5F5F5 .1rem solid;
 }
 .table-content{
-    height: 5rem;
+    height: 5.6rem;
     width: 100%;
     padding: .5rem 0;
 }
@@ -38,10 +38,13 @@
     line-height: 4rem;
 }
 .evaluate-text{
-    padding-top: .5rem;
+    padding-top: 1.5rem;
 }
 .evaluate-list nav{
     position: absolute;
     bottom: -3.9rem;
     right: .5rem;
+}
+.commodity-pic img{
+    width: 100%;
 }

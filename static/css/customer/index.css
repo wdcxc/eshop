@@ -182,6 +182,12 @@
     height: 15rem;
     text-align: center;
 }
+.collection-list>li{
+    padding: 0;
+}
+.collection-list>li img{
+    width: 100%;
+}
 .list-item{
     margin: 0 .8rem;
 }

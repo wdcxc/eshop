@@ -118,3 +118,6 @@ p{
     width: 10%;
     float: left;
 }
+.commodity-pic img{
+    width: 100%;
+}
