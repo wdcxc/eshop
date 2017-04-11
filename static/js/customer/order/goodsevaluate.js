@@ -19,3 +19,28 @@ $(document).ready(function () {
 
     });
 });
+
+var form = new Vue({
+    el:"#form",
+    data:{
+        product:{
+            id:document.getElementById("id").value,
+            eGrade:"101",
+            evaluation:"",
+        }
+    },
+    methods:{
+        submitForm:function(){
+            this.$http.post("/customer/order/goodsevaluate",this.product,{"headers":{"X-CSRFToken":Cookies.get("csrftoken")}})
+                      .then(success=>{
+                        $(".modal-body").html(success.body.msg);
+                        $("#submitModal").modal("toggle");
+                        setTimeout(function(){
+                            location.href="/customer/order/evaluateorder"
+                        },2000);
+                      },error=>{
+                        console.log(error);
+                      })
+        }
+    }
+});

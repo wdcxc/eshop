@@ -91,11 +91,39 @@ class OrderView(CustomerBaseView):
             self.context = {"code": 200, "msg": "收货成功", "data": {"id": id}}
 
     @loginRequire()
-    def goodsevaluate(self,request):
+    def goodsevaluate(self, request):
+        """评价订单"""
+        customer = self.context["customer"]
+
         if request.method == "GET":
             id = request.GET.get("id")
-            customer = self.context["customer"]
-            ordProduct = OrderProductModel.objects.get(id=id,order__customer=customer)
+            ordProduct = OrderProductModel.objects.get(id=id, order__customer=customer)
             self.context["product"] = ordProduct
         elif request.method == "POST":
-            pass
+            self.response_["type"] = self.RESPONSE_TYPE_JSON
+            try:
+                id = request.POST.get("id")
+                ordProduct = OrderProductModel.objects.get(id=id, order__customer=customer)
+                ordProduct.status = OrderProductModel.FINISH
+                ordProduct.eGrade = request.POST.get("eGrade")
+                ordProduct.evaluation = request.POST.get("evaluation")
+                ordProduct.evaluateTime = datetime.now()
+                ordProduct.save()
+            except Exception as e:
+                self.context = {"code": 4, "msg": "评价商品失败", "data": {"id": id, "error": str(e)}}
+            self.context = {"code": 200, "msg": "评价商品成功", "data": {"id": id}}
+
+    @loginRequire()
+    def evaluate(self, request):
+        """商品评价展示"""
+        customer = self.context["customer"]
+        evaluations = OrderProductModel.objects.filter(order__customer=customer,
+                                                       status=OrderProductModel.FINISH).order_by("-addTime")
+        page = request.GET.get("page")
+        paginator = Paginator(evaluations, 2)
+        try:
+            self.context["evaluations"] = paginator.page(page)
+        except EmptyPage:
+            self.context["evaluations"] = paginator.page(paginator.num_pages)
+        except PageNotAnInteger:
+            self.context["evaluations"] = paginator.page(1)
