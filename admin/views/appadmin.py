@@ -17,7 +17,10 @@ class AppAdminView(AdminBaseView):
     @loginRequire()
     def index(self,request):
         """商城管理后台首页"""
-        pass
+        # 轮播图
+        self.context["carousels"] = CarouselModel.objects.filter(show=True).order_by("-addTime")[:2]
+        # 商品目录
+        self.context["categories"] = ProductCategoryModel.objects.filter(show=True).order_by("-addTime")[:3]
 
     @loginRequire()
     def carousel(self,request):

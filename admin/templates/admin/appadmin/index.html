@@ -24,24 +24,17 @@
                 <th>点击链接地址</th>
                 <th>添加日期</th>
             </tr>
+            {% for carousel in carousels %}
             <tr>
-                <td>1</td>
-                <td>轮播1</td>
-                <td>是</td>
-                <td>1</td>
-                <td>/static/media/fileupload/carousel/20170021/ad1.jpg</td>
-                <td>/app/common/index</td>
-                <td>March 21, 2017, 12:11 p.m.</td>
+                <td>{{ carousel.id }}</td>
+                <td>{{ carousel.title }}</td>
+                <td>{% if carousel.show %}是{% else %}否{% endif %}</td>
+                <td>{{ carousel.order }}</td>
+                <td>{{ carousel.imgUrl }}</td>
+                <td>{{ carousel.linkUrl }}</td>
+                <td>{{ carousel.addTime }}</td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>轮播2</td>
-                <td>是</td>
-                <td>2</td>
-                <td>/static/media/fileupload/carousel/20170021/ad2.jpg</td>
-                <td>/app/common/index</td>
-                <td>March 21, 2017, 12:11 p.m.</td>
-            </tr>
+            {% endfor %}
         </table>
     </div>
 </div>
@@ -60,21 +53,13 @@
             </tr>
         </thead>
         <tbody>
+        {% for category in categories %}
         <tr>
-            <td>家用电器</td>
-            <td>是</td>
-            <td>2</td>
+            <td>{{ category.name }}</td>
+            <td>{% if category.show %}是{% else %}否{% endif %}</td>
+            <td>{{ category.order }}</td>
         </tr>
-        <tr>
-            <td>空调</td>
-            <td>是</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>电视</td>
-            <td>是</td>
-            <td>1</td>
-        </tr>
+        {% endfor %}
         </tbody>
         </table>
     </div>
@@ -87,7 +72,7 @@
         <div class="panel-body">
             <div class="panel panel-default" id="shoppingGuide">
                 <div class="panel-heading">
-                    <strong>家用电器</strong>
+                    <strong>111</strong>
                     <div class="btn-group">
                         <a href="/admin/appadmin/addShoppingGuideSubchannel"
                            class="btn btn-primary btn-xs">添加子栏目</a>
@@ -99,7 +84,7 @@
                 <div class="panel-body">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <strong>电视机</strong>
+                            <strong>{{ subChannel.name }}</strong>
                             <div class="btn-group">
                                 <a href="/admin/appadmin/addShoppingGuideProduct"
                                    class="btn btn-primary btn-xs">添加导购商品</a>

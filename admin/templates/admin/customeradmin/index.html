@@ -9,7 +9,7 @@
 
 {% block withnavbody %}
     <div class="search">
-        <h2>共有<span class="buyer-num">20</span>个买家</h2>
+        <h2>共有<span class="buyer-num">{{ amount }}</span>个买家</h2>
         <form class="search-form" method="get" action="{% url 'admin:customerAdminIndex' %}">
             <div class="input-group col-md-3">
                 <input type="text" name="name" class="form-control" placeholder="请输入买家名"/>
@@ -34,28 +34,36 @@
                 <tr>
                     <td>{{customer.name}}</td>
                     <td>{{customer.registTime}}</td>
-                    <td></td>
+                    <td>{% if customer.lock %}锁定{% else %}正常{% endif %}</td>
                     <td>
-                        <a class="btn btn-default" data-toggle="modal" data-target="#cancelModal">取消封号</a>
-                        <a class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">封号</a>
+                        {% if customer.lock %}
+                        <a class="btn btn-default cancel-lock" data-id="{{ customer.id }}" data-target="#cancelModal">取消封号</a>
+                        {% else %}
+                        <a class="btn btn-danger lock" data-id="{{ customer.id }}" data-target="#confirmModal">封号</a>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
             <nav aria-label="Page navigation">
             <ul class="pagination">
+                {% if customers.has_previous %}
                 <li>
-                    <a href="#" aria-label="Previous">
+                    <a href="?page={{customers.pervious_page_number}}" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
+                {% endif %}
+                {% if customers.number > 1 %}
+                <li><a href="#">{{ customers.number }} / {{ customers.paginator.num_pages }}</a></li>
+                {% endif %}
+                {% if customers.has_next %}
                 <li>
-                    <a href="#" aria-label="Next">
+                    <a href="?page={{customers.next_page_number}}" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
+                {% endif %}
             </ul>
         </nav>
         </table>
@@ -66,11 +74,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myModalLabel">系统提示</h4>
+                    <h4 class="modal-title">系统提示</h4>
                 </div>
                 <div class="modal-body">确定对买家zihang进行封号吗？</div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">确定</button>
+                    <input type="hidden" class="cid" value=""/>
+                    <button type="button" class="btn btn-primary" id="doLock">确定</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>
@@ -86,7 +95,8 @@
             </div>
             <div class="modal-body">确定对买家zihang取消封号吗？</div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">确定</button>
+                <input type="hidden" class="cid" value=""/>
+                <button type="button" class="btn btn-primary" id="doCancel">确定</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div>
@@ -97,6 +107,39 @@
 {% block js %}
 <script src="{% static 'js/js.cookie.js' %}"></script>
 <script>
+    $(function(){
+        $(".cancel-lock").on("click",function(){
+            $(".cid").val($(this).data("id"));
+            $("#cancelModal").modal("toggle");
+        });
+
+        $("#doCancel").on("click",function(){
+            $.get(
+                "/admin/customeradmin/unlockAccount?id="+$(".cid").val(),
+                function(result){
+                    alert(result.msg);
+                    $("#cancalModal").modal("toggle");
+                    setTimeout(function(){location.reload(true);},2000);
+                }
+            );
+        });
+
+        $(".lock").on("click",function(){
+            $(".cid").val($(this).data("id"));
+            $("#confirmModal").modal("toggle");
+        });
+
+        $("#doLock").on("click",function(){
+            $.get(
+                "/admin/customeradmin/lockAccount?id="+$(".cid").val(),
+                function(result){
+                    alert(result.msg);
+                    $("#confirmModal").modal("toggle");
+                    setTimeout(function(){location.reload(true);},2000);
+                }
+            );
+        });
+    });
 
 </script>
 {% endblock %}

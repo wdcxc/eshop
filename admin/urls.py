@@ -40,11 +40,15 @@ urlpatterns += [
 # customeradmin 买家管理
 urlpatterns += [
     url(r'^customeradmin/index$', CustomerAdminView.as_view(), name="customerAdminIndex"),
+    url(r'^customeradmin/lockAccount$', CustomerAdminView.as_view(), name="lockCustomer"),
+    url(r'^customeradmin/unlockAccount$', CustomerAdminView.as_view(), name="unlockCustomer"),
 ]
 
 # seller 卖家管理
 urlpatterns += [
     url(r'^selleradmin/index$', SellerAdminView.as_view(), name="sellerAdminIndex"),
+    url(r'^selleradmin/lockAccount$', SellerAdminView.as_view(), name="lockSeller"),
+    url(r'^selleradmin/unlockAccount$', SellerAdminView.as_view(), name="unlockSeller"),
 ]
 
 # appadmin 商城管理

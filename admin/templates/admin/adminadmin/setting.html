@@ -6,13 +6,14 @@
 <div>
     <h2 class="text-center">修改管理员密码</h2>
     <hr/>
-    <form class="form-horizontal" id="">
+    <form class="form-horizontal" id="form" v-on:submit.prevent="submitForm">
+        <input type="hidden" id="id" value="{{ admin.id }}"/>
         <div class="form-group">
             <div class="col-md-5">
                 <label class="pull-right">管理员账号</label>
             </div>
             <div class="col-md-3">
-                <input type="text" class="form-control"/>
+                <input type="text" class="form-control" value="{{admin.username}}" disabled="disabled"/>
             </div>
         </div>
         <div class="form-group">
@@ -20,7 +21,7 @@
                 <label class="pull-right">旧密码</label>
             </div>
             <div class="col-md-3">
-                <input type="password" class="form-control"/>
+                <input type="password" v-model="admin.oldPassword" class="form-control"/>
             </div>
         </div>
         <div class="form-group">
@@ -28,7 +29,7 @@
                 <label class="pull-right">新密码</label>
             </div>
             <div class="col-md-3">
-                <input type="password" class="form-control"/>
+                <input type="password" v-model="admin.newPassword" class="form-control"/>
             </div>
         </div>
         <div class="form-group">
@@ -36,7 +37,7 @@
                 <label class="pull-right">确认密码</label>
             </div>
             <div class="col-md-3">
-                <input type="password" class="form-control"/>
+                <input type="password" v-model="admin.confirmPassword" class="form-control"/>
             </div>
         </div>
         <div class="col-md-offset-6">
@@ -49,4 +50,28 @@
 
 {% block js %}
 <script src="{% static 'js/js.cookie.js' %}"></script>
+<script>
+    var form = new Vue({
+        el:"#form",
+        data:{
+            admin:{
+                id:document.getElementById("id").value,
+                oldPassword:"",
+                newPassword:"",
+                confirmPassword:"",
+            }
+        },
+        methods:{
+            submitForm:function(){
+                this.$http.post("/admin/adminadmin/setting",this.admin,{"headers":{"X-CSRFToken":Cookies.get("csrftoken")}})
+                          .then(success=>{
+                            alert(success.body.msg);
+                            if(success.body.code==200){location.reload(true);}
+                          },error=>{
+                            console.log(error);
+                          });
+            }
+        }
+    });
+</script>
 {% endblock %}
