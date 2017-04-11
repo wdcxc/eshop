@@ -25,22 +25,22 @@
                         <div class="evaluate-table">
                             <ul class="table-header">
                                 <li class="text-center col-md-5">商品</li>
-                                <li class="text-center col-md-2">评价时间</li>
-                                <li class="text-center col-md-5">评价内容</li>
+                                <li class="text-center col-md-3">评价时间</li>
+                                <li class="text-center col-md-4">评价内容</li>
                             </ul>
+                            {% for evaluation in evaluations %}
                             <ul class="table-content">
-                                {% for evaluation in evaluations %}
                                 <li class="col-md-5">
-                                    <div class="col-md-3 commodity-pic">
+                                    <div class="col-md-4 commodity-pic">
                                         <img src="{{evaluation.product.thumbnail}}" alt="商品图片">
                                     </div>
-                                    <ul class="col-md-9 commodity-detail">
+                                    <ul class="col-md-8 commodity-detail">
                                         <li class="commodity-name">{{evaluation.product.name}}</li>
                                         <li class="commodity-attribute">{{evaluation.product.brand}}</li>
                                     </ul>
                                 </li>
-                                <li class="col-md-2 text-center evaluate-time">{{evaluation.evaluateTime}}</li>
-                                <li class="col-md-5 evaluate-text">{{evaluation.evaluation}}</li>
+                                <li class="col-md-3 text-center evaluate-time">{{evaluation.evaluateTime}}</li>
+                                <li class="col-md-4 evaluate-text">{{evaluation.evaluation}}</li>
                             </ul>
                             {% endfor %}
                             <nav aria-label="Page navigation">
