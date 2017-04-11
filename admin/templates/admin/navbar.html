@@ -32,6 +32,10 @@
         <a {% ifequal controller "appadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:appAdminIndex' %}">商城管理</a>
     </li>
     <li>
+        <span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
+        <a {% ifequal controller "productadmin" %}class="affix-active-item"{% endifequal %} href="{% url 'admin:productAdminCategory' %}">商品管理</a>
+    </li>
+    <li>
         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
         <a href="{% url 'admin:logout' %}">退出</a>
     </li>
