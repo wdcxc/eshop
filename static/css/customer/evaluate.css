@@ -45,3 +45,6 @@
     bottom: -3.9rem;
     right: .5rem;
 }
+.commodity-pic img{
+    width: 100%;
+}

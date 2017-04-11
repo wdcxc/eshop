@@ -85,7 +85,50 @@
             <a href="{% url 'admin:appAdminShoppingGuide' %}">更多>>></a>
         </div>
         <div class="panel-body">
-
+            <div class="panel panel-default" id="shoppingGuide">
+                <div class="panel-heading">
+                    <strong>家用电器</strong>
+                    <div class="btn-group">
+                        <a href="/admin/appadmin/addShoppingGuideSubchannel"
+                           class="btn btn-primary btn-xs">添加子栏目</a>
+                        <a href="/admin/appadmin/updateShoppingGuideChannel"
+                           class="btn btn-success btn-xs">修改</a>
+                        <a class="del-channel btn btn-danger btn-xs" data-id="1">删除</a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>电视机</strong>
+                            <div class="btn-group">
+                                <a href="/admin/appadmin/addShoppingGuideProduct"
+                                   class="btn btn-primary btn-xs">添加导购商品</a>
+                                <a href="/admin/appadmin/updateShoppingGuideSubchannel"
+                                   class="btn btn-success btn-xs">修改</a>
+                                <a class="del-subchannel btn btn-danger btn-xs" data-id="2">删除</a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-2">
+                                <div class="thumbnail">
+                                    <img src="{% static 'images/app/commodity1.png' %}" alt="预览" width="100"
+                                         height="100"/>
+                                    <div class="caption">
+                                        <h5><strong>海尔电视</strong></h5>
+                                        <p>说明：海尔电视就是好</p>
+                                        <p>
+                                            <a href="/admin/appadmin/updateShoppingGuideProduct"
+                                               class="btn btn-success btn-xs">修改</a>
+                                            <a data-id="2"
+                                               class="btn btn-danger btn-xs del-product">删除</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

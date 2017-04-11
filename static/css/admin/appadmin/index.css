@@ -9,3 +9,8 @@
 table th,td{
     text-align: center;
 }
+.btn-group{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
