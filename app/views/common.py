@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from django.urls import reverse
 
@@ -6,7 +8,7 @@ from models.carousel import CarouselModel
 from models.product import ProductModel
 from models.productcategory import ProductCategoryModel
 from models.seller import SellerModel
-from models.shoppingguide import ShoppingGuideChannel, ShoppingGuideSubchannel
+from models.shoppingguide import ShoppingGuideChannel, ShoppingGuideSubchannel, ShoppingGuideProduct
 from util.baseview import loginRequire
 
 
@@ -21,15 +23,15 @@ class CommonView(AppBaseView):
         for carousel in carousels:
             self.context["carousels"].append(
                 {"title": carousel.title, "imgUrl": carousel.imgUrl, "linkUrl": carousel.linkUrl})
-            # 商品分类导航栏
-            productCategories = ProductCategoryModel.objects.all().order_by("-grade", "show", "-order", "-id")
-            sortedProductCategories = self._sortProductCategories(productCategories)
-            self.context["categories"] = sortedProductCategories
+        # 商品分类导航栏
+        productCategories = ProductCategoryModel.objects.all().order_by("-grade", "show", "-order", "-id")
+        sortedProductCategories = self._sortProductCategories(productCategories)
+        self.context["categories"] = sortedProductCategories
         # 商品导购
-            guideChannels = ShoppingGuideChannel.objects.filter(show=True).order_by("-order")
-            for channel in guideChannels:
-                channel.__dict__.update({"subChannels":ShoppingGuideSubchannel.objects.filter(parentId=channel.id)})
-            self.context["guideChannels"] = [channel.__dict__ for channel in guideChannels]
+        guideChannels = ShoppingGuideChannel.objects.filter(show=True).order_by("-order")
+        guideSubChannels = ShoppingGuideSubchannel.objects.filter(show=True).order_by("-order")
+        guideProducts = ShoppingGuideProduct.objects.filter(show=True).order_by("-order")
+        self.context["channels"] = self._sortShoppingGuide(guideChannels,guideSubChannels,guideProducts)
 
     @loginRequire(redirectUrl='/customer/common/login')
     def introduction(self, request):
@@ -151,6 +153,7 @@ class CommonView(AppBaseView):
         self.context["redirectPath"] = reverse("app:index")
 
     def _sortProductCategories(self, productCategories):
+        """商品目录排序"""
         categories = list(productCategories.values())
         sortedCategoriesDict = {}
         while categories:
@@ -200,3 +203,23 @@ class CommonView(AppBaseView):
         else:
             collection.delete()
             self.context = {"code": 200, "msg": "商品已取消收藏", "data": {"id": cid}}
+
+    def _sortShoppingGuide(self, channels, subChannels, products):
+        """商品导购排序"""
+        channels = list(channels.values())
+        subChannels = list(subChannels.values())
+        products = list(products.values())
+
+        subChannelsDict = OrderedDict({subChannel["id"]: subChannel for subChannel in subChannels})
+        for product in products:
+            if "products" not in subChannelsDict[product["parentId"]]:
+                subChannelsDict[product["parentId"]]["products"] = []
+            subChannelsDict[product["parentId"]]["products"].append(product)
+
+        channelsDict = OrderedDict({channel["id"]: channel for channel in channels})
+        for subChannel in subChannelsDict.values():
+            if "subChannels" not in channelsDict[subChannel["parentId"]]:
+                channelsDict[subChannel["parentId"]]["subChannels"] = []
+            channelsDict[subChannel["parentId"]]["subChannels"].append(subChannel)
+
+        return list(channelsDict.values())
