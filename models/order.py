@@ -48,11 +48,11 @@ class OrderProductModel(models.Model):
     GOOD = 101
     MIDDLE = 102
     BAD = 103
-    EVALUATION = ((GOOD,"good"),(MIDDLE,"middle"),(BAD,"bad"))
+    EVALUATION = ((GOOD, "good"), (MIDDLE, "middle"), (BAD, "bad"))
 
     status = models.IntegerField(choices=STATUS, default=UNPAY)  # 订单产品状态
     order = models.ForeignKey(OrderModel, related_name="products", on_delete=models.CASCADE)  # 归属订单
-    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE)  # 商品
+    product = models.ForeignKey(ProductModel, related_name="ordProducts", on_delete=models.CASCADE)  # 商品
     addTime = models.DateTimeField(auto_now_add=True)  # 商品加入订单时间
     sellPrice = models.DecimalField(max_digits=10, decimal_places=2, default=0)  # 商品支付时价格
     amount = models.IntegerField(default=0)  # 购买数量
@@ -63,7 +63,7 @@ class OrderProductModel(models.Model):
     ACRefundTime = models.DateTimeField(null=True)  # 商家接受退货时间
     refundReason = models.TextField(null=True)  # 退货理由
     evaluation = models.TextField(null=True)  # 订单评价
-    eGrade = models.IntegerField(null=True,choices=EVALUATION)  # 商品评价等级
+    eGrade = models.IntegerField(null=True, choices=EVALUATION)  # 商品评价等级
 
     class Meta:
         db_table = 'order_product'
