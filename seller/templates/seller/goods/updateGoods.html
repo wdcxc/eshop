@@ -92,9 +92,6 @@
                         </div>
                     </div>
                     {% endfor %}
-                    {% for image in images %}
-                    <input type="hidden" class="image" value="{{image.url}}" id="{{image.id}}">
-                    {% endfor %}
                     <div class="form-group">
                         <input type="hidden" id="description" value="{{product.description}}">
                         <label for="description" class="col-sm-2 control-label">商品描述</label>
@@ -103,11 +100,15 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <input type="hidden" id="oldThumbnail" value="{{product.thumbnail}}"/>
                         <label for="thumbnail" class="col-sm-2 control-label">商品缩略图</label>
                         <div class="col-sm-7">
-                            <input id="thumbnail" name="" class="file" type="file">
+                            <input id="thumbnail" name="productImages" class="file-loading" type="file">
                         </div>
                     </div>
+                    {% for image in images %}
+                    <input type="hidden" class="image" value="{{image.url}}" id="{{image.id}}">
+                    {% endfor %}
                     <div class="form-group">
                         <label for="picture" class="col-sm-2 control-label">商品图片</label>
                         <div class="col-md-7">
@@ -207,6 +208,38 @@
                 uploadImages.delete(key);
              });
 
+             $("#thumbnail").fileinput({
+                 uploadUrl:"/seller/goods/uploadImage",
+                 initialPreview: [oldProduct.thumbnail],
+                 initialPreviewAsData: true,
+                 overwriteInitial: true,
+                 maxFileCount:1,
+                 ajaxSettings:{
+                    beforeSend: function(xhr, settings) {
+                        if (!this.crossDomain) {
+                            xhr.setRequestHeader("X-CSRFToken", csrfToken);
+                        }
+                    }
+                 },
+                 ajaxDeleteSettings:{
+                    beforeSend: function(xhr, settings) {
+                        if (!this.crossDomain) {
+                            xhr.setRequestHeader("X-CSRFToken", csrfToken);
+                        }
+                    }
+                 },
+             });
+
+             $('#thumbnail').on('fileuploaded', function(event, data, previewId, index) {
+                    response = data.response;
+                    form.$data.product.thumbnail = response.imgUrl;
+             });
+
+             $("#thumbnail").on('filedeleted',function(event,key){
+                form.$data.product.thumbnail = "";
+             });
+
+
         });
 
     var oldProduct = {
@@ -217,6 +250,7 @@
         status:$("#status").val(),
         brand:$("#brand").val(),
         description:$("#description").val(),
+        thumbnail:$("#oldThumbnail").val(),
     };
 
     var form = new Vue({
@@ -232,6 +266,7 @@
                 properties:{},
                 uploadImages:[],
                 description:oldProduct.description,
+                thumbnail:oldProduct.thumbnail,
             }
         },
         methods:{

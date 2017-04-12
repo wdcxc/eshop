@@ -84,6 +84,7 @@ class OrderView(CustomerBaseView):
             ordProduct = OrderProductModel.objects.get(id=id, order__customer=customer)
             ordProduct.status = OrderProductModel.UNEVALUATE
             ordProduct.receiveTime = datetime.now()
+            ordProduct.product.soldoutAmount += 1
             ordProduct.save()
         except Exception as e:
             self.context = {"code": 4, "msg": "收货失败", "data": {"id": id}}

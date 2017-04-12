@@ -18,13 +18,15 @@ class ProductAdminView(AdminBaseView):
     @loginRequire()
     def property(self, request):
         """商品属性管理首页"""
-        print(request)
         id = request.GET.get("id")
-        category = ProductCategoryModel.objects.get(id=id)
-        metaProperties = category.propertyMetas.all()
-        self.context["category"] = category
-        self.context["parentCategory"] = ProductCategoryModel.objects.get(id=category.parentId)
-        self.context["metaProperties"] = metaProperties
+        try:
+            category = ProductCategoryModel.objects.get(id=id)
+            metaProperties = category.propertyMetas.all()
+            self.context["category"] = category
+            self.context["parentCategory"] = ProductCategoryModel.objects.get(id=category.parentId)
+            self.context["metaProperties"] = metaProperties
+        except ProductCategoryModel.DoesNotExist:
+            pass
 
     @loginRequire()
     def addProperty(self, request):
@@ -145,4 +147,3 @@ class ProductAdminView(AdminBaseView):
                 else:
                     break
         return list(sortedCategoriesDict.values())[0] if sortedCategoriesDict else []
-

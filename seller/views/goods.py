@@ -51,7 +51,7 @@ class GoodView(SellerBaseView):
         elif request.method == "POST":
             self.response_["type"] = self.RESPONSE_TYPE_JSON
 
-            keys = ("name", "price", "amount", "description", "brand", "status", "categoryId")
+            keys = ("name", "price", "amount", "description", "brand", "status", "categoryId","thumbnail")
             dict = {}
             for key in keys:
                 dict[key] = request.POST.get(key)
@@ -101,7 +101,7 @@ class GoodView(SellerBaseView):
             self.response_["type"] = self.RESPONSE_TYPE_JSON
 
             product = self.context["seller"].products.filter(id=request.POST.get('id'))
-            keys = ("name", "price", "amount", "brand", "status", "description")
+            keys = ("name", "price", "amount", "brand", "status", "description","thumbnail")
             dict = {}
             for key in keys:
                 dict[key] = request.POST.get(key)
@@ -158,7 +158,7 @@ class GoodView(SellerBaseView):
             img.save()
             storeRes.update(
                 {"initialPreview": [img.url], "initialPreviewConfig": [{"key": img.id, "caption": img.name}],
-                 "id": img.id})
+                 "id": img.id,"imgUrl":img.url})
             self.context = storeRes
         else:
             self.context = storeRes
