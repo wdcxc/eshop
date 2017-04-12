@@ -57,7 +57,7 @@
                             <dl class="category-class">
                                 <dt><span title="{{grade2.name}}">{{grade2.name}}</span></dt>
                                 {% for grade3 in grade2.subCategories %}
-                                <dd><a title="{{grade3.name}}" href="#"><span>{{grade3.name}}</span></a></dd>
+                                <dd><a title="{{grade3.name}}" href="{% url 'app:search' %}?category_id={{grade3.id}}"><span>{{grade3.name}}</span></a></dd>
                                 {% endfor %}
                             </dl>
                             {% endfor %}

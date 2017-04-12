@@ -78,27 +78,31 @@ class CommonView(AppBaseView):
     def search(self, request):
         """搜索"""
         name = request.GET.get("name")
+        raw = None
         if name:
             raw = ProductModel.objects.filter(name__icontains=name, status=ProductModel.ONSHELVE)
-            brand = request.GET.get("brand")
-            if brand:
-                raw = raw.filter(brand=brand)
-            categoryId = request.GET.get("category_id")
-            if categoryId:
-                raw = raw.filter(category=ProductCategoryModel.objects.get(id=categoryId))
-            order = request.GET.get("method")
-            if order:
-                if order == "price":
-                    raw = raw.order_by(order)
-                elif order == "number":
-                    raw = raw.order_by("-" + "soldoutAmount")
-
-            page = request.GET.get("page")
-            self.context["productsAmount"] = raw.count()
-
+        brand = request.GET.get("brand")
+        if brand:
+            raw = raw.filter(brand=brand)
+        categoryId = request.GET.get("category_id")
+        if categoryId:
             if raw:
-                self.context["brands"] = [pd.brand for pd in raw[0].category.products.all().only("brand")]
-                self.context["categories"] = ProductCategoryModel.objects.filter(parentId=raw[0].category.parentId)
+                raw = raw.filter(category=ProductCategoryModel.objects.get(id=categoryId))
+            else:
+                raw = ProductModel.objects.filter(category=ProductCategoryModel.objects.get(id=categoryId), status=ProductModel.ONSHELVE)
+        order = request.GET.get("method")
+        if order:
+            if order == "price":
+                raw = raw.order_by(order)
+            elif order == "number":
+                raw = raw.order_by("-" + "soldoutAmount")
+
+        page = request.GET.get("page")
+
+        if raw:
+            self.context["productsAmount"] = raw.count()
+            self.context["brands"] = [pd.brand for pd in raw[0].category.products.all().only("brand")]
+            self.context["categories"] = ProductCategoryModel.objects.filter(parentId=raw[0].category.parentId)
 
             paginator = Paginator(raw.values(), 8)
             try:
