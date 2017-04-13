@@ -24,3 +24,12 @@ var form = new Vue({
         }
     }
 });
+
+$(function(){
+    var price = parseInt($(".price").html());
+    var num = parseFloat($(".num").html());
+    var totalPrice = price*num;
+    $(".total-price").html(totalPrice);
+    $("#price").val(totalPrice);
+
+});

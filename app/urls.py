@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^common/shopcart$', CommonView.as_view(), name="shopcart"),
     url(r'^common/deleteShopcart$', CommonView.as_view(), name="deleteShopcart"),
     url(r'^common/addShopcart$', CommonView.as_view(), name="addShopcart"),
+    url(r'^common/buynow$', CommonView.as_view(), name="buynow"),
     url(r'^common/activity$', CommonView.as_view(), name="activity"),
     url(r'^common/contact$', CommonView.as_view(), name="contact"),
     url(r'^common/about', CommonView.as_view(), name="about"),

@@ -51,6 +51,21 @@ $(document).ready(function () {
 	    );
 	    return false;
 	});
+
+	$("#buynow").on("click",function(){
+        id = $("#id").val();
+	    num = $(".number").val();
+	    $.get("/app/common/buynow?id="+id+"&num="+num,
+	        function(result){
+	            alert(result.msg);
+	            if(result.code==200){
+	                location.href = "/app/order/order?id="+result.data.oid;
+	            }
+	        }
+	    );
+	    return false;
+	});
+
     number.on('change',function () {
         if(number.val()<1){
             alert("商品数量至少选择1");

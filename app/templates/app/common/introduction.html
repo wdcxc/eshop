@@ -44,16 +44,14 @@
                 </div>
                 <ul class="sale-num">
                     <li class="total-sale">总销量<span class="num">{{product.soldoutAmount}}</span></li>
-                    <li class="total-evaluate">总评价<span class="num">???</span></li>
+                    <li class="total-evaluate">总评价<span class="num">{{total}}</span></li>
                 </ul>
                 <p class="commodity-category">种类<span class="num">{{product.category.name}}</span></p>
                 <ul class="commodity-attribute">
-                    {% for property in product.properties %}
                     <li>
-                        <label class="attribute-name">{{property.meta.name}}</label>
-                        <span class="attribute-select">{{property.value}}</span>
+                        <label class="attribute-name">品牌</label>
+                        <span class="attribute-select">{{product.brand}}</span>
                     </li>
-                    {% endfor %}
                     <li>
                         <label class="attribute-name">数量</label>
                         <input class="reduce" name="" type="button" value="-">
@@ -63,7 +61,7 @@
                     </li>
                 </ul>
                 <div class="button-group">
-                    <a href="#" id="order" class="buy-rightnow">马上购买</a>
+                    <a href="#" id="buynow" class="buy-rightnow">马上购买</a>
                     <a tabindex="0" role="button" id="shopcart" class="add-to-shopcart" data-toggle="modal" data-target="#addShopcartModal">加入购物车</a>
                 </div>
             </div>
@@ -175,11 +173,9 @@
                         </div>
                         <h4 class="goods-detail">商品细节：</h4>
                         <div class="detail-content">
-                            <img src="{% static "images/app/detail1.jpg" %}" alt="商品细节图片1">
-                            <img src="{% static "images/app/detail2.jpg" %}" alt="商品细节图片2">
-                            <img src="{% static "images/app/detail3.jpg" %}" alt="商品细节图片3">
-                            <img src="{% static "images/app/detail4.jpg" %}" alt="商品细节图片4">
-                            <img src="{% static "images/app/detail5.jpg" %}" alt="商品细节图片5">
+                            {% for image in product.detailImages %}
+                            <img src="{{image.url}}" alt="{{image.name}}">
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

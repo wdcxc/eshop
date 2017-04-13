@@ -87,7 +87,7 @@
                                                 <td>{{refundOrdPd.order.customer.name}}</td>
                                                 <td>{{refundOrdPd.order.id}}</td>
                                                 <td style="max-width: 6rem">{{refundOrdPd.refundReason}}</td>
-                                                <td><a href="verify?id={{refundOrdPd.id}}">去退款审核页面审核</a></td>
+                                                <td><a href="{% url 'seller:refund' %}?id={{refundOrdPd.id}}">去退款审核页面审核</a></td>
                                             </tr>
                                             {% endfor %}
                                             </tbody>

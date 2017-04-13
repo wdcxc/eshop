@@ -33,14 +33,14 @@
 <div class="shop-nav">
     <div class="slideall">
         <div class="long-title">全部分类</div>
-        <div class="activity-nav">
-            <ul>
-                <li><a href="#">秒杀</a></li>
-                <li><a href="#">特惠</a></li>
-                <li><a href="#">团购</a></li>
-                <li><a href="#">超值</a></li>
-            </ul>
-        </div>
+        <!--<div class="activity-nav">-->
+            <!--<ul>-->
+                <!--<li><a href="#">秒杀</a></li>-->
+                <!--<li><a href="#">特惠</a></li>-->
+                <!--<li><a href="#">团购</a></li>-->
+                <!--<li><a href="#">超值</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
 
         <!--侧边导航 -->
         <div class="category-content">
@@ -71,55 +71,55 @@
 </div>
 <div class="shop-main-bg">
     <div class="shop-main">
-        <!--热门活动 -->
-        <div class="container activity ">
-            <div class="shop-title">
-                <h3 class="shop-sub-title">活动</h3>
-                <h4>每期活动 优惠享不停 </h4>
-            </div>
-            <div class="row" style="padding:.5rem 0;">
-                <div class="col-md-3 col-xs-6">
-                    <div class="icon-sale one"></div>
-                    <h4>秒杀</h4>
-                    <div class="activity-main">
-                        <a href="#"><img src="{% static 'images/app/activity1.jpg' %}"></a>
-                    </div>
-                    <div class="activity-info">
-                        <h3>快被抢完了</h3>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="icon-sale one"></div>
-                    <h4>特惠</h4>
-                    <div class="activity-main">
-                        <a href="#"><img src="{% static 'images/app/activity2.jpg' %}"></a>
-                    </div>
-                    <div class="activity-info">
-                        <h3>物美价廉哦</h3>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="icon-sale one"></div>
-                    <h4>团购</h4>
-                    <div class="activity-main">
-                        <a href="#"><img src="{% static 'images/app/activity3.jpg' %}"></a>
-                    </div>
-                    <div class="activity-info">
-                        <h3>团购更便宜</h3>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="icon-sale one"></div>
-                    <h4>超值</h4>
-                    <div class="activity-main">
-                        <a href="#"><img src="{% static 'images/app/activity.jpg' %}"></a>
-                    </div>
-                    <div class="activity-info">
-                        <h3>物超所值哦</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!--&lt;!&ndash;热门活动 &ndash;&gt;-->
+        <!--<div class="container activity ">-->
+            <!--<div class="shop-title">-->
+                <!--<h3 class="shop-sub-title">活动</h3>-->
+                <!--<h4>每期活动 优惠享不停 </h4>-->
+            <!--</div>-->
+            <!--<div class="row" style="padding:.5rem 0;">-->
+                <!--<div class="col-md-3 col-xs-6">-->
+                    <!--<div class="icon-sale one"></div>-->
+                    <!--<h4>秒杀</h4>-->
+                    <!--<div class="activity-main">-->
+                        <!--<a href="#"><img src="{% static 'images/app/activity1.jpg' %}"></a>-->
+                    <!--</div>-->
+                    <!--<div class="activity-info">-->
+                        <!--<h3>快被抢完了</h3>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 col-xs-6">-->
+                    <!--<div class="icon-sale one"></div>-->
+                    <!--<h4>特惠</h4>-->
+                    <!--<div class="activity-main">-->
+                        <!--<a href="#"><img src="{% static 'images/app/activity2.jpg' %}"></a>-->
+                    <!--</div>-->
+                    <!--<div class="activity-info">-->
+                        <!--<h3>物美价廉哦</h3>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 col-xs-6">-->
+                    <!--<div class="icon-sale one"></div>-->
+                    <!--<h4>团购</h4>-->
+                    <!--<div class="activity-main">-->
+                        <!--<a href="#"><img src="{% static 'images/app/activity3.jpg' %}"></a>-->
+                    <!--</div>-->
+                    <!--<div class="activity-info">-->
+                        <!--<h3>团购更便宜</h3>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 col-xs-6">-->
+                    <!--<div class="icon-sale one"></div>-->
+                    <!--<h4>超值</h4>-->
+                    <!--<div class="activity-main">-->
+                        <!--<a href="#"><img src="{% static 'images/app/activity.jpg' %}"></a>-->
+                    <!--</div>-->
+                    <!--<div class="activity-info">-->
+                        <!--<h3>物超所值哦</h3>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
         <!--商品导购区-->
         <div class="tabs">
             {% for channel in channels %}
@@ -128,17 +128,17 @@
                 <ul id="myTabs" class="nav nav-tabs" role="tablist">
                     {% for subChannel in channel.subChannels %}
                     <li role="presentation" class="{% if forloop.first %}active{% endif %}"><a
-                            href="#commodity-{{ forloop.counter }}" role="tab"
-                            id="commodity-{{ forloop.counter }}-tab"
-                            data-toggle="tab" aria-controls="commodity-{{ forloop.counter }}"
+                            href="#commodity-{{ subChannel.id }}" role="tab"
+                            id="commodity-{{ subChannel.id }}-tab"
+                            data-toggle="tab" aria-controls="commodity-{{ subChannel.id }}"
                             aria-expanded="true">{{ subChannel.name }}</a></li>
                     {% endfor %}
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     {% for subChannel in channel.subChannels %}
                     <div role="tabpanel" class="container tab-pane fade {% if forloop.first %}active in{% endif %}"
-                         id="commodity-{{ forloop.counter }}"
-                         aria-labelledby="commodity-{{ forloop.counter }}-tab" style="padding:0">
+                         id="commodity-{{ subChannel.id }}"
+                         aria-labelledby="commodity-{{ subChannel.id }}-tab" style="padding:0">
                         <div class="row commodity-content">
                             {% for product in subChannel.products %}
                             <div class="col-md-3 col-xs-6">

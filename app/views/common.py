@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from app.views.appbaseview import AppBaseView
 from models.carousel import CarouselModel
-from models.order import OrderProductModel
+from models.order import OrderProductModel, OrderModel
 from models.product import ProductModel
 from models.productcategory import ProductCategoryModel
 from models.seller import SellerModel
@@ -42,7 +42,8 @@ class CommonView(AppBaseView):
         except Exception as e:
             print(e)
         product.__dict__.update({
-            "images": product.images.all(),
+            "images": product.images.all()[:4],
+            "detailImages":product.images.all(),
             "properties": product.properties.all(),
             "category": product.category,
         })
@@ -81,6 +82,7 @@ class CommonView(AppBaseView):
         raw = None
         if name:
             raw = ProductModel.objects.filter(name__icontains=name, status=ProductModel.ONSHELVE)
+            self.context["name"] = name
         brand = request.GET.get("brand")
         if brand:
             raw = raw.filter(brand=brand)
@@ -140,6 +142,23 @@ class CommonView(AppBaseView):
             self.context = {"code": 4, "msg": "添加购物车失败", "data": {"pid": id, "error": str(e)}}
         else:
             self.context = {"code": 200, "msg": "添加购物车成功", "data": {"pid": id}}
+
+    @loginRequire(redirectUrl='/customer/common/login')
+    def buynow(self, request):
+        """立即购买"""
+        self.response_["type"] = self.RESPONSE_TYPE_JSON
+        id = request.GET.get("id")
+        num = request.GET.get("num")
+        try:
+            customer = self.context["customer"]
+            product = ProductModel.objects.get(id=id)
+            newOrder = OrderModel(customer=customer)
+            newOrder.save()
+            newOrder.products.create(product=product, amount=num)
+        except Exception as e:
+            self.context = {"code": 4, "msg": "下单失败", "data": {"pid": id, "error": str(e)}}
+        else:
+            self.context = {"code": 200, "msg": "下单成功", "data": {"oid": newOrder.id}}
 
     @loginRequire(redirectUrl='/customer/common/login')
     def deleteShopcart(self, request):

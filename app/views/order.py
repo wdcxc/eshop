@@ -34,9 +34,10 @@ class OrderView(AppBaseView):
             customer = self.context["customer"]
             self.context["addresses"] = customer.receiveAddresses.all()
             orderId = request.GET.get("id")
-            order = customer.orders.get(id=orderId)
-            self.context["products"] = order.products.all()
-            self.context["provinces"] = GeoData.geoData.keys()
+            if orderId:
+                order = customer.orders.get(id=orderId)
+                self.context["products"] = order.products.all()
+                self.context["provinces"] = GeoData.geoData.keys()
 
     @loginRequire(redirectUrl='/customer/common/login')
     def fail(self, request):

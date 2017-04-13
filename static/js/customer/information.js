@@ -23,7 +23,7 @@ var customerForm = new Vue({
     methods:{
         formSubmit:function(){
             this.customer.birthday = $("#birthday").val();
-            this.$http.post("/customer/common/information",this.customer,{"headers":{"X-CSRFToken":csrfToken}})
+            this.$http.post("/customer/information/information",this.customer,{"headers":{"X-CSRFToken":csrfToken}})
                       .then(success=>{
                         $("#infoMsg").html(success.body.msg);
                         $("#saveModal").modal("toggle");
@@ -40,7 +40,7 @@ var customerForm = new Vue({
             var that = this;
             var formData = new FormData();
             formData.append("img",document.getElementById("img").files[0])
-            this.$http.post("/customer/common/uploadAvatar",formData,{"headers":{"X-CSRFToken":csrfToken}})
+            this.$http.post("/customer/information/uploadAvatar",formData,{"headers":{"X-CSRFToken":csrfToken}})
                       .then(success=>{
                         $("#infoMsg").html(success.body.msg);
                         $("#saveModal").modal("toggle");
