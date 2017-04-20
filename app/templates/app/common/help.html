@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}帮助中心{% endblock %}
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/app/about.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app/help.css' %}">
 {% endblock %}
 {% block body %}
     <div class="wrapper bg-white">
@@ -17,7 +17,92 @@
             <div class="content-box">
                 <article>
                     <h3>网站操作说明</h3>
-                    <p>eshop是一个小规模的电商网站，操作简单易用。</p>
+                    <ol>
+                        <li>
+                            <h4>系统软硬件配置</h4>
+                            <table class="table table-bordered">
+                                <caption>系统运行软硬件配置要求如下表1：系统软硬件配置表所示</caption>
+                                <tbody>
+                                <tr>
+                                    <td>操作系统</td>
+                                    <td>Linux2.6+ 或 windows 7+</td>
+                                </tr>
+                                <tr>
+                                    <td>数据库系统</td>
+                                    <td>MySQL5.5+</td>
+                                </tr>
+                                <tr>
+                                    <td>Python</td>
+                                    <td>3.5+</td>
+                                </tr>
+                                <tr>
+                                    <td>Mysqlclient</td>
+                                    <td>1.3.10+</td>
+                                </tr>
+                                <tr>
+                                    <td>Django</td>
+                                    <td>1.10+</td>
+                                </tr>
+                                <tr>
+                                    <td>Pillow</td>
+                                    <td>4.0.0+</td>
+                                </tr>
+                                <tr>
+                                    <td>内存</td>
+                                    <td>4G及以上</td>
+                                </tr>
+                                <tr>
+                                    <td>硬盘</td>
+                                    <td>500G及以上</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                        <li>
+                            <h4>操作说明</h4>
+                            <p>系统的运行前需要先配置好系统运行依赖环境，包括安装配置数据库，安装Python语言并安装依赖库，包括后台开发的Django框架，数据库操作依赖的Mysqlclient库，验证码生成依赖的Pillow库。此外，初始运行系统时，需要进行系统的初始化操作，需要执行Django框架的数据模型初始化命令。</p> 
+                        </li>
+                        <li>
+                            <h4>数据库安装配置</h4>
+                            <p>数据库安装步骤：</p>
+                            <ol>
+                                <li>添加mysql组和mysql用户</li>
+                                <li>解压编译安装mysql</li>
+                                <li>修改mysql文件夹权限</li>
+                                <li>执行mysql_install_db脚本进行安装</li>
+                                <li>设置service启动</li>
+                                <li>mysql路径写入环境变量PATH</li>
+                            </ol>
+                            <p>数据库安装执行脚本如下：</p>
+                            <ol>
+                                <li>> groupadd mysql<br/>useradd -r -g mysql -s /bin/false mysql</li>
+                                <li>> tar zxvf mysql-VERSION.tar.gz<br/>cd mysql-VERSION<br/>cmake (../mysql-src -LAH)<br/>cmake (../mysql-src -LAH)</li>
+                                <li>> cd /usr/local/mysql<br/>chown -R mysql .<br/>chgrp -R mysql .</li>
+                                <li>> scripts/mysql_install_db --user=mysql --basedir=/usr/local/mysql<br/>--datadir=/usr/local/mysql/data<br/>chown -R root .<br/>chown -R mysql data<br/>bin/mysqld_safe --user=mysql &</li>
+                                <li>> cp support-files/mysql.server /etc/init.d/mysql.server</li>
+                                <li>> vim ~/.bashrc 增加 PATH=$PATH:mysql_install_dir/bin/</li>
+                            </ol>
+                            <p>数据库安装配置好后登录数据库建立新的数据库eshop。系统初次运行时需要往数据库admin表插入新超级管理员记录，管理员密码需要进行sha512加密。</p>
+                        </li>
+                        <li>
+                            <h4>系统运行环境配置</h4>
+                            <p>系统运行环境需要安装有Python，然后安装pip，接着安装各个依赖库包括Django,Mysqlclient,Pillow库等系统运行所需依赖库。</p>
+                            <ul>
+                                <li>安装命令如下所示：</li>
+                                <li>安装Django：</li>
+                                <li>> pip install Django</li>
+                                <li>安装Mysqlclient：</li>
+                                <li>> pip install mysqlclient</li>
+                                <li>安装Pillow：</li>
+                                <li>> pip install pillow</li>
+                            </ul>
+                            <p>安装完系统后需要初始化系统，需要在项目根目录下执行以下Django框架数据模型初始化命令：</p>
+                            <ol style="padding-bottom: 2rem">
+                                <li>> manage.py makemigrations</li>
+                                <li>> manage.py migrate</li>
+                            </ol>
+                        </li>
+                    </ol>
                 </article>
             </div>
         </div>
