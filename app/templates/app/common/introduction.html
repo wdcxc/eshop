@@ -5,6 +5,7 @@
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/header.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/app/introduction.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/quill/quill.snow.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -172,11 +173,8 @@
                             {% endfor %}
                         </div>
                         <h4 class="goods-detail">商品细节：</h4>
-                        <div class="detail-content">
-                            {% for image in product.detailImages %}
-                            <img src="{{image.url}}" alt="{{image.name}}">
-                            {% endfor %}
-                        </div>
+                        <input type="hidden" value="{{product.description}}" id="description">
+                        <div class="detail-content" id="desc"></div>
                     </div>
                 </div>
             </div>
@@ -203,5 +201,6 @@
 {% endblock %}
 
 {% block js %}
-    <script src="{% static "js/app/introduction.js" %}"></script>
+<script src="{% static 'lib/quill/quill.min.js' %}"></script>
+<script src="{% static 'js/app/introduction.js' %}"></script>
 {% endblock %}

@@ -2,6 +2,10 @@
  * Created by zihang on 2017/3/21.
  */
 $(document).ready(function () {
+    var quill = new Quill("#desc",{});
+    quill.setContents($.parseJSON($("#description").val()));
+
+
     let image=$(".commodity-image");
     let number=$(".number");
     let stock=parseInt($(".stock").text());
