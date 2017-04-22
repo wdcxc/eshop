@@ -303,6 +303,7 @@
 .commodity-price{
     font-size: .6rem;
     color: #666;
+    margin-top: .5rem;
 }
 .commodity-content a img{
     width: 100%;
