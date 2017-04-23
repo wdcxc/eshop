@@ -188,6 +188,7 @@
     overflow: hidden;
     position: relative;
     cursor: pointer;
+    height: 21rem;
 }
 .commodity img{
     width: 100%;
