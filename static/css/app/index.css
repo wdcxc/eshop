@@ -303,10 +303,12 @@
 .commodity-price{
     font-size: .6rem;
     color: #666;
+    margin-top: .5rem;
 }
 .commodity-content a img{
-    width: 100%;
-    margin-top: 30%;
+    width: 76%;
+    margin-left: 12%;
+    margin-bottom: 10%;
 }
 .commodity-row-two{
     border-top: 1px solid #eee;
@@ -342,6 +344,10 @@
 .tab{
     margin-top: 2rem;
 }
+.commodity-image{
+    margin-top: 30%;
+}
+
 
 
 
