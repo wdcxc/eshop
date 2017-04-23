@@ -42,12 +42,12 @@
                                     <img src="{{ordPd.product.thumbnail}}" alt="订单商品图片">
                                 </li>
                             </ul>
-                            <div class="evaluate">{{ordPd.product.name}}</div>
+                            <div class="commodity-name">{{ordPd.product.name}}</div>
                             <div class="detail-content">
                                 <p class="delivery-time">{{ordPd.addTime}}</p>
-                                <p class="delivery-num">共 {{ordPd.amount}} 件商品</p>
+                                <p class="delivery-num">共 <span class="font-red">{{ordPd.amount}}</span> 件商品</p>
                             </div>
-                            <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span>{{ordPd.totalPrice}}</div>
+                            <div class="price"><span style="font-size: .8rem;margin-right:.2rem">¥</span><span class="font-red">{{ordPd.totalPrice}}</span></div>
                         </div>
                         <a href="#" class="buy-btn" data-id="{{ordPd.id}}">立即发货</a>
                     </div>

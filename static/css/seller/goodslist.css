@@ -9,6 +9,7 @@ table th,td{
     text-align: center;
 }
 table td img{
+    margin-top: 1rem;
     width: 3rem;
     height: 3rem;
 }

@@ -1,7 +1,7 @@
 from admin.views.adminbaseview import AdminBaseView
 from models.productcategory import ProductCategoryModel, PropertyMetaModel
 from util.baseview import loginRequire
-
+from collections import OrderedDict
 
 class ProductAdminView(AdminBaseView):
     @loginRequire()
@@ -127,11 +127,10 @@ class ProductAdminView(AdminBaseView):
 
     def _sortCategories(self, categories):
         """商品类别排序
-        python3.4+ 才可用，因为 python3.4+ dict是有序的
         返回一个排序后的列表
         """
         categories = list(categories.values())
-        sortedCategoriesDict = {}
+        sortedCategoriesDict = OrderedDict()
         while categories:
             curGrade = categories[0]["grade"]
             for i, categorie in enumerate(categories):

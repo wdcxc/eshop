@@ -1,3 +1,6 @@
+.font-red{
+    color: red;
+}
 .user-info{
     width: 100%;
     position: relative;
@@ -111,7 +114,7 @@
     border: #e4e3e3 1px solid;
 }
 .detail-content{
-    width: 40%;
+    width: 28%;
     float: left;
     margin-top: 1rem;
 }
@@ -133,13 +136,13 @@
     color: #666;
     margin-bottom: .3rem;
 }
-.evaluate{
-    color: red;
-    font-weight: 600;
-    width: 18%;
+.commodity-name{
+    color: #666;
+    width: 20%;
     float: left;
     height: 4.2rem;
-    line-height: 4.2rem;
+    margin-top: 1rem;
+    margin-right: 3.5rem;
 }
 .price{
     font-size: 1rem;
@@ -159,6 +162,7 @@
     border: 1px solid red;
     color: red;
     text-align: center;
+    margin-top: .5rem;
 }
 .buy-btn:hover,.buy-btn:active{
     color: red;
