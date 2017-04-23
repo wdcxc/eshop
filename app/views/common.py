@@ -103,7 +103,7 @@ class CommonView(AppBaseView):
 
         if raw:
             self.context["productsAmount"] = raw.count()
-            self.context["brands"] = [pd.brand for pd in raw[0].category.products.distinct("brand")]
+            self.context["brands"] = list(set([pd.brand for pd in raw[0].category.products.all()]))
             self.context["categories"] = ProductCategoryModel.objects.filter(parentId=raw[0].category.parentId)
 
             paginator = Paginator(raw.values(), 8)
