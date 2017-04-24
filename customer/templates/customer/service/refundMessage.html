@@ -45,7 +45,7 @@
                                         <li class="col-md-2 text-center refund-type">{{ refund.status }}</li>
                                         <li class="col-md-2 refund-detail">{{ refund.refundReason }}</li>
                                         <li class="col-md-3 text-center reply-time">{{ refund.refundDealTime|default_if_none:"" }}</li>
-                                        <li class="col-md-2 reply-content">{{ refund.refundDealResult|default_if_none:"" }}</li>
+                                        <li class="col-md-2 text-center reply-content">{{ refund.refundDealResult|default_if_none:"" }}</li>
                                     </ul>
                                     {% endfor %}
                                     <nav aria-label="Page navigation">
